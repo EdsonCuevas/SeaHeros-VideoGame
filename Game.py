@@ -4,9 +4,16 @@ from pygame.locals import *
 #Start de pygame
 pygame.init()
 
-#Ventana
-PANTALLA = pygame.display.set_mode((1280,720))
-pygame.display.set_caption("Proyecto")
+#Pantalla
+W,H = 450,450
+PANTALLA = pygame.display.set_mode((W,H))
+pygame.display.set_caption("Sea Heroes")
+FPS = 100
+Reloj = pygame.time.Clock()
+
+#Fondo
+fondo=pygame.image.load("oceano.jpg").convert()
+x=0
 
 #Colores
 Blanco = (255,255,255)
@@ -23,4 +30,11 @@ while True:
         if event.type == QUIT:
             pygame.quit()
             sys.exit()
+    x_relativa = x % fondo.get_rect().width
+    PANTALLA.blit(fondo,(x_relativa - fondo.get_rect().width,0))
+    if x_relativa < W:
+        PANTALLA.blit(fondo,(x_relativa,0))
+
+    x -= 1
     pygame.display.update()
+    Reloj.tick(FPS)
