@@ -2,17 +2,17 @@ import pygame, sys
 from pygame.locals import *
 
 #Start de pygame
-pygame.init()
+pygame.init()   
 
 #Pantalla
-W,H = 450,450
+W,H = 1280,720
 PANTALLA = pygame.display.set_mode((W,H))
 pygame.display.set_caption("Sea Heroes")
 FPS = 100
 Reloj = pygame.time.Clock()
 
 #Fondo
-fondo=pygame.image.load("oceano.jpg").convert()
+fondo=pygame.image.load("oceano_modif.jpg").convert()
 x=0
 
 #Colores
@@ -36,5 +36,5 @@ while True:
         PANTALLA.blit(fondo,(x_relativa,0))
 
     x -= 1
-    pygame.display.update()
     Reloj.tick(FPS)
+    pygame.display.update()
