@@ -5,14 +5,14 @@ from pygame.locals import *
 pygame.init()   
 
 #Pantalla
-W,H = 720,720
+W,H = 720,625
 PANTALLA = pygame.display.set_mode((W,H))
 pygame.display.set_caption("Sea Heroes")
 FPS = 100
 Reloj = pygame.time.Clock()
 
 #Fondo
-fondo=pygame.image.load("oceano_modif.jpg").convert()
+fondo=pygame.image.load("ocean.jpg").convert()
 x=0
 
 class Fish(pygame.sprite.Sprite):
@@ -24,7 +24,7 @@ class Fish(pygame.sprite.Sprite):
 
 fish_group = pygame.sprite.Group()
 
-flappy = Fish(100, int(W / 2))
+flappy = Fish(100, int(W / 1.7))
 
 fish_group.add(flappy)
 
