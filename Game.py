@@ -5,7 +5,7 @@ from pygame.locals import *
 pygame.init()   
 
 #Pantalla
-W,H = 1280,720
+W,H = 720,720
 PANTALLA = pygame.display.set_mode((W,H))
 pygame.display.set_caption("Sea Heroes")
 FPS = 100
@@ -15,14 +15,18 @@ Reloj = pygame.time.Clock()
 fondo=pygame.image.load("oceano_modif.jpg").convert()
 x=0
 
-#Colores
-Blanco = (255,255,255)
-Negro = (0,0,0)
-Rojo = (255,0,0)
-Azul = (0,0,255)
-Verde = (0,255,0)
+class Fish(pygame.sprite.Sprite):
+    def __init__(self, x, y):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = pygame.image.load("img/fish1.png")
+        self.rect = self.image.get_rect()
+        self.rect.center = [x, y]
 
-PANTALLA.fill(Blanco)
+fish_group = pygame.sprite.Group()
+
+flappy = Fish(100, int(W / 2))
+
+fish_group.add(flappy)
 
 #Bucle para que no se cierre el juego
 while True:
@@ -37,4 +41,5 @@ while True:
 
     x -= 1
     Reloj.tick(FPS)
+    fish_group.draw(PANTALLA)
     pygame.display.update()
