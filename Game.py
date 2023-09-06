@@ -12,13 +12,13 @@ FPS = 100
 Reloj = pygame.time.Clock()
 
 #Fondo
-fondo=pygame.image.load("ocean.jpg").convert()
+fondo=pygame.image.load("img/ocean.jpg").convert()
 x=0
 
 class Fish(pygame.sprite.Sprite):
     def __init__(self, x, y):
         pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.image.load("img/fish03.png")
+        self.image = pygame.image.load("assets/fish.png")
         self.rect = self.image.get_rect()
         self.rect.center = [x, y]
 
