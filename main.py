@@ -6,7 +6,7 @@ pygame.init()
 SCREEN = pygame.display.set_mode((1280, 720))
 pygame.display.set_caption("Sea Heroes")
 
-BG = pygame.image.load("assets/Background.png")
+BG = pygame.image.load("99402104.jpg")
 
 def get_font(size): # Returns Press-Start-2P in the desired size
     return pygame.font.Font("assets/font.ttf", size)
