@@ -19,13 +19,30 @@ x=0
 class Fish(pygame.sprite.Sprite):
     def __init__(self, x, y):
         pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.image.load("img/pez.png")
+        self.images = []
+        self.index = 0
+        self.counter = 0
+        for num in range (1, 4):
+            img = pygame.image.load(f"img/Fish animation/fish{num}.png")
+            self.images.append(img)
+        self.image = self.images[self.index]
         self.rect = self.image.get_rect()
         self.rect.center = [x, y]
         self.vel = 0
         self.clicked = False
 
     def update(self):
+
+        #Animaciones del pescado
+        self.counter += 1
+        flap_cooldown = 10
+
+        if self.counter > flap_cooldown:
+            self.counter = 0
+            self.index += 1
+            if self.index >= len(self.images):
+                self.index = 0
+        self.image = self.images[self.index]
 
         #Gravedad del pescado
         self.vel += 0.5
