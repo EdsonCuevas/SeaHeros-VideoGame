@@ -19,7 +19,7 @@ x=0
 class Fish(pygame.sprite.Sprite):
     def __init__(self, x, y):
         pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.image.load("img/pez1.png")
+        self.image = pygame.image.load("img/pez.png")
         self.rect = self.image.get_rect()
         self.rect.center = [x, y]
         self.vel = 0
