@@ -1,8 +1,10 @@
 import pygame, sys
 from pygame.locals import *
 
-#Start de pygame
-pygame.init()   
+def nivel1():
+
+    #Start de pygame
+    pygame.init()   
 
 #Pantalla
 W,H = 1280,720
@@ -14,7 +16,7 @@ fondo=pygame.image.load("img/ocean.jpg").convert()
 x=0
 
 #Variables Principales
-FPS = 100
+FPS = 60
 Reloj = pygame.time.Clock()
 flying = False
 game_over = False
@@ -101,5 +103,8 @@ while True:
 
     if game_over == True:
         x = 0
+    
 
     pygame.display.update()
+
+    
