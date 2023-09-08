@@ -47,27 +47,29 @@ class Fish(pygame.sprite.Sprite):
             if self.rect.bottom < 720:
                 self.rect.y += int(self.vel)
 
+        if game_over == False:
         #Salto del pescado
-        if pygame.mouse.get_pressed()[0] == 1 and self.clicked == False:
-            self.clicked = True
-            self.vel = -10
-        if pygame.mouse.get_pressed()[0] == 0:
-            self.clicked = False
+            if pygame.mouse.get_pressed()[0] == 1 and self.clicked == False:
+                self.clicked = True
+                self.vel = -10
+            if pygame.mouse.get_pressed()[0] == 0:
+                self.clicked = False
 
-        #Animaciones del pescado
-        self.counter += 1
-        flap_cooldown = 10
+            #Animaciones del pescado
+            self.counter += 1
+            flap_cooldown = 10
 
-        if self.counter > flap_cooldown:
-            self.counter = 0
-            self.index += 1
-            if self.index >= len(self.images):
-                self.index = 0
-        self.image = self.images[self.index]
+            if self.counter > flap_cooldown:
+                self.counter = 0
+                self.index += 1
+                if self.index >= len(self.images):
+                    self.index = 0
+            self.image = self.images[self.index]
 
-        #Rotacion del pescado
-        self.image = pygame.transform.rotate(self.images[self.index], self.vel * -1)
-
+            #Rotacion del pescado
+            self.image = pygame.transform.rotate(self.images[self.index], self.vel * -1)
+        else:
+            self.image = pygame.transform.rotate(self.images[self.index], -180)
 
 fish_group = pygame.sprite.Group()
 #El lugar donde empieza el Pescado
