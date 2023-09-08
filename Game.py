@@ -8,12 +8,16 @@ pygame.init()
 W,H = 720,630
 PANTALLA = pygame.display.set_mode((W,H))
 pygame.display.set_caption("Sea Heroes")
-FPS = 100
-Reloj = pygame.time.Clock()
 
 #Fondo
 fondo=pygame.image.load("img/ocean.jpg").convert()
 x=0
+
+#Variables Principales
+FPS = 100
+Reloj = pygame.time.Clock()
+flying = False
+game_over = False
 
 #Todas las funciones del pescado
 class Fish(pygame.sprite.Sprite):
@@ -33,6 +37,21 @@ class Fish(pygame.sprite.Sprite):
 
     def update(self):
 
+        #Gravedad del pescado
+        if flying == True:
+            self.vel += 0.5
+            if self.vel > 8:
+                self.vel = 8
+            if self.rect.bottom < 630:
+                self.rect.y += int(self.vel)
+
+        #Salto del pescado
+        if pygame.mouse.get_pressed()[0] == 1 and self.clicked == False:
+            self.clicked = True
+            self.vel = -10
+        if pygame.mouse.get_pressed()[0] == 0:
+            self.clicked = False
+
         #Animaciones del pescado
         self.counter += 1
         flap_cooldown = 10
@@ -44,26 +63,12 @@ class Fish(pygame.sprite.Sprite):
                 self.index = 0
         self.image = self.images[self.index]
 
-        #Gravedad del pescado
-        self.vel += 0.5
-        if self.vel > 8:
-            self.vel = 8
-        if self.rect.bottom < 630:
-            self.rect.y += int(self.vel)
-
-        #Salto del pescado
-        if pygame.mouse.get_pressed()[0] == 1 and self.clicked == False:
-            self.clicked = True
-            self.vel = -10
-        if pygame.mouse.get_pressed()[0] == 0:
-            self.clicked = False
-
-        #Rotacion
-        #self.image = pygame.transform.rotate()
+        #Rotacion del pescado
+        self.image = pygame.transform.rotate(self.images[self.index], self.vel * -1)
 
 
 fish_group = pygame.sprite.Group()
-
+#El lugar donde empieza el Pescado
 flappy = Fish(100, int(W / 2))
 
 fish_group.add(flappy)
@@ -74,14 +79,27 @@ while True:
         if event.type == QUIT:
             pygame.quit()
             sys.exit()
+        if event.type == pygame.MOUSEBUTTONDOWN and flying == False and game_over == False:
+            flying = True
+
+    #Movimiento en bucle del fondo del juego
     x_relativa = x % fondo.get_rect().width
     PANTALLA.blit(fondo,(x_relativa - fondo.get_rect().width,0))
     if x_relativa < W:
         PANTALLA.blit(fondo,(x_relativa,0))
-
-    x -= 1
+    #Velocidad del fondo
+    x -= 2
     Reloj.tick(FPS)
 
     fish_group.draw(PANTALLA)
     fish_group.update()
+
+    #Revisa que el pescado toque el suelo
+    if flappy.rect.bottom > 629:
+        game_over = True
+        flying = False
+
+    if game_over == True:
+        x = 0
+
     pygame.display.update()
