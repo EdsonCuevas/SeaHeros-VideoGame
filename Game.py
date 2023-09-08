@@ -16,7 +16,7 @@ fondo = pygame.image.load("img/ocean.jpg").convert()
 x = 0
 
 #Variables Principales
-FPS = 60
+FPS = 100
 Reloj = pygame.time.Clock()
 flying = False
 game_over = False
