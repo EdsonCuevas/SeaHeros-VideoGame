@@ -5,7 +5,7 @@ from pygame.locals import *
 pygame.init()   
 
 #Pantalla
-W,H = 720,630
+W,H = 1280,720
 PANTALLA = pygame.display.set_mode((W,H))
 pygame.display.set_caption("Sea Heroes")
 
@@ -42,7 +42,7 @@ class Fish(pygame.sprite.Sprite):
             self.vel += 0.5
             if self.vel > 8:
                 self.vel = 8
-            if self.rect.bottom < 630:
+            if self.rect.bottom < 720:
                 self.rect.y += int(self.vel)
 
         #Salto del pescado
@@ -69,7 +69,7 @@ class Fish(pygame.sprite.Sprite):
 
 fish_group = pygame.sprite.Group()
 #El lugar donde empieza el Pescado
-flappy = Fish(100, int(W / 2))
+flappy = Fish(100, int(W / 3))
 
 fish_group.add(flappy)
 
@@ -95,7 +95,7 @@ while True:
     fish_group.update()
 
     #Revisa que el pescado toque el suelo
-    if flappy.rect.bottom > 629:
+    if flappy.rect.bottom > 719:
         game_over = True
         flying = False
 
