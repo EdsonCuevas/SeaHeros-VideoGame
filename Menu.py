@@ -16,8 +16,6 @@ def get_font(size):
 
 def play():
     while True:
-        PLAY_MOUSE_POS = pygame.mouse.get_pos()
-
         #Importo el nivel uno del juego
         from Game import nivel1
     

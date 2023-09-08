@@ -4,7 +4,7 @@ from pygame.locals import *
 def nivel1():
 
     #Start de pygame
-    pygame.init()   
+    pygame.init()
 
 #Pantalla
 W,H = 1280,720
