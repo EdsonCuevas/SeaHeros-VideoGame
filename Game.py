@@ -13,7 +13,7 @@ pygame.display.set_caption("Sea Heroes")
 
 #Fondo
 fondo = pygame.image.load("img/ocean.jpg").convert()
-x = 0
+VelFondo = 0
 
 #Variables Principales
 FPS = 100
@@ -85,24 +85,28 @@ while True:
             flying = True
 
     #Movimiento en bucle del fondo del juego
-    x_relativa = x % fondo.get_rect().width
+    x_relativa = VelFondo % fondo.get_rect().width
     PANTALLA.blit(fondo,(x_relativa - fondo.get_rect().width,0))
     if x_relativa < W:
         PANTALLA.blit(fondo,(x_relativa,0))
     #Velocidad del fondo
-    x -= 2
+    VelFondo -= 2
     Reloj.tick(FPS)
 
     fish_group.draw(PANTALLA)
     fish_group.update()
 
+    #Revisa que el pescado no se salga de la pantalla
+    if flappy.rect.top < 1:
+        flappy.rect.top = 1
+    
+
     #Revisa que el pescado toque el suelo
     if flappy.rect.bottom > 719:
         game_over = True
         flying = False
-
     if game_over == True:
-        x = 0
+        VelFondo = 0
     
 
     pygame.display.update()
