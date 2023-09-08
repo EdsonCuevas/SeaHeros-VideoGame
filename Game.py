@@ -12,8 +12,8 @@ PANTALLA = pygame.display.set_mode((W,H))
 pygame.display.set_caption("Sea Heroes")
 
 #Fondo
-fondo=pygame.image.load("img/ocean.jpg").convert()
-x=0
+fondo = pygame.image.load("img/ocean.jpg").convert()
+x = 0
 
 #Variables Principales
 FPS = 60
