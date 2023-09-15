@@ -1,4 +1,4 @@
-import pygame, sys
+import pygame, sys, random
 from pygame.locals import *
 
 def nivel1():
@@ -36,6 +36,13 @@ class Fish(pygame.sprite.Sprite):
         self.rect.center = [x, y]
         self.vel = 0
         self.clicked = False
+
+class Botella(pygame.sprite.Sprite):
+    def __init__(self):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = pygame.image.load("img/botella.png")
+        self.rect = self.image.get_rect()
+        self.rect.x = random.randrange(W)
 
     def update(self):
 
@@ -77,6 +84,8 @@ flappy = Fish(100, int(W / 3))
 
 fish_group.add(flappy)
 
+
+
 #Bucle para que no se cierre el juego
 while True:
     for event in pygame.event.get():
@@ -99,8 +108,8 @@ while True:
     fish_group.update()
 
     #Revisa que el pescado no se salga de la pantalla
-    if flappy.rect.top < 1:
-        flappy.rect.top = 1
+    if flappy.rect.top < 0:
+        flappy.rect.top = 0
     
 
     #Revisa que el pescado toque el suelo
