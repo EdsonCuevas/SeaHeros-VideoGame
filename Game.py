@@ -71,11 +71,28 @@ class Fish(pygame.sprite.Sprite):
         else:
             self.image = pygame.transform.rotate(self.images[self.index], -180)
 
-fish_group = pygame.sprite.Group()
-#El lugar donde empieza el Pescado
-flappy = Fish(100, int(W / 3))
+#La clase de la botella
+class Bottle(pygame.sprite.Sprite):
+    def __init__(self, x, y):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = pygame.image.load("img/botella.png")
+        self.rect = self.image.get_rect()
+        self.rect.topleft = [x,y]
 
+    def update(self):
+        self.rect.x -= 2
+
+#Se declaran los objetos como grupos
+fish_group = pygame.sprite.Group()
+bottle_group = pygame.sprite.Group()
+
+#Cordenadas donde aparece el pescado
+flappy = Fish(100, int(W / 3))
 fish_group.add(flappy)
+
+#Cordenadas donde aparece la botella
+btm_bottle = Bottle(500, int(W / 2.6))
+bottle_group.add(btm_bottle)
 
 #Bucle para que no se cierre el juego
 while True:
@@ -97,6 +114,8 @@ while True:
 
     fish_group.draw(PANTALLA)
     fish_group.update()
+    bottle_group.draw(PANTALLA)
+    bottle_group.update()
 
     #Revisa que el pescado no se salga de la pantalla
     if flappy.rect.top < 1:
