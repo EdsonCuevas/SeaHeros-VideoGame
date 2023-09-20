@@ -182,5 +182,3 @@ while True:
             ultima_bag = time_now
 
     pygame.display.update()
-
-    
