@@ -8,7 +8,7 @@ def nivel1():
     pygame.init()
 
 #Pantalla
-W,H = 720,720
+W,H = 1000,720
 PANTALLA = pygame.display.set_mode((W,H))
 pygame.display.set_caption("Sea Heroes")
 
@@ -22,10 +22,10 @@ Reloj = pygame.time.Clock()
 nadando = False
 game_over = False
 
-frecuencia_botella = 1500 #milisegundos
+frecuencia_botella = 4000 #milisegundos
 ultima_botella = pygame.time.get_ticks() - frecuencia_botella
 
-frecuencia_bag = 2000 #milisegundos
+frecuencia_bag = 5000 #milisegundos
 ultima_bag = pygame.time.get_ticks() - frecuencia_bag
 
 #Todas las funciones del pescado
@@ -172,10 +172,10 @@ while True:
             bottle_group.add(bottle)
             ultima_botella = time_now
 
-    if game_over == False and nadando == True:
+    #if game_over == False and nadando == True:
         #Generador de bolsa
-        time_now = pygame.time.get_ticks()
-        if time_now - ultima_bag > frecuencia_bag:
+        #time_now = pygame.time.get_ticks()
+        #if time_now - ultima_bag > frecuencia_bag:
             bag_spawn = random.randint(-100, 200)
             bag = Bag(W, int(H / 2) + bag_spawn)
             bag_group.add(bag)
