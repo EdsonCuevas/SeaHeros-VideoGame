@@ -167,7 +167,7 @@ while True:
         #Generador de botella
         time_now = pygame.time.get_ticks()
         if time_now - ultima_botella > frecuencia_botella:
-            bottle_spawn = random.randint(-200, 200)
+            bottle_spawn = random.randint(-100, 200)
             bottle = Bottle(W, int(H / 2) + bottle_spawn)
             bottle_group.add(bottle)
             ultima_botella = time_now
@@ -176,7 +176,7 @@ while True:
         #Generador de bolsa
         time_now = pygame.time.get_ticks()
         if time_now - ultima_bag > frecuencia_bag:
-            bag_spawn = random.randint(-200, 200)
+            bag_spawn = random.randint(-100, 200)
             bag = Bag(W, int(H / 2) + bag_spawn)
             bag_group.add(bag)
             ultima_bag = time_now
