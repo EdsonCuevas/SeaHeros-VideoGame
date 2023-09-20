@@ -116,7 +116,7 @@ bottle_group = pygame.sprite.Group()
 bag_group = pygame.sprite.Group()
 
 #Cordenadas donde aparece el pescado
-flappy = Fish(100, int(W / 1.6))
+flappy = Fish(100, int(W / 2.5))
 fish_group.add(flappy)
 
 #Bucle para que no se cierre el juego
