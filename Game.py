@@ -1,5 +1,6 @@
 import pygame, sys
 from pygame.locals import *
+import random
 
 def nivel1():
 
@@ -7,7 +8,7 @@ def nivel1():
     pygame.init()
 
 #Pantalla
-W,H = 1280,720
+W,H = 720,720
 PANTALLA = pygame.display.set_mode((W,H))
 pygame.display.set_caption("Sea Heroes")
 
@@ -18,8 +19,14 @@ VelFondo = 0
 #Variables Principales
 FPS = 100
 Reloj = pygame.time.Clock()
-flying = False
+nadando = False
 game_over = False
+
+frecuencia_botella = 1500 #milisegundos
+ultima_botella = pygame.time.get_ticks() - frecuencia_botella
+
+frecuencia_bag = 2000 #milisegundos
+ultima_bag = pygame.time.get_ticks() - frecuencia_bag
 
 #Todas las funciones del pescado
 class Fish(pygame.sprite.Sprite):
@@ -40,7 +47,7 @@ class Fish(pygame.sprite.Sprite):
     def update(self):
 
         #Gravedad del pescado
-        if flying == True:
+        if nadando == True:
             self.vel += 0.5
             if self.vel > 8:
                 self.vel = 8
@@ -80,19 +87,37 @@ class Bottle(pygame.sprite.Sprite):
         self.rect.topleft = [x,y]
 
     def update(self):
-        self.rect.x -= 2
+        #Se quedan en su lugar al morir
+        if game_over == False:
+            self.rect.x -= 2
+            
+        if self.rect.right < 0:
+            self.kill()
+
+#La clase de la bolsa
+class Bag(pygame.sprite.Sprite):
+    def __init__(self, x, y):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = pygame.image.load("img/bolsa.png")
+        self.rect = self.image.get_rect()
+        self.rect.topleft = [x,y]
+
+    def update(self):
+        #Se quedan en su lugar al morir
+        if game_over == False:
+            self.rect.x -= 2
+            
+        if self.rect.right < 0:
+            self.kill()
 
 #Se declaran los objetos como grupos
 fish_group = pygame.sprite.Group()
 bottle_group = pygame.sprite.Group()
+bag_group = pygame.sprite.Group()
 
 #Cordenadas donde aparece el pescado
-flappy = Fish(100, int(W / 3))
+flappy = Fish(100, int(W / 1.6))
 fish_group.add(flappy)
-
-#Cordenadas donde aparece la botella
-btm_bottle = Bottle(500, int(W / 2.6))
-bottle_group.add(btm_bottle)
 
 #Bucle para que no se cierre el juego
 while True:
@@ -100,8 +125,8 @@ while True:
         if event.type == QUIT:
             pygame.quit()
             sys.exit()
-        if event.type == pygame.MOUSEBUTTONDOWN and flying == False and game_over == False:
-            flying = True
+        if event.type == pygame.MOUSEBUTTONDOWN and nadando == False and game_over == False:
+            nadando = True
 
     #Movimiento en bucle del fondo del juego
     x_relativa = VelFondo % fondo.get_rect().width
@@ -112,23 +137,49 @@ while True:
     VelFondo -= 2
     Reloj.tick(FPS)
 
+    #Muestra todo en pantalla
     fish_group.draw(PANTALLA)
     fish_group.update()
     bottle_group.draw(PANTALLA)
     bottle_group.update()
+    bag_group.draw(PANTALLA)
+    bag_group.update()
 
-    #Revisa que el pescado no se salga de la pantalla
-    if flappy.rect.top < 1:
-        flappy.rect.top = 1
+    #Revisa que el pescado no se salga del agua
+    if flappy.rect.top < 200:
+        flappy.rect.top = 200
     
-
-    #Revisa que el pescado toque el suelo
-    if flappy.rect.bottom > 719:
+    #Revisa la colision
+    if pygame.sprite.groupcollide(fish_group, bottle_group, False, False):
         game_over = True
-        flying = False
+    if pygame.sprite.groupcollide(fish_group, bag_group, False, False):
+        game_over = True
+        
+    #Revisa que el pescado toque el suelo
+    if flappy.rect.bottom >= 720:
+        game_over = True
+        nadando = False
     if game_over == True:
         VelFondo = 0
-    
+
+
+    if game_over == False and nadando == True:
+        #Generador de botella
+        time_now = pygame.time.get_ticks()
+        if time_now - ultima_botella > frecuencia_botella:
+            bottle_spawn = random.randint(-200, 200)
+            bottle = Bottle(W, int(H / 2) + bottle_spawn)
+            bottle_group.add(bottle)
+            ultima_botella = time_now
+
+    if game_over == False and nadando == True:
+        #Generador de bolsa
+        time_now = pygame.time.get_ticks()
+        if time_now - ultima_bag > frecuencia_bag:
+            bag_spawn = random.randint(-200, 200)
+            bag = Bag(W, int(H / 2) + bag_spawn)
+            bag_group.add(bag)
+            ultima_bag = time_now
 
     pygame.display.update()
 
