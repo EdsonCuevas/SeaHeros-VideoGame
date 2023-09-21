@@ -7,7 +7,7 @@ def nivel1():
     pygame.init()
 
 #Pantalla
-W,H = 1000,720
+W,H = 1280,720
 PANTALLA = pygame.display.set_mode((W,H))
 pygame.display.set_caption("Sea Heroes")
 
