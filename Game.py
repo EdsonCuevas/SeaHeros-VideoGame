@@ -1,6 +1,5 @@
-import pygame, sys
+import pygame, sys, random
 from pygame.locals import *
-import random
 
 def nivel1():
 
@@ -22,11 +21,21 @@ Reloj = pygame.time.Clock()
 nadando = False
 game_over = False
 
+#Carga de imagenes de botones
+button_img = pygame.image.load("img/buttons/restart.png")
+
 frecuencia_botella = 2000 #milisegundos
 ultima_botella = pygame.time.get_ticks() - frecuencia_botella
 
 frecuencia_bag = 3000 #milisegundos
 ultima_bag = pygame.time.get_ticks() - frecuencia_bag
+
+#Defino la clase para reiniciar el juego
+def reset_game():
+    bottle_group.empty()
+    bag_group.empty()
+    flappy.rect.x = 100
+    flappy.rect.y = int(H / 2)
 
 #Todas las funciones del pescado
 class Fish(pygame.sprite.Sprite):
@@ -110,14 +119,41 @@ class Bag(pygame.sprite.Sprite):
         if self.rect.right < 0:
             self.kill()
 
+#La clase del boton
+class Button():
+    def __init__(self, x, y, image):
+        self.image = image
+        self.rect = self.image.get_rect()
+        self.rect.topleft = (x,y)
+
+    def draw(self):
+
+        action = False
+
+        #Detecta la posicion del mouse
+        pos = pygame.mouse.get_pos()
+
+        #Detecta si el cursor esta encima del boton
+        if self.rect.collidepoint(pos):
+            if pygame.mouse.get_pressed()[0] == 1:
+                action = True
+
+        #Dibuja el boton
+        PANTALLA.blit(self.image, (self.rect.x, self.rect.y))
+
+        return action
+
 #Se declaran los objetos como grupos
 fish_group = pygame.sprite.Group()
 bottle_group = pygame.sprite.Group()
 bag_group = pygame.sprite.Group()
 
 #Cordenadas donde aparece el pescado
-flappy = Fish(100, int(W / 2.5))
+flappy = Fish(100, int(H / 2))
 fish_group.add(flappy)
+
+#Cordenadas donde aparece el boton
+button = Button(W // 2 - 50, H // 2 - 100, button_img)
 
 #Bucle para que no se cierre el juego
 while True:
@@ -162,7 +198,7 @@ while True:
     if game_over == True:
         VelFondo = 0
 
-
+    #Checa que el juego no llegue a Game Over
     if game_over == False and nadando == True:
         #Generador de botella
         time_now = pygame.time.get_ticks()
@@ -172,6 +208,7 @@ while True:
             bottle_group.add(bottle)
             ultima_botella = time_now
 
+    #Checa que el juego no llegue a Game Over
     if game_over == False and nadando == True:
         #Generador de bolsa
         time_now = pygame.time.get_ticks()
@@ -180,5 +217,11 @@ while True:
             bag = Bag(W, int(H / 2) + bag_spawn)
             bag_group.add(bag)
             ultima_bag = time_now
+
+    #Checa que el juego llegue a Game over y dibuja el boton
+    if game_over == True:
+        if button.draw() == True:
+            game_over = False
+            reset_game()
 
     pygame.display.update()
