@@ -1,4 +1,4 @@
-import pygame, sys, random
+import pygame, sys, random, time
 from pygame.locals import *
 
 def nivel1():
@@ -30,18 +30,13 @@ def nivel1():
 
         frecuencia_bag = 3000 #milisegundos
         ultima_bag = pygame.time.get_ticks() - frecuencia_bag
-
+        
         #Defino la clase para reiniciar el juego
         def reset_game():
             bottle_group.empty()
             bag_group.empty()
             flappy.rect.x = 100
             flappy.rect.y = int(H / 2)
-        
-        def restart():
-            bottle_group.empty()
-            bag_group.empty()
-            fish_group.empty()
 
         #Todas las funciones del pescado
         class Fish(pygame.sprite.Sprite):
@@ -106,9 +101,6 @@ def nivel1():
                 #Se quedan en su lugar al morir
                 if game_over == False:
                     self.rect.x -= 2
-                    
-                if self.rect.right < 0:
-                    self.kill()
 
         #La clase de la bolsa
         class Bag(pygame.sprite.Sprite):
@@ -122,9 +114,7 @@ def nivel1():
                 #Se quedan en su lugar al morir
                 if game_over == False:
                     self.rect.x -= 2
-                    
-                if self.rect.right < 0:
-                    self.kill()
+
 
         #La clase del boton
         class Button():
@@ -172,7 +162,7 @@ def nivel1():
                     PANTALLA.blit(self.image, (self.rect.x, self.rect.y))
 
                     return action
-
+        
         #Se declaran los objetos como grupos
         fish_group = pygame.sprite.Group()
         bottle_group = pygame.sprite.Group()
@@ -189,9 +179,12 @@ def nivel1():
         #Bucle para que no se cierre el juego
         while True:
 
-            #Empieza el contador de ticks desde que el pescado se mueve
-            if nadando == True:
-                Tiempo = pygame.time.get_ticks() / 1000
+            #Detecta que el juego empiece y genera un contador
+            if game_over == False and nadando == True and frecuencia_botella == 2000:
+                Tiempo = pygame.time.get_ticks()/1000
+                print(int(Tiempo))
+                if Tiempo == 12:
+                    game_over = True
 
             for event in pygame.event.get():
                 if event.type == QUIT:
@@ -199,6 +192,8 @@ def nivel1():
                     sys.exit()
                 if event.type == pygame.MOUSEBUTTONDOWN and nadando == False and game_over == False:
                     nadando = True
+
+            
 
             #Movimiento en bucle del fondo del juego
             x_relativa = VelFondo % fondo.get_rect().width
