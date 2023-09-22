@@ -11,14 +11,21 @@ def nivel1():
         PANTALLA = pygame.display.set_mode((W,H))
         pygame.display.set_caption("Sea Heroes")
 
+        #Fuentes
+        font30 = pygame.font.SysFont('Constantia', 30)
+        font40 = pygame.font.SysFont('Constantia', 40)
+
         #Fondo
         fondo = pygame.image.load("img/ocean.jpg").convert()
         VelFondo = 0
 
+        #Colores
+        white = (255, 255, 255)
+
         #Variables Principales
         fps = 100
         clock = pygame.time.Clock()
-        nadando = False
+        swimming = False
         game_over = False
 
         #Carga de imagenes de botones
@@ -37,6 +44,7 @@ def nivel1():
             bag_group.empty()
             flappy.rect.x = 100
             flappy.rect.y = int(H / 2)
+
 
         #Todas las funciones del pescado
         class Fish(pygame.sprite.Sprite):
@@ -58,7 +66,7 @@ def nivel1():
             def update(self):
 
                 #Gravedad del pescado
-                if nadando == True:
+                if swimming == True:
                     self.vel += 0.5
                     if self.vel > 8:
                         self.vel = 8
@@ -177,23 +185,7 @@ def nivel1():
         btn_quit = Button2(W // 2 - 50, H // 2 - 50, button_quit)
 
         #Bucle para que no se cierre el juego
-        while True:
-
-            #Detecta que el juego empiece y genera un contador
-            if game_over == False and nadando == True and frecuencia_botella == 2000:
-                Tiempo = pygame.time.get_ticks()/1000
-                print(int(Tiempo))
-                if Tiempo == 12:
-                    game_over = True
-
-            for event in pygame.event.get():
-                if event.type == QUIT:
-                    pygame.quit()
-                    sys.exit()
-                if event.type == pygame.MOUSEBUTTONDOWN and nadando == False and game_over == False:
-                    nadando = True
-
-            
+        while True: 
 
             #Movimiento en bucle del fondo del juego
             x_relativa = VelFondo % fondo.get_rect().width
@@ -203,6 +195,7 @@ def nivel1():
             #Velocidad del fondo
             VelFondo -= 2
             clock.tick(fps)
+
 
             #Muestra todo en pantalla
             fish_group.draw(PANTALLA)
@@ -225,12 +218,12 @@ def nivel1():
             #Revisa que el pescado toque el suelo
             if flappy.rect.bottom >= 720:
                 game_over = True
-                nadando = False
+                swimming = False
             if game_over == True:
                 VelFondo = 0
 
             #Checa que el juego no llegue a Game Over
-            if game_over == False and nadando == True:
+            if game_over == False and swimming == True:
                 #Generador de botella
                 time_now = pygame.time.get_ticks()
                 if time_now - ultima_botella > frecuencia_botella:
@@ -240,7 +233,7 @@ def nivel1():
                     ultima_botella = time_now
 
             #Checa que el juego no llegue a Game Over
-            if game_over == False and nadando == True:
+            if game_over == False and swimming == True:
                 #Generador de bolsa
                 time_now = pygame.time.get_ticks()
                 if time_now - ultima_bag > frecuencia_bag:
@@ -257,6 +250,16 @@ def nivel1():
                 if btn_quit.draw() == True:
                     from Menu import main_menu
                     main_menu()
+
+            #Detecta que el juego empiece
+            for event in pygame.event.get():
+                if event.type == QUIT:
+                    pygame.quit()
+                    sys.exit()
+                if event.type == pygame.MOUSEBUTTONDOWN and swimming == False and game_over == False:
+                    swimming = True
+                    
+                    
 
             pygame.display.update()
 
