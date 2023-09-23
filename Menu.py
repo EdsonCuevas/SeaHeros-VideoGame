@@ -65,6 +65,7 @@ def play():
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if EASY_GAME.checkForInput(PLAY_MOUSE_POS):
                         from Game import nivelfacil
+                        nivelfacil()
 
             pygame.display.update()
             
