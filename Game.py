@@ -12,8 +12,7 @@ def nivel1():
         pygame.display.set_caption("Sea Heroes")
 
         #Fuentes
-        font30 = pygame.font.SysFont('Constantia', 30)
-        font40 = pygame.font.SysFont('Constantia', 40)
+        font = pygame.font.SysFont('Bauhaus 93', 60)
 
         #Fondo
         fondo = pygame.image.load("img/ocean.jpg").convert()
@@ -27,6 +26,7 @@ def nivel1():
         clock = pygame.time.Clock()
         swimming = False
         game_over = False
+        score = 0
 
         #Carga de imagenes de botones
         button_img = pygame.image.load("img/buttons/restart.png")
@@ -37,6 +37,10 @@ def nivel1():
 
         frecuencia_bag = 3000 #milisegundos
         ultima_bag = pygame.time.get_ticks() - frecuencia_bag
+
+        def draw_text(text, font, text_col, x,y):
+            img = font.render(text, True, text_col)
+            PANTALLA.blit(img, (x,y))
         
         #Defino la clase para reiniciar el juego
         def reset_game():
@@ -44,6 +48,7 @@ def nivel1():
             bag_group.empty()
             flappy.rect.x = 100
             flappy.rect.y = int(H / 2)
+            
 
 
         #Todas las funciones del pescado
@@ -119,9 +124,9 @@ def nivel1():
                 self.rect.topleft = [x,y]
 
             def update(self):
-                #Se quedan en su lugar al morir
                 if game_over == False:
                     self.rect.x -= 2
+
 
 
         #La clase del boton
@@ -204,6 +209,7 @@ def nivel1():
             bottle_group.update()
             bag_group.draw(PANTALLA)
             bag_group.update()
+            draw_text(str(score), font, white, W / 2, 20)
 
             #Revisa que el pescado no se salga del agua
             if flappy.rect.top < 200:
@@ -212,8 +218,15 @@ def nivel1():
             #Revisa la colision
             if pygame.sprite.groupcollide(fish_group, bottle_group, False, False):
                 game_over = True
-            if pygame.sprite.groupcollide(fish_group, bag_group, False, False):
-                game_over = True
+            hits = pygame.sprite.groupcollide(fish_group, bag_group, False, True)
+            #bucle donde se van sumando los puntos por colisiones
+            for hit in hits:
+                score += 1
+
+            #Se revisa que el marcador llegue al maximo para ganar
+            if score == 3:
+                reset_game()
+                score = 0
                 
             #Revisa que el pescado toque el suelo
             if flappy.rect.bottom >= 720:
@@ -247,6 +260,7 @@ def nivel1():
                 if btn_reset.draw() == True:
                     game_over = False
                     reset_game()
+                    score = 0
                 if btn_quit.draw() == True:
                     from Menu import main_menu
                     main_menu()
