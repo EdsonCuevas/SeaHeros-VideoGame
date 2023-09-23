@@ -215,9 +215,10 @@ def nivel1():
             if flappy.rect.top < 200:
                 flappy.rect.top = 200
             
-            #Revisa la colision
+            #Revisa la colision del pescado con la botella
             if pygame.sprite.groupcollide(fish_group, bottle_group, False, False):
                 game_over = True
+            #Revisa la colision del pescado con la bolsa
             hits = pygame.sprite.groupcollide(fish_group, bag_group, False, True)
             #bucle donde se van sumando los puntos por colisiones
             for hit in hits:
