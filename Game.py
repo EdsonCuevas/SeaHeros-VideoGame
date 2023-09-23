@@ -1,15 +1,15 @@
 import pygame, sys, random, time
 from pygame.locals import *
 
-def nivel1():
+def nivelfacil():
     while True:
         #Start de pygame
         pygame.init()
 
         #Pantalla
         W,H = 1280,720
-        PANTALLA = pygame.display.set_mode((W,H))
-        pygame.display.set_caption("Sea Heroes")
+        PANTALLA = pygame.display.set_mode((W,H), pygame.RESIZABLE)
+        pygame.display.set_caption("Sea Heros")
 
         #Fuentes
         font = pygame.font.SysFont('Bauhaus 93', 60)
@@ -187,7 +187,7 @@ def nivel1():
 
         #Cordenadas donde aparece el boton
         btn_reset = Button(W // 2 - 50, H // 2 - 100, button_img)
-        btn_quit = Button2(W // 2 - 50, H // 2 - 50, button_quit)
+        btn_quit = Button2(W // 2 - 50, H // 2 - 30, button_quit)
 
         #Bucle para que no se cierre el juego
         while True: 
@@ -271,6 +271,8 @@ def nivel1():
                 if event.type == QUIT:
                     pygame.quit()
                     sys.exit()
+                if event.type == VIDEORESIZE:
+                     PANTALLA = pygame.display.set_mode((event.w, event.h), pygame.RESIZABLE)
                 if event.type == pygame.MOUSEBUTTONDOWN and swimming == False and game_over == False:
                     swimming = True
                     
@@ -278,4 +280,4 @@ def nivel1():
 
             pygame.display.update()
 
-nivel1()
+nivelfacil()
