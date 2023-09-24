@@ -14,6 +14,9 @@ def nivelfacil():
         #Fuentes
         font = pygame.font.SysFont('Bauhaus 93', 60)
 
+        #Musica
+        music = pygame.mixer.Sound("ost/level1.mp3")
+
         #Fondo
         fondo = pygame.image.load("img/ocean.jpg").convert()
         VelFondo = 0
@@ -27,7 +30,7 @@ def nivelfacil():
         swimming = False
         game_over = False
         score = 0
-
+        
         #Carga de imagenes de botones
         button_img = pygame.image.load("img/buttons/restart.png")
         button_quit = pygame.image.load("img/buttons/quit.png")
@@ -48,8 +51,6 @@ def nivelfacil():
             bag_group.empty()
             flappy.rect.x = 100
             flappy.rect.y = int(H / 2)
-            
-
 
         #Todas las funciones del pescado
         class Fish(pygame.sprite.Sprite):
@@ -275,7 +276,6 @@ def nivelfacil():
                      PANTALLA = pygame.display.set_mode((event.w, event.h), pygame.RESIZABLE)
                 if event.type == pygame.MOUSEBUTTONDOWN and swimming == False and game_over == False:
                     swimming = True
-                    
                     
 
             pygame.display.update()

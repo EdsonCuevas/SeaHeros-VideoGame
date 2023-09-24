@@ -10,8 +10,8 @@ pygame.display.set_caption("Sea Heros")
 
 BG = pygame.image.load("assets/Background.png")
 
-music = pygame.mixer.Sound("ost/menu.mp3")
-
+def music():
+    ost = pygame.mixer.Sound("ost/menu.mp3")
 
 def get_font(size):
         return pygame.font.Font("assets/font.ttf", size)
@@ -66,6 +66,7 @@ def play():
                     if EASY_GAME.checkForInput(PLAY_MOUSE_POS):
                         from Game import nivelfacil
                         nivelfacil()
+                        
 
             pygame.display.update()
             
