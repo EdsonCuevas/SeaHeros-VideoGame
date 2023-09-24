@@ -18,6 +18,7 @@ def nivelfacil():
         music = pygame.mixer.Sound("ost/level1.mp3")
 
         #Fondo
+        victory = pygame.image.load("assets/victory.png")
         fondo = pygame.image.load("img/ocean.jpg").convert()
         VelFondo = 0
 
@@ -226,10 +227,16 @@ def nivelfacil():
                 score += 1
 
             #Se revisa que el marcador llegue al maximo para ganar
-            if score == 3:
-                reset_game()
-                score = 0
-                
+            if score == 1:
+                #Se limpia todos los objetos
+                bottle_group.empty()
+                bag_group.empty()
+                fish_group.empty()
+                #El fondo se detiene
+                VelFondo = 0
+                #Aparece el mensaje de victoria
+                PANTALLA.blit(victory, (340, 0))
+
             #Revisa que el pescado toque el suelo
             if flappy.rect.bottom >= 720:
                 game_over = True
