@@ -17,7 +17,10 @@ def nivelfacil():
         font = pygame.font.SysFont('Bauhaus 93', 60)
 
         #Sonidos
+        victory_sound = pygame.mixer.Sound("sound/victorysound.mp3")
         death_sound = pygame.mixer.Sound("sound/deathsound.mp3")
+        death_sound.set_volume(0.25)
+        victory_sound.set_volume(0.5)
         pygame.mixer.music.load("sound/level1.mp3")
         pygame.mixer.music.play(-1)
         pygame.mixer.music.set_volume(0.7)
@@ -95,6 +98,7 @@ def nivelfacil():
                     if pygame.mouse.get_pressed()[0] == 1 and self.clicked == False:
                         self.clicked = True
                         self.vel = -10
+    
                     if pygame.mouse.get_pressed()[0] == 0:
                         self.clicked = False
 
@@ -199,12 +203,12 @@ def nivelfacil():
         btn_reset = Button(W // 2 - 50, H // 2 - 100, button_img)
         btn_quit = Button2(W // 2 - 50, H // 2 - 30, button_quit)
 
-
         #Bucle para que no se cierre el juego
         while True: 
 
-            #Opcion tecla pulsada
+            #Tecla pulsada
             keys = pygame.key.get_pressed()
+
 
             #Movimiento en bucle del fondo del juego
             x_relativa = VelFondo % fondo.get_rect().width
@@ -246,7 +250,8 @@ def nivelfacil():
             bottle_group.update()
             bag_group.draw(PANTALLA)
             bag_group.update()
-            draw_text(str(score), font, white, W / 2, 20)
+            draw_text(str(score), font, white, W / 2.1, 20)
+            draw_text(("/3"), font, white, W / 2, 20)
 
             #Revisa que el pescado no se salga del agua
             if flappy.rect.top < 200:
@@ -258,20 +263,26 @@ def nivelfacil():
     
             #Revisa la colision del pescado con la bolsa
             hits = pygame.sprite.groupcollide(fish_group, bag_group, False, True)
+
+            kill = pygame.sprite.groupcollide(fish_group, bottle_group, False, False)
+
             #bucle donde se van sumando los puntos por colisiones
             for hit in hits:
                 score += 1
 
-            #Se revisa que el marcador llegue al maximo para ganar
-            if score == 5:
+            if score == 3:
                 #Se limpia todos los objetos
                 bottle_group.empty()
                 bag_group.empty()
                 fish_group.empty()
                 #El fondo se detiene
                 VelFondo = 0
-                #Aparece el mensaje de victoria
+                #Muestra la imagen de victoria
                 PANTALLA.blit(victory, (340, 0))
+                #Se detiene la musica
+                pygame.mixer.music.stop()
+                for sound in hits:
+                    victory_sound.play()
 
             #Revisa que el pescado toque el suelo
             if flappy.rect.bottom >= 720:
@@ -303,6 +314,8 @@ def nivelfacil():
             #Checa que el juego llegue a GameOver y dibuja los botones y sus acciones
             if game_over == True:
                 pygame.mixer.music.stop()
+                for death in kill:
+                    death_sound.play()
                 if btn_reset.draw() == True:
                     game_over = False
                     reset_game()
@@ -326,6 +339,4 @@ def nivelfacil():
             AudioControl()
             pygame.display.update()
         
-        
-
 nivelfacil()

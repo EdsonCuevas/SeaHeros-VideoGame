@@ -53,7 +53,6 @@ def MenuTotal():
     def play():
             while True:
 
-                
                 #Carga la posicion del mouse
                 PLAY_MOUSE_POS = pygame.mouse.get_pos()
 
