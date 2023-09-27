@@ -22,7 +22,7 @@ def nivelfacil():
         death_sound = pygame.mixer.Sound("sound/deathsound.mp3")
         recolection = pygame.mixer.Sound("sound/recolection.mp3")
         death_sound.set_volume(0.25)
-        victory_sound.set_volume(0.4)
+        victory_sound.set_volume(0.3)
         
         pygame.mixer.music.load("sound/level1.mp3")
         pygame.mixer.music.play(-1)
@@ -72,19 +72,30 @@ def nivelfacil():
             flappy.rect.y = int(H / 2)
             pygame.mixer.music.rewind()
 
+        #Defino la funcion de pausa
         def pause():
             paused = True
             while paused:
+                #si el juego esta pausado baja el volumen y muestra la pausa
+                pygame.mixer.music.set_volume(0.0)
+                draw_text("PAUSA", font, white, W / 2.3, 300)
 
+                #evento para poder cerrar el bucle
                 for event in pygame.event.get():
                     if event.type == pygame.QUIT:
                         paused = False
                         running = False
                         pygame.quit()
                         exit()
+                    #si se vuelve a presionar escape
                     if event.type == pygame.KEYDOWN:
                         if event.key == pygame.K_ESCAPE:
+                            #reanuda el volumen y termina la pausa
+                            pygame.mixer.music.set_volume(0.5)
                             paused = False
+                            
+
+                pygame.display.update()
 
         #Todas las funciones del pescado
         class Fish(pygame.sprite.Sprite):
@@ -277,6 +288,7 @@ def nivelfacil():
             bag_group.update()
             draw_text(str(score), font, white, W / 2.1, 20)
             draw_text(("/3"), font, white, W / 2, 20)
+            
 
             #Revisa que el pescado no se salga del agua
             if flappy.rect.top < 200:
@@ -297,6 +309,7 @@ def nivelfacil():
                 score += 1
                 recolection.play()
 
+            #Defino la funcion de los controles de volumen
             def AudioControl():
                 if keys[pygame.K_DOWN] and pygame.mixer_music.get_volume() > 0.0:
                     pygame.mixer.music.set_volume(pygame.mixer_music.get_volume() - 0.01)
@@ -382,7 +395,7 @@ def nivelfacil():
                     from Menu import MenuTotal
                     MenuTotal()
 
-                    
+            
             #Detecta que el juego empiece
             for event in pygame.event.get():
                 if event.type == QUIT:
@@ -395,7 +408,9 @@ def nivelfacil():
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_ESCAPE:
                         pause()
-                    
+                        
+                        
+                        
             AudioControl()
             pygame.display.update()
         
