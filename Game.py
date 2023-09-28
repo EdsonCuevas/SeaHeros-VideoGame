@@ -266,6 +266,7 @@ def nivelfacil():
         #Bucle para que no se cierre el juego
         running = True
         while running:
+            
 
             #Tecla pulsada
             keys = pygame.key.get_pressed()
@@ -401,6 +402,7 @@ def nivelfacil():
                 if event.type == QUIT:
                     running = False
                     pygame.quit()
+                    exit()
                 if event.type == VIDEORESIZE:
                      PANTALLA = pygame.display.set_mode((event.w, event.h), pygame.RESIZABLE)
                 if event.type == pygame.MOUSEBUTTONDOWN and swimming == False and game_over == False:
@@ -408,7 +410,6 @@ def nivelfacil():
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_ESCAPE:
                         pause()
-                        
                         
                         
             AudioControl()
