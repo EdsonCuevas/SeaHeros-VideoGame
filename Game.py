@@ -2,7 +2,7 @@ import pygame, sys, random, time
 from pygame.locals import *
 from button import Button
 
-def nivelfacil():
+def nivelfacil1():
         
         #Start de pygame
         pygame.init()
@@ -16,6 +16,7 @@ def nivelfacil():
 
         #Fuentes
         font = pygame.font.SysFont('Bauhaus 93', 60)
+        font2 = pygame.font.Font('assets/upheavtt.ttf', 40)
 
         #Sonidos
         victory_sound = pygame.mixer.Sound("sound/victorysound.mp3")
@@ -38,6 +39,7 @@ def nivelfacil():
 
         #Colores
         white = (255, 255, 255)
+        black = (0, 0, 0)
 
         #Variables Principales
         fps = 100
@@ -45,15 +47,18 @@ def nivelfacil():
         swimming = False
         game_over = False
         score = 0
+        victory = False
         
-        #Carga de imagenes de botones
+        #Carga de imagenes de botones y el icon de objetivo
         button_img = pygame.image.load("img/buttons/restart.png")
         button_quit = pygame.image.load("img/buttons/quit.png")
+        bolsa_ico = pygame.image.load("img/icons/bolsa.png")
 
+        #Frecuencia de aparicion de botella
+        frecuencia_bottle = 2000 #milisegundos
+        last_bottle = pygame.time.get_ticks() - frecuencia_bottle
 
-        frecuencia_botella = 2000 #milisegundos
-        ultima_botella = pygame.time.get_ticks() - frecuencia_botella
-
+        #Frecuencia de aparicion de bolsa
         frecuencia_bag = 3000 #milisegundos
         ultima_bag = pygame.time.get_ticks() - frecuencia_bag
 
@@ -76,9 +81,10 @@ def nivelfacil():
         def pause():
             paused = True
             while paused:
+
                 #si el juego esta pausado baja el volumen y muestra la pausa
                 pygame.mixer.music.set_volume(0.0)
-                draw_text("PAUSA", font, white, W / 2.3, 300)
+                draw_text("PAUSA", font, white, W / 2.3, 270)
 
                 #evento para poder cerrar el bucle
                 for event in pygame.event.get():
@@ -93,7 +99,9 @@ def nivelfacil():
                             #reanuda el volumen y termina la pausa
                             pygame.mixer.music.set_volume(0.5)
                             paused = False
-                            
+
+                ButtonReset()
+                ButtonExit()
 
                 pygame.display.update()
 
@@ -239,8 +247,50 @@ def nivelfacil():
                 #Evento para detectar el mouse sobre el boton y funcion de este
                 if event.type == pygame.MOUSEBUTTONDOWN:
                         if NEXT.checkForInput(PLAY_MOUSE_POS):
-                            from Game import nivelfacil
-                            nivelfacil()
+                            from Game import nivelfacil1
+                            nivelfacil1()
+
+        #Definimos el boton para salir al menu
+        def ButtonExit():
+            PLAY_MOUSE_POS = pygame.mouse.get_pos()
+
+            NEXT = Button(image=(None), pos=(640, 500),
+                                    text_input="Salir al Menu", font=font, base_color="White", hovering_color="Red")
+            NEXT.changeColor(PLAY_MOUSE_POS)
+            NEXT.update(PANTALLA)
+
+            #Bucle para cerrar el juego
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    sys.exit()
+
+                #Evento para detectar el mouse sobre el boton y funcion de este
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                        if NEXT.checkForInput(PLAY_MOUSE_POS):
+                            from Menu import MenuTotal
+                            MenuTotal()
+
+        #Definimos el boton para reiniciar todo el nivel 1
+        def ButtonReset():
+            PLAY_MOUSE_POS = pygame.mouse.get_pos()
+
+            NEXT = Button(image=(None), pos=(640, 400),
+                                    text_input="Reiniciar", font=font, base_color="White", hovering_color="Green")
+            NEXT.changeColor(PLAY_MOUSE_POS)
+            NEXT.update(PANTALLA)
+
+            #Bucle para cerrar el juego
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    sys.exit()
+
+                #Evento para detectar el mouse sobre el boton y funcion de este
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                        if NEXT.checkForInput(PLAY_MOUSE_POS):
+                            from Game import nivelfacil1
+                            nivelfacil1()
 
         #Se declaran los objetos como grupos
         fish_group = pygame.sprite.Group()
@@ -263,7 +313,7 @@ def nivelfacil():
         frame = 0
             
 
-        #Bucle para que no se cierre el juego
+        #Bucle principal del juego
         running = True
         while running:
             
@@ -287,9 +337,16 @@ def nivelfacil():
             bottle_group.update()
             bag_group.draw(PANTALLA)
             bag_group.update()
-            draw_text(str(score), font, white, W / 2.1, 20)
-            draw_text(("/3"), font, white, W / 2, 20)
             
+            #Si la victoria todavia no esta hecha muestra el score y texto
+            if victory == False:
+                #Muestra el score
+                draw_text(str(score), font, white, W / 2.1, 20)
+                draw_text(("/3"), font, white, W / 2, 20)
+                #Muestra el objetivo del juego
+                draw_text("Objetivo:", font2, white, 5, 0)
+                draw_text("Recolecta 5", font2, white, 5, 30)
+                PANTALLA.blit(bolsa_ico, (275, 20))
 
             #Revisa que el pescado no se salga del agua
             if flappy.rect.top < 200:
@@ -337,13 +394,12 @@ def nivelfacil():
 
             #Detecta si el jugador gana
             if score == 1 and game_over == False:
+                victory = True
                 def WinScreen():
                     #Se limpia todos los objetos
                     bottle_group.empty()
                     bag_group.empty()
                     fish_group.empty()
-                    #El fondo se detiene
-                    VelFondo = 0
                     #Muestra la imagen de victoria
                     MOUSE_POS = pygame.mouse.get_pos()
                     frame = int(time.time()*10) % 4
@@ -367,11 +423,11 @@ def nivelfacil():
             if game_over == False and swimming == True:
                 #Generador de botella
                 time_now = pygame.time.get_ticks()
-                if time_now - ultima_botella > frecuencia_botella:
+                if time_now - last_bottle > frecuencia_bottle:
                     bottle_spawn = random.randint(-100, 200)
                     bottle = Bottle(W, int(H / 2) + bottle_spawn)
                     bottle_group.add(bottle)
-                    ultima_botella = time_now
+                    last_bottle = time_now
 
             #Checa que el juego no llegue a Game Over
             if game_over == False and swimming == True:
@@ -415,4 +471,4 @@ def nivelfacil():
             AudioControl()
             pygame.display.update()
         
-nivelfacil()
+nivelfacil1()

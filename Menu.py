@@ -13,6 +13,7 @@ def MenuTotal():
 
     #Music
     pygame.mixer.music.load("sound/menu.mp3")
+    pygame.mixer.music.set_volume(0.5)
     pygame.mixer.music.play(-1)
     sonido_arriba = pygame.image.load("sound/img/volume_up.png")
     sonido_abajo = pygame.image.load("sound/img/volume_down.png")
@@ -97,8 +98,8 @@ def MenuTotal():
                     #Ejecucion del boton de nivel facil
                     if event.type == pygame.MOUSEBUTTONDOWN:
                         if EASY_GAME.checkForInput(PLAY_MOUSE_POS):
-                            from Game import nivelfacil
-                            nivelfacil()
+                            from Game import nivelfacil1
+                            nivelfacil1()
                             
                 ControlMusic()
                 pygame.display.update()
