@@ -1,6 +1,19 @@
-import pygame, sys
+import pygame, sys, json
 from button import Button
 from pygame.locals import *
+
+#Mando a llamr la ruta y la guarda en la variable
+rutaConfig = "config.json"
+
+#Abre la ruta del JSON utilizando el formato UTF-8 
+#y retornando el contenido del JSON como objeto Python
+def LoadConfig():
+     with open(rutaConfig, encoding="utf-8") as archivo:
+          return json.load(archivo)
+
+#Guarda en la variable el contenido del JSON
+Configuracion = LoadConfig()
+langueje = "en"
 
 def MenuTotal():
     pygame.init()
@@ -143,11 +156,11 @@ def MenuTotal():
                 MENU_RECT = MENU_TEXT.get_rect(center=(640, 100))
 
                 PLAY_BUTTON = Button(image=pygame.image.load("assets/Play Rect.png"), pos=(640, 250), 
-                                    text_input="JUGAR", font=get_font(75), base_color="#d7fcd4", hovering_color="White")
+                                    text_input=Configuracion.get(langueje, {}).get("Play", "Play"), font=get_font(75), base_color="#d7fcd4", hovering_color="White")
                 OPTIONS_BUTTON = Button(image=pygame.image.load("assets/Options Rect.png"), pos=(640, 400), 
-                                    text_input="CONTROLES", font=get_font(75), base_color="#d7fcd4", hovering_color="White")
+                                    text_input=Configuracion.get(langueje, {}).get("Opcion", "opcion"), font=get_font(75), base_color="#d7fcd4", hovering_color="White")
                 QUIT_BUTTON = Button(image=pygame.image.load("assets/Quit Rect.png"), pos=(640, 550), 
-                                    text_input="SALIR", font=get_font(75), base_color="#d7fcd4", hovering_color="White")
+                                    text_input=Configuracion.get(langueje, {}).get("exit", "Exit"), font=get_font(75), base_color="#d7fcd4", hovering_color="White")
 
                 SCREEN.blit(MENU_TEXT, MENU_RECT)
 
