@@ -113,14 +113,14 @@ def nivelfacil1():
                 pygame.display.update()
 
         #Todas las funciones del pescado
-        class Fish(pygame.sprite.Sprite):
+        class Submarine(pygame.sprite.Sprite):
             def __init__(self, x, y):
                 pygame.sprite.Sprite.__init__(self)
                 self.images = []
                 self.index = 0
                 self.counter = 0
                 for num in range (1, 4):
-                    img = pygame.image.load(f"img/submarine/submarino{num}.png")
+                    img = pygame.image.load(f"img/submarine/submarine{num}.png")
                     self.images.append(img)
                 self.image = self.images[self.index]
                 self.rect = self.image.get_rect()
@@ -300,13 +300,13 @@ def nivelfacil1():
                             nivelfacil1()
 
         #Se declaran los objetos como grupos
-        fish_group = pygame.sprite.Group()
+        submarine_group = pygame.sprite.Group()
         bottle_group = pygame.sprite.Group()
         bag_group = pygame.sprite.Group()
 
         #Cordenadas donde aparece el pescado
-        flappy = Fish(100, int(H / 2))
-        fish_group.add(flappy)
+        flappy = Submarine(100, int(H / 2))
+        submarine_group.add(flappy)
 
         #Carga de imagenes de victoria
         images = []
@@ -331,8 +331,8 @@ def nivelfacil1():
             clock.tick(fps)
 
             #Muestra todo en pantalla
-            fish_group.draw(PANTALLA)
-            fish_group.update()
+            submarine_group.draw(PANTALLA)
+            submarine_group.update()
             bottle_group.draw(PANTALLA)
             bottle_group.update()
             bag_group.draw(PANTALLA)
@@ -359,12 +359,12 @@ def nivelfacil1():
                 flappy.rect.top = 200
             
             #Revisa la colision del pescado con la botella
-            if pygame.sprite.groupcollide(fish_group, bottle_group, False, False):
+            if pygame.sprite.groupcollide(submarine_group, bottle_group, False, False):
                 game_over = True
                 death_sound.play()
     
             #Revisa la colision del pescado con la bolsa
-            hits = pygame.sprite.groupcollide(fish_group, bag_group, False, True)
+            hits = pygame.sprite.groupcollide(submarine_group, bag_group, False, True)
 
 
             #bucle donde se van sumando los puntos por colisiones
@@ -404,7 +404,7 @@ def nivelfacil1():
                     #Se limpia todos los objetos
                     bottle_group.empty()
                     bag_group.empty()
-                    fish_group.empty()
+                    submarine_group.empty()
                     #Muestra la imagen de victoria animada
                     frame = int(time.time()*10) % 4
                     PANTALLA.blit(images[frame], (0, 0))
