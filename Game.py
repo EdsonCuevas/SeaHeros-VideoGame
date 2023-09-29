@@ -88,8 +88,8 @@ def nivelfacil1():
                 
                 #si el juego esta pausado baja el volumen y muestra la pausa
                 pygame.mixer.music.set_volume(0.0)
-                draw_text("PAUSA", font2, white, W / 2.3, 320)
-                draw_text("Pulsa ESC Para Continuar", font2, white, W / 3.5, 370)
+                draw_text("PAUSADO", font2, white, W / 2.3, 320)
+                draw_text("Pulsa    Para Continuar", font2, white, W / 3.5, 370)
 
                 #evento para poder cerrar el bucle
                 for event in pygame.event.get():
@@ -449,9 +449,7 @@ def nivelfacil1():
                 score = 0
                 draw_text("Pulsa    Para Reiniciar", font2, white, W / 3.5, 330)
                 draw_text("Pulsa    Para Salir", font2, white, W / 3.1, 370)
-                if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_ESCAPE:
-                        MenuTotal()
+
                         
                         
 
@@ -465,12 +463,12 @@ def nivelfacil1():
                      PANTALLA = pygame.display.set_mode((event.w, event.h), pygame.RESIZABLE)
                 if event.type == pygame.MOUSEBUTTONDOWN and swimming == False and game_over == False:
                     swimming = True
-                if event.type == pygame.KEYDOWN :
+                if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_ESCAPE and game_over == False and swimming == True:
                         pause()
                     if event.key == pygame.K_r:
                         nivelfacil1()
-                    if event.key == pygame.K_q and game_over == False:
+                    if event.key == pygame.K_q:
                         MenuTotal()
                         
                         
