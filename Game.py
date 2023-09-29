@@ -81,6 +81,7 @@ def nivelfacil1():
         def pause():
             paused = True
             while paused:
+                
 
                 #si el juego esta pausado baja el volumen y muestra la pausa
                 pygame.mixer.music.set_volume(0.0)
@@ -99,9 +100,8 @@ def nivelfacil1():
                             #reanuda el volumen y termina la pausa
                             pygame.mixer.music.set_volume(0.5)
                             paused = False
-
-                ButtonReset()
-                ButtonExit()
+                
+                
 
                 pygame.display.update()
 
@@ -273,6 +273,7 @@ def nivelfacil1():
 
         #Definimos el boton para reiniciar todo el nivel 1
         def ButtonReset():
+            
             PLAY_MOUSE_POS = pygame.mouse.get_pos()
 
             NEXT = Button(image=(None), pos=(640, 400),
@@ -356,7 +357,6 @@ def nivelfacil1():
             if pygame.sprite.groupcollide(fish_group, bottle_group, False, False):
                 game_over = True
                 death_sound.play()
-            kill = pygame.sprite.groupcollide(fish_group, bottle_group, False, False)
     
             #Revisa la colision del pescado con la bolsa
             hits = pygame.sprite.groupcollide(fish_group, bag_group, False, True)
@@ -400,8 +400,7 @@ def nivelfacil1():
                     bottle_group.empty()
                     bag_group.empty()
                     fish_group.empty()
-                    #Muestra la imagen de victoria
-                    MOUSE_POS = pygame.mouse.get_pos()
+                    #Muestra la imagen de victoria animada
                     frame = int(time.time()*10) % 4
                     PANTALLA.blit(images[frame], (0, 0))
                     #Muestra el boton de next
