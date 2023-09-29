@@ -318,7 +318,6 @@ def nivelfacil1():
         running = True
         while running:
             
-
             #Tecla pulsada
             keys = pygame.key.get_pressed()
 
@@ -467,7 +466,7 @@ def nivelfacil1():
                 if event.type == pygame.MOUSEBUTTONDOWN and swimming == False and game_over == False:
                     swimming = True
                 if event.type == pygame.KEYDOWN :
-                    if event.key == pygame.K_ESCAPE and game_over == False:
+                    if event.key == pygame.K_ESCAPE and game_over == False and swimming == True:
                         pause()
                     if event.key == pygame.K_r:
                         nivelfacil1()
