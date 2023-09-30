@@ -45,6 +45,8 @@ def nivelfacil1():
         #Colores
         white = (255, 255, 255)
         black = (0, 0, 0)
+        green = (91, 208, 0)
+        red = (255, 0, 0)
 
         #Variables Principales
         fps = 100
@@ -94,8 +96,8 @@ def nivelfacil1():
                 
                 #si el juego esta pausado baja el volumen y muestra la pausa
                 pygame.mixer.music.set_volume(0.0)
-                draw_text("PAUSADO", font2, white, W / 2.3, 320)
-                draw_text("Pulsa      Para Continuar", font2, white, W / 3.5, 370)
+                draw_text("PAUSADO", font2, black, W / 2.3, 320)
+                draw_text("Pulsa      Para Continuar", font2, black, W / 3.5, 370)
 
                 #evento para poder cerrar el bucle
                 for event in pygame.event.get():
@@ -347,30 +349,25 @@ def nivelfacil1():
             if victory == False:
                 #Muestra el score
                 draw_text(str(score), font, white, W / 2.1, 20)
-                draw_text(("/1"), font, white, W / 2, 20)
+                draw_text(("/5"), font, white, W / 2, 20)
                 #Muestra el objetivo del juego
-                draw_text("Objetivo:", font2, white, 5, 0)
-                draw_text("Recolecta 1", font2, white, 5, 30)
+                draw_text("Objetivo:", font2, green, 5, 0)
+                draw_text("Recolecta 5", font2, white, 5, 30)
                 PANTALLA.blit(bolsa_ico, (275, 20))
             
             if swimming == False and game_over == False:
-                draw_text("Presiona    Para Nadar", font2, white, W / 3.4, 340)
+                draw_text("Presiona    Para Nadar", font2, black, W / 3.4, 340)
                 PANTALLA.blit(click1, (562, 315))
                 def keys_on_screen():
                     PANTALLA.blit(r_key, (1030, 460))
-                    draw_text("Reiniciar", font3, white, 1100, 490)
+                    draw_text("Reiniciar", font3, black, 1100, 490)
                     PANTALLA.blit(q_key, (1030, 505))
-                    draw_text("Salir", font3, white, 1100, 535)
+                    draw_text("Salir", font3, black, 1100, 535)
                     PANTALLA.blit(flecha_up, (1020, 545))
-                    draw_text("Subir Musica", font3, white, 1100, 577)
+                    draw_text("Subir Musica", font3, black, 1100, 577)
                     PANTALLA.blit(flecha_down, (1010, 580))
-                    draw_text("Bajar Musica", font3, white, 1100, 620)
+                    draw_text("Bajar Musica", font3, black, 1100, 620)
                 keys_on_screen()
-            '''if swimming == True and victory == False:
-                PANTALLA.blit(esc_key, (1080, 580))
-                draw_text("Pausar", font3, white, 1150, 612)'''
-                
-            
 
             #Revisa que el pescado no se salga del agua
             if flappy.rect.top < 200:
@@ -383,7 +380,6 @@ def nivelfacil1():
     
             #Revisa la colision del pescado con la bolsa
             hits = pygame.sprite.groupcollide(submarine_group, bag_group, False, True)
-
 
             #bucle donde se van sumando los puntos por colisiones
             for hit in hits:
@@ -405,18 +401,8 @@ def nivelfacil1():
                 elif keys[pygame.K_UP] and pygame.mixer_music.get_volume() == 1.0:
                     PANTALLA.blit(sonido_max, (1150,25))
 
-                #Desactivar musica
-                elif keys[pygame.K_LEFT]:
-                    pygame.mixer.music.set_volume(0.0)
-                    PANTALLA.blit(sonido_mute, (1150,25))
-
-                #Reactivar musica
-                elif keys[pygame.K_RIGHT]:
-                    pygame.mixer.music.set_volume(1.0)
-                    PANTALLA.blit(sonido_max, (1150,25))
-
             #Detecta si el jugador gana
-            if score == 1 and game_over == False:
+            if score == 5 and game_over == False:
                 victory = True
                 def WinScreen():
                     #Se limpia todos los objetos
@@ -465,8 +451,8 @@ def nivelfacil1():
             if game_over == True:
                 pygame.mixer.music.stop()
                 score = 0
-                draw_text("Pulsa     Para Reiniciar", font2, white, W / 3.5, 330)
-                draw_text("Pulsa     Para Salir", font2, white, W / 3.1, 380)
+                draw_text("Pulsa     Para Reiniciar", font2, black, W / 3.5, 330)
+                draw_text("Pulsa     Para Salir", font2, black, W / 3.1, 380)
                 PANTALLA.blit(r_key, (490, 310))
                 PANTALLA.blit(q_key, (535, 360))
                 
