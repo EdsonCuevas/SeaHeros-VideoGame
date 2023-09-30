@@ -55,6 +55,7 @@ def nivelfacil1():
         game_over = False
         score = 0
         victory = False
+        pausado = False
         
         #Carga de imagenes de botones y el icon de objetivo
         bolsa_ico = pygame.image.load("img/icons/bolsa.png")
@@ -344,7 +345,18 @@ def nivelfacil1():
             bottle_group.update()
             bag_group.draw(PANTALLA)
             bag_group.update()
-            
+            def keys_on_screen():
+                PANTALLA.blit(esc_key, (1030, 410))
+                draw_text("Pausa", font3, black, 1100, 446)
+                PANTALLA.blit(r_key, (1030, 460))
+                draw_text("Reiniciar", font3, black, 1100, 490)
+                PANTALLA.blit(q_key, (1030, 505))
+                draw_text("Salir", font3, black, 1100, 535)
+                PANTALLA.blit(flecha_up, (1020, 545))
+                draw_text("Subir Musica", font3, black, 1100, 577)
+                PANTALLA.blit(flecha_down, (1010, 580))
+                draw_text("Bajar Musica", font3, black, 1100, 620)
+
             #Si la victoria todavia no esta hecha muestra el score, texto y controles
             if victory == False:
                 #Muestra el score
@@ -355,20 +367,13 @@ def nivelfacil1():
                 draw_text("Recolecta 5", font2, white, 5, 30)
                 PANTALLA.blit(bolsa_ico, (275, 20))
             
+            #Cuando empizas el juego empieza muestra instrucciones
             if swimming == False and game_over == False:
                 draw_text("Presiona    Para Nadar", font2, black, W / 3.4, 340)
                 PANTALLA.blit(click1, (562, 315))
-                def keys_on_screen():
-                    PANTALLA.blit(r_key, (1030, 460))
-                    draw_text("Reiniciar", font3, black, 1100, 490)
-                    PANTALLA.blit(q_key, (1030, 505))
-                    draw_text("Salir", font3, black, 1100, 535)
-                    PANTALLA.blit(flecha_up, (1020, 545))
-                    draw_text("Subir Musica", font3, black, 1100, 577)
-                    PANTALLA.blit(flecha_down, (1010, 580))
-                    draw_text("Bajar Musica", font3, black, 1100, 620)
+                #Funcion que muestre las teclas
                 keys_on_screen()
-
+            
             #Revisa que el pescado no se salga del agua
             if flappy.rect.top < 200:
                 flappy.rect.top = 200
@@ -455,9 +460,6 @@ def nivelfacil1():
                 draw_text("Pulsa     Para Salir", font2, black, W / 3.1, 380)
                 PANTALLA.blit(r_key, (490, 310))
                 PANTALLA.blit(q_key, (535, 360))
-                
-
-                        
                         
 
             #Detecta que el juego empiece
