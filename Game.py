@@ -68,7 +68,7 @@ def nivelfacil1():
 
 
         #Frecuencia de aparicion de botella
-        frecuencia_bottle = 2000 #milisegundos
+        frecuencia_bottle = 2500 #milisegundos
         last_bottle = pygame.time.get_ticks() - frecuencia_bottle
 
         #Frecuencia de aparicion de bolsa
@@ -346,6 +346,7 @@ def nivelfacil1():
             bag_group.draw(PANTALLA)
             bag_group.update()
             def keys_on_screen():
+                draw_text("Controles", font2, black, 1040, 380)
                 PANTALLA.blit(esc_key, (1030, 410))
                 draw_text("Pausa", font3, black, 1100, 446)
                 PANTALLA.blit(r_key, (1030, 460))
