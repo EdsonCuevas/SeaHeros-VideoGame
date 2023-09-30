@@ -18,6 +18,7 @@ def nivelfacil1():
         #Fuentes
         font = pygame.font.SysFont('Bauhaus 93', 60)
         font2 = pygame.font.Font('assets/upheavtt.ttf', 40)
+        font3 = pygame.font.Font('assets/upheavtt.ttf', 22)
 
         #Sonidos
         victory_sound = pygame.mixer.Sound("sound/victorysound.mp3")
@@ -38,7 +39,7 @@ def nivelfacil1():
         sonido_max = pygame.image.load("sound/img/volume_max.png")
 
         #Fondo
-        fondo = pygame.image.load("img/ocean.jpg").convert()
+        fondo = pygame.image.load("img/bg.jpg").convert()
         VelFondo = 0
 
         #Colores
@@ -55,8 +56,13 @@ def nivelfacil1():
         
         #Carga de imagenes de botones y el icon de objetivo
         bolsa_ico = pygame.image.load("img/icons/bolsa.png")
-        flecha_up = pygame.image.load("img/icons/TeclaArriba.png")
-        flecha_down = pygame.image.load("img/icons/TeclaAbajo.png")
+        flecha_up = pygame.image.load("img/keys/arrowup_alternative_paper.png")
+        flecha_down = pygame.image.load("img/keys/arrowdown_alternative_paper.png")
+        esc_key = pygame.image.load("img/keys/esc_alternative_paper.png")
+        r_key = pygame.image.load("img/keys/r_alternative_paper.png")
+        q_key = pygame.image.load("img/keys/q_alternative_paper.png")
+        click1 = pygame.image.load("img/keys/mouse_L_pressed_paper.png")
+
 
         #Frecuencia de aparicion de botella
         frecuencia_bottle = 2000 #milisegundos
@@ -85,17 +91,27 @@ def nivelfacil1():
         def pause():
             paused = True
             while paused:
+
+                PANTALLA.blit(esc_key, (495, 350))
+
+                PANTALLA.blit(r_key, (1030, 460))
+                draw_text("Reiniciar", font3, white, 1100, 490)
+                PANTALLA.blit(q_key, (1030, 505))
+                draw_text("Salir", font3, white, 1100, 535)
+                PANTALLA.blit(flecha_up, (1020, 545))
+                draw_text("Subir Musica", font3, white, 1100, 577)
+                PANTALLA.blit(flecha_down, (1010, 580))
+                draw_text("Bajar Musica", font3, white, 1100, 620)
                 
                 #si el juego esta pausado baja el volumen y muestra la pausa
                 pygame.mixer.music.set_volume(0.0)
                 draw_text("PAUSADO", font2, white, W / 2.3, 320)
-                draw_text("Pulsa    Para Continuar", font2, white, W / 3.5, 370)
+                draw_text("Pulsa      Para Continuar", font2, white, W / 3.5, 370)
 
                 #evento para poder cerrar el bucle
                 for event in pygame.event.get():
                     if event.type == pygame.QUIT:
                         paused = False
-                        running = False
                         pygame.quit()
                         exit()
                     #si se vuelve a presionar escape
@@ -168,7 +184,7 @@ def nivelfacil1():
         class Bottle(pygame.sprite.Sprite):
             def __init__(self, x, y):
                 pygame.sprite.Sprite.__init__(self)
-                self.image = pygame.image.load("img/botella.png")
+                self.image = pygame.image.load("img/coliders/botella.png")
                 self.rect = self.image.get_rect()
                 self.rect.topleft = [x,y]
 
@@ -181,7 +197,7 @@ def nivelfacil1():
         class Bag(pygame.sprite.Sprite):
             def __init__(self, x, y):
                 pygame.sprite.Sprite.__init__(self)
-                self.image = pygame.image.load("img/bolsa.png")
+                self.image = pygame.image.load("img/coliders/bolsa.png")
                 self.rect = self.image.get_rect()
                 self.rect.topleft = [x,y]
 
@@ -347,11 +363,23 @@ def nivelfacil1():
                 draw_text("Objetivo:", font2, white, 5, 0)
                 draw_text("Recolecta 1", font2, white, 5, 30)
                 PANTALLA.blit(bolsa_ico, (275, 20))
-                PANTALLA.blit(flecha_up, (W / 1.2, 600))
-                PANTALLA.blit(flecha_down, (W / 1.2, 650))
             
             if swimming == False and game_over == False:
                 draw_text("Presiona    Para Nadar", font2, white, W / 3.4, 340)
+                PANTALLA.blit(click1, (562, 315))
+                PANTALLA.blit(r_key, (1030, 460))
+                draw_text("Reiniciar", font3, white, 1100, 490)
+                PANTALLA.blit(q_key, (1030, 505))
+                draw_text("Salir", font3, white, 1100, 535)
+                PANTALLA.blit(flecha_up, (1020, 545))
+                draw_text("Subir Musica", font3, white, 1100, 577)
+                PANTALLA.blit(flecha_down, (1010, 580))
+                draw_text("Bajar Musica", font3, white, 1100, 620)
+
+            '''if swimming == True and victory == False:
+                PANTALLA.blit(esc_key, (1080, 580))
+                draw_text("Pausar", font3, white, 1150, 612)'''
+                
             
 
             #Revisa que el pescado no se salga del agua
@@ -447,8 +475,11 @@ def nivelfacil1():
             if game_over == True:
                 pygame.mixer.music.stop()
                 score = 0
-                draw_text("Pulsa    Para Reiniciar", font2, white, W / 3.5, 330)
-                draw_text("Pulsa    Para Salir", font2, white, W / 3.1, 370)
+                draw_text("Pulsa     Para Reiniciar", font2, white, W / 3.5, 330)
+                draw_text("Pulsa     Para Salir", font2, white, W / 3.1, 380)
+                PANTALLA.blit(r_key, (490, 310))
+                PANTALLA.blit(q_key, (535, 360))
+                
 
                         
                         
