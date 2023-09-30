@@ -91,17 +91,6 @@ def nivelfacil1():
         def pause():
             paused = True
             while paused:
-
-                PANTALLA.blit(esc_key, (495, 350))
-
-                PANTALLA.blit(r_key, (1030, 460))
-                draw_text("Reiniciar", font3, white, 1100, 490)
-                PANTALLA.blit(q_key, (1030, 505))
-                draw_text("Salir", font3, white, 1100, 535)
-                PANTALLA.blit(flecha_up, (1020, 545))
-                draw_text("Subir Musica", font3, white, 1100, 577)
-                PANTALLA.blit(flecha_down, (1010, 580))
-                draw_text("Bajar Musica", font3, white, 1100, 620)
                 
                 #si el juego esta pausado baja el volumen y muestra la pausa
                 pygame.mixer.music.set_volume(0.0)
@@ -367,15 +356,16 @@ def nivelfacil1():
             if swimming == False and game_over == False:
                 draw_text("Presiona    Para Nadar", font2, white, W / 3.4, 340)
                 PANTALLA.blit(click1, (562, 315))
-                PANTALLA.blit(r_key, (1030, 460))
-                draw_text("Reiniciar", font3, white, 1100, 490)
-                PANTALLA.blit(q_key, (1030, 505))
-                draw_text("Salir", font3, white, 1100, 535)
-                PANTALLA.blit(flecha_up, (1020, 545))
-                draw_text("Subir Musica", font3, white, 1100, 577)
-                PANTALLA.blit(flecha_down, (1010, 580))
-                draw_text("Bajar Musica", font3, white, 1100, 620)
-
+                def keys_on_screen():
+                    PANTALLA.blit(r_key, (1030, 460))
+                    draw_text("Reiniciar", font3, white, 1100, 490)
+                    PANTALLA.blit(q_key, (1030, 505))
+                    draw_text("Salir", font3, white, 1100, 535)
+                    PANTALLA.blit(flecha_up, (1020, 545))
+                    draw_text("Subir Musica", font3, white, 1100, 577)
+                    PANTALLA.blit(flecha_down, (1010, 580))
+                    draw_text("Bajar Musica", font3, white, 1100, 620)
+                keys_on_screen()
             '''if swimming == True and victory == False:
                 PANTALLA.blit(esc_key, (1080, 580))
                 draw_text("Pausar", font3, white, 1150, 612)'''
@@ -496,6 +486,8 @@ def nivelfacil1():
                     swimming = True
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_ESCAPE and game_over == False and swimming == True:
+                        PANTALLA.blit(esc_key, (495, 345))
+                        keys_on_screen()
                         pause()
                     if event.key == pygame.K_r:
                         nivelfacil1()
