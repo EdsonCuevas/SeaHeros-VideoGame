@@ -58,10 +58,11 @@ def nivelfacil1():
         game_over = False
         score = 0
         victory = False
-        pausado = False
+        sound = True
         
         #Carga de imagenes de botones y el icon de objetivo
         bolsa_ico = pygame.image.load("img/icons/bolsa.png")
+        botella_ico = pygame.image.load("img/icons/botella.png")
         flecha_up = pygame.image.load("img/keys/arrowup_alternative_paper.png")
         flecha_down = pygame.image.load("img/keys/arrowdown_alternative_paper.png")
         esc_key = pygame.image.load("img/keys/esc_alternative_paper.png")
@@ -85,23 +86,15 @@ def nivelfacil1():
         def get_font(size):
             return pygame.font.Font("assets/font.ttf", size)
 
-        #Defino la clase para reiniciar el juego
-        def reset_game():
-            bottle_group.empty()
-            bag_group.empty()
-            flappy.rect.x = 100
-            flappy.rect.y = int(H / 2)
-            pygame.mixer.music.rewind()
 
         #Defino la funcion de pausa
         def pause():
             paused = True
             while paused:
-                
-                #si el juego esta pausado baja el volumen y muestra la pausa
-                pygame.mixer.music.set_volume(0.0)
+                pygame.mixer.music.pause()
                 draw_text(Configuracion.get(langueje, {}).get("paused"), font2, black, W / 2.3, 320)
                 draw_text(Configuracion.get(langueje, {}).get("continue"), font2, black, W / 3.5, 370)
+                
 
                 #evento para poder cerrar el bucle
                 for event in pygame.event.get():
@@ -113,15 +106,30 @@ def nivelfacil1():
                     if event.type == pygame.KEYDOWN:
                         if event.key == pygame.K_ESCAPE:
                             #reanuda el volumen y termina la pausa
-                            pygame.mixer.music.set_volume(0.5)
+                            pygame.mixer.music.unpause()
                             paused = False
                         if event.key == pygame.K_r:
                             nivelfacil1()
                         if event.key == pygame.K_q:
                             MenuTotal()
                         
-
                 pygame.display.update()
+
+        #Barra de vida para terminar el juego
+        class FuelBar():
+            def __init__(self, x, y, w, h, max_hp):
+                self.x = x
+                self.y = y
+                self.w = w
+                self.h = h
+                self.hp = max_hp
+                self.max_hp = max_hp
+
+            def draw(self, surface):
+                #calculate fuel ratio
+                ratio = self.hp / self.max_hp
+                pygame.draw.rect(surface, "red", (self.x, self.y, self.w, self.h))
+                pygame.draw.rect(surface, "green", (self.x, self.y, self.w * ratio, self.h))
 
         #Todas las funciones del pescado
         class Submarine(pygame.sprite.Sprite):
@@ -158,7 +166,6 @@ def nivelfacil1():
                     if pygame.mouse.get_pressed()[0] == 0:
                         self.clicked = False
                     
-
                     #Animaciones del pescado
                     self.counter += 1
                     flap_cooldown = 10
@@ -200,101 +207,12 @@ def nivelfacil1():
                 if game_over == False:
                     self.rect.x -= 2
 
-        #La clase del boton
-        class Button1():
-            def __init__(self, x, y, image):
-                self.image = image
-                self.rect = self.image.get_rect()
-                self.rect.topleft = (x,y)
-
-            def draw(self):
-
-                action = False
-
-                #Detecta la posicion del mouse
-                pos = pygame.mouse.get_pos()
-
-                #Detecta si el cursor esta encima del boton
-                if self.rect.collidepoint(pos):
-                    if pygame.mouse.get_pressed()[0] == 1:
-                        action = True
-
-                #Dibuja el boton
-                PANTALLA.blit(self.image, (self.rect.x, self.rect.y))
-
-                return action
-
-        class Button2():
-                def __init__(self, x, y, image):
-                    self.image = image
-                    self.rect = self.image.get_rect()
-                    self.rect.topleft = (x,y)
-
-                def draw(self):
-
-                    action = False
-
-                    #Detecta la posicion del mouse
-                    pos = pygame.mouse.get_pos()
-
-                    #Detecta si el cursor esta encima del boton
-                    if self.rect.collidepoint(pos):
-                        if pygame.mouse.get_pressed()[0] == 1:
-                            action = True
-
-                    #Dibuja el boton
-                    PANTALLA.blit(self.image, (self.rect.x, self.rect.y))
-
-                    return action
-
         #Definimos el boton para pasar al siguiente nivel
         def ButtonNext():
             PLAY_MOUSE_POS = pygame.mouse.get_pos()
 
             NEXT = Button(image=(None), pos=(640, 400),
                                     text_input=Configuracion.get(langueje, {}).get("buttonNext"), font=get_font(50), base_color="White", hovering_color="Green")
-            NEXT.changeColor(PLAY_MOUSE_POS)
-            NEXT.update(PANTALLA)
-
-            #Bucle para cerrar el juego
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    pygame.quit()
-                    sys.exit()
-
-                #Evento para detectar el mouse sobre el boton y funcion de este
-                if event.type == pygame.MOUSEBUTTONDOWN:
-                        if NEXT.checkForInput(PLAY_MOUSE_POS):
-                            from Game import nivelfacil1
-                            nivelfacil1()
-
-        #Definimos el boton para salir al menu
-        def ButtonExit():
-            PLAY_MOUSE_POS = pygame.mouse.get_pos()
-
-            NEXT = Button(image=(None), pos=(640, 500),
-                                    text_input=Configuracion.get(langueje, {}).get("buttonExit"), font=font, base_color="White", hovering_color="Red")
-            NEXT.changeColor(PLAY_MOUSE_POS)
-            NEXT.update(PANTALLA)
-
-            #Bucle para cerrar el juego
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    pygame.quit()
-                    sys.exit()
-
-                #Evento para detectar el mouse sobre el boton y funcion de este
-                if event.type == pygame.MOUSEBUTTONDOWN:
-                        if NEXT.checkForInput(PLAY_MOUSE_POS):
-                            MenuTotal()
-
-        #Definimos el boton para reiniciar todo el nivel 1
-        def ButtonReset():
-            
-            PLAY_MOUSE_POS = pygame.mouse.get_pos()
-
-            NEXT = Button(image=(None), pos=(W / 2, 365),
-                                    text_input=Configuracion.get(langueje, {}).get("buttonReset"), font=font2, base_color="White", hovering_color="Green")
             NEXT.changeColor(PLAY_MOUSE_POS)
             NEXT.update(PANTALLA)
 
@@ -324,6 +242,9 @@ def nivelfacil1():
         for i in range(1,5):
             name = "img/victory_screen/victory"+str(i)+".png"
             images.append(pygame.image.load(name))
+
+        fuel_bar = FuelBar(500, 150, 300, 40, 3000)
+        fuel_bar.hp = 3000
 
         #Bucle principal del juego
         running = True
@@ -367,9 +288,13 @@ def nivelfacil1():
                 draw_text(str(score), font, white, W / 2.1, 20)
                 draw_text(("/5"), font, white, W / 2, 20)
                 #Muestra el objetivo del juego
-                draw_text(Configuracion.get(langueje, {}).get("object"), font2, green, 5, 0)
-                draw_text(Configuracion.get(langueje, {}).get("recolet"), font2, white, 5, 30)
-                PANTALLA.blit(bolsa_ico, (275, 20))
+                draw_text("Objetivo:", font2, white, 5, 0)
+                draw_text("Recolecta 5", font2, green, 5, 40)
+                PANTALLA.blit(bolsa_ico, (275, 30))
+                draw_text("Evita", font2, red, 5, 90)
+                PANTALLA.blit(botella_ico, (130, 85))
+                fuel_bar.draw(PANTALLA)
+                draw_text("Combustible", font2, black, 520, 110)
             
             #Cuando empizas el juego empieza muestra instrucciones
             if swimming == False and game_over == False:
@@ -385,7 +310,6 @@ def nivelfacil1():
             #Revisa la colision del pescado con la botella
             if pygame.sprite.groupcollide(submarine_group, bottle_group, False, False):
                 game_over = True
-                death_sound.play()
     
             #Revisa la colision del pescado con la bolsa
             hits = pygame.sprite.groupcollide(submarine_group, bag_group, False, True)
@@ -464,6 +388,16 @@ def nivelfacil1():
                 draw_text(Configuracion.get(langueje, {}).get("overExit"), font2, black, W / 3.1, 380)
                 PANTALLA.blit(r_key, (490, 310))
                 PANTALLA.blit(q_key, (535, 360))
+
+            if game_over == True and sound == True:
+                death_sound.play()
+                sound = False
+
+            if swimming == True and game_over == False and victory == False:
+                fuel_bar.hp -= 1
+                if fuel_bar.hp <= 0:
+                    death_sound.play()
+                    game_over = True
                         
 
             #Detecta que el juego empiece
