@@ -1,4 +1,4 @@
-import pygame, sys, random, time
+import pygame, sys, random, time, os
 from pygame.locals import *
 from button import Button
 from Menu import MenuTotal
@@ -7,7 +7,7 @@ from JSON import Load
 def nivelfacil1():
         
         Configuracion,langueje = Load()
-
+        
         #Start de pygame
         pygame.init()
 
@@ -69,7 +69,6 @@ def nivelfacil1():
         r_key = pygame.image.load("img/keys/r_alternative_paper.png")
         q_key = pygame.image.load("img/keys/q_alternative_paper.png")
         click1 = pygame.image.load("img/keys/mouse_L_pressed_paper.png")
-
 
         #Frecuencia de aparicion de botella
         frecuencia_bottle = 2500 #milisegundos
@@ -208,7 +207,7 @@ def nivelfacil1():
                     self.rect.x -= 2
 
         #Definimos el boton para pasar al siguiente nivel
-        def ButtonNext():
+        def ButtonNextLevel():
             PLAY_MOUSE_POS = pygame.mouse.get_pos()
 
             NEXT = Button(image=(None), pos=(640, 400),
@@ -249,7 +248,7 @@ def nivelfacil1():
         #Bucle principal del juego
         running = True
         while running:
-            
+
             #Tecla pulsada
             keys = pygame.key.get_pressed()
 
@@ -260,6 +259,7 @@ def nivelfacil1():
                 PANTALLA.blit(fondo,(x_relativa,0))
             #Velocidad del fondo
             VelFondo -= 2
+            #Velocidad del juego total
             clock.tick(fps)
 
             #Muestra todo en pantalla
@@ -270,18 +270,18 @@ def nivelfacil1():
             bag_group.draw(PANTALLA)
             bag_group.update()
             def keys_on_screen():
-                draw_text(Configuracion.get(langueje, {}).get("keysControl"), font2, black, 1040, 380)
+                draw_text("Controles", font2, black, 1040, 380)
                 PANTALLA.blit(esc_key, (1030, 410))
-                draw_text(Configuracion.get(langueje, {}).get("keysPaused"), font3, black, 1100, 446)
+                draw_text("Pausa", font3, black, 1100, 446)
                 PANTALLA.blit(r_key, (1030, 460))
-                draw_text(Configuracion.get(langueje, {}).get("keysReset"), font3, black, 1100, 490)
+                draw_text("Reiniciar", font3, black, 1100, 490)
                 PANTALLA.blit(q_key, (1030, 505))
-                draw_text(Configuracion.get(langueje, {}).get("keysExit"), font3, black, 1100, 535)
+                draw_text("Salir", font3, black, 1100, 535)
                 PANTALLA.blit(flecha_up, (1020, 545))
-                draw_text(Configuracion.get(langueje, {}).get("keysUpMusic"), font3, black, 1100, 577)
+                draw_text("Subir Musica", font3, black, 1100, 577)
                 PANTALLA.blit(flecha_down, (1010, 580))
-                draw_text(Configuracion.get(langueje, {}).get("keysDownMusic"), font3, black, 1100, 620)
-
+                draw_text("Bajar Musica", font3, black, 1100, 620)
+            
             #Si la victoria todavia no esta hecha muestra el score, texto y controles
             if victory == False:
                 #Muestra el score
@@ -298,7 +298,7 @@ def nivelfacil1():
             
             #Cuando empizas el juego empieza muestra instrucciones
             if swimming == False and game_over == False:
-                draw_text(Configuracion.get(langueje, {}).get("swimming"), font2, black, W / 3.4, 340)
+                draw_text("Presiona    Para Empezar", font2, black, W / 3.4, 340)
                 PANTALLA.blit(click1, (562, 315))
                 #Funcion que muestre las teclas
                 keys_on_screen()
@@ -346,7 +346,7 @@ def nivelfacil1():
                     frame = int(time.time()*10) % 4
                     PANTALLA.blit(images[frame], (0, 0))
                     #Muestra el boton de next
-                    ButtonNext()
+                    ButtonNextLevel()
                     #Se detiene la musica
                     pygame.mixer.music.stop()
                     for sound in hits:
@@ -359,6 +359,8 @@ def nivelfacil1():
                 swimming = False
             if game_over == True:
                 VelFondo = 0
+                
+                
 
             #Checa que el juego no llegue a Game Over
             if game_over == False and swimming == True:
@@ -384,15 +386,16 @@ def nivelfacil1():
             if game_over == True:
                 pygame.mixer.music.stop()
                 score = 0
-                draw_text(Configuracion.get(langueje, {}).get("overReset"), font2, black, W / 3.5, 330)
-                draw_text(Configuracion.get(langueje, {}).get("overExit"), font2, black, W / 3.1, 380)
+                draw_text("Pulsa     Para Reiniciar", font2, black, W / 3.5, 330)
+                draw_text("Pulsa     Para Salir", font2, black, W / 3.1, 380)
                 PANTALLA.blit(r_key, (490, 310))
                 PANTALLA.blit(q_key, (535, 360))
-
+            
             if game_over == True and sound == True:
                 death_sound.play()
                 sound = False
 
+            
             if swimming == True and game_over == False and victory == False:
                 fuel_bar.hp -= 1
                 if fuel_bar.hp <= 0:
