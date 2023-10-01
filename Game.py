@@ -2,12 +2,9 @@ import pygame, sys, random, time, os
 from pygame.locals import *
 from button import Button
 from Menu import MenuTotal
-from JSON import Load
 
 def nivelfacil1():
         
-        Configuracion,langueje = Load()
-
         #Start de pygame
         pygame.init()
 
@@ -100,9 +97,9 @@ def nivelfacil1():
             while paused:
                 
                 #si el juego esta pausado baja el volumen y muestra la pausa
-                pygame.mixer.music.set_volume(0.0)
-                draw_text(Configuracion.get(langueje, {}).get("paused"), font2, black, W / 2.3, 320)
-                draw_text(Configuracion.get(langueje, {}).get("continue"), font2, black, W / 3.5, 370)
+                pygame.mixer.music.pause()
+                draw_text("PAUSADO", font2, black, W / 2.3, 320)
+                draw_text("Pulsa      Para Continuar", font2, black, W / 3.5, 370)
 
                 #evento para poder cerrar el bucle
                 for event in pygame.event.get():
@@ -225,49 +222,7 @@ def nivelfacil1():
             PLAY_MOUSE_POS = pygame.mouse.get_pos()
 
             NEXT = Button(image=(None), pos=(640, 400),
-                                    text_input=Configuracion.get(langueje, {}).get("buttonNext"), font=get_font(50), base_color="White", hovering_color="Green")
-            NEXT.changeColor(PLAY_MOUSE_POS)
-            NEXT.update(PANTALLA)
-
-            #Bucle para cerrar el juego
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    pygame.quit()
-                    sys.exit()
-
-                #Evento para detectar el mouse sobre el boton y funcion de este
-                if event.type == pygame.MOUSEBUTTONDOWN:
-                        if NEXT.checkForInput(PLAY_MOUSE_POS):
-                            from Game import nivelfacil1
-                            nivelfacil1()
-
-        #Definimos el boton para salir al menu
-        def ButtonExit():
-            PLAY_MOUSE_POS = pygame.mouse.get_pos()
-
-            NEXT = Button(image=(None), pos=(640, 500),
-                                    text_input=Configuracion.get(langueje, {}).get("buttonExit"), font=font, base_color="White", hovering_color="Red")
-            NEXT.changeColor(PLAY_MOUSE_POS)
-            NEXT.update(PANTALLA)
-
-            #Bucle para cerrar el juego
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    pygame.quit()
-                    sys.exit()
-
-                #Evento para detectar el mouse sobre el boton y funcion de este
-                if event.type == pygame.MOUSEBUTTONDOWN:
-                        if NEXT.checkForInput(PLAY_MOUSE_POS):
-                            MenuTotal()
-
-        #Definimos el boton para reiniciar todo el nivel 1
-        def ButtonReset():
-            
-            PLAY_MOUSE_POS = pygame.mouse.get_pos()
-
-            NEXT = Button(image=(None), pos=(W / 2, 365),
-                                    text_input=Configuracion.get(langueje, {}).get("buttonReset"), font=font2, base_color="White", hovering_color="Green")
+                                    text_input="Siguiente Nivel", font=get_font(50), base_color="White", hovering_color="Green")
             NEXT.changeColor(PLAY_MOUSE_POS)
             NEXT.update(PANTALLA)
 
@@ -326,31 +281,36 @@ def nivelfacil1():
             bag_group.draw(PANTALLA)
             bag_group.update()
             def keys_on_screen():
-                draw_text(Configuracion.get(langueje, {}).get("keysControl"), font2, black, 1040, 380)
+                draw_text("Controles", font2, black, 1040, 380)
                 PANTALLA.blit(esc_key, (1030, 410))
-                draw_text(Configuracion.get(langueje, {}).get("keysPaused"), font3, black, 1100, 446)
+                draw_text("Pausa", font3, black, 1100, 446)
                 PANTALLA.blit(r_key, (1030, 460))
-                draw_text(Configuracion.get(langueje, {}).get("keysReset"), font3, black, 1100, 490)
+                draw_text("Reiniciar", font3, black, 1100, 490)
                 PANTALLA.blit(q_key, (1030, 505))
-                draw_text(Configuracion.get(langueje, {}).get("keysExit"), font3, black, 1100, 535)
+                draw_text("Salir", font3, black, 1100, 535)
                 PANTALLA.blit(flecha_up, (1020, 545))
-                draw_text(Configuracion.get(langueje, {}).get("keysUpMusic"), font3, black, 1100, 577)
+                draw_text("Subir Musica", font3, black, 1100, 577)
                 PANTALLA.blit(flecha_down, (1010, 580))
-                draw_text(Configuracion.get(langueje, {}).get("keysDownMusic"), font3, black, 1100, 620)
-
+                draw_text("Bajar Musica", font3, black, 1100, 620)
+            
             #Si la victoria todavia no esta hecha muestra el score, texto y controles
             if victory == False:
                 #Muestra el score
                 draw_text(str(score), font, white, W / 2.1, 20)
                 draw_text(("/5"), font, white, W / 2, 20)
                 #Muestra el objetivo del juego
-                draw_text(Configuracion.get(langueje, {}).get("object"), font2, green, 5, 0)
-                draw_text(Configuracion.get(langueje, {}).get("recolet"), font2, white, 5, 30)
-                PANTALLA.blit(bolsa_ico, (275, 20))
+                draw_text("Objetivo:", font2, white, 5, 0)
+                draw_text("Recolecta 5", font2, green, 5, 40)
+                PANTALLA.blit(bolsa_ico, (275, 30))
+                draw_text("Evita", font2, red, 5, 90)
+                PANTALLA.blit(botella_ico, (130, 85))
+                fuel_bar.draw(PANTALLA)
+                draw_text("Combustible", font2, black, 520, 110)
+                
             
             #Cuando empizas el juego empieza muestra instrucciones
             if swimming == False and game_over == False:
-                draw_text(Configuracion.get(langueje, {}).get("swimming"), font2, black, W / 3.4, 340)
+                draw_text("Presiona    Para Empezar", font2, black, W / 3.4, 340)
                 PANTALLA.blit(click1, (562, 315))
                 #Funcion que muestre las teclas
                 keys_on_screen()
@@ -438,8 +398,8 @@ def nivelfacil1():
             if game_over == True:
                 pygame.mixer.music.stop()
                 score = 0
-                draw_text(Configuracion.get(langueje, {}).get("overReset"), font2, black, W / 3.5, 330)
-                draw_text(Configuracion.get(langueje, {}).get("overExit"), font2, black, W / 3.1, 380)
+                draw_text("Pulsa     Para Reiniciar", font2, black, W / 3.5, 330)
+                draw_text("Pulsa     Para Salir", font2, black, W / 3.1, 380)
                 PANTALLA.blit(r_key, (490, 310))
                 PANTALLA.blit(q_key, (535, 360))
             
