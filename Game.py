@@ -55,9 +55,12 @@ def nivelfacil1():
         game_over = False
         score = 0
         victory = False
+        sound = True
+
         
         #Carga de imagenes de botones y el icon de objetivo
         bolsa_ico = pygame.image.load("img/icons/bolsa.png")
+        botella_ico = pygame.image.load("img/icons/botella.png")
         flecha_up = pygame.image.load("img/keys/arrowup_alternative_paper.png")
         flecha_down = pygame.image.load("img/keys/arrowdown_alternative_paper.png")
         esc_key = pygame.image.load("img/keys/esc_alternative_paper.png")
@@ -94,7 +97,7 @@ def nivelfacil1():
             while paused:
                 
                 #si el juego esta pausado baja el volumen y muestra la pausa
-                pygame.mixer.music.set_volume(0.0)
+                pygame.mixer.music.pause()
                 draw_text("PAUSADO", font2, black, W / 2.3, 320)
                 draw_text("Pulsa      Para Continuar", font2, black, W / 3.5, 370)
 
@@ -108,7 +111,7 @@ def nivelfacil1():
                     if event.type == pygame.KEYDOWN:
                         if event.key == pygame.K_ESCAPE:
                             #reanuda el volumen y termina la pausa
-                            pygame.mixer.music.set_volume(0.5)
+                            pygame.mixer.music.unpause()
                             paused = False
                         if event.key == pygame.K_r:
                             nivelfacil1()
@@ -117,7 +120,7 @@ def nivelfacil1():
                         
 
                 pygame.display.update()
-
+        
         #Todas las funciones del pescado
         class Submarine(pygame.sprite.Sprite):
             def __init__(self, x, y):
@@ -194,29 +197,10 @@ def nivelfacil1():
             def update(self):
                 if game_over == False:
                     self.rect.x -= 2
-
-
                 def __init__(self, x, y, image):
                     self.image = image
                     self.rect = self.image.get_rect()
                     self.rect.topleft = (x,y)
-
-                def draw(self):
-
-                    action = False
-
-                    #Detecta la posicion del mouse
-                    pos = pygame.mouse.get_pos()
-
-                    #Detecta si el cursor esta encima del boton
-                    if self.rect.collidepoint(pos):
-                        if pygame.mouse.get_pressed()[0] == 1:
-                            action = True
-
-                    #Dibuja el boton
-                    PANTALLA.blit(self.image, (self.rect.x, self.rect.y))
-
-                    return action
 
         class FuelBar():
             def __init__(self, x, y, w, h, max_hp):
@@ -315,14 +299,18 @@ def nivelfacil1():
                 draw_text(str(score), font, white, W / 2.1, 20)
                 draw_text(("/5"), font, white, W / 2, 20)
                 #Muestra el objetivo del juego
-                draw_text("Objetivo:", font2, green, 5, 0)
-                draw_text("Recolecta 5", font2, white, 5, 30)
-                PANTALLA.blit(bolsa_ico, (275, 20))
+                draw_text("Objetivo:", font2, white, 5, 0)
+                draw_text("Recolecta 5", font2, green, 5, 40)
+                PANTALLA.blit(bolsa_ico, (275, 30))
+                draw_text("Evita", font2, red, 5, 90)
+                PANTALLA.blit(botella_ico, (130, 85))
                 fuel_bar.draw(PANTALLA)
+                draw_text("Combustible", font2, black, 520, 110)
+                
             
             #Cuando empizas el juego empieza muestra instrucciones
             if swimming == False and game_over == False:
-                draw_text("Presiona    Para Nadar", font2, black, W / 3.4, 340)
+                draw_text("Presiona    Para Empezar", font2, black, W / 3.4, 340)
                 PANTALLA.blit(click1, (562, 315))
                 #Funcion que muestre las teclas
                 keys_on_screen()
@@ -334,7 +322,6 @@ def nivelfacil1():
             #Revisa la colision del pescado con la botella
             if pygame.sprite.groupcollide(submarine_group, bottle_group, False, False):
                 game_over = True
-                death_sound.play()
     
             #Revisa la colision del pescado con la bolsa
             hits = pygame.sprite.groupcollide(submarine_group, bag_group, False, True)
@@ -384,6 +371,8 @@ def nivelfacil1():
                 swimming = False
             if game_over == True:
                 VelFondo = 0
+                
+                
 
             #Checa que el juego no llegue a Game Over
             if game_over == False and swimming == True:
@@ -414,9 +403,15 @@ def nivelfacil1():
                 PANTALLA.blit(r_key, (490, 310))
                 PANTALLA.blit(q_key, (535, 360))
             
+            if game_over == True and sound == True:
+                death_sound.play()
+                sound = False
+
+            
             if swimming == True and game_over == False and victory == False:
                 fuel_bar.hp -= 1
                 if fuel_bar.hp <= 0:
+                    death_sound.play()
                     game_over = True
                         
 
