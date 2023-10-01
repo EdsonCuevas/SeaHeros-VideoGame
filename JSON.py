@@ -11,5 +11,5 @@ def Load():
 
     # Guarda en la variable el contenido del JSON
     Configuracion = LoadConfig()
-    langueje = "es"
+    langueje = "en"
     return Configuracion, langueje
