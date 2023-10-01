@@ -270,17 +270,17 @@ def nivelfacil1():
             bag_group.draw(PANTALLA)
             bag_group.update()
             def keys_on_screen():
-                draw_text("Controles", font2, black, 1040, 380)
+                draw_text(Configuracion.get(langueje, {}).get("keysControl"), font2, black, 1040, 380)
                 PANTALLA.blit(esc_key, (1030, 410))
-                draw_text("Pausa", font3, black, 1100, 446)
+                draw_text(Configuracion.get(langueje, {}).get("keysPaused"), font3, black, 1100, 446)
                 PANTALLA.blit(r_key, (1030, 460))
-                draw_text("Reiniciar", font3, black, 1100, 490)
+                draw_text(Configuracion.get(langueje, {}).get("keysReset"), font3, black, 1100, 490)
                 PANTALLA.blit(q_key, (1030, 505))
-                draw_text("Salir", font3, black, 1100, 535)
+                draw_text(Configuracion.get(langueje, {}).get("keysExit"), font3, black, 1100, 535)
                 PANTALLA.blit(flecha_up, (1020, 545))
-                draw_text("Subir Musica", font3, black, 1100, 577)
+                draw_text(Configuracion.get(langueje, {}).get("keysUpMusic"), font3, black, 1100, 577)
                 PANTALLA.blit(flecha_down, (1010, 580))
-                draw_text("Bajar Musica", font3, black, 1100, 620)
+                draw_text(Configuracion.get(langueje, {}).get("keysDownMusic"), font3, black, 1100, 620)
             
             #Si la victoria todavia no esta hecha muestra el score, texto y controles
             if victory == False:
@@ -288,8 +288,8 @@ def nivelfacil1():
                 draw_text(str(score), font, white, W / 2.1, 20)
                 draw_text(("/5"), font, white, W / 2, 20)
                 #Muestra el objetivo del juego
-                draw_text("Objetivo:", font2, white, 5, 0)
-                draw_text("Recolecta 5", font2, green, 5, 40)
+                draw_text(Configuracion.get(langueje, {}).get("object"), font2, white, 5, 0)
+                draw_text(Configuracion.get(langueje, {}).get("recolet"), font2, green, 5, 30)
                 PANTALLA.blit(bolsa_ico, (275, 30))
                 draw_text("Evita", font2, red, 5, 90)
                 PANTALLA.blit(botella_ico, (130, 85))
@@ -298,7 +298,7 @@ def nivelfacil1():
             
             #Cuando empizas el juego empieza muestra instrucciones
             if swimming == False and game_over == False:
-                draw_text("Presiona    Para Empezar", font2, black, W / 3.4, 340)
+                draw_text(Configuracion.get(langueje, {}).get("swimming"), font2, black, W / 3.4, 340)
                 PANTALLA.blit(click1, (562, 315))
                 #Funcion que muestre las teclas
                 keys_on_screen()
@@ -386,8 +386,8 @@ def nivelfacil1():
             if game_over == True:
                 pygame.mixer.music.stop()
                 score = 0
-                draw_text("Pulsa     Para Reiniciar", font2, black, W / 3.5, 330)
-                draw_text("Pulsa     Para Salir", font2, black, W / 3.1, 380)
+                draw_text(Configuracion.get(langueje, {}).get("overReset"), font2, black, W / 3.5, 330)
+                draw_text(Configuracion.get(langueje, {}).get("overExit"), font2, black, W / 3.1, 380)
                 PANTALLA.blit(r_key, (490, 310))
                 PANTALLA.blit(q_key, (535, 360))
             
