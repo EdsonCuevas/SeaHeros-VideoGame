@@ -1,21 +1,66 @@
 {
     "es":{
         
-        "Play": "Jugar",
-        "option": "Configuraciones",
-        "exit": "Salir"
+        "play": "Jugar",
+        "option": "Controles",
+        "exit": "Salir",
         
+        "select": "Selecciona la dificultad",
+        "easy": "Facil",
+        "hard": "Dificil",
+        "back":"VOLVER",
+
+
+        "paused": "PAUSADO",
+        "continue": "Pulsa      Para Continuar",
+        "buttonNext": "Siguiente Nivel",
+        "buttonExit": "Salir al Menu",
+        "buttonReset": "Reiniciar",
+        "keysControl": "Controles",
+        "keysPaused": "Pausa",
+        "keysReset": "Reiniciar",
+        "keysExit": "Salir",
+        "keysUpMusic": "Subir Musica",
+        "keysDownMusic": "Bajar Musica",
+        "object": "Objetivo",
+        "recolet": "Recolecta 5",
+        "swimming": "Presiona    Para Nadar",
+        "overReset": "Pulsa     Para Reiniciar",
+        "overExit": "Pulsa      Para Salir"
+
+
 
     },
 
     "en":{
-        "Play": "Play",
+        "play": "Play",
         "option": "Option",
-        "exit": "Exit"
+        "exit": "Exit",
+
+        "select": "Select difficulty",
+        "easy": "Easy",
+        "hard": "Hard",
+        "back":"Return",
+
+
+        "paused": "PAUSED",
+        "continue": "Press      To Continue",
+        "buttonNext": "Next Level",
+        "buttonExit": "Exit to Menu",
+        "buttonReset": "Restart",
+        "keysControl": "Controls",
+        "keysPaused": "Pause",
+        "keysReset": "Restart",
+        "keysExit": "Exit",
+        "keysUpMusic": "Upload Music",
+        "keysDownMusic": "DownMusic",
+        "object": "Objective",
+        "recolet": "Collect 5",
+        "swimming": "Press To     Swim",
+        "overReset": "Press     to restart",
+        "overExit": "Press To Exit"
+        
     }
-
-
-
 
 
 
