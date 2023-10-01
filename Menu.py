@@ -1,21 +1,13 @@
 import pygame, sys, json
 from button import Button
 from pygame.locals import *
+from JSON import Load
 
-#Mando a llamr la ruta y la guarda en la variable
-rutaConfig = "config.json"
-
-#Abre la ruta del JSON utilizando el formato UTF-8 
-#y retornando el contenido del JSON como objeto Python
-def LoadConfig():
-     with open(rutaConfig, encoding="utf-8") as archivo:
-          return json.load(archivo)
-
-#Guarda en la variable el contenido del JSON
-Configuracion = LoadConfig()
-langueje = "en"
 
 def MenuTotal():
+
+    Configuracion, langueje = Load()
+
     pygame.init()
 
     W, H = 1280, 720
@@ -75,21 +67,21 @@ def MenuTotal():
                 SCREEN.blit(BG, (0, 0))
 
                 #Carga un titulo con sus fuentes y tamaños
-                PLAY_TEXT = get_font(45).render("Selecciona la dificultad", True, "White")
+                PLAY_TEXT = get_font(45).render(Configuracion.get(langueje, {}).get("select"), True, "White")
                 PLAY_RECT = PLAY_TEXT.get_rect(center=(640, 90))
                 SCREEN.blit(PLAY_TEXT, PLAY_RECT)
 
                 #Carga el boton de inicio de nivel facil
                 EASY_GAME = Button(image=(None), pos=(640, 300),
-                                    text_input="EASY", font=get_font(75), base_color="White", hovering_color="Green")
+                                    text_input=Configuracion.get(langueje, {}).get("easy"), font=get_font(75), base_color="White", hovering_color="Green")
                 
                 #Carga el boton de inicio de nivel dificil
                 HARD_GAME = Button(image=(None), pos=(640, 400),
-                                    text_input="HARD", font=get_font(75), base_color="White", hovering_color="Green")
+                                    text_input=Configuracion.get(langueje, {}).get("hard"), font=get_font(75), base_color="White", hovering_color="Green")
 
                 #Carga un boton de volver al menu
                 PLAY_BACK = Button(image=None, pos=(640, 600), 
-                                    text_input="VOLVER", font=get_font(75), base_color="White", hovering_color="Green")
+                                    text_input=Configuracion.get(langueje, {}).get("back"), font=get_font(75), base_color="White", hovering_color="Green")
 
                 #Muestra los botones y SCREEN actualizados
                 PLAY_BACK.changeColor(PLAY_MOUSE_POS)
@@ -156,11 +148,11 @@ def MenuTotal():
                 MENU_RECT = MENU_TEXT.get_rect(center=(640, 100))
 
                 PLAY_BUTTON = Button(image=pygame.image.load("assets/Play Rect.png"), pos=(640, 250), 
-                                    text_input=Configuracion.get(langueje, {}).get("Play", "Play"), font=get_font(75), base_color="#d7fcd4", hovering_color="White")
+                                    text_input=Configuracion.get(langueje, {}).get("play"), font=get_font(75), base_color="#d7fcd4", hovering_color="White")
                 OPTIONS_BUTTON = Button(image=pygame.image.load("assets/Options Rect.png"), pos=(640, 400), 
-                                    text_input=Configuracion.get(langueje, {}).get("Opcion", "opcion"), font=get_font(75), base_color="#d7fcd4", hovering_color="White")
+                                    text_input=Configuracion.get(langueje, {}).get("option"), font=get_font(75), base_color="#d7fcd4", hovering_color="White")
                 QUIT_BUTTON = Button(image=pygame.image.load("assets/Quit Rect.png"), pos=(640, 550), 
-                                    text_input=Configuracion.get(langueje, {}).get("exit", "Exit"), font=get_font(75), base_color="#d7fcd4", hovering_color="White")
+                                    text_input=Configuracion.get(langueje, {}).get("exit"), font=get_font(75), base_color="#d7fcd4", hovering_color="White")
 
                 SCREEN.blit(MENU_TEXT, MENU_RECT)
 
