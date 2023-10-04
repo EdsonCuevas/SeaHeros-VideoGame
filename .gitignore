@@ -4,3 +4,4 @@
 *.pyc
 *.pyc
 *.pyc
+__pycache__/JSON.cpython-311.pyc
