@@ -148,7 +148,7 @@ def nivelfacil1():
 
             #Aqui definimos todas las actualizacion que afectan al pescado
             def update(self):
-                #Gravedad del pescado
+                #Gravedad del submarino
                 if swimming == True:
                     self.vel += 0.5
                     if self.vel > 8:
@@ -157,7 +157,7 @@ def nivelfacil1():
                         self.rect.y += int(self.vel)
 
                 if game_over == False:
-                #Salto del pescado
+                #Salto del submarino
                     if pygame.mouse.get_pressed()[0] == 1 and self.clicked == False:
                         self.clicked = True
                         self.vel = -10
@@ -165,7 +165,7 @@ def nivelfacil1():
                     if pygame.mouse.get_pressed()[0] == 0:
                         self.clicked = False
                     
-                    #Animaciones del pescado
+                    #Animaciones del submarino
                     self.counter += 1
                     flap_cooldown = 10
 
@@ -176,7 +176,7 @@ def nivelfacil1():
                             self.index = 0
                     self.image = self.images[self.index]
 
-                    #Rotacion del pescado
+                    #Rotacion del submarino
                     self.image = pygame.transform.rotate(self.images[self.index], self.vel * -1)
                 else:
                     self.image = pygame.transform.rotate(self.images[self.index], -180)
@@ -188,6 +188,7 @@ def nivelfacil1():
                 self.image = pygame.image.load("img/coliders/botella.png")
                 self.rect = self.image.get_rect()
                 self.rect.topleft = [x,y]
+                self.image = pygame.transform.rotate(self.image, -45)
 
             def update(self):
                 #Se quedan en su lugar al morir
