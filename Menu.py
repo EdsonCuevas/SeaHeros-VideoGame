@@ -1,4 +1,4 @@
-import pygame, sys, json
+import pygame, sys
 from button import Button
 from pygame.locals import *
 from JSON import Load
@@ -14,7 +14,7 @@ def MenuTotal():
     SCREEN = pygame.display.set_mode((W, H), pygame.RESIZABLE)
     pygame.display.set_caption("Sea Heros")
 
-    BG = pygame.image.load("assets/Background.png")
+    BG = pygame.image.load("assets/background_control.png")
 
     #Music
     pygame.mixer.music.load("sound/menu.mp3")
@@ -43,16 +43,6 @@ def MenuTotal():
                 elif keys[pygame.K_UP] and pygame.mixer_music.get_volume() == 1.0:
                     SCREEN.blit(sonido_max, (1150,25))
 
-                #Desactivar musica
-                elif keys[pygame.K_LEFT]:
-                    pygame.mixer.music.set_volume(0.0)
-                    SCREEN.blit(sonido_mute, (1150,25))
-
-                #Reactivar musica
-                elif keys[pygame.K_RIGHT]:
-                    pygame.mixer.music.set_volume(1.0)
-                    SCREEN.blit(sonido_max, (1150,25))
-
     def get_font(size):
             return pygame.font.Font("assets/font.ttf", size)
 
@@ -68,7 +58,7 @@ def MenuTotal():
 
                 #Carga un titulo con sus fuentes y tamaños
                 PLAY_TEXT = get_font(45).render(Configuracion.get(langueje, {}).get("select"), True, "White")
-                PLAY_RECT = PLAY_TEXT.get_rect(center=(640, 90))
+                PLAY_RECT = PLAY_TEXT.get_rect(center=(640, 100))
                 SCREEN.blit(PLAY_TEXT, PLAY_RECT)
 
                 #Carga el boton de inicio de nivel facil
@@ -81,7 +71,7 @@ def MenuTotal():
 
                 #Carga un boton de volver al menu
                 PLAY_BACK = Button(image=None, pos=(640, 600), 
-                                    text_input=Configuracion.get(langueje, {}).get("back"), font=get_font(75), base_color="White", hovering_color="Green")
+                                    text_input=Configuracion.get(langueje, {}).get("back"), font=get_font(75), base_color="White", hovering_color="Red")
 
                 #Muestra los botones y SCREEN actualizados
                 PLAY_BACK.changeColor(PLAY_MOUSE_POS)
@@ -109,18 +99,18 @@ def MenuTotal():
                 ControlMusic()
                 pygame.display.update()
                 
-    def controls():
+    def options():
             while True:
                 OPTIONS_MOUSE_POS = pygame.mouse.get_pos()
 
-                SCREEN.fill("white")
+                SCREEN.blit(BG, (0, 0))
 
                 OPTIONS_TEXT = get_font(45).render("Esta es el menu de controles", True, "Black")
                 OPTIONS_RECT = OPTIONS_TEXT.get_rect(center=(640, 260))
                 SCREEN.blit(OPTIONS_TEXT, OPTIONS_RECT)
 
                 OPTIONS_BACK = Button(image=None, pos=(640, 460), 
-                                    text_input="VOLVER", font=get_font(75), base_color="Black", hovering_color="Green")
+                                    text_input="VOLVER", font=get_font(75), base_color="Black", hovering_color="Red")
 
                 OPTIONS_BACK.changeColor(OPTIONS_MOUSE_POS)
                 OPTIONS_BACK.update(SCREEN)
@@ -168,7 +158,7 @@ def MenuTotal():
                         if PLAY_BUTTON.checkForInput(MENU_MOUSE_POS):
                             play()
                         if OPTIONS_BUTTON.checkForInput(MENU_MOUSE_POS):
-                            controls()
+                            options()
                         if QUIT_BUTTON.checkForInput(MENU_MOUSE_POS):
                             pygame.quit()
                             sys.exit()

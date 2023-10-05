@@ -27,6 +27,7 @@ def nivelfacil1():
         victory_sound = pygame.mixer.Sound("sound/victorysound.mp3")
         death_sound = pygame.mixer.Sound("sound/deathsound.mp3")
         recolection = pygame.mixer.Sound("sound/recolection.mp3")
+        recolection.set_volume(0.5)
         death_sound.set_volume(0.25)
         victory_sound.set_volume(0.3)
         
