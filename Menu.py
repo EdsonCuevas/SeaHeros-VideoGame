@@ -1,4 +1,4 @@
-import pygame, sys, os
+import pygame, sys
 from button import Button
 from pygame.locals import *
 from JSON import Load
@@ -11,7 +11,7 @@ def MenuTotal():
     pygame.init()
 
     W, H = 1280, 720
-    PANTALLA = pygame.display.set_mode((W, H))
+    PANTALLA = pygame.display.set_mode((W, H), pygame.RESIZABLE)
     pygame.display.set_caption("Sea Heros")
 
     BG = pygame.image.load("assets/background_control.png")
@@ -144,9 +144,26 @@ def MenuTotal():
                         if OPTIONS_BACK.checkForInput(OPTIONS_MOUSE_POS):
                             main_menu()
                         if CHANGE_LANG.checkForInput(OPTIONS_MOUSE_POS):
-                            Load.langueje = "es"
-    
-                            
+                            pass
+                        if MUSIC_OFF.checkForInput(OPTIONS_MOUSE_POS):
+                            pygame.mixer_music.set_volume(0.0)
+                if(pygame.mixer_music.get_volume() == 0.0):
+                    MUSIC_OFF = Button(image=(pygame.image.load("assets/Play Rect.png")), pos=(840, 450),
+                    text_input=Configuracion.get(langueje, {}).get("MusicON"), font=get_font(50), base_color="White", hovering_color="Green")
+                                
+
+                OPTIONS_BACK.changeColor(OPTIONS_MOUSE_POS)
+                OPTIONS_BACK.update(PANTALLA)
+                CHANGE_LANG.changeColor(OPTIONS_MOUSE_POS)
+                CHANGE_LANG.update(PANTALLA)
+                MUSIC_OFF.changeColor(OPTIONS_MOUSE_POS)
+                MUSIC_OFF.update(PANTALLA)
+                #MUSIC_ON.changeColor(OPTIONS_MOUSE_POS)
+                #MUSIC_ON.update(PANTALLA)
+
+                
+                                 
+
                 ControlMusic()
 
                 pygame.display.update()
