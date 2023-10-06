@@ -13,6 +13,8 @@
         "language":"Idioma:",
         "changelanguage": "Español",
         "musictext":"Musica:",
+        "MusicOFF":"Apagar",
+        "MusicON": "Encender",
 
 
         "paused": "PAUSADO",
@@ -50,6 +52,9 @@
         "changelanguage": "Spanish",
 
         "musictext":"Music:",
+        "MusicOFF":"OFF",
+        "MusicON": "ON",
+
 
 
 

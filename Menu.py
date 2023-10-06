@@ -122,17 +122,20 @@ def MenuTotal():
                 #Boton de cambio de idioma
                 CHANGE_LANG = Button(image=(pygame.image.load("assets/Play Rect.png")), pos=(900, 300),
                                     text_input=Configuracion.get(langueje, {}).get("changelanguage"), font=get_font(50), base_color="White", hovering_color="Green")
+                
+                #Boton de Desactivador de Musica
+                if(langueje == "en"):
+                    MUSIC_OFF = Button(image=(pygame.image.load("assets/Play Rect.png")), pos=(750, 450),
+                                        text_input=Configuracion.get(langueje, {}).get("MusicOFF"), font=get_font(50), base_color="White", hovering_color="Green")
+                if(langueje == "es"):
+                    MUSIC_OFF = Button(image=(pygame.image.load("assets/Play Rect.png")), pos=(840, 450),
+                                        text_input=Configuracion.get(langueje, {}).get("MusicOFF"), font=get_font(50), base_color="White", hovering_color="Green")
+                    
 
-                #Carga Texto De Boton de Salir
+                #Boton de Salir
                 OPTIONS_BACK = Button(image=None, pos=(640, 650), 
                                     text_input="VOLVER", font=get_font(75), base_color="White", hovering_color="Red")
                 
-
-                OPTIONS_BACK.changeColor(OPTIONS_MOUSE_POS)
-                OPTIONS_BACK.update(PANTALLA)
-                CHANGE_LANG.changeColor(OPTIONS_MOUSE_POS)
-                CHANGE_LANG.update(PANTALLA)
-
                 for event in pygame.event.get():
                     if event.type == pygame.QUIT:
                         pygame.quit()
@@ -141,9 +144,26 @@ def MenuTotal():
                         if OPTIONS_BACK.checkForInput(OPTIONS_MOUSE_POS):
                             main_menu()
                         if CHANGE_LANG.checkForInput(OPTIONS_MOUSE_POS):
-                            Load.langueje = "es"
-    
-                            
+                            pass
+                        if MUSIC_OFF.checkForInput(OPTIONS_MOUSE_POS):
+                            pygame.mixer_music.set_volume(0.0)
+                if(pygame.mixer_music.get_volume() == 0.0):
+                    MUSIC_OFF = Button(image=(pygame.image.load("assets/Play Rect.png")), pos=(840, 450),
+                    text_input=Configuracion.get(langueje, {}).get("MusicON"), font=get_font(50), base_color="White", hovering_color="Green")
+                                
+
+                OPTIONS_BACK.changeColor(OPTIONS_MOUSE_POS)
+                OPTIONS_BACK.update(PANTALLA)
+                CHANGE_LANG.changeColor(OPTIONS_MOUSE_POS)
+                CHANGE_LANG.update(PANTALLA)
+                MUSIC_OFF.changeColor(OPTIONS_MOUSE_POS)
+                MUSIC_OFF.update(PANTALLA)
+                #MUSIC_ON.changeColor(OPTIONS_MOUSE_POS)
+                #MUSIC_ON.update(PANTALLA)
+
+                
+                                 
+
                 ControlMusic()
 
                 pygame.display.update()
