@@ -27,7 +27,9 @@
         "keysUpMusic": "Subir Musica",
         "keysDownMusic": "Bajar Musica",
         "object": "Objetivo",
-        "recolet": "Recolecta 5",
+        "recolet": "Recoger 5",
+        "evade": "Evadir",
+        "fuel": "Combustible",
         "swimming": "Presiona    Para Nadar",
         "overReset": "Pulsa     Para Reiniciar",
         "overExit": "Pulsa      Para Salir"
@@ -47,7 +49,7 @@
         "back":"Return",
 
         "language":"Language:",
-        "changelanguage": "Spanish",
+        "changelanguage": "English",
 
         "musictext":"Music:",
 
@@ -62,13 +64,15 @@
         "keysPaused": "Pause",
         "keysReset": "Restart",
         "keysExit": "Exit",
-        "keysUpMusic": "Up Music",
-        "keysDownMusic": "Down Music",
+        "keysUpMusic": "Music Up",
+        "keysDownMusic": "Music Down",
         "object": "Objective",
         "recolet": "Collect 5",
-        "swimming": "Press To     Swim",
-        "overReset": "Press     to restart",
-        "overExit": "Press To Exit"
+        "evade": "Evade",
+        "fuel": "Fuel",
+        "swimming": "     PRESS    TO SWIM",
+        "overReset": "PRESS     TO RESTART",
+        "overExit": "PRESS     TO EXIT"
         
     }
 

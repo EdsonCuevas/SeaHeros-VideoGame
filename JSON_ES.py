@@ -1,6 +1,6 @@
 import json
 
-def Load():
+def LoadES():
 #Mando a llamr la ruta y la guarda en la variable
     rutaConfig = "config.json"
 #Abre la ruta del JSON utilizando el formato UTF-8 

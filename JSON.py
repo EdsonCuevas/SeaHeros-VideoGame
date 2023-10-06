@@ -1,6 +1,8 @@
 import json
+var = "es"
 
 def Load():
+    
 #Mando a llamr la ruta y la guarda en la variable
     rutaConfig = "config.json"
 #Abre la ruta del JSON utilizando el formato UTF-8 
@@ -11,5 +13,5 @@ def Load():
 
     # Guarda en la variable el contenido del JSON
     Configuracion = LoadConfig()
-    langueje = "en"
+    langueje = var
     return Configuracion, langueje

@@ -1,4 +1,4 @@
-import pygame, sys
+import pygame, sys, os
 from button import Button
 from pygame.locals import *
 from JSON import Load
@@ -11,7 +11,7 @@ def MenuTotal():
     pygame.init()
 
     W, H = 1280, 720
-    PANTALLA = pygame.display.set_mode((W, H), pygame.RESIZABLE)
+    PANTALLA = pygame.display.set_mode((W, H))
     pygame.display.set_caption("Sea Heros")
 
     BG = pygame.image.load("assets/background_control.png")
@@ -141,7 +141,11 @@ def MenuTotal():
                         if OPTIONS_BACK.checkForInput(OPTIONS_MOUSE_POS):
                             main_menu()
                         if CHANGE_LANG.checkForInput(OPTIONS_MOUSE_POS):
-                            Load.langueje = "es"
+                            pass
+                            
+                            
+                            
+
     
                             
                 ControlMusic()

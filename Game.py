@@ -14,7 +14,7 @@ def nivelfacil1():
         #Pantalla
         W,H = 1280,720
         icon = pygame.image.load("img/Fish animation/fish1.png")
-        PANTALLA = pygame.display.set_mode((W,H), pygame.RESIZABLE)
+        PANTALLA = pygame.display.set_mode((W,H))
         pygame.display.set_caption("Sea Heros")
         pygame.display.set_icon(icon)
 
@@ -92,8 +92,12 @@ def nivelfacil1():
             paused = True
             while paused:
                 pygame.mixer.music.pause()
-                draw_text(Configuracion.get(langueje, {}).get("paused"), font2, black, W / 2.3, 320)
-                draw_text(Configuracion.get(langueje, {}).get("continue"), font2, black, W / 3.5, 370)
+                if langueje == "es":
+                    draw_text(Configuracion.get(langueje, {}).get("paused"), font2, black, W / 2.3, 320)
+                    draw_text(Configuracion.get(langueje, {}).get("continue"), font2, black, W / 3.5, 370)
+                if langueje == "en":
+                    draw_text(Configuracion.get(langueje, {}).get("paused"), font2, black, 560, 320)
+                    draw_text(Configuracion.get(langueje, {}).get("continue"), font2, black, 400, 370)
                 
 
                 #evento para poder cerrar el bucle
@@ -291,12 +295,17 @@ def nivelfacil1():
                 draw_text(("/5"), font, white, W / 2, 20)
                 #Muestra el objetivo del juego
                 draw_text(Configuracion.get(langueje, {}).get("object"), font2, white, 5, 0)
-                draw_text(Configuracion.get(langueje, {}).get("recolet"), font2, green, 5, 30)
-                PANTALLA.blit(bolsa_ico, (275, 30))
-                draw_text("Evita", font2, red, 5, 90)
-                PANTALLA.blit(botella_ico, (130, 85))
+                draw_text(Configuracion.get(langueje, {}).get("recolet"), font2, green, 5, 50)
+                PANTALLA.blit(bolsa_ico, (225, 50))
+                draw_text(Configuracion.get(langueje, {}).get("evade"), font2, red, 5, 110)
+                PANTALLA.blit(botella_ico, (150, 105))
                 fuel_bar.draw(PANTALLA)
-                draw_text("Combustible", font2, black, 520, 110)
+                if langueje == "en":
+                    draw_text(Configuracion.get(langueje, {}).get("fuel"), font2, black, 610, 110)
+                elif langueje == "es":
+                    draw_text(Configuracion.get(langueje, {}).get("fuel"), font2, black, 520, 110)
+                
+
             
             #Cuando empizas el juego empieza muestra instrucciones
             if swimming == False and game_over == False:
@@ -388,11 +397,17 @@ def nivelfacil1():
             if game_over == True:
                 pygame.mixer.music.stop()
                 score = 0
-                draw_text(Configuracion.get(langueje, {}).get("overReset"), font2, black, W / 3.5, 330)
-                draw_text(Configuracion.get(langueje, {}).get("overExit"), font2, black, W / 3.1, 380)
-                PANTALLA.blit(r_key, (490, 310))
-                PANTALLA.blit(q_key, (535, 360))
-            
+                if langueje == "es":
+                    draw_text(Configuracion.get(langueje, {}).get("overReset"), font2, black, W / 3.5, 330)
+                    draw_text(Configuracion.get(langueje, {}).get("overExit"), font2, black, W / 3.1, 380)
+                    PANTALLA.blit(r_key, (490, 310))
+                    PANTALLA.blit(q_key, (535, 360))
+                if langueje == "en":
+                    draw_text(Configuracion.get(langueje, {}).get("overReset"), font2, black, 450, 330)
+                    draw_text(Configuracion.get(langueje, {}).get("overExit"), font2, black, 500, 380)
+                    PANTALLA.blit(r_key, (575, 310))
+                    PANTALLA.blit(q_key, (625, 360))
+                
             if game_over == True and sound == True:
                 death_sound.play()
                 sound = False
@@ -417,7 +432,10 @@ def nivelfacil1():
                     swimming = True
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_ESCAPE and game_over == False and swimming == True:
-                        PANTALLA.blit(esc_key, (495, 345))
+                        if langueje == "es":
+                            PANTALLA.blit(esc_key, (495, 345))
+                        if langueje == "en":
+                            PANTALLA.blit(esc_key, (530, 345))
                         keys_on_screen()
                         pause()
                     if event.key == pygame.K_r:
