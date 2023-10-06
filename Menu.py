@@ -11,7 +11,7 @@ def MenuTotal():
     pygame.init()
 
     W, H = 1280, 720
-    PANTALLA = pygame.display.set_mode((W, H), pygame.RESIZABLE)
+    PANTALLA = pygame.display.set_mode((W, H))
     pygame.display.set_caption("Sea Heros")
 
     BG = pygame.image.load("assets/background_control.png")
@@ -24,6 +24,8 @@ def MenuTotal():
     sonido_abajo = pygame.image.load("sound/img/volume_down.png")
     sonido_mute = pygame.image.load("sound/img/volume_muted.png")
     sonido_max = pygame.image.load("sound/img/volume_max.png")
+
+    fullscreen = False
 
     def ControlMusic():
         #Control del audio
@@ -111,26 +113,37 @@ def MenuTotal():
 
                 #Muestra Texto de Idioma
                 IDIOMA_TEXT = get_font(45).render(Configuracion.get(langueje, {}).get("language"), True, "White")
-                IDIOMA_RECT = IDIOMA_TEXT.get_rect(center=(500, 300))
+                IDIOMA_RECT = IDIOMA_TEXT.get_rect(center=(500, 250))
                 PANTALLA.blit(IDIOMA_TEXT, IDIOMA_RECT)
 
                 #Muestra Texto de Volumen
                 MUSICVOL_TEXT = get_font(45).render(Configuracion.get(langueje, {}).get("musictext"), True, "White")
-                MUSICVOL_RECT = IDIOMA_TEXT.get_rect(center=(500, 450))
+                MUSICVOL_RECT = IDIOMA_TEXT.get_rect(center=(500, 400))
                 PANTALLA.blit(MUSICVOL_TEXT, MUSICVOL_RECT)
 
                 #Boton de cambio de idioma
-                CHANGE_LANG = Button(image=(pygame.image.load("assets/Play Rect.png")), pos=(900, 300),
+                CHANGE_LANG = Button(image=(pygame.image.load("assets/Play Rect.png")), pos=(900, 250),
                                     text_input=Configuracion.get(langueje, {}).get("changelanguage"), font=get_font(50), base_color="White", hovering_color="Green")
                 
                 #Boton de Desactivador de Musica
                 if(langueje == "en"):
-                    MUSIC_OFF = Button(image=(pygame.image.load("assets/Play Rect.png")), pos=(750, 450),
+                    MUSIC_OFF = Button(image=(pygame.image.load("assets/Play Rect.png")), pos=(750, 400),
+                                        text_input=Configuracion.get(langueje, {}).get("MusicON"), font=get_font(50), base_color="White", hovering_color="Green")
+                if(langueje == "es"):
+                    MUSIC_OFF = Button(image=(pygame.image.load("assets/Play Rect.png")), pos=(840, 400),
+                                        text_input=Configuracion.get(langueje, {}).get("MusicON"), font=get_font(50), base_color="White", hovering_color="Green")
+                
+                #Boton de Activar Musica
+                if(langueje == "en"):
+                    MUSIC_ON = Button(image=(pygame.image.load("assets/Play Rect.png")), pos=(750, 400),
                                         text_input=Configuracion.get(langueje, {}).get("MusicOFF"), font=get_font(50), base_color="White", hovering_color="Green")
                 if(langueje == "es"):
-                    MUSIC_OFF = Button(image=(pygame.image.load("assets/Play Rect.png")), pos=(840, 450),
+                    MUSIC_ON = Button(image=(pygame.image.load("assets/Play Rect.png")), pos=(840, 400),
                                         text_input=Configuracion.get(langueje, {}).get("MusicOFF"), font=get_font(50), base_color="White", hovering_color="Green")
                     
+                FULLSCREEN = Button(image=None, pos=(650, 520),
+                                    text_input=Configuracion.get(langueje, {}).get("fullscreen"), font=get_font(50), base_color="White", hovering_color="Green")
+                
 
                 #Boton de Salir
                 OPTIONS_BACK = Button(image=None, pos=(640, 650), 
@@ -147,9 +160,18 @@ def MenuTotal():
                             pass
                         if MUSIC_OFF.checkForInput(OPTIONS_MOUSE_POS):
                             pygame.mixer_music.set_volume(0.0)
+                        if FULLSCREEN.checkForInput(OPTIONS_MOUSE_POS):
+                            full_screen = pygame.display.set_mode((W, H), pygame.FULLSCREEN)
+                            fullscreen = True
+
                 if(pygame.mixer_music.get_volume() == 0.0):
-                    MUSIC_OFF = Button(image=(pygame.image.load("assets/Play Rect.png")), pos=(840, 450),
-                    text_input=Configuracion.get(langueje, {}).get("MusicON"), font=get_font(50), base_color="White", hovering_color="Green")
+                    if(langueje == "en"):
+                        MUSIC_OFF = MUSIC_ON
+                        
+                    if(langueje == "es"):
+                        MUSIC_OFF = MUSIC_ON
+                        
+                    
                                 
 
                 OPTIONS_BACK.changeColor(OPTIONS_MOUSE_POS)
@@ -158,8 +180,8 @@ def MenuTotal():
                 CHANGE_LANG.update(PANTALLA)
                 MUSIC_OFF.changeColor(OPTIONS_MOUSE_POS)
                 MUSIC_OFF.update(PANTALLA)
-                #MUSIC_ON.changeColor(OPTIONS_MOUSE_POS)
-                #MUSIC_ON.update(PANTALLA)
+                FULLSCREEN.changeColor(OPTIONS_MOUSE_POS)
+                FULLSCREEN.update(PANTALLA)
 
                 
                                  
