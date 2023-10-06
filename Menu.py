@@ -11,7 +11,7 @@ def MenuTotal():
     pygame.init()
 
     W, H = 1280, 720
-    SCREEN = pygame.display.set_mode((W, H), pygame.RESIZABLE)
+    PANTALLA = pygame.display.set_mode((W, H), pygame.RESIZABLE)
     pygame.display.set_caption("Sea Heros")
 
     BG = pygame.image.load("assets/background_control.png")
@@ -25,23 +25,22 @@ def MenuTotal():
     sonido_mute = pygame.image.load("sound/img/volume_muted.png")
     sonido_max = pygame.image.load("sound/img/volume_max.png")
 
-
     def ControlMusic():
         #Control del audio
                 #Baja volumen
                 keys = pygame.key.get_pressed()
                 if keys[pygame.K_DOWN] and pygame.mixer_music.get_volume() > 0.0:
                     pygame.mixer.music.set_volume(pygame.mixer_music.get_volume() - 0.01)
-                    SCREEN.blit(sonido_abajo, (1150,25))
+                    PANTALLA.blit(sonido_abajo, (1150,25))
                 elif keys[pygame.K_DOWN] and pygame.mixer_music.get_volume() == 0.0:
-                    SCREEN.blit(sonido_mute, (1150,25))
+                    PANTALLA.blit(sonido_mute, (1150,25))
 
                 #Sube volumen
                 if keys[pygame.K_UP] and pygame.mixer_music.get_volume() < 1.0:
                     pygame.mixer.music.set_volume(pygame.mixer_music.get_volume() + 0.01)
-                    SCREEN.blit(sonido_arriba, (1150,25))
+                    PANTALLA.blit(sonido_arriba, (1150,25))
                 elif keys[pygame.K_UP] and pygame.mixer_music.get_volume() == 1.0:
-                    SCREEN.blit(sonido_max, (1150,25))
+                    PANTALLA.blit(sonido_max, (1150,25))
 
     def get_font(size):
             return pygame.font.Font("assets/font.ttf", size)
@@ -53,13 +52,13 @@ def MenuTotal():
                 PLAY_MOUSE_POS = pygame.mouse.get_pos()
 
                 #Carga de fondo para nuevas ventanas
-                SCREEN.fill("black")
-                SCREEN.blit(BG, (0, 0))
+                PANTALLA.fill("black")
+                PANTALLA.blit(BG, (0, 0))
 
                 #Carga un titulo con sus fuentes y tamaños
                 PLAY_TEXT = get_font(45).render(Configuracion.get(langueje, {}).get("select"), True, "White")
                 PLAY_RECT = PLAY_TEXT.get_rect(center=(640, 100))
-                SCREEN.blit(PLAY_TEXT, PLAY_RECT)
+                PANTALLA.blit(PLAY_TEXT, PLAY_RECT)
 
                 #Carga el boton de inicio de nivel facil
                 EASY_GAME = Button(image=(None), pos=(640, 300),
@@ -73,13 +72,13 @@ def MenuTotal():
                 PLAY_BACK = Button(image=None, pos=(640, 600), 
                                     text_input=Configuracion.get(langueje, {}).get("back"), font=get_font(75), base_color="White", hovering_color="Red")
 
-                #Muestra los botones y SCREEN actualizados
+                #Muestra los botones y PANTALLA actualizados
                 PLAY_BACK.changeColor(PLAY_MOUSE_POS)
-                PLAY_BACK.update(SCREEN)
+                PLAY_BACK.update(PANTALLA)
                 EASY_GAME.changeColor(PLAY_MOUSE_POS)
-                EASY_GAME.update(SCREEN)
+                EASY_GAME.update(PANTALLA)
                 HARD_GAME.changeColor(PLAY_MOUSE_POS)
-                HARD_GAME.update(SCREEN)
+                HARD_GAME.update(PANTALLA)
 
                 #Bucle para cerrar el juego
                 for event in pygame.event.get():
@@ -103,17 +102,36 @@ def MenuTotal():
             while True:
                 OPTIONS_MOUSE_POS = pygame.mouse.get_pos()
 
-                SCREEN.blit(BG, (0, 0))
+                PANTALLA.blit(BG, (0, 0))
 
-                OPTIONS_TEXT = get_font(45).render("Esta es el menu de controles", True, "Black")
-                OPTIONS_RECT = OPTIONS_TEXT.get_rect(center=(640, 260))
-                SCREEN.blit(OPTIONS_TEXT, OPTIONS_RECT)
+                #Muestra Texto Titulo Opciones
+                OPTIONS_TEXT = get_font(45).render(Configuracion.get(langueje, {}).get("option"), True, "White")
+                OPTIONS_RECT = OPTIONS_TEXT.get_rect(center=(640, 130))
+                PANTALLA.blit(OPTIONS_TEXT, OPTIONS_RECT)
 
-                OPTIONS_BACK = Button(image=None, pos=(640, 460), 
-                                    text_input="VOLVER", font=get_font(75), base_color="Black", hovering_color="Red")
+                #Muestra Texto de Idioma
+                IDIOMA_TEXT = get_font(45).render(Configuracion.get(langueje, {}).get("language"), True, "White")
+                IDIOMA_RECT = IDIOMA_TEXT.get_rect(center=(500, 300))
+                PANTALLA.blit(IDIOMA_TEXT, IDIOMA_RECT)
+
+                #Muestra Texto de Volumen
+                MUSICVOL_TEXT = get_font(45).render(Configuracion.get(langueje, {}).get("musictext"), True, "White")
+                MUSICVOL_RECT = IDIOMA_TEXT.get_rect(center=(500, 450))
+                PANTALLA.blit(MUSICVOL_TEXT, MUSICVOL_RECT)
+
+                #Boton de cambio de idioma
+                CHANGE_LANG = Button(image=(pygame.image.load("assets/Play Rect.png")), pos=(900, 300),
+                                    text_input=Configuracion.get(langueje, {}).get("changelanguage"), font=get_font(50), base_color="White", hovering_color="Green")
+
+                #Carga Texto De Boton de Salir
+                OPTIONS_BACK = Button(image=None, pos=(640, 650), 
+                                    text_input="VOLVER", font=get_font(75), base_color="White", hovering_color="Red")
+                
 
                 OPTIONS_BACK.changeColor(OPTIONS_MOUSE_POS)
-                OPTIONS_BACK.update(SCREEN)
+                OPTIONS_BACK.update(PANTALLA)
+                CHANGE_LANG.changeColor(OPTIONS_MOUSE_POS)
+                CHANGE_LANG.update(PANTALLA)
 
                 for event in pygame.event.get():
                     if event.type == pygame.QUIT:
@@ -122,16 +140,18 @@ def MenuTotal():
                     if event.type == pygame.MOUSEBUTTONDOWN:
                         if OPTIONS_BACK.checkForInput(OPTIONS_MOUSE_POS):
                             main_menu()
-
+                        if CHANGE_LANG.checkForInput(OPTIONS_MOUSE_POS):
+                            Load.langueje = "es"
+    
+                            
                 ControlMusic()
 
                 pygame.display.update()
 
     def main_menu():
         while True:
-                SCREEN.blit(BG, (0, 0))
+                PANTALLA.blit(BG, (0, 0))
                 
-
                 MENU_MOUSE_POS = pygame.mouse.get_pos()
 
                 MENU_TEXT = get_font(100).render("SEA HEROS", True, "#b68f40")
@@ -144,11 +164,11 @@ def MenuTotal():
                 QUIT_BUTTON = Button(image=pygame.image.load("assets/Quit Rect.png"), pos=(640, 550), 
                                     text_input=Configuracion.get(langueje, {}).get("exit"), font=get_font(75), base_color="#d7fcd4", hovering_color="White")
 
-                SCREEN.blit(MENU_TEXT, MENU_RECT)
+                PANTALLA.blit(MENU_TEXT, MENU_RECT)
 
                 for button in [PLAY_BUTTON, OPTIONS_BUTTON, QUIT_BUTTON]:
                     button.changeColor(MENU_MOUSE_POS)
-                    button.update(SCREEN)
+                    button.update(PANTALLA)
                 
                 for event in pygame.event.get():
                     if event.type == pygame.QUIT:

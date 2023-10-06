@@ -2,13 +2,17 @@
     "es":{
         
         "play": "Jugar",
-        "option": "Controles",
+        "option": "Opciones",
         "exit": "Salir",
         
         "select": "Selecciona la dificultad",
         "easy": "Facil",
         "hard": "Dificil",
         "back":"VOLVER",
+
+        "language":"Idioma:",
+        "changelanguage": "Español",
+        "musictext":"Musica:",
 
 
         "paused": "PAUSADO",
@@ -34,13 +38,19 @@
 
     "en":{
         "play": "Play",
-        "option": "Option",
+        "option": "Options",
         "exit": "Exit",
 
         "select": "Select difficulty",
         "easy": "Easy",
         "hard": "Hard",
         "back":"Return",
+
+        "language":"Language:",
+        "changelanguage": "Spanish",
+
+        "musictext":"Music:",
+
 
 
         "paused": "PAUSED",
