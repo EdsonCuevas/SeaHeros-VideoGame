@@ -122,17 +122,20 @@ def MenuTotal():
                 #Boton de cambio de idioma
                 CHANGE_LANG = Button(image=(pygame.image.load("assets/Play Rect.png")), pos=(900, 300),
                                     text_input=Configuracion.get(langueje, {}).get("changelanguage"), font=get_font(50), base_color="White", hovering_color="Green")
+                
+                #Boton de Desactivador de Musica
+                if(langueje == "en"):
+                    MUSIC_OFF = Button(image=(pygame.image.load("assets/Play Rect.png")), pos=(750, 450),
+                                        text_input=Configuracion.get(langueje, {}).get("MusicOFF"), font=get_font(50), base_color="White", hovering_color="Green")
+                if(langueje == "es"):
+                    MUSIC_OFF = Button(image=(pygame.image.load("assets/Play Rect.png")), pos=(840, 450),
+                                        text_input=Configuracion.get(langueje, {}).get("MusicOFF"), font=get_font(50), base_color="White", hovering_color="Green")
+                    
 
-                #Carga Texto De Boton de Salir
+                #Boton de Salir
                 OPTIONS_BACK = Button(image=None, pos=(640, 650), 
                                     text_input="VOLVER", font=get_font(75), base_color="White", hovering_color="Red")
                 
-
-                OPTIONS_BACK.changeColor(OPTIONS_MOUSE_POS)
-                OPTIONS_BACK.update(PANTALLA)
-                CHANGE_LANG.changeColor(OPTIONS_MOUSE_POS)
-                CHANGE_LANG.update(PANTALLA)
-
                 for event in pygame.event.get():
                     if event.type == pygame.QUIT:
                         pygame.quit()
@@ -141,11 +144,7 @@ def MenuTotal():
                         if OPTIONS_BACK.checkForInput(OPTIONS_MOUSE_POS):
                             main_menu()
                         if CHANGE_LANG.checkForInput(OPTIONS_MOUSE_POS):
-                            pass
-                            
-                            
-                            
-
+                            Load.langueje = "es"
     
                             
                 ControlMusic()
