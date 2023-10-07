@@ -1,4 +1,4 @@
-import pygame, sys
+import pygame, sys, os
 from button import Button
 from pygame.locals import *
 from JSON import Load
@@ -94,8 +94,12 @@ def MenuTotal():
                     #Ejecucion del boton de nivel facil
                     if event.type == pygame.MOUSEBUTTONDOWN:
                         if EASY_GAME.checkForInput(PLAY_MOUSE_POS):
-                            from Game import nivelfacil1
-                            nivelfacil1()
+                            from GameEasy import Level1
+                            Level1()
+                    if event.type == pygame.MOUSEBUTTONDOWN:
+                        if HARD_GAME.checkForInput(PLAY_MOUSE_POS):
+                            from GameEasy import Level2
+                            Level2()
                             
                 ControlMusic()
                 pygame.display.update()
@@ -160,9 +164,7 @@ def MenuTotal():
                             pass
                         if MUSIC_OFF.checkForInput(OPTIONS_MOUSE_POS):
                             pygame.mixer_music.set_volume(0.0)
-                        if FULLSCREEN.checkForInput(OPTIONS_MOUSE_POS):
-                            full_screen = pygame.display.set_mode((W, H), pygame.FULLSCREEN)
-                            fullscreen = True
+                       
 
                 if(pygame.mixer_music.get_volume() == 0.0):
                     if(langueje == "en"):
