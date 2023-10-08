@@ -70,8 +70,8 @@ def Level1():
         q_key = pygame.image.load("img/keys/q_alternative_paper.png")
         click1 = pygame.image.load("img/keys/mouse_L_pressed_paper.png")
 
-        #Frecuencia de aparicion de rock
-        frecuencia_rock = 2300 #milisegundos
+        #Frecuencia de aparicion de la roca
+        frecuencia_rock = 1800 #milisegundos
         last_rock = pygame.time.get_ticks() - frecuencia_rock
 
         #Frecuencia de aparicion de bolsa
@@ -114,7 +114,6 @@ def Level1():
                         if event.key == pygame.K_r:
                             Level1()
                         if event.key == pygame.K_q:
-                            from Menu import MenuTotal
                             MenuTotal()
                         
                 pygame.display.update()
@@ -186,7 +185,7 @@ def Level1():
                 else:
                     self.image = pygame.transform.rotate(self.images[self.index], -180)
 
-        #La clase de la rock
+        #La clase de la roca
         class Rock(pygame.sprite.Sprite):
             def __init__(self, x, y):
                 pygame.sprite.Sprite.__init__(self)
@@ -230,7 +229,7 @@ def Level1():
                 #Evento para detectar el mouse sobre el boton y funcion de este
                 if event.type == pygame.MOUSEBUTTONDOWN:
                         if NEXT.checkForInput(PLAY_MOUSE_POS):
-                            from GameEasy import Level1
+                            from GameHard import Level1
                             Level1()
 
         #Se declaran los objetos como grupos
@@ -248,8 +247,9 @@ def Level1():
             name = "img/victory_screen/victory"+str(i)+".png"
             images.append(pygame.image.load(name))
 
-        fuel_bar = FuelBar(500, 150, 300, 40, 3000)
-        fuel_bar.hp = 3000
+        #La barra de comustible se define y se declaran el valor de sus atributos
+        fuel_bar = FuelBar(500, 150, 300, 40, 2150)
+        fuel_bar.hp = 2150
 
         #Bucle principal del juego
         running = True
@@ -372,7 +372,6 @@ def Level1():
                 VelFondo = 0
                 
                 
-
             #Checa que el juego no llegue a Game Over
             if game_over == False and swimming == True:
                 #Generador de roca
