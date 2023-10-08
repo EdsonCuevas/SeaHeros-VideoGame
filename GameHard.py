@@ -248,8 +248,8 @@ def Level1():
             images.append(pygame.image.load(name))
 
         #La barra de comustible se define y se declaran el valor de sus atributos
-        fuel_bar = FuelBar(500, 150, 300, 40, 2150)
-        fuel_bar.hp = 2150
+        fuel_bar = FuelBar(500, 150, 300, 40, 1900)
+        fuel_bar.hp = 1900
 
         #Bucle principal del juego
         running = True
