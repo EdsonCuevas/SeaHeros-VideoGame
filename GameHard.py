@@ -71,7 +71,7 @@ def Level1():
         click1 = pygame.image.load("img/keys/mouse_L_pressed_paper.png")
 
         #Frecuencia de aparicion de la roca
-        frecuencia_rock = 1800 #milisegundos
+        frecuencia_rock = 1600 #milisegundos
         last_rock = pygame.time.get_ticks() - frecuencia_rock
 
         #Frecuencia de aparicion de bolsa
