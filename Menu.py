@@ -18,7 +18,7 @@ sonido_abajo = pygame.image.load("sound/img/volume_down.png")
 sonido_mute = pygame.image.load("sound/img/volume_muted.png")
 sonido_max = pygame.image.load("sound/img/volume_max.png")
 
-vid = Video("bocchi_op.mp4")
+vid = Video("videoxd.mp4")
 vid.set_size((1280, 720))
 
 def intro():
@@ -26,9 +26,13 @@ def intro():
         vid.draw(PANTALLA, (0,0))
         pygame.display.update()
         for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
                 vid.close()
                 MenuTotal()
+            
 
 def MenuTotal():
 
@@ -40,7 +44,7 @@ def MenuTotal():
     PANTALLA = pygame.display.set_mode((W, H))
     pygame.display.set_caption("Sea Heros")
 
-    BG = pygame.image.load("assets/background_control.png")
+    BG = pygame.image.load("assets/Background.png")
 
     #Music
     pygame.mixer.music.load("sound/menu.mp3")

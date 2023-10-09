@@ -441,6 +441,7 @@ def Level1():
                     if event.key == pygame.K_r:
                         Level1()
                     if event.key == pygame.K_q:
+                        pygame.mixer.music.stop()
                         from Menu import MenuTotal
                         MenuTotal()
                         
