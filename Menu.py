@@ -1,8 +1,34 @@
-import pygame, sys, os
+import pygame, sys
+from pyvidplayer import Video
 from button import Button
 from pygame.locals import *
 from JSON import Load
 
+Configuracion, langueje = Load()
+
+pygame.init()
+
+W, H = 1280, 720
+PANTALLA = pygame.display.set_mode((W, H))
+pygame.display.set_caption("Sea Heros")
+
+
+sonido_arriba = pygame.image.load("sound/img/volume_up.png")
+sonido_abajo = pygame.image.load("sound/img/volume_down.png")
+sonido_mute = pygame.image.load("sound/img/volume_muted.png")
+sonido_max = pygame.image.load("sound/img/volume_max.png")
+
+vid = Video("bocchi_op.mp4")
+vid.set_size((1280, 720))
+
+def intro():
+    while True:
+        vid.draw(PANTALLA, (0,0))
+        pygame.display.update()
+        for event in pygame.event.get():
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                vid.close()
+                MenuTotal()
 
 def MenuTotal():
 
@@ -24,8 +50,6 @@ def MenuTotal():
     sonido_abajo = pygame.image.load("sound/img/volume_down.png")
     sonido_mute = pygame.image.load("sound/img/volume_muted.png")
     sonido_max = pygame.image.load("sound/img/volume_max.png")
-
-    fullscreen = False
 
     def ControlMusic():
         #Control del audio
@@ -230,6 +254,6 @@ def MenuTotal():
 
                 ControlMusic()
                 pygame.display.update()
-
     main_menu()
-MenuTotal()
+    
+intro()
