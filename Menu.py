@@ -4,26 +4,47 @@ from button import Button
 from pygame.locals import *
 from JSON import Load
 
+#Carga el .JSON
 Configuracion, langueje = Load()
 
+#Inicia el juego pygame
 pygame.init()
 
+#Declaro las variables para el ancho y alto del juego
+#Resolucion
 W, H = 1280, 720
 PANTALLA = pygame.display.set_mode((W, H))
 pygame.display.set_caption("Sea Heros")
 
 
+#Declaro las imagenes de todas las funciones de sonido
 sonido_arriba = pygame.image.load("sound/img/volume_up.png")
 sonido_abajo = pygame.image.load("sound/img/volume_down.png")
 sonido_mute = pygame.image.load("sound/img/volume_muted.png")
 sonido_max = pygame.image.load("sound/img/volume_max.png")
 
+#Declaro las fuentes
+font2 = pygame.font.Font('assets/upheavtt.ttf', 40)
+font3 = pygame.font.Font('assets/upheavtt.ttf', 22)
+
+#Declaro colores que usare en las fuentes
+white = (255, 255, 255)
+black = (0, 0, 0)
+green = (0, 208, 0)
+red = (255, 0, 0)
+
+#Cargo el video de intro y su resolucion
 vid = Video("videoxd.mp4")
 vid.set_size((1280, 720))
+
+def draw_text(text, font, text_col, x,y):
+            img = font.render(text, True, text_col)
+            PANTALLA.blit(img, (x,y))
 
 def intro():
     while True:
         vid.draw(PANTALLA, (0,0))
+        draw_text("Hola", font2, black, 1000,650)
         pygame.display.update()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -36,28 +57,39 @@ def intro():
 
 def MenuTotal():
 
+    #Cargo el .JSON
     Configuracion, langueje = Load()
 
+    #Inicia el juego pygame
     pygame.init()
 
+    #Resolucion declarada en variables
     W, H = 1280, 720
+    #Se declara PANTALLA que sera el display del juego
     PANTALLA = pygame.display.set_mode((W, H))
+    #Nombre de la ventana
     pygame.display.set_caption("Sea Heros")
 
+    #Carga el fondo del menu principal
     BG = pygame.image.load("assets/Background.png")
 
-    #Music
+    #Carga la musica
     pygame.mixer.music.load("sound/menu.mp3")
+    #Carga el volumen inicial
     pygame.mixer.music.set_volume(0.5)
+    #Carga la musica en bucle con el -1
     pygame.mixer.music.play(-1)
+
+    #Carga las imagenes la funcion de volumen en una variable
     sonido_arriba = pygame.image.load("sound/img/volume_up.png")
     sonido_abajo = pygame.image.load("sound/img/volume_down.png")
     sonido_mute = pygame.image.load("sound/img/volume_muted.png")
     sonido_max = pygame.image.load("sound/img/volume_max.png")
 
+    #La funcion de el control de volumen
     def ControlMusic():
         #Control del audio
-                #Baja volumen
+                #Baja volumen si se mantiene presionada
                 keys = pygame.key.get_pressed()
                 if keys[pygame.K_DOWN] and pygame.mixer_music.get_volume() > 0.0:
                     pygame.mixer.music.set_volume(pygame.mixer_music.get_volume() - 0.01)
@@ -65,16 +97,18 @@ def MenuTotal():
                 elif keys[pygame.K_DOWN] and pygame.mixer_music.get_volume() == 0.0:
                     PANTALLA.blit(sonido_mute, (1150,25))
 
-                #Sube volumen
+                #Sube volumen si se mantiene presionada
                 if keys[pygame.K_UP] and pygame.mixer_music.get_volume() < 1.0:
                     pygame.mixer.music.set_volume(pygame.mixer_music.get_volume() + 0.01)
                     PANTALLA.blit(sonido_arriba, (1150,25))
                 elif keys[pygame.K_UP] and pygame.mixer_music.get_volume() == 1.0:
                     PANTALLA.blit(sonido_max, (1150,25))
 
+    #Carga una fuente para el Titulo del juego
     def get_font(size):
             return pygame.font.Font("assets/font.ttf", size)
 
+    #El menu de play
     def play():
             while True:
 
@@ -87,15 +121,15 @@ def MenuTotal():
 
                 #Carga un titulo con sus fuentes y tamaños
                 PLAY_TEXT = get_font(45).render(Configuracion.get(langueje, {}).get("select"), True, "White")
-                PLAY_RECT = PLAY_TEXT.get_rect(center=(640, 100))
+                PLAY_RECT = PLAY_TEXT.get_rect(center=(640, 50))
                 PANTALLA.blit(PLAY_TEXT, PLAY_RECT)
 
                 #Carga el boton de inicio de nivel facil
-                EASY_GAME = Button(image=(None), pos=(640, 300),
+                EASY_GAME = Button(image=pygame.image.load("assets/Play Rect.png"), pos=(640, 290),
                                     text_input=Configuracion.get(langueje, {}).get("easy"), font=get_font(75), base_color="White", hovering_color="Green")
                 
                 #Carga el boton de inicio de nivel dificil
-                HARD_GAME = Button(image=(None), pos=(640, 400),
+                HARD_GAME = Button(image=pygame.image.load("assets/Play Rect.png"), pos=(640, 410),
                                     text_input=Configuracion.get(langueje, {}).get("hard"), font=get_font(75), base_color="White", hovering_color="Green")
 
                 #Carga un boton de volver al menu
@@ -132,7 +166,8 @@ def MenuTotal():
                             
                 ControlMusic()
                 pygame.display.update()
-                
+
+    #El menu de opciones            
     def options():
             while True:
                 OPTIONS_MOUSE_POS = pygame.mouse.get_pos()
@@ -182,10 +217,12 @@ def MenuTotal():
                 OPTIONS_BACK = Button(image=None, pos=(640, 650), 
                                     text_input="VOLVER", font=get_font(75), base_color="White", hovering_color="Red")
                 
+                #Bucle para indicar cuando se cierra la ventana
                 for event in pygame.event.get():
                     if event.type == pygame.QUIT:
                         pygame.quit()
                         sys.exit()
+                    #Detecta si la tecla del mouse es presionada
                     if event.type == pygame.MOUSEBUTTONDOWN:
                         if OPTIONS_BACK.checkForInput(OPTIONS_MOUSE_POS):
                             main_menu()
@@ -223,19 +260,21 @@ def MenuTotal():
 
     def main_menu():
         while True:
+                #Ejectua el fondo previamente cargado en la variable BG
                 PANTALLA.blit(BG, (0, 0))
                 
+                #Detecta la posicion del mouse para poder interactuar con los botones
                 MENU_MOUSE_POS = pygame.mouse.get_pos()
 
                 MENU_TEXT = get_font(100).render("SEA HEROS", True, "#b68f40")
                 MENU_RECT = MENU_TEXT.get_rect(center=(640, 100))
 
                 PLAY_BUTTON = Button(image=pygame.image.load("assets/Play Rect.png"), pos=(640, 250), 
-                                    text_input=Configuracion.get(langueje, {}).get("play"), font=get_font(75), base_color="#d7fcd4", hovering_color="White")
+                                    text_input=Configuracion.get(langueje, {}).get("play"), font=get_font(75), base_color="White", hovering_color="Green")
                 OPTIONS_BUTTON = Button(image=pygame.image.load("assets/Options Rect.png"), pos=(640, 400), 
-                                    text_input=Configuracion.get(langueje, {}).get("option"), font=get_font(75), base_color="#d7fcd4", hovering_color="White")
+                                    text_input=Configuracion.get(langueje, {}).get("option"), font=get_font(75), base_color="White", hovering_color="Blue")
                 QUIT_BUTTON = Button(image=pygame.image.load("assets/Quit Rect.png"), pos=(640, 550), 
-                                    text_input=Configuracion.get(langueje, {}).get("exit"), font=get_font(75), base_color="#d7fcd4", hovering_color="White")
+                                    text_input=Configuracion.get(langueje, {}).get("exit"), font=get_font(75), base_color="White", hovering_color="Red")
 
                 PANTALLA.blit(MENU_TEXT, MENU_RECT)
 

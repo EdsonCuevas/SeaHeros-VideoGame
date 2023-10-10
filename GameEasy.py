@@ -22,17 +22,20 @@ def Level1():
         font2 = pygame.font.Font('assets/upheavtt.ttf', 40)
         font3 = pygame.font.Font('assets/upheavtt.ttf', 22)
 
-        #Sonidos
+        #Guarda los sonidos en una variable
         victory_sound = pygame.mixer.Sound("sound/victorysound.mp3")
         death_sound = pygame.mixer.Sound("sound/deathsound.mp3")
         recolection = pygame.mixer.Sound("sound/recolection.mp3")
+        #Setea los sonidos a un volumen establecido
         recolection.set_volume(0.5)
         death_sound.set_volume(0.25)
         victory_sound.set_volume(0.3)
         
         #Musica de fondo
         pygame.mixer.music.load("sound/level1.mp3")
+        #Establece la musica en un bucle infinito
         pygame.mixer.music.play(-1)
+        #Setea el volumen inicial de la musica
         pygame.mixer.music.set_volume(0.5)
 
         #Carga las imagenes de subir y bajar volumen
@@ -408,11 +411,12 @@ def Level1():
                     PANTALLA.blit(r_key, (575, 310))
                     PANTALLA.blit(q_key, (625, 360))
                 
+            #Si el jugador muere reproduce el sonido
             if game_over == True and sound == True:
                 death_sound.play()
                 sound = False
 
-            
+            #El decremento de la vida si el jugador empieza a jugar
             if swimming == True and game_over == False and victory == False:
                 fuel_bar.hp -= 1
                 if fuel_bar.hp <= 0:
