@@ -1,5 +1,7 @@
 {
     "es":{
+
+        "skipintro": "Presiona    Para Iniciar",
         
         "play": "Jugar",
         "option": "Opciones",
@@ -13,8 +15,8 @@
         "language":"Idioma:",
         "changelanguage": "Español",
         "musictext":"Musica:",
-        "MusicOFF":"Encender",
-        "MusicON": "Apagar",
+        "unmuted":"Activado",
+        "muted": "Apagado",
         "fullscreen": "Pantalla Completa",
 
 
@@ -42,6 +44,9 @@
     },
 
     "en":{
+
+        "skipintro": "Press    To Start",
+
         "play": "Play",
         "option": "Options",
         "exit": "Exit",
@@ -55,8 +60,8 @@
         "changelanguage": "English",
 
         "musictext":"Music:",
-        "MusicOFF":"OFF",
-        "MusicON": "ON",
+        "unmuted":"ON",
+        "muted": "OFF",
         "fullscreen": "Full Screen",
 
 
