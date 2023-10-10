@@ -16,6 +16,10 @@ W, H = 1280, 720
 PANTALLA = pygame.display.set_mode((W, H))
 pygame.display.set_caption("Sea Heros")
 
+muted = False
+
+#Meto la imagenes del click en una variable
+click1 = pygame.image.load("img/keys/mouse_L_pressed_paper.png")
 
 #Declaro las imagenes de todas las funciones de sonido
 sonido_arriba = pygame.image.load("sound/img/volume_up.png")
@@ -33,28 +37,47 @@ black = (0, 0, 0)
 green = (0, 208, 0)
 red = (255, 0, 0)
 
+#Reloj
+reloj = pygame.time.get_ticks()
+
 #Cargo el video de intro y su resolucion
 vid = Video("videoxd.mp4")
 vid.set_size((1280, 720))
 
+#Funcion con sus atributos para generar texto en la pantalla 
 def draw_text(text, font, text_col, x,y):
             img = font.render(text, True, text_col)
             PANTALLA.blit(img, (x,y))
 
 def intro():
-    while True:
+    run = True
+    while run:
+        #Carga el video de la intro
         vid.draw(PANTALLA, (0,0))
-        draw_text("Hola", font2, black, 1000,650)
+        if langueje == "en":
+            draw_text(Configuracion.get(langueje, {}).get("skipintro"), font2, black, 900, 670)
+            PANTALLA.blit(click1, (1015, 645))
+        if langueje == "es":
+            draw_text(Configuracion.get(langueje, {}).get("skipintro"), font2, black, 760, 670)
+            PANTALLA.blit(click1, (945, 645))
+
+        #Si el juego ya esta iniciado no vuelve a cargar la intro de nuevo
+        if reloj >= 1000:
+            vid.close()
+            run = False
+            MenuTotal()
+        
         pygame.display.update()
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
                 vid.close()
+                run = False
                 MenuTotal()
             
-
 def MenuTotal():
 
     #Cargo el .JSON
@@ -75,8 +98,10 @@ def MenuTotal():
 
     #Carga la musica
     pygame.mixer.music.load("sound/menu.mp3")
+
     #Carga el volumen inicial
     pygame.mixer.music.set_volume(0.5)
+
     #Carga la musica en bucle con el -1
     pygame.mixer.music.play(-1)
 
@@ -103,6 +128,7 @@ def MenuTotal():
                     PANTALLA.blit(sonido_arriba, (1150,25))
                 elif keys[pygame.K_UP] and pygame.mixer_music.get_volume() == 1.0:
                     PANTALLA.blit(sonido_max, (1150,25))
+
 
     #Carga una fuente para el Titulo del juego
     def get_font(size):
@@ -178,18 +204,26 @@ def MenuTotal():
 
                 PANTALLA.blit(BG, (0, 0))
 
+                #Detector de mute
+                if pygame.mixer_music.get_volume() == 0.0:
+                    muted = True
+                    infoaud = "Apagado"
+                if pygame.mixer_music.get_volume() >= 0.1:
+                    muted = False                
+                    infoaud = "Encendido"
+
                 #Muestra Texto Titulo Opciones
                 OPTIONS_TEXT = get_font(45).render(Configuracion.get(langueje, {}).get("option"), True, "White")
                 OPTIONS_RECT = OPTIONS_TEXT.get_rect(center=(640, 90))
                 PANTALLA.blit(OPTIONS_TEXT, OPTIONS_RECT)
 
                 #Muestra Texto de Idioma
-                IDIOMA_TEXT = get_font(45).render(Configuracion.get(langueje, {}).get("language"), True, "Blue")
+                IDIOMA_TEXT = get_font(45).render(Configuracion.get(langueje, {}).get("language"), True, "White")
                 IDIOMA_RECT = IDIOMA_TEXT.get_rect(center=(500, 250))
                 PANTALLA.blit(IDIOMA_TEXT, IDIOMA_RECT)
 
                 #Muestra Texto de Volumen
-                MUSICVOL_TEXT = get_font(45).render(Configuracion.get(langueje, {}).get("musictext"), True, "Blue")
+                MUSICVOL_TEXT = get_font(45).render(Configuracion.get(langueje, {}).get("musictext"), True, "White")
                 MUSICVOL_RECT = IDIOMA_TEXT.get_rect(center=(500, 400))
                 PANTALLA.blit(MUSICVOL_TEXT, MUSICVOL_RECT)
 
@@ -198,20 +232,9 @@ def MenuTotal():
                                     text_input=Configuracion.get(langueje, {}).get("changelanguage"), font=get_font(50), base_color="White", hovering_color="Green")
                 
                 #Boton de Desactivador de Musica
-                if(langueje == "en"):
-                    MUSIC_OFF = Button(image=(pygame.image.load("assets/Play Rect.png")), pos=(750, 400),
-                                        text_input=Configuracion.get(langueje, {}).get("MusicON"), font=get_font(50), base_color="White", hovering_color="Green")
                 if(langueje == "es"):
-                    MUSIC_OFF = Button(image=(pygame.image.load("assets/Play Rect.png")), pos=(840, 400),
-                                        text_input=Configuracion.get(langueje, {}).get("MusicON"), font=get_font(50), base_color="White", hovering_color="Green")
-                
-                #Boton de Activar Musica
-                if(langueje == "en"):
-                    MUSIC_ON = Button(image=(pygame.image.load("assets/Play Rect.png")), pos=(750, 400),
-                                        text_input=Configuracion.get(langueje, {}).get("MusicOFF"), font=get_font(50), base_color="White", hovering_color="Green")
-                if(langueje == "es"):
-                    MUSIC_ON = Button(image=(pygame.image.load("assets/Play Rect.png")), pos=(840, 400),
-                                        text_input=Configuracion.get(langueje, {}).get("MusicOFF"), font=get_font(50), base_color="White", hovering_color="Green")
+                    MUSIC = Button(image=(pygame.image.load("assets/Play Rect.png")), pos=(750, 400),
+                                        text_input=infoaud, font=get_font(50), base_color="White", hovering_color="Green")
                     
                 FULLSCREEN = Button(image=None, pos=(650, 520),
                                     text_input=Configuracion.get(langueje, {}).get("fullscreen"), font=get_font(50), base_color="White", hovering_color="Green")
@@ -230,28 +253,26 @@ def MenuTotal():
                     if event.type == pygame.MOUSEBUTTONDOWN:
                         if OPTIONS_BACK.checkForInput(OPTIONS_MOUSE_POS):
                             main_menu()
+
                         if CHANGE_LANG.checkForInput(OPTIONS_MOUSE_POS):
                             pass
-                        if MUSIC_OFF.checkForInput(OPTIONS_MOUSE_POS):
-                            pygame.mixer_music.set_volume(0.0)
-                       
 
-                if(pygame.mixer_music.get_volume() == 0.0):
-                    if(langueje == "en"):
-                        MUSIC_OFF = MUSIC_ON
-                        
-                    if(langueje == "es"):
-                        MUSIC_OFF = MUSIC_ON
-                        
-                    
+                        if muted == False:
+                            if MUSIC.checkForInput(OPTIONS_MOUSE_POS):
+                                pygame.mixer_music.set_volume(0.0)
+                                
+                        if muted == True:
+                            if MUSIC.checkForInput(OPTIONS_MOUSE_POS):
+                                pygame.mixer_music.set_volume(0.5)
+                                
                                 
 
                 OPTIONS_BACK.changeColor(OPTIONS_MOUSE_POS)
                 OPTIONS_BACK.update(PANTALLA)
                 CHANGE_LANG.changeColor(OPTIONS_MOUSE_POS)
                 CHANGE_LANG.update(PANTALLA)
-                MUSIC_OFF.changeColor(OPTIONS_MOUSE_POS)
-                MUSIC_OFF.update(PANTALLA)
+                MUSIC.changeColor(OPTIONS_MOUSE_POS)
+                MUSIC.update(PANTALLA)
                 FULLSCREEN.changeColor(OPTIONS_MOUSE_POS)
                 FULLSCREEN.update(PANTALLA)
 
@@ -272,6 +293,7 @@ def MenuTotal():
 
                 MENU_TEXT = get_font(100).render("SEA HEROS", True, "#b68f40")
                 MENU_RECT = MENU_TEXT.get_rect(center=(640, 100))
+
 
                 PLAY_BUTTON = Button(image=pygame.image.load("assets/Play Rect.png"), pos=(640, 250), 
                                     text_input=Configuracion.get(langueje, {}).get("play"), font=get_font(75), base_color="White", hovering_color="Green")

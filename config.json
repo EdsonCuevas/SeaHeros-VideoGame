@@ -1,5 +1,7 @@
 {
     "es":{
+
+        "skipintro": "Presiona    Para Iniciar",
         
         "play": "Jugar",
         "option": "Opciones",
@@ -13,8 +15,6 @@
         "language":"Idioma:",
         "changelanguage": "Español",
         "musictext":"Musica:",
-        "MusicOFF":"Encender",
-        "MusicON": "Apagar",
         "fullscreen": "Pantalla Completa",
 
 
@@ -42,6 +42,9 @@
     },
 
     "en":{
+
+        "skipintro": "Press    To Start",
+
         "play": "Play",
         "option": "Options",
         "exit": "Exit",
