@@ -125,12 +125,16 @@ def MenuTotal():
                 PANTALLA.blit(PLAY_TEXT, PLAY_RECT)
 
                 #Carga el boton de inicio de nivel facil
-                EASY_GAME = Button(image=pygame.image.load("assets/Play Rect.png"), pos=(640, 290),
+                EASY_GAME = Button(image=pygame.image.load("assets/Play Rect.png"), pos=(640, 260),
                                     text_input=Configuracion.get(langueje, {}).get("easy"), font=get_font(75), base_color="White", hovering_color="Green")
                 
                 #Carga el boton de inicio de nivel dificil
-                HARD_GAME = Button(image=pygame.image.load("assets/Play Rect.png"), pos=(640, 410),
-                                    text_input=Configuracion.get(langueje, {}).get("hard"), font=get_font(75), base_color="White", hovering_color="Green")
+                if (langueje == "en"):
+                    HARD_GAME = Button(image=pygame.image.load("assets/Play Rect.png"), pos=(640, 400),
+                                        text_input=Configuracion.get(langueje, {}).get("hard"), font=get_font(75), base_color="White", hovering_color="Green")
+                if (langueje == "es"):
+                    HARD_GAME = Button(image=pygame.image.load("assets/Options Rect.png"), pos=(640, 400),
+                                        text_input=Configuracion.get(langueje, {}).get("hard"), font=get_font(75), base_color="White", hovering_color="Green")
 
                 #Carga un boton de volver al menu
                 PLAY_BACK = Button(image=None, pos=(640, 600), 
@@ -176,16 +180,16 @@ def MenuTotal():
 
                 #Muestra Texto Titulo Opciones
                 OPTIONS_TEXT = get_font(45).render(Configuracion.get(langueje, {}).get("option"), True, "White")
-                OPTIONS_RECT = OPTIONS_TEXT.get_rect(center=(640, 130))
+                OPTIONS_RECT = OPTIONS_TEXT.get_rect(center=(640, 90))
                 PANTALLA.blit(OPTIONS_TEXT, OPTIONS_RECT)
 
                 #Muestra Texto de Idioma
-                IDIOMA_TEXT = get_font(45).render(Configuracion.get(langueje, {}).get("language"), True, "White")
+                IDIOMA_TEXT = get_font(45).render(Configuracion.get(langueje, {}).get("language"), True, "Blue")
                 IDIOMA_RECT = IDIOMA_TEXT.get_rect(center=(500, 250))
                 PANTALLA.blit(IDIOMA_TEXT, IDIOMA_RECT)
 
                 #Muestra Texto de Volumen
-                MUSICVOL_TEXT = get_font(45).render(Configuracion.get(langueje, {}).get("musictext"), True, "White")
+                MUSICVOL_TEXT = get_font(45).render(Configuracion.get(langueje, {}).get("musictext"), True, "Blue")
                 MUSICVOL_RECT = IDIOMA_TEXT.get_rect(center=(500, 400))
                 PANTALLA.blit(MUSICVOL_TEXT, MUSICVOL_RECT)
 
