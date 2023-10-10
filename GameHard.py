@@ -2,6 +2,9 @@ import pygame, sys, random, time, os
 from pygame.locals import *
 from button import Button
 from JSON import Load
+import Menu as cfg
+
+SoundActual = cfg.Music
 
 def Level1():
         
@@ -33,7 +36,7 @@ def Level1():
         #Musica de fondo
         pygame.mixer.music.load("sound/level1.mp3")
         pygame.mixer.music.play(-1)
-        pygame.mixer.music.set_volume(0.5)
+        pygame.mixer.music.set_volume == SoundActual
 
         #Carga las imagenes de subir y bajar volumen
         sonido_arriba = pygame.image.load("sound/img/volume_up.png")

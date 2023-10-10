@@ -209,7 +209,7 @@ def MenuTotal():
                 if pygame.mixer_music.get_volume() == 0.0:
                     muted = True
                     infoaud = Configuracion.get(langueje, {}).get("muted")
-                if pygame.mixer_music.get_volume() >= 0.1:
+                if pygame.mixer_music.get_volume() >= 0.01:
                     muted = False                
                     infoaud = Configuracion.get(langueje, {}).get("unmuted")
 
