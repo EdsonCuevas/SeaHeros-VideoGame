@@ -15,6 +15,8 @@
         "language":"Idioma:",
         "changelanguage": "Español",
         "musictext":"Musica:",
+        "unmuted":"Activado",
+        "muted": "Apagado",
         "fullscreen": "Pantalla Completa",
 
 
@@ -58,8 +60,8 @@
         "changelanguage": "English",
 
         "musictext":"Music:",
-        "MusicOFF":"OFF",
-        "MusicON": "ON",
+        "unmuted":"ON",
+        "muted": "OFF",
         "fullscreen": "Full Screen",
 
 

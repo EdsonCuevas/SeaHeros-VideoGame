@@ -17,6 +17,7 @@ PANTALLA = pygame.display.set_mode((W, H))
 pygame.display.set_caption("Sea Heros")
 
 muted = False
+Music = pygame.mixer_music.get_volume()
 
 #Meto la imagenes del click en una variable
 click1 = pygame.image.load("img/keys/mouse_L_pressed_paper.png")
@@ -207,10 +208,10 @@ def MenuTotal():
                 #Detector de mute
                 if pygame.mixer_music.get_volume() == 0.0:
                     muted = True
-                    infoaud = "Apagado"
+                    infoaud = Configuracion.get(langueje, {}).get("muted")
                 if pygame.mixer_music.get_volume() >= 0.1:
                     muted = False                
-                    infoaud = "Encendido"
+                    infoaud = Configuracion.get(langueje, {}).get("unmuted")
 
                 #Muestra Texto Titulo Opciones
                 OPTIONS_TEXT = get_font(45).render(Configuracion.get(langueje, {}).get("option"), True, "White")
@@ -233,6 +234,10 @@ def MenuTotal():
                 
                 #Boton de Desactivador de Musica
                 if(langueje == "es"):
+                    MUSIC = Button(image=(pygame.image.load("assets/Play Rect.png")), pos=(850, 400),
+                                        text_input=infoaud, font=get_font(50), base_color="White", hovering_color="Green")
+                
+                if(langueje == "en"):
                     MUSIC = Button(image=(pygame.image.load("assets/Play Rect.png")), pos=(750, 400),
                                         text_input=infoaud, font=get_font(50), base_color="White", hovering_color="Green")
                     
@@ -296,11 +301,11 @@ def MenuTotal():
 
 
                 PLAY_BUTTON = Button(image=pygame.image.load("assets/Play Rect.png"), pos=(640, 250), 
-                                    text_input=Configuracion.get(langueje, {}).get("play"), font=get_font(75), base_color="White", hovering_color="Green")
+                                    text_input=Configuracion.get(langueje, {}).get("play"), font=get_font(75), base_color="Green", hovering_color="White")
                 OPTIONS_BUTTON = Button(image=pygame.image.load("assets/Options Rect.png"), pos=(640, 400), 
-                                    text_input=Configuracion.get(langueje, {}).get("option"), font=get_font(75), base_color="White", hovering_color="Blue")
+                                    text_input=Configuracion.get(langueje, {}).get("option"), font=get_font(75), base_color="Blue", hovering_color="White")
                 QUIT_BUTTON = Button(image=pygame.image.load("assets/Quit Rect.png"), pos=(640, 550), 
-                                    text_input=Configuracion.get(langueje, {}).get("exit"), font=get_font(75), base_color="White", hovering_color="Red")
+                                    text_input=Configuracion.get(langueje, {}).get("exit"), font=get_font(75), base_color="Red", hovering_color="White")
 
                 PANTALLA.blit(MENU_TEXT, MENU_RECT)
 
@@ -323,6 +328,9 @@ def MenuTotal():
 
                 ControlMusic()
                 pygame.display.update()
+    
+
+
     main_menu()
     
 intro()
