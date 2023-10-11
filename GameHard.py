@@ -6,6 +6,68 @@ import Menu as cfg
 
 SoundActual = cfg.Music
 
+def start_menu():
+            
+    Configuracion,langueje = Load()
+
+    pygame.init()
+
+    #Pantalla
+    W,H = 1280,720
+    icon = pygame.image.load("img/Fish animation/fish1.png")
+    PANTALLA = pygame.display.set_mode((W,H))
+    pygame.display.set_caption("Sea Heros")
+    pygame.display.set_icon(icon)
+
+    bolsa_ico = pygame.image.load("img/coliders/bolsa.png")
+    rock_ico = pygame.image.load("img/coliders/rock.png")
+
+    #Fuentes
+    font = pygame.font.SysFont('Bauhaus 93', 60)
+    font1 = pygame.font.Font('assets/upheavtt.ttf', 60)
+    font2 = pygame.font.Font('assets/upheavtt.ttf', 40)
+    font3 = pygame.font.Font('assets/upheavtt.ttf', 22)
+
+    def draw_text(text, font, text_col, x,y):
+        img = font.render(text, True, text_col)
+        PANTALLA.blit(img, (x,y))
+
+    #Colores
+    white = (255, 255, 255)
+    green = (0, 208, 0)
+    red = (255, 0, 0)
+
+
+    run = True
+    while run:
+
+        PANTALLA.fill("black")
+
+        #Muestra el objetivo del juego
+        if langueje == "es":
+            draw_text(Configuracion.get(langueje, {}).get("object"), font1, white, 500, 200)
+            draw_text(Configuracion.get(langueje, {}).get("recolet"), font1, green, 420, 290)
+            PANTALLA.blit(bolsa_ico, (820, 280))
+            draw_text(Configuracion.get(langueje, {}).get("evade"), font1, red, 500, 360)
+            PANTALLA.blit(rock_ico, (735, 360))
+
+        if langueje == "en":
+            draw_text(Configuracion.get(langueje, {}).get("object"), font1, white, 500, 200)
+            draw_text(Configuracion.get(langueje, {}).get("recolet"), font1, green, 470, 290)
+            PANTALLA.blit(bolsa_ico, (805, 280))
+            draw_text(Configuracion.get(langueje, {}).get("evade"), font1, red, 525, 360)
+            PANTALLA.blit(rock_ico, (725, 360))
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                run = False
+                Level1()
+                
+        pygame.display.update()
+
 def Level1():
         
         Configuracion,langueje = Load()
@@ -443,4 +505,4 @@ def Level1():
                         
             AudioControl()
             pygame.display.update()
-Level1()
+start_menu()
