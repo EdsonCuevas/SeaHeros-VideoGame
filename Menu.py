@@ -246,22 +246,24 @@ def MenuTotal():
                 PANTALLA.blit(MUSICVOL_TEXT, MUSICVOL_RECT)
 
                 #Boton de cambio de idioma
-                CHANGE_LANG = Button(image=(pygame.image.load("assets/Play Rect.png")), pos=(900, 250),
-                                    text_input=Configuracion.get(langueje, {}).get("changelanguage"), font=get_font(50), base_color="White", hovering_color="Green")
+                if(langueje == "es"):
+                    CHANGE_LANG = Button(image=(pygame.image.load("assets/Play Rect.png")), pos=(850, 250),
+                                        text_input=Configuracion.get(langueje, {}).get("changelanguage"), font=get_font(50), base_color="White", hovering_color="Green")
+                    
+                if(langueje == "en"):
+                    CHANGE_LANG = Button(image=(pygame.image.load("assets/Play Rect.png")), pos=(870, 250),
+                                        text_input=Configuracion.get(langueje, {}).get("changelanguage"), font=get_font(50), base_color="White", hovering_color="Green")
                 
                 #Boton de Desactivador de Musica
                 if(langueje == "es"):
-                    MUSIC = Button(image=(pygame.image.load("assets/Play Rect.png")), pos=(850, 400),
+                    MUSIC = Button(image=(pygame.image.load("assets/Play Rect1.png")), pos=(850, 400),
                                         text_input=infoaud, font=get_font(50), base_color="White", hovering_color="Green")
                 
                 if(langueje == "en"):
                     MUSIC = Button(image=(pygame.image.load("assets/Play Rect.png")), pos=(750, 400),
                                         text_input=infoaud, font=get_font(50), base_color="White", hovering_color="Green")
                     
-                FULLSCREEN = Button(image=None, pos=(650, 520),
-                                    text_input=Configuracion.get(langueje, {}).get("fullscreen"), font=get_font(50), base_color="White", hovering_color="Green")
                 
-
                 #Boton de Salir
                 OPTIONS_BACK = Button(image=None, pos=(640, 650), 
                                     text_input="VOLVER", font=get_font(75), base_color="White", hovering_color="Red")
@@ -295,12 +297,8 @@ def MenuTotal():
                 CHANGE_LANG.update(PANTALLA)
                 MUSIC.changeColor(OPTIONS_MOUSE_POS)
                 MUSIC.update(PANTALLA)
-                FULLSCREEN.changeColor(OPTIONS_MOUSE_POS)
-                FULLSCREEN.update(PANTALLA)
 
                 
-                                 
-
                 ControlMusic()
 
                 pygame.display.update()
