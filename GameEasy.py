@@ -66,11 +66,13 @@ def start_menu():
         pygame.display.update()
 
         for segundo in range(4):
-            if segundo == 3:
+            if segundo == 4:
                 break
             time.sleep(1)
         
         run = False    
+
+start_menu()
 
 def Level1():
         
@@ -516,4 +518,4 @@ def Level1():
             AudioControl()
             pygame.display.update()
 
-start_menu()
+Level1()

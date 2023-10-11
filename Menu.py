@@ -206,14 +206,18 @@ def MenuTotal():
                     if event.type == pygame.MOUSEBUTTONDOWN:
                         if EASY_GAME.checkForInput(PLAY_MOUSE_POS):
                             pygame.mixer_music.stop()
+                            from GameEasy import start_menu
                             from GameEasy import Level1
+                            start_menu()
                             Level1()
                         
                     #Ejecucion del boton del modo dificil
                     if event.type == pygame.MOUSEBUTTONDOWN:
                         if HARD_GAME.checkForInput(PLAY_MOUSE_POS):
                             pygame.mixer_music.stop()
+                            from GameHard import start_menu
                             from GameHard import Level1
+                            start_menu()
                             Level1()
                             
                             
