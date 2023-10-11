@@ -7,8 +7,10 @@ import Menu as cfg
 SoundActual = cfg.Music
 
 def start_menu():
-            
+    
+    global langueje
     Configuracion,langueje = Load()
+    
 
     pygame.init()
 
@@ -40,6 +42,7 @@ def start_menu():
     run = True
     while run:
 
+        
         PANTALLA.fill("black")
 
         #Muestra el objetivo del juego
@@ -76,7 +79,9 @@ start_menu()
 
 def Level1():
         
+        global langueje
         Configuracion,langueje = Load()
+
         
         #Start de pygame
         pygame.init()

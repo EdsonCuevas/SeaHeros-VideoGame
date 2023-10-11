@@ -33,6 +33,9 @@ pygame.display.set_caption("Sea Heros")
 muted = False
 Music = pygame.mixer_music.get_volume()
 
+english = False
+spanish = False
+
 #Meto la imagenes del click en una variable
 click1 = pygame.image.load("img/keys/mouse_L_pressed_paper.png")
 
@@ -96,8 +99,9 @@ def intro():
             
 def MenuTotal():
 
+    global langueje
     Configuracion, langueje = Load()
-
+    
     #Inicia el juego pygame
     pygame.init()
 
@@ -152,6 +156,8 @@ def MenuTotal():
     #El menu de play
     def play():
             while True:
+
+                global langueje
 
                 #Carga la posicion del mouse
                 PLAY_MOUSE_POS = pygame.mouse.get_pos()
@@ -228,7 +234,8 @@ def MenuTotal():
     def options():
             while True:
 
-                global var
+                global langueje
+                global english
 
                 OPTIONS_MOUSE_POS = pygame.mouse.get_pos()
 
@@ -291,7 +298,8 @@ def MenuTotal():
                             main_menu()
 
                         if CHANGE_LANG.checkForInput(OPTIONS_MOUSE_POS):
-                             pass
+                            langueje = "en"
+                            
                                
                         if muted == False:
                             if MUSIC.checkForInput(OPTIONS_MOUSE_POS):
@@ -317,6 +325,9 @@ def MenuTotal():
 
     def main_menu():
         while True:
+                
+                global langueje
+
                 #Ejectua el fondo previamente cargado en la variable BG
                 PANTALLA.blit(BG, (0, 0))
                 
