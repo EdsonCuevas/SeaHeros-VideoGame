@@ -20,7 +20,7 @@ def start_menu():
     pygame.display.set_icon(icon)
 
     bolsa_ico = pygame.image.load("img/coliders/bolsa.png")
-    rock_ico = pygame.image.load("img/icons/rock.png")
+    rock_ico = pygame.image.load("img/coliders/rock.png")
 
     #Fuentes
     font = pygame.font.SysFont('Bauhaus 93', 60)
@@ -44,11 +44,19 @@ def start_menu():
         PANTALLA.fill("black")
 
         #Muestra el objetivo del juego
-        draw_text(Configuracion.get(langueje, {}).get("object"), font1, white, 500, 200)
-        draw_text(Configuracion.get(langueje, {}).get("recolet"), font1, green, 480, 300)
-        PANTALLA.blit(bolsa_ico, (800, 300))
-        draw_text(Configuracion.get(langueje, {}).get("evade"), font2, red, 5, 110)
-        PANTALLA.blit(rock_ico, (150, 105))
+        if langueje == "es":
+            draw_text(Configuracion.get(langueje, {}).get("object"), font1, white, 500, 200)
+            draw_text(Configuracion.get(langueje, {}).get("recolet"), font1, green, 420, 290)
+            PANTALLA.blit(bolsa_ico, (820, 280))
+            draw_text(Configuracion.get(langueje, {}).get("evade"), font1, red, 500, 360)
+            PANTALLA.blit(rock_ico, (735, 360))
+
+        if langueje == "en":
+            draw_text(Configuracion.get(langueje, {}).get("object"), font1, white, 500, 200)
+            draw_text(Configuracion.get(langueje, {}).get("recolet"), font1, green, 470, 290)
+            PANTALLA.blit(bolsa_ico, (805, 280))
+            draw_text(Configuracion.get(langueje, {}).get("evade"), font1, red, 525, 360)
+            PANTALLA.blit(rock_ico, (725, 360))
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
