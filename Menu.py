@@ -44,7 +44,7 @@ red = (255, 0, 0)
 reloj = pygame.time.get_ticks()
 
 #Cargo el video de intro y su resolucion
-vid = Video("videoxd.mp4")
+vid = Video("intro.mp4")
 vid.set_size((1280, 720))
 
 #Funcion con sus atributos para generar texto en la pantalla 
@@ -59,11 +59,11 @@ def intro():
         #Carga el video de la intro
         vid.draw(PANTALLA, (0,0))
         if langueje == "en":
-            draw_text(Configuracion.get(langueje, {}).get("skipintro"), font2, black, 900, 670)
-            PANTALLA.blit(click1, (1015, 645))
+            draw_text(Configuracion.get(langueje, {}).get("skipintro"), font2, white, 20, 670)
+            PANTALLA.blit(click1, (134, 645))
         if langueje == "es":
-            draw_text(Configuracion.get(langueje, {}).get("skipintro"), font2, black, 760, 670)
-            PANTALLA.blit(click1, (945, 645))
+            draw_text(Configuracion.get(langueje, {}).get("skipintro"), font2, white, 20, 670)
+            PANTALLA.blit(click1, (205, 645))
 
         #Si el juego ya esta iniciado no vuelve a cargar la intro de nuevo
         if reloj >= 1000:
