@@ -299,12 +299,6 @@ def Level1():
                 #Muestra el score
                 draw_text(str(score), font, white, 610, 20)
                 draw_text(("/5"), font, white, 645, 20)
-                #Muestra el objetivo del juego
-                draw_text(Configuracion.get(langueje, {}).get("object"), font2, white, 5, 0)
-                draw_text(Configuracion.get(langueje, {}).get("recolet"), font2, green, 5, 50)
-                PANTALLA.blit(bolsa_ico, (225, 50))
-                draw_text(Configuracion.get(langueje, {}).get("evade"), font2, red, 5, 110)
-                PANTALLA.blit(rock_ico, (150, 105))
                 fuel_bar.draw(PANTALLA)
                 if langueje == "en":
                     draw_text(Configuracion.get(langueje, {}).get("fuel"), font2, black, 610, 110)
@@ -315,8 +309,14 @@ def Level1():
             
             #Cuando empizas el juego empieza muestra instrucciones
             if swimming == False and game_over == False:
-                draw_text(Configuracion.get(langueje, {}).get("swimming"), font2, black, W / 3.4, 340)
-                PANTALLA.blit(click1, (562, 315))
+                draw_text(Configuracion.get(langueje, {}).get("swimming"), font2, black, 400, 340)
+                PANTALLA.blit(click1, (588, 315))
+                #Muestra el objetivo del juego
+                draw_text(Configuracion.get(langueje, {}).get("object"), font2, white, 5, 350)
+                draw_text(Configuracion.get(langueje, {}).get("recolet"), font2, green, 5, 50)
+                PANTALLA.blit(bolsa_ico, (225, 50))
+                draw_text(Configuracion.get(langueje, {}).get("evade"), font2, red, 5, 110)
+                PANTALLA.blit(rock_ico, (150, 105))
                 #Funcion que muestre las teclas
                 keys_on_screen()
             
