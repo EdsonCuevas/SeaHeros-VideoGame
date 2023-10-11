@@ -37,7 +37,6 @@ def start_menu():
     green = (0, 208, 0)
     red = (255, 0, 0)
 
-
     run = True
     while run:
 
@@ -58,15 +57,20 @@ def start_menu():
             draw_text(Configuracion.get(langueje, {}).get("evade"), font1, red, 525, 360)
             PANTALLA.blit(rock_ico, (725, 360))
 
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                run = False
-                Level1()
                 
         pygame.display.update()
+
+        for segundo in range(4):
+            if segundo == 4:
+                break
+            time.sleep(1)
+        
+        run = False    
 
 def Level1():
         
