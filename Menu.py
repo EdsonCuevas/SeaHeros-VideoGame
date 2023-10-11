@@ -19,11 +19,11 @@ def Load():
     langueje = "es"
     return Configuracion, langueje
 
-#Carga el .JSON
-Configuracion, langueje = Load()
-
 #Inicia el juego pygame
 pygame.init()
+
+#Carga el .JSON
+Configuracion, langueje = Load()
 
 #Declaro las variables para el ancho y alto del juego
 #Resolucion
@@ -95,9 +95,6 @@ def intro():
                 MenuTotal()
             
 def MenuTotal():
-
-    #Cargo el .JSON
-    Configuracion, langueje = Load()
 
     #Inicia el juego pygame
     pygame.init()
