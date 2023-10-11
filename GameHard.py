@@ -68,6 +68,13 @@ def start_menu():
                 
         pygame.display.update()
 
+        for segundo in range(4):
+            if segundo == 3:
+                break
+            time.sleep(1)
+        
+        run = False    
+
 def Level1():
         
         Configuracion,langueje = Load()
