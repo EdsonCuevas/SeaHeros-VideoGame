@@ -167,14 +167,18 @@ def MenuTotal():
                 PANTALLA.blit(PLAY_TEXT, PLAY_RECT)
 
                 #Carga el boton de inicio de nivel facil
-                EASY_GAME = Button(image=pygame.image.load("assets/Play Rect.png"), pos=(640, 260),
-                                    text_input=Configuracion.get(langueje, {}).get("easy"), font=get_font(75), base_color="White", hovering_color="Green")
+                if langueje == "en": 
+                    EASY_GAME = Button(image=pygame.image.load("assets/Play Rect.png"), pos=(640, 260),
+                                        text_input=Configuracion.get(langueje, {}).get("easy"), font=get_font(75), base_color="White", hovering_color="Green")
+                if langueje == "es": 
+                    EASY_GAME = Button(image=pygame.image.load("assets/Play Rect1.png"), pos=(640, 260),
+                                        text_input=Configuracion.get(langueje, {}).get("easy"), font=get_font(75), base_color="White", hovering_color="Green")
                 
                 #Carga el boton de inicio de nivel dificil
-                if (langueje == "en"):
+                if langueje == "en":
                     HARD_GAME = Button(image=pygame.image.load("assets/Play Rect.png"), pos=(640, 400),
                                         text_input=Configuracion.get(langueje, {}).get("hard"), font=get_font(75), base_color="White", hovering_color="Green")
-                if (langueje == "es"):
+                if langueje == "es":
                     HARD_GAME = Button(image=pygame.image.load("assets/Options Rect.png"), pos=(640, 400),
                                         text_input=Configuracion.get(langueje, {}).get("hard"), font=get_font(75), base_color="White", hovering_color="Green")
 
@@ -319,7 +323,7 @@ def MenuTotal():
                                     text_input=Configuracion.get(langueje, {}).get("play"), font=get_font(75), base_color="Green", hovering_color="White")
                 OPTIONS_BUTTON = Button(image=pygame.image.load("assets/Options Rect.png"), pos=(640, 400), 
                                     text_input=Configuracion.get(langueje, {}).get("option"), font=get_font(75), base_color="Blue", hovering_color="White")
-                QUIT_BUTTON = Button(image=pygame.image.load("assets/Quit Rect.png"), pos=(640, 550), 
+                QUIT_BUTTON = Button(image=pygame.image.load("assets/Play Rect.png"), pos=(640, 550), 
                                     text_input=Configuracion.get(langueje, {}).get("exit"), font=get_font(75), base_color="Red", hovering_color="White")
 
                 PANTALLA.blit(MENU_TEXT, MENU_RECT)
