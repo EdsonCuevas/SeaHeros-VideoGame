@@ -45,16 +45,18 @@ def start_menu():
 
         #Muestra el objetivo del juego
         if langueje == "es":
-            draw_text(Configuracion.get(langueje, {}).get("object"), font1, white, 500, 200)
-            draw_text(Configuracion.get(langueje, {}).get("recolet"), font1, green, 420, 290)
-            PANTALLA.blit(bolsa_ico, (820, 280))
-            draw_text(Configuracion.get(langueje, {}).get("evade"), font1, red, 500, 360)
-            PANTALLA.blit(rock_ico, (735, 360))
+            draw_text(Configuracion.get(langueje, {}).get("numlevel1"), font1, white, 540, 10)
+            draw_text(Configuracion.get(langueje, {}).get("object"), font1, white, 490, 200)
+            draw_text(Configuracion.get(langueje, {}).get("recolet"), font1, green, 420, 310)
+            PANTALLA.blit(bolsa_ico, (820, 300))
+            draw_text(Configuracion.get(langueje, {}).get("evade"), font1, red, 500, 380)
+            PANTALLA.blit(rock_ico, (735, 380))
 
         if langueje == "en":
-            draw_text(Configuracion.get(langueje, {}).get("object"), font1, white, 500, 200)
-            draw_text(Configuracion.get(langueje, {}).get("recolet"), font1, green, 470, 290)
-            PANTALLA.blit(bolsa_ico, (805, 280))
+            draw_text(Configuracion.get(langueje, {}).get("numlevel1"), font1, white, 530, 10)
+            draw_text(Configuracion.get(langueje, {}).get("object"), font1, white, 470, 200)
+            draw_text(Configuracion.get(langueje, {}).get("recolet"), font1, green, 450, 290)
+            PANTALLA.blit(bolsa_ico, (785, 280))
             draw_text(Configuracion.get(langueje, {}).get("evade"), font1, red, 525, 360)
             PANTALLA.blit(rock_ico, (725, 360))
 
@@ -68,8 +70,8 @@ def start_menu():
                 
         pygame.display.update()
 
-        for segundo in range(4):
-            if segundo == 4:
+        for segundo in range(3):
+            if segundo == 3:
                 break
             time.sleep(1)
         
@@ -135,8 +137,8 @@ def Level1():
         sound = True
         
         #Carga de imagenes de botones y el icon de objetivo
-        bolsa_ico = pygame.image.load("img/icons/bolsa.png")
-        rock_ico = pygame.image.load("img/icons/rock.png")
+        bag_ico = pygame.image.load("img/icons/bolsa.png")
+        gas_ico = pygame.image.load("img/icons/gas.png")
         flecha_up = pygame.image.load("img/keys/arrowup_alternative_paper.png")
         flecha_down = pygame.image.load("img/keys/arrowdown_alternative_paper.png")
         esc_key = pygame.image.load("img/keys/esc_alternative_paper.png")
@@ -205,8 +207,8 @@ def Level1():
             def draw(self, surface):
                 #calculate fuel ratio
                 ratio = self.hp / self.max_hp
-                pygame.draw.rect(surface, "red", (self.x, self.y, self.w, self.h))
-                pygame.draw.rect(surface, "green", (self.x, self.y, self.w * ratio, self.h))
+                pygame.draw.rect(surface, "#701212", (self.x, self.y, self.w, self.h))
+                pygame.draw.rect(surface, "#B27313", (self.x, self.y, self.w * ratio, self.h))
 
         #Todas las funciones del submarino
         class Submarine(pygame.sprite.Sprite):
@@ -365,8 +367,10 @@ def Level1():
             #Si la victoria todavia no esta hecha muestra el score, texto y controles
             if victory == False:
                 #Muestra el score
-                draw_text(str(score), font, white, 610, 20)
-                draw_text(("/5"), font, white, 645, 20)
+                PANTALLA.blit(gas_ico, (420,140))
+                draw_text(str(score), font, white, 600, 20)
+                draw_text(("/5"), font, white, 635, 20)
+                PANTALLA.blit(bag_ico, (700,20))
                 fuel_bar.draw(PANTALLA)
                 if langueje == "en":
                     draw_text(Configuracion.get(langueje, {}).get("fuel"), font2, black, 610, 110)
