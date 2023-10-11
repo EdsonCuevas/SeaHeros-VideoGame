@@ -166,14 +166,18 @@ def MenuTotal():
                 PANTALLA.blit(PLAY_TEXT, PLAY_RECT)
 
                 #Carga el boton de inicio de nivel facil
-                EASY_GAME = Button(image=pygame.image.load("assets/Play Rect.png"), pos=(640, 260),
-                                    text_input=Configuracion.get(langueje, {}).get("easy"), font=get_font(75), base_color="White", hovering_color="Green")
+                if langueje == "en": 
+                    EASY_GAME = Button(image=pygame.image.load("assets/Play Rect.png"), pos=(640, 260),
+                                        text_input=Configuracion.get(langueje, {}).get("easy"), font=get_font(75), base_color="White", hovering_color="Green")
+                if langueje == "es": 
+                    EASY_GAME = Button(image=pygame.image.load("assets/Play Rect1.png"), pos=(640, 260),
+                                        text_input=Configuracion.get(langueje, {}).get("easy"), font=get_font(75), base_color="White", hovering_color="Green")
                 
                 #Carga el boton de inicio de nivel dificil
-                if (langueje == "en"):
+                if langueje == "en":
                     HARD_GAME = Button(image=pygame.image.load("assets/Play Rect.png"), pos=(640, 400),
                                         text_input=Configuracion.get(langueje, {}).get("hard"), font=get_font(75), base_color="White", hovering_color="Green")
-                if (langueje == "es"):
+                if langueje == "es":
                     HARD_GAME = Button(image=pygame.image.load("assets/Options Rect.png"), pos=(640, 400),
                                         text_input=Configuracion.get(langueje, {}).get("hard"), font=get_font(75), base_color="White", hovering_color="Green")
 
@@ -240,32 +244,34 @@ def MenuTotal():
                 PANTALLA.blit(OPTIONS_TEXT, OPTIONS_RECT)
 
                 #Muestra Texto de Idioma
-                IDIOMA_TEXT = get_font(45).render(Configuracion.get(langueje, {}).get("language"), True, "White")
+                IDIOMA_TEXT = get_font(45).render(Configuracion.get(langueje, {}).get("language"), True, "Blue")
                 IDIOMA_RECT = IDIOMA_TEXT.get_rect(center=(500, 250))
                 PANTALLA.blit(IDIOMA_TEXT, IDIOMA_RECT)
 
                 #Muestra Texto de Volumen
-                MUSICVOL_TEXT = get_font(45).render(Configuracion.get(langueje, {}).get("musictext"), True, "White")
+                MUSICVOL_TEXT = get_font(45).render(Configuracion.get(langueje, {}).get("musictext"), True, "Blue")
                 MUSICVOL_RECT = IDIOMA_TEXT.get_rect(center=(500, 400))
                 PANTALLA.blit(MUSICVOL_TEXT, MUSICVOL_RECT)
 
                 #Boton de cambio de idioma
-                CHANGE_LANG = Button(image=(pygame.image.load("assets/Play Rect.png")), pos=(900, 250),
-                                    text_input=Configuracion.get(langueje, {}).get("changelanguage"), font=get_font(50), base_color="White", hovering_color="Green")
+                if(langueje == "es"):
+                    CHANGE_LANG = Button(image=(pygame.image.load("assets/Play Rect.png")), pos=(850, 250),
+                                        text_input=Configuracion.get(langueje, {}).get("changelanguage"), font=get_font(50), base_color="White", hovering_color="Green")
+                    
+                if(langueje == "en"):
+                    CHANGE_LANG = Button(image=(pygame.image.load("assets/Play Rect.png")), pos=(870, 250),
+                                        text_input=Configuracion.get(langueje, {}).get("changelanguage"), font=get_font(50), base_color="White", hovering_color="Green")
                 
                 #Boton de Desactivador de Musica
                 if(langueje == "es"):
-                    MUSIC = Button(image=(pygame.image.load("assets/Play Rect.png")), pos=(850, 400),
+                    MUSIC = Button(image=(pygame.image.load("assets/Play Rect1.png")), pos=(850, 400),
                                         text_input=infoaud, font=get_font(50), base_color="White", hovering_color="Green")
                 
                 if(langueje == "en"):
                     MUSIC = Button(image=(pygame.image.load("assets/Play Rect.png")), pos=(750, 400),
                                         text_input=infoaud, font=get_font(50), base_color="White", hovering_color="Green")
                     
-                FULLSCREEN = Button(image=None, pos=(650, 520),
-                                    text_input=Configuracion.get(langueje, {}).get("fullscreen"), font=get_font(50), base_color="White", hovering_color="Green")
                 
-
                 #Boton de Salir
                 OPTIONS_BACK = Button(image=None, pos=(640, 650), 
                                     text_input="VOLVER", font=get_font(75), base_color="White", hovering_color="Red")
@@ -299,12 +305,8 @@ def MenuTotal():
                 CHANGE_LANG.update(PANTALLA)
                 MUSIC.changeColor(OPTIONS_MOUSE_POS)
                 MUSIC.update(PANTALLA)
-                FULLSCREEN.changeColor(OPTIONS_MOUSE_POS)
-                FULLSCREEN.update(PANTALLA)
 
                 
-                                 
-
                 ControlMusic()
 
                 pygame.display.update()
@@ -325,7 +327,7 @@ def MenuTotal():
                                     text_input=Configuracion.get(langueje, {}).get("play"), font=get_font(75), base_color="Green", hovering_color="White")
                 OPTIONS_BUTTON = Button(image=pygame.image.load("assets/Options Rect.png"), pos=(640, 400), 
                                     text_input=Configuracion.get(langueje, {}).get("option"), font=get_font(75), base_color="Blue", hovering_color="White")
-                QUIT_BUTTON = Button(image=pygame.image.load("assets/Quit Rect.png"), pos=(640, 550), 
+                QUIT_BUTTON = Button(image=pygame.image.load("assets/Play Rect.png"), pos=(640, 550), 
                                     text_input=Configuracion.get(langueje, {}).get("exit"), font=get_font(75), base_color="Red", hovering_color="White")
 
                 PANTALLA.blit(MENU_TEXT, MENU_RECT)
