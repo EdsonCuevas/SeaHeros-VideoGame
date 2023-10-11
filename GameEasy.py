@@ -6,6 +6,60 @@ import Menu as cfg
 
 SoundActual = cfg.Music
 
+def start_menu():
+            
+    Configuracion,langueje = Load()
+
+    pygame.init()
+
+    #Pantalla
+    W,H = 1280,720
+    icon = pygame.image.load("img/Fish animation/fish1.png")
+    PANTALLA = pygame.display.set_mode((W,H))
+    pygame.display.set_caption("Sea Heros")
+    pygame.display.set_icon(icon)
+
+    bolsa_ico = pygame.image.load("img/coliders/bolsa.png")
+    rock_ico = pygame.image.load("img/icons/rock.png")
+
+    #Fuentes
+    font = pygame.font.SysFont('Bauhaus 93', 60)
+    font1 = pygame.font.Font('assets/upheavtt.ttf', 60)
+    font2 = pygame.font.Font('assets/upheavtt.ttf', 40)
+    font3 = pygame.font.Font('assets/upheavtt.ttf', 22)
+
+    def draw_text(text, font, text_col, x,y):
+        img = font.render(text, True, text_col)
+        PANTALLA.blit(img, (x,y))
+
+    #Colores
+    white = (255, 255, 255)
+    green = (0, 208, 0)
+    red = (255, 0, 0)
+
+
+    run = True
+    while run:
+
+        PANTALLA.fill("black")
+
+        #Muestra el objetivo del juego
+        draw_text(Configuracion.get(langueje, {}).get("object"), font1, white, 500, 200)
+        draw_text(Configuracion.get(langueje, {}).get("recolet"), font1, green, 480, 300)
+        PANTALLA.blit(bolsa_ico, (800, 300))
+        draw_text(Configuracion.get(langueje, {}).get("evade"), font2, red, 5, 110)
+        PANTALLA.blit(rock_ico, (150, 105))
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                run = False
+                Level1()
+                
+        pygame.display.update()
+
 def Level1():
         
         Configuracion,langueje = Load()
@@ -22,8 +76,16 @@ def Level1():
 
         #Fuentes
         font = pygame.font.SysFont('Bauhaus 93', 60)
+        font1 = pygame.font.Font('assets/upheavtt.ttf', 60)
         font2 = pygame.font.Font('assets/upheavtt.ttf', 40)
         font3 = pygame.font.Font('assets/upheavtt.ttf', 22)
+
+        def draw_text(text, font, text_col, x,y):
+            img = font.render(text, True, text_col)
+            PANTALLA.blit(img, (x,y))
+        
+        def get_font(size):
+            return pygame.font.Font("assets/font.ttf", size)
 
         #Guarda los sonidos en una variable
         victory_sound = pygame.mixer.Sound("sound/victorysound.mp3")
@@ -33,13 +95,6 @@ def Level1():
         recolection.set_volume(0.5)
         death_sound.set_volume(0.25)
         victory_sound.set_volume(0.3)
-        
-        #Musica de fondo
-        pygame.mixer.music.load("sound/level1.mp3")
-        #Establece la musica en un bucle infinito
-        pygame.mixer.music.play(-1)
-        #Setea el volumen inicial de la musica
-        pygame.mixer.music.set_volume == SoundActual
 
         #Carga las imagenes de subir y bajar volumen
         sonido_arriba = pygame.image.load("sound/img/volume_up.png")
@@ -67,7 +122,7 @@ def Level1():
         sound = True
         
         #Carga de imagenes de botones y el icon de objetivo
-        bolsa_ico = pygame.image.load("img/icons/bolsa.png")
+        bolsa_ico = pygame.image.load("img/coliders/bolsa.png")
         rock_ico = pygame.image.load("img/icons/rock.png")
         flecha_up = pygame.image.load("img/keys/arrowup_alternative_paper.png")
         flecha_down = pygame.image.load("img/keys/arrowdown_alternative_paper.png")
@@ -76,6 +131,13 @@ def Level1():
         q_key = pygame.image.load("img/keys/q_alternative_paper.png")
         click1 = pygame.image.load("img/keys/mouse_L_pressed_paper.png")
 
+        #Musica de fondo
+        pygame.mixer.music.load("sound/level1.mp3")
+        #Establece la musica en un bucle infinito
+        pygame.mixer.music.play(-1)
+        #Setea el volumen inicial de la musica
+        pygame.mixer.music.set_volume == SoundActual
+
         #Frecuencia de aparicion de rock
         frecuencia_rock = 2300 #milisegundos
         last_rock = pygame.time.get_ticks() - frecuencia_rock
@@ -83,15 +145,7 @@ def Level1():
         #Frecuencia de aparicion de bolsa
         frecuencia_bag = 3000 #milisegundos
         ultima_bag = pygame.time.get_ticks() - frecuencia_bag
-
-        def draw_text(text, font, text_col, x,y):
-            img = font.render(text, True, text_col)
-            PANTALLA.blit(img, (x,y))
         
-        def get_font(size):
-            return pygame.font.Font("assets/font.ttf", size)
-
-
         #Defino la funcion de pausa
         def pause():
             paused = True
@@ -311,12 +365,6 @@ def Level1():
             if swimming == False and game_over == False:
                 draw_text(Configuracion.get(langueje, {}).get("swimming"), font2, black, 400, 340)
                 PANTALLA.blit(click1, (588, 315))
-                #Muestra el objetivo del juego
-                draw_text(Configuracion.get(langueje, {}).get("object"), font2, white, 5, 350)
-                draw_text(Configuracion.get(langueje, {}).get("recolet"), font2, green, 5, 50)
-                PANTALLA.blit(bolsa_ico, (225, 50))
-                draw_text(Configuracion.get(langueje, {}).get("evade"), font2, red, 5, 110)
-                PANTALLA.blit(rock_ico, (150, 105))
                 #Funcion que muestre las teclas
                 keys_on_screen()
             
@@ -455,4 +503,5 @@ def Level1():
                         
             AudioControl()
             pygame.display.update()
-Level1()
+
+start_menu()
