@@ -69,7 +69,7 @@ def start_menu():
         pygame.display.update()
 
         for segundo in range(4):
-            if segundo == 4:
+            if segundo == 3:
                 break
             time.sleep(1)
         
