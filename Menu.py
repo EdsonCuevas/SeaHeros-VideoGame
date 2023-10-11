@@ -1,4 +1,4 @@
-import pygame, sys
+import pygame, sys,json
 from pyvidplayer import Video
 from button import Button
 from pygame.locals import *
@@ -21,8 +21,7 @@ def Load():
 
 #Inicia el juego pygame
 pygame.init()
-
-#Carga el .JSON
+#Cargo el .JSON
 Configuracion, langueje = Load()
 
 #Declaro las variables para el ancho y alto del juego
@@ -66,6 +65,7 @@ def draw_text(text, font, text_col, x,y):
             PANTALLA.blit(img, (x,y))
 
 def intro():
+    
     run = True
     while run:
         #Carga el video de la intro
@@ -95,6 +95,8 @@ def intro():
                 MenuTotal()
             
 def MenuTotal():
+
+    Configuracion, langueje = Load()
 
     #Inicia el juego pygame
     pygame.init()
@@ -200,8 +202,9 @@ def MenuTotal():
                     if event.type == pygame.MOUSEBUTTONDOWN:
                         if EASY_GAME.checkForInput(PLAY_MOUSE_POS):
                             pygame.mixer_music.stop()
-                            from GameEasy import start_menu
-                            start_menu()
+                            from GameEasy import Level1
+                            Level1()
+                        
                     #Ejecucion del boton del modo dificil
                     if event.type == pygame.MOUSEBUTTONDOWN:
                         if HARD_GAME.checkForInput(PLAY_MOUSE_POS):
@@ -209,12 +212,16 @@ def MenuTotal():
                             from GameHard import Level1
                             Level1()
                             
+                            
                 ControlMusic()
                 pygame.display.update()
 
     #El menu de opciones            
     def options():
             while True:
+
+                global var
+
                 OPTIONS_MOUSE_POS = pygame.mouse.get_pos()
 
                 PANTALLA.blit(BG, (0, 0))
@@ -223,7 +230,7 @@ def MenuTotal():
                 if pygame.mixer_music.get_volume() == 0.0:
                     muted = True
                     infoaud = Configuracion.get(langueje, {}).get("muted")
-                if pygame.mixer_music.get_volume() >= 0.01:
+                if pygame.mixer_music.get_volume() >= 0.1:
                     muted = False                
                     infoaud = Configuracion.get(langueje, {}).get("unmuted")
 
@@ -274,8 +281,8 @@ def MenuTotal():
                             main_menu()
 
                         if CHANGE_LANG.checkForInput(OPTIONS_MOUSE_POS):
-                            pass
-
+                             pass
+                               
                         if muted == False:
                             if MUSIC.checkForInput(OPTIONS_MOUSE_POS):
                                 pygame.mixer_music.set_volume(0.0)
