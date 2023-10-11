@@ -1,7 +1,7 @@
 import pygame, sys, random, time, os
 from pygame.locals import *
 from button import Button
-from JSON import Load
+from Menu import Load
 import Menu as cfg
 
 SoundActual = cfg.Music
