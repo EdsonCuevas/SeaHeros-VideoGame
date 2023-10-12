@@ -6,28 +6,33 @@ import Menu as cfg
 
 SoundActual = cfg.Music
 
-def start_menu():
-    
-    Configuracion,langueje = Load()
-    
 
+def start_menu():
+
+    #Carga el JSON
+    Configuracion,langueje = Load()
+    langueje = cfg.idioma_actual
+
+    #Inicia el pygame
     pygame.init()
 
-    #Pantalla
+    #Pantalla Resolucion
     W,H = 1280,720
+    #Carga icono de la ventana
     icon = pygame.image.load("img/Fish animation/fish1.png")
+    #Setea el display
     PANTALLA = pygame.display.set_mode((W,H))
-    pygame.display.set_caption("Sea Heros")
+    #Nombre de la ventana del juego
+    pygame.display.set_caption("Sea Heroes")
+    #Carga el icon
     pygame.display.set_icon(icon)
 
+    #Carga el las imagenes en una variable
     bolsa_ico = pygame.image.load("img/coliders/bolsa.png")
     rock_ico = pygame.image.load("img/coliders/rock.png")
 
     #Fuentes
-    font = pygame.font.SysFont('Bauhaus 93', 60)
     font1 = pygame.font.Font('assets/upheavtt.ttf', 60)
-    font2 = pygame.font.Font('assets/upheavtt.ttf', 40)
-    font3 = pygame.font.Font('assets/upheavtt.ttf', 22)
 
     def draw_text(text, font, text_col, x,y):
         img = font.render(text, True, text_col)
@@ -80,8 +85,8 @@ start_menu()
 
 def Level1():
         
-        global langueje
         Configuracion,langueje = Load()
+        langueje = cfg.idioma_actual
 
         
         #Start de pygame

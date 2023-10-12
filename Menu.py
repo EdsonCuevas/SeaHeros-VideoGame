@@ -18,8 +18,7 @@ pygame.display.set_caption("Sea Heros")
 muted = False
 Music = pygame.mixer_music.get_volume()
 
-english = False
-spanish = False
+idioma_actual = "es"
 
 #Meto la imagenes del click en una variable
 click1 = pygame.image.load("img/keys/mouse_L_pressed_paper.png")
@@ -53,6 +52,7 @@ def draw_text(text, font, text_col, x,y):
             PANTALLA.blit(img, (x,y))
 
 def intro():
+    
     
     run = True
     while run:
@@ -189,18 +189,23 @@ def MenuTotal():
                     if event.type == pygame.QUIT:
                         pygame.quit()
                         sys.exit()
+
                     #Ejecucion del boton de volver
                     if event.type == pygame.MOUSEBUTTONDOWN:
                         if PLAY_BACK.checkForInput(PLAY_MOUSE_POS):
                             main_menu()
+
                     #Ejecucion del boton del modo facil
                     if event.type == pygame.MOUSEBUTTONDOWN:
                         if EASY_GAME.checkForInput(PLAY_MOUSE_POS):
+                            print(idioma_actual)
                             pygame.mixer_music.stop()
                             from GameEasy import start_menu
                             from GameEasy import Level1
                             start_menu()
                             Level1()
+                            return idioma_actual
+                            
                         
                     #Ejecucion del boton del modo dificil
                     if event.type == pygame.MOUSEBUTTONDOWN:
@@ -220,6 +225,7 @@ def MenuTotal():
             while True:
 
                 global langueje
+                global idioma_actual
 
                 OPTIONS_MOUSE_POS = pygame.mouse.get_pos()
 
@@ -280,9 +286,11 @@ def MenuTotal():
                     if event.type == pygame.MOUSEBUTTONDOWN:
                         if OPTIONS_BACK.checkForInput(OPTIONS_MOUSE_POS):
                             main_menu()
+                            return langueje
 
                         if CHANGE_LANG.checkForInput(OPTIONS_MOUSE_POS):
                             langueje = "en"
+                            idioma_actual = "en"
 
                             
                                

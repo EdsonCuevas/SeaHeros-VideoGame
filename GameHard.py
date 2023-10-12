@@ -9,6 +9,7 @@ SoundActual = cfg.Music
 def start_menu():
             
     Configuracion,langueje = Load()
+    langueje = cfg.idioma_actual
 
     pygame.init()
 
@@ -82,7 +83,8 @@ start_menu()
 def Level1():
         
         Configuracion,langueje = Load()
-        
+        langueje = cfg.idioma_actual
+
         #Start de pygame
         pygame.init()
 
@@ -118,7 +120,7 @@ def Level1():
         sonido_max = pygame.image.load("sound/img/volume_max.png")
 
         #Fondo
-        fondo = pygame.image.load("img/bg.jpg").convert()
+        fondo = pygame.image.load("img/bghard.png").convert()
         VelFondo = 0
 
         #Colores
