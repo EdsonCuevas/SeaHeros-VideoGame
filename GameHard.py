@@ -9,6 +9,7 @@ SoundActual = cfg.Music
 def start_menu():
             
     Configuracion,langueje = Load()
+    langueje = cfg.idioma_actual
 
     pygame.init()
 
@@ -82,7 +83,8 @@ start_menu()
 def Level1():
         
         Configuracion,langueje = Load()
-        
+        langueje = cfg.idioma_actual
+
         #Start de pygame
         pygame.init()
 
