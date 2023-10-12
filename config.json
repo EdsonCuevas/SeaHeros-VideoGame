@@ -13,7 +13,8 @@
         "back":"VOLVER",
 
         "language":"Idioma:",
-        "changelanguage": "Español",
+        "changelanguage": "Ingles",
+        "changelanguage2": "Español",
         "musictext":"Musica:",
         "unmuted":"Activado",
         "muted": "Apagado",
@@ -59,6 +60,7 @@
 
         "language":"Language:",
         "changelanguage": "English",
+        "changelanguage2": "Spanish",
 
         "musictext":"Music:",
         "unmuted":"ON",

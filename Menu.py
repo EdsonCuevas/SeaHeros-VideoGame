@@ -251,25 +251,33 @@ def MenuTotal():
 
                 #Muestra Texto de Volumen
                 MUSICVOL_TEXT = get_font(45).render(Configuracion.get(langueje, {}).get("musictext"), True, "Blue")
-                MUSICVOL_RECT = IDIOMA_TEXT.get_rect(center=(500, 400))
+                MUSICVOL_RECT = IDIOMA_TEXT.get_rect(center=(500, 430))
                 PANTALLA.blit(MUSICVOL_TEXT, MUSICVOL_RECT)
 
                 #Boton de cambio de idioma
                 if(langueje == "es"):
-                    CHANGE_LANG = Button(image=(pygame.image.load("assets/Play Rect.png")), pos=(850, 250),
+                    CHANGE_LANG_EN = Button(image=(pygame.image.load("assets/Play Rect.png")), pos=(850, 200),
                                         text_input=Configuracion.get(langueje, {}).get("changelanguage"), font=get_font(50), base_color="White", hovering_color="Green")
                     
                 if(langueje == "en"):
-                    CHANGE_LANG = Button(image=(pygame.image.load("assets/Play Rect.png")), pos=(870, 250),
+                    CHANGE_LANG_EN = Button(image=(pygame.image.load("assets/Play Rect.png")), pos=(870, 200),
                                         text_input=Configuracion.get(langueje, {}).get("changelanguage"), font=get_font(50), base_color="White", hovering_color="Green")
+                
+                if(langueje == "es"):
+                    CHANGE_LANG_ES = Button(image=(pygame.image.load("assets/Play Rect.png")), pos=(850, 300),
+                                        text_input=Configuracion.get(langueje, {}).get("changelanguage2"), font=get_font(50), base_color="White", hovering_color="Green")
+                    
+                if(langueje == "en"):
+                    CHANGE_LANG_ES = Button(image=(pygame.image.load("assets/Play Rect.png")), pos=(870, 300),
+                                        text_input=Configuracion.get(langueje, {}).get("changelanguage2"), font=get_font(50), base_color="White", hovering_color="Green")
                 
                 #Boton de Desactivador de Musica
                 if(langueje == "es"):
-                    MUSIC = Button(image=(pygame.image.load("assets/Play Rect1.png")), pos=(850, 400),
+                    MUSIC = Button(image=(pygame.image.load("assets/Play Rect1.png")), pos=(850, 420),
                                         text_input=infoaud, font=get_font(50), base_color="White", hovering_color="Green")
                 
                 if(langueje == "en"):
-                    MUSIC = Button(image=(pygame.image.load("assets/Play Rect.png")), pos=(750, 400),
+                    MUSIC = Button(image=(pygame.image.load("assets/Play Rect.png")), pos=(750, 420),
                                         text_input=infoaud, font=get_font(50), base_color="White", hovering_color="Green")
                     
                 
@@ -282,15 +290,19 @@ def MenuTotal():
                     if event.type == pygame.QUIT:
                         pygame.quit()
                         sys.exit()
+
                     #Detecta si la tecla del mouse es presionada
                     if event.type == pygame.MOUSEBUTTONDOWN:
                         if OPTIONS_BACK.checkForInput(OPTIONS_MOUSE_POS):
                             main_menu()
                             return langueje
 
-                        if CHANGE_LANG.checkForInput(OPTIONS_MOUSE_POS):
+                        if CHANGE_LANG_EN.checkForInput(OPTIONS_MOUSE_POS):
                             langueje = "en"
                             idioma_actual = "en"
+                        if CHANGE_LANG_ES.checkForInput(OPTIONS_MOUSE_POS):
+                            langueje = "es"
+                            idioma_actual = "es"
 
                             
                                
@@ -306,8 +318,10 @@ def MenuTotal():
 
                 OPTIONS_BACK.changeColor(OPTIONS_MOUSE_POS)
                 OPTIONS_BACK.update(PANTALLA)
-                CHANGE_LANG.changeColor(OPTIONS_MOUSE_POS)
-                CHANGE_LANG.update(PANTALLA)
+                CHANGE_LANG_EN.changeColor(OPTIONS_MOUSE_POS)
+                CHANGE_LANG_EN.update(PANTALLA)
+                CHANGE_LANG_ES.changeColor(OPTIONS_MOUSE_POS)
+                CHANGE_LANG_ES.update(PANTALLA)
                 MUSIC.changeColor(OPTIONS_MOUSE_POS)
                 MUSIC.update(PANTALLA)
 
