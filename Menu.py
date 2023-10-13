@@ -241,11 +241,16 @@ def MenuTotal():
     def options():
             while True:
 
+                #La declaro la variable languaje como global para que se pueda ver el cambio de idioma en esta parte del Menu
                 global langueje
+
+                #La declaro la variable idioma_actual como global para poder almacenar el cambio de idioma
                 global idioma_actual
 
+                #Detecta la poicion del mouse y lo guarda en una varibale
                 OPTIONS_MOUSE_POS = pygame.mouse.get_pos()
 
+                #Muestra en la pantalla el mismo background
                 PANTALLA.blit(BG, (0, 0))
 
                 #Detector de mute
@@ -310,29 +315,40 @@ def MenuTotal():
 
                     #Detecta si la tecla del mouse es presionada
                     if event.type == pygame.MOUSEBUTTONDOWN:
+                        #Si el boton es presionado
                         if OPTIONS_BACK.checkForInput(OPTIONS_MOUSE_POS):
+                            #Carga el menu
                             main_menu()
-                            return langueje
 
+                        #Si el boton de cambio de idioma ingles es presionado
                         if CHANGE_LANG_EN.checkForInput(OPTIONS_MOUSE_POS):
+                            #Cambia las variables a en
                             langueje = "en"
                             idioma_actual = "en"
+                        #Si el boton de cambio de idioma ingles es presionado
                         if CHANGE_LANG_ES.checkForInput(OPTIONS_MOUSE_POS):
+                            #cambia las variables a en
                             langueje = "es"
                             idioma_actual = "es"
 
                             
-                               
+                        #Si el juego no esta sin volumen
                         if muted == False:
+                            #Si se da click en el boton de apagar
                             if MUSIC.checkForInput(OPTIONS_MOUSE_POS):
+                                #Setea el volumen a 0
                                 pygame.mixer_music.set_volume(0.0)
-                                
+                        
+                        #Si el juego ya esta muteado
                         if muted == True:
+                            #Si el boton de cambio de mute es presionado
                             if MUSIC.checkForInput(OPTIONS_MOUSE_POS):
+                                #Sube el volumen a la mitad
                                 pygame.mixer_music.set_volume(0.5)
                                 
                                 
-
+                #El cambio de color cuando el mouse esta encima del boton
+                #Muestra contantemente los botones en la pantalla
                 OPTIONS_BACK.changeColor(OPTIONS_MOUSE_POS)
                 OPTIONS_BACK.update(PANTALLA)
                 CHANGE_LANG_EN.changeColor(OPTIONS_MOUSE_POS)
@@ -343,13 +359,17 @@ def MenuTotal():
                 MUSIC.update(PANTALLA)
 
                 
+                #Llamamos a la funcion de control de musica para que tambien funcione en este menu de opciones
                 ControlMusic()
 
+                #Para que el display este en contante actualizacion
                 pygame.display.update()
 
+    #Deffino la funcion del Menu principal
     def main_menu():
         while True:
                 
+                #La declaro la variable languaje como global para que se pueda ver el cambio de idioma en esta parte del Menu
                 global langueje
 
                 #Ejectua el fondo previamente cargado en la variable BG
@@ -358,41 +378,61 @@ def MenuTotal():
                 #Detecta la posicion del mouse para poder interactuar con los botones
                 MENU_MOUSE_POS = pygame.mouse.get_pos()
 
+                #En una variable guardamos el texto de titulo del juego
                 MENU_TEXT = get_font(100).render("SEA HEROS", True, "#b68f40")
+                #Guardamos en una variable los rectangulos del texto de los botones
                 MENU_RECT = MENU_TEXT.get_rect(center=(640, 100))
 
-
+                #Guardamos en una variable la clase del boton y para el boton de play
                 PLAY_BUTTON = Button(image=pygame.image.load("assets/Play Rect.png"), pos=(640, 250), 
                                     text_input=Configuracion.get(langueje, {}).get("play"), font=get_font(75), base_color="Green", hovering_color="White")
-                OPTIONS_BUTTON = Button(image=pygame.image.load("assets/Options Rect.png"), pos=(640, 400), 
+                #Guardamos en una variable la clase del boton y para el boton de opciones
+                OPTIONS_BUTTON = Button(image=pygame.image.load("assets/Options Rect.png"), pos=(640, 400),
                                     text_input=Configuracion.get(langueje, {}).get("option"), font=get_font(75), base_color="Blue", hovering_color="White")
-                QUIT_BUTTON = Button(image=pygame.image.load("assets/Play Rect.png"), pos=(640, 550), 
+                #Guardamos en una variable la clase del boton y para el boton de salir del juego
+                QUIT_BUTTON = Button(image=pygame.image.load("assets/Play Rect.png"), pos=(640, 550),
                                     text_input=Configuracion.get(langueje, {}).get("exit"), font=get_font(75), base_color="Red", hovering_color="White")
 
+                #Muestra en pantalla el texto y el rectangulo negro
                 PANTALLA.blit(MENU_TEXT, MENU_RECT)
 
+
+                #Un for para la actualizacion de todos los botones en una sola variable
                 for button in [PLAY_BUTTON, OPTIONS_BUTTON, QUIT_BUTTON]:
+                    #Detecta el cambio de color de todos los botones
                     button.changeColor(MENU_MOUSE_POS)
+                    #Actualiza los botones en la pantalla
                     button.update(PANTALLA)
                 
+                #Evento principal para poder cerrar la ventana
                 for event in pygame.event.get():
                     if event.type == pygame.QUIT:
                         pygame.quit()
                         sys.exit()
+                    #Evento que detecta el mouse haga algun click
                     if event.type == pygame.MOUSEBUTTONDOWN:
+                        #Si el boton de play es presionado
                         if PLAY_BUTTON.checkForInput(MENU_MOUSE_POS):
+                            #Entra la funcion
                             play()
+                        #Si el boton de opciones es presionado
                         if OPTIONS_BUTTON.checkForInput(MENU_MOUSE_POS):
+                            #Entra a la funcion
                             options()
+                        #Si el boton de salir es presionado
                         if QUIT_BUTTON.checkForInput(MENU_MOUSE_POS):
+                            #Cierra todo el pygame
                             pygame.quit()
                             sys.exit()
 
+                #Llama a la funcion de el control de musica
                 ControlMusic()
+                #Funcion para actualizar toda la pantalla constantemente
                 pygame.display.update()
     
 
-
+    #Llama al menu principal
     main_menu()
-    
+
+#Carga primero antes que todo la funcion de intro
 intro()
