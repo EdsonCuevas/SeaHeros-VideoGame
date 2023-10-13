@@ -7,23 +7,30 @@ from JSON  import Load
 #Inicia el juego pygame
 pygame.init()
 
+#Cargo el JSON
 Configuracion, langueje = Load()
 
 #Declaro las variables para el ancho y alto del juego
 #Resolucion
 W, H = 1280, 720
+#Setea el display en una variable
 PANTALLA = pygame.display.set_mode((W, H))
+#Nombre de la ventana del juego
 pygame.display.set_caption("Sea Hereos")
 
+#Crea un variable booleana
 muted = False
+
+#En music guarda el porcentaje de volumen actual de 0.1 - 1.0
 Music = pygame.mixer_music.get_volume()
 
+#Declara el idioma actual en español
 idioma_actual = "es"
 
-#Meto la imagenes del click en una variable
+#Meto la imagenes del click en una variable para usarlo en el intro
 click1 = pygame.image.load("img/keys/mouse_L_pressed_paper.png")
 
-#Declaro las imagenes de todas las funciones de sonido
+#Carga las imagenes de control de volumen
 sonido_arriba = pygame.image.load("sound/img/volume_up.png")
 sonido_abajo = pygame.image.load("sound/img/volume_down.png")
 sonido_mute = pygame.image.load("sound/img/volume_muted.png")
@@ -39,11 +46,12 @@ black = (0, 0, 0)
 green = (0, 208, 0)
 red = (255, 0, 0)
 
-#Reloj
+#En una variable guardo el tiempo en milisegundos que transcurren desde que se inicia el pygame.init
 reloj = pygame.time.get_ticks()
 
-#Cargo el video de intro y su resolucion
+#Cargo el video de intro
 vid = Video("intro.mp4")
+#Setea la resolucion del video en HD
 vid.set_size((1280, 720))
 
 #Funcion con sus atributos para generar texto en la pantalla 
@@ -51,11 +59,13 @@ def draw_text(text, font, text_col, x,y):
             img = font.render(text, True, text_col)
             PANTALLA.blit(img, (x,y))
 
+#Funcion para la intro al abrir el juego
 def intro():
     
-    
+    #Bucle while para cargar el video y texto
     run = True
     while run:
+
         #Carga el video de la intro
         vid.draw(PANTALLA, (0,0))
         if langueje == "en":
@@ -70,21 +80,29 @@ def intro():
             vid.close()
             run = False
             MenuTotal()
-        
-        pygame.display.update()
 
+        #Bucle for para que la ventana del juego se pueda cerrar
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
+            #Detecta si el mouse se presiona
             if event.type == pygame.MOUSEBUTTONDOWN:
+                #Cierra el video
                 vid.close()
+                #Termina el bucle
                 run = False
+                #Carga la funcion del Menu
                 MenuTotal()
+
+        #Funcion predefinida para la actualizacion de pantalla
+        pygame.display.update()
             
 def MenuTotal():
 
+    #La declaro la variable languaje como global para que se pueda ver el cambio de idioma en esta parte del Menu
     global langueje
+    #Carga el JSON
     Configuracion, langueje = Load()
     
     #Inicia el juego pygame
@@ -97,16 +115,16 @@ def MenuTotal():
     #Nombre de la ventana
     pygame.display.set_caption("Sea Heroes")
 
-    #Carga el fondo del menu principal
+    #Carga el fondo del menu principal en una variable
     BG = pygame.image.load("assets/Background.png")
 
     #Carga la musica
     pygame.mixer.music.load("sound/menu.mp3")
 
-    #Carga el volumen inicial
+    #Setea el volumen inicial
     pygame.mixer.music.set_volume(0.5)
 
-    #Carga la musica en bucle con el -1
+    #Carga la musica en bucle con el (-1)
     pygame.mixer.music.play(-1)
 
     #Carga las imagenes la funcion de volumen en una variable
@@ -142,6 +160,7 @@ def MenuTotal():
     def play():
             while True:
 
+                #La declaro la variable languaje como global para que se pueda ver el cambio de idioma en esta parte del Menu
                 global langueje
 
                 #Carga la posicion del mouse
@@ -198,13 +217,11 @@ def MenuTotal():
                     #Ejecucion del boton del modo facil
                     if event.type == pygame.MOUSEBUTTONDOWN:
                         if EASY_GAME.checkForInput(PLAY_MOUSE_POS):
-                            print(idioma_actual)
                             pygame.mixer_music.stop()
                             from GameEasy import start_menu
                             from GameEasy import Level1
                             start_menu()
                             Level1()
-                            return idioma_actual
                             
                         
                     #Ejecucion del boton del modo dificil
