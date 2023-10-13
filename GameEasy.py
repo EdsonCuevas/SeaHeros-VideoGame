@@ -100,7 +100,7 @@ def Level1():
         W,H = 1280,720
         icon = pygame.image.load("img/Fish animation/fish1.png")
         PANTALLA = pygame.display.set_mode((W,H))
-        pygame.display.set_caption("Sea Heros")
+        pygame.display.set_caption("Sea Heroes")
         pygame.display.set_icon(icon)
 
         #Fuentes
