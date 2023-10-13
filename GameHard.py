@@ -17,7 +17,7 @@ def start_menu():
     W,H = 1280,720
     icon = pygame.image.load("img/Fish animation/fish1.png")
     PANTALLA = pygame.display.set_mode((W,H))
-    pygame.display.set_caption("Sea Heros")
+    pygame.display.set_caption("Sea Heroes")
     pygame.display.set_icon(icon)
 
     bolsa_ico = pygame.image.load("img/coliders/bolsa.png")
@@ -326,8 +326,8 @@ def Level1():
             images.append(pygame.image.load(name))
 
         #La barra de comustible se define y se declaran el valor de sus atributos
-        fuel_bar = FuelBar(500, 150, 300, 40, 1800)
-        fuel_bar.hp = 1800
+        fuel_bar = FuelBar(500, 150, 300, 40, 2150)
+        fuel_bar.hp = 2150
 
         #Bucle principal del juego
         running = True
@@ -473,11 +473,13 @@ def Level1():
                 if langueje == "es":
                     draw_text(Configuracion.get(langueje, {}).get("overReset"), font2, black, W / 3.5, 330)
                     draw_text(Configuracion.get(langueje, {}).get("overExit"), font2, black, W / 3.1, 380)
+                    draw_text(Configuracion.get(langueje, {}).get("teaching"), font2, red, 500, 250)
                     PANTALLA.blit(r_key, (490, 310))
                     PANTALLA.blit(q_key, (535, 360))
                 if langueje == "en":
                     draw_text(Configuracion.get(langueje, {}).get("overReset"), font2, black, 450, 330)
                     draw_text(Configuracion.get(langueje, {}).get("overExit"), font2, black, 500, 380)
+                    draw_text(Configuracion.get(langueje, {}).get("teaching"), font2, red, 550, 250)
                     PANTALLA.blit(r_key, (575, 310))
                     PANTALLA.blit(q_key, (625, 360))
                 

@@ -13,7 +13,7 @@ Configuracion, langueje = Load()
 #Resolucion
 W, H = 1280, 720
 PANTALLA = pygame.display.set_mode((W, H))
-pygame.display.set_caption("Sea Heros")
+pygame.display.set_caption("Sea Hereos")
 
 muted = False
 Music = pygame.mixer_music.get_volume()
@@ -95,7 +95,7 @@ def MenuTotal():
     #Se declara PANTALLA que sera el display del juego
     PANTALLA = pygame.display.set_mode((W, H))
     #Nombre de la ventana
-    pygame.display.set_caption("Sea Heros")
+    pygame.display.set_caption("Sea Heroes")
 
     #Carga el fondo del menu principal
     BG = pygame.image.load("assets/Background.png")
@@ -261,11 +261,11 @@ def MenuTotal():
                     
                 if(langueje == "en"):
                     CHANGE_LANG_EN = Button(image=(pygame.image.load("assets/Play Rect.png")), pos=(870, 200),
-                                        text_input=Configuracion.get(langueje, {}).get("changelanguage"), font=get_font(50), base_color="White", hovering_color="Green")
+                                        text_input=Configuracion.get(langueje, {}).get("changelanguage"), font=get_font(50), base_color="Green", hovering_color="Green")
                 
                 if(langueje == "es"):
                     CHANGE_LANG_ES = Button(image=(pygame.image.load("assets/Play Rect.png")), pos=(850, 300),
-                                        text_input=Configuracion.get(langueje, {}).get("changelanguage2"), font=get_font(50), base_color="White", hovering_color="Green")
+                                        text_input=Configuracion.get(langueje, {}).get("changelanguage2"), font=get_font(50), base_color="Green", hovering_color="Green")
                     
                 if(langueje == "en"):
                     CHANGE_LANG_ES = Button(image=(pygame.image.load("assets/Play Rect.png")), pos=(870, 300),

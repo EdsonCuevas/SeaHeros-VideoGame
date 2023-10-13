@@ -39,7 +39,8 @@
         "fuel": "Combustible",
         "swimming": "Presiona    Para Nadar",
         "overReset": "Pulsa     Para Reiniciar",
-        "overExit": "Pulsa      Para Salir"
+        "overExit": "Pulsa      Para Salir",
+        "teaching": "No contamines"
 
 
 
@@ -87,7 +88,8 @@
         "fuel": "Fuel",
         "swimming": "     PRESS    TO SWIM",
         "overReset": "PRESS     TO RESTART",
-        "overExit": "PRESS     TO EXIT"
+        "overExit": "PRESS     TO EXIT",
+        "teaching": "Not Pollute"
         
     }
 
