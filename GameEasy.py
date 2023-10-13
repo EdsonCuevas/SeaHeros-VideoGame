@@ -1,16 +1,18 @@
-import pygame, sys, random, time, os
+import pygame, sys, random, time
 from pygame.locals import *
 from button import Button
 from JSON  import Load
 import Menu as cfg
 
+#Carga el nivel de sonido de musica del menu anterior en una variable temporal y lo guarda en languaje del json
 SoundActual = cfg.Music
 
-#Menu de carga despues de dar play
+#Menu de carga de objetivos despues de dar play
 def start_menu():
 
     #Carga el JSON
     Configuracion,langueje = Load()
+    #Guarda el idioma anterior como temporal(cfg) y lo guarda en languaje del json
     langueje = cfg.idioma_actual
 
     #Inicia el pygame
@@ -34,14 +36,15 @@ def start_menu():
     #Fuentes
     font1 = pygame.font.Font('assets/upheavtt.ttf', 60)
 
-    def draw_text(text, font, text_col, x,y):
-        img = font.render(text, True, text_col)
-        PANTALLA.blit(img, (x,y))
-
     #Colores
     white = (255, 255, 255)
     green = (0, 208, 0)
     red = (255, 0, 0)
+
+    #Funcion para dibujar texto en la pantalla
+    def draw_text(text, font, text_col, x,y):
+        img = font.render(text, True, text_col)
+        PANTALLA.blit(img, (x,y))
 
     #Bucle para cargar el juego
     run = True
@@ -102,14 +105,15 @@ def Level1():
 
         #Fuentes
         font = pygame.font.SysFont('Bauhaus 93', 60)
-        font1 = pygame.font.Font('assets/upheavtt.ttf', 60)
         font2 = pygame.font.Font('assets/upheavtt.ttf', 40)
         font3 = pygame.font.Font('assets/upheavtt.ttf', 22)
 
+        #Funcion para dibujar texto en la pantalla
         def draw_text(text, font, text_col, x,y):
             img = font.render(text, True, text_col)
             PANTALLA.blit(img, (x,y))
         
+        #Funcion para cargar una fuente que usa para el boton de next level
         def get_font(size):
             return pygame.font.Font("assets/font.ttf", size)
 
@@ -118,24 +122,23 @@ def Level1():
         death_sound = pygame.mixer.Sound("sound/deathsound.mp3")
         recolection = pygame.mixer.Sound("sound/recolection.mp3")
         #Setea los sonidos a un volumen establecido
-        recolection.set_volume(0.5)
-        death_sound.set_volume(0.25)
         victory_sound.set_volume(0.3)
+        death_sound.set_volume(0.25)
+        recolection.set_volume(0.5)
 
-        #Carga las imagenes de subir y bajar volumen
+        #Carga las imagenes de control de volumen
         sonido_arriba = pygame.image.load("sound/img/volume_up.png")
         sonido_abajo = pygame.image.load("sound/img/volume_down.png")
         sonido_mute = pygame.image.load("sound/img/volume_muted.png")
         sonido_max = pygame.image.load("sound/img/volume_max.png")
 
-        #Fondo
+        #Fondo en movimiento
         fondo = pygame.image.load("img/bg.jpg").convert()
         VelFondo = 0
 
         #Colores
         white = (255, 255, 255)
         black = (0, 0, 0)
-        green = (0, 208, 0)
         red = (255, 0, 0)
 
         #Variables Principales
@@ -205,23 +208,7 @@ def Level1():
                         
                 pygame.display.update()
 
-        #Barra de vida para terminar el juego
-        class FuelBar():
-            def __init__(self, x, y, w, h, max_hp):
-                self.x = x
-                self.y = y
-                self.w = w
-                self.h = h
-                self.hp = max_hp
-                self.max_hp = max_hp
-
-            def draw(self, surface):
-                #calculate fuel ratio
-                ratio = self.hp / self.max_hp
-                pygame.draw.rect(surface, "#701212", (self.x, self.y, self.w, self.h))
-                pygame.draw.rect(surface, "#B27313", (self.x, self.y, self.w * ratio, self.h))
-
-        #Todas las funciones del submarino
+        #La clase del submarino con sus atributos y funciones
         class Submarine(pygame.sprite.Sprite):
             def __init__(self, x, y):
                 pygame.sprite.Sprite.__init__(self)
@@ -272,7 +259,23 @@ def Level1():
                 else:
                     self.image = pygame.transform.rotate(self.images[self.index], -180)
 
-        #La clase de la rock
+        #La clase de la barra de combustible con sus atributos y funciones
+        class FuelBar():
+            def __init__(self, x, y, w, h, max_hp):
+                self.x = x
+                self.y = y
+                self.w = w
+                self.h = h
+                self.hp = max_hp
+                self.max_hp = max_hp
+
+            def draw(self, surface):
+                #calculate fuel ratio
+                ratio = self.hp / self.max_hp
+                pygame.draw.rect(surface, "#701212", (self.x, self.y, self.w, self.h))
+                pygame.draw.rect(surface, "#B27313", (self.x, self.y, self.w * ratio, self.h))
+
+        #La clase de la rock con sus atributos y funciones
         class Rock(pygame.sprite.Sprite):
             def __init__(self, x, y):
                 pygame.sprite.Sprite.__init__(self)
@@ -286,7 +289,7 @@ def Level1():
                 if game_over == False:
                     self.rect.x -= 2
 
-        #La clase de la bolsa
+        #La clase de la bolsa con sus atributos y funciones
         class Bag(pygame.sprite.Sprite):
             def __init__(self, x, y):
                 pygame.sprite.Sprite.__init__(self)
@@ -319,14 +322,33 @@ def Level1():
                             from GameEasy import Level1
                             Level1()
 
+        #Funcion para imprimir las teclas en pantalla
+        def keys_on_screen():
+            draw_text(Configuracion.get(langueje, {}).get("keysControl"), font2, black, 1040, 380)
+            PANTALLA.blit(esc_key, (1030, 410))
+            draw_text(Configuracion.get(langueje, {}).get("keysPaused"), font3, black, 1100, 446)
+            PANTALLA.blit(r_key, (1030, 460))
+            draw_text(Configuracion.get(langueje, {}).get("keysReset"), font3, black, 1100, 490)
+            PANTALLA.blit(q_key, (1030, 505))
+            draw_text(Configuracion.get(langueje, {}).get("keysExit"), font3, black, 1100, 535)
+            PANTALLA.blit(flecha_up, (1020, 545))
+            draw_text(Configuracion.get(langueje, {}).get("keysUpMusic"), font3, black, 1100, 577)
+            PANTALLA.blit(flecha_down, (1010, 580))
+            draw_text(Configuracion.get(langueje, {}).get("keysDownMusic"), font3, black, 1100, 620)
+
         #Se declaran los objetos como grupos
         submarine_group = pygame.sprite.Group()
         rock_group = pygame.sprite.Group()
         bag_group = pygame.sprite.Group()
 
-        #Cordenadas donde aparece el submarino
+        #En la variable flappy almacenamos la ubicacion donde aparecera el submarino
         flappy = Submarine(100, int(H / 2))
+        #Al grupo le agregamos la variable flappy
         submarine_group.add(flappy)
+
+        #Asigna los valores a la clase vida
+        fuel_bar = FuelBar(500, 150, 300, 40, 3000)
+        fuel_bar.hp = 3000
 
         #Carga de imagenes de victoria
         images = []
@@ -334,14 +356,11 @@ def Level1():
             name = "img/victory_screen/victory"+str(i)+".png"
             images.append(pygame.image.load(name))
 
-        fuel_bar = FuelBar(500, 150, 300, 40, 3000)
-        fuel_bar.hp = 3000
-
         #Bucle principal del juego
         running = True
         while running:
 
-            #Tecla pulsada
+            #Guardamos en una variable una funcion de tecla mantenida
             keys = pygame.key.get_pressed()
 
             #Movimiento en bucle del fondo del juego
@@ -361,18 +380,6 @@ def Level1():
             rock_group.update()
             bag_group.draw(PANTALLA)
             bag_group.update()
-            def keys_on_screen():
-                draw_text(Configuracion.get(langueje, {}).get("keysControl"), font2, black, 1040, 380)
-                PANTALLA.blit(esc_key, (1030, 410))
-                draw_text(Configuracion.get(langueje, {}).get("keysPaused"), font3, black, 1100, 446)
-                PANTALLA.blit(r_key, (1030, 460))
-                draw_text(Configuracion.get(langueje, {}).get("keysReset"), font3, black, 1100, 490)
-                PANTALLA.blit(q_key, (1030, 505))
-                draw_text(Configuracion.get(langueje, {}).get("keysExit"), font3, black, 1100, 535)
-                PANTALLA.blit(flecha_up, (1020, 545))
-                draw_text(Configuracion.get(langueje, {}).get("keysUpMusic"), font3, black, 1100, 577)
-                PANTALLA.blit(flecha_down, (1010, 580))
-                draw_text(Configuracion.get(langueje, {}).get("keysDownMusic"), font3, black, 1100, 620)
             
             #Si la victoria todavia no esta hecha muestra el score, texto y controles
             if victory == False:
@@ -450,8 +457,6 @@ def Level1():
             if flappy.rect.bottom >= 720:
                 game_over = True
                 swimming = False
-            if game_over == True:
-                VelFondo = 0
                 
                 
 
@@ -479,6 +484,7 @@ def Level1():
             if game_over == True:
                 pygame.mixer.music.stop()
                 score = 0
+                VelFondo = 0
                 if langueje == "es":
                     draw_text(Configuracion.get(langueje, {}).get("overReset"), font2, black, W / 3.5, 330)
                     draw_text(Configuracion.get(langueje, {}).get("overExit"), font2, black, W / 3.1, 380)
@@ -495,43 +501,49 @@ def Level1():
             #Si el jugador muere reproduce el sonido
             if game_over == True and sound == True:
                 death_sound.play()
+                #La variable la vuelve falsa para que el if no se cumpla y no reproduzca en bucle
                 sound = False
 
             #El decremento de la vida si el jugador empieza a jugar
             if swimming == True and game_over == False and victory == False:
                 fuel_bar.hp -= 1
                 if fuel_bar.hp <= 0:
-                    death_sound.play()
                     game_over = True
+                    death_sound.play()
+                    
                         
 
-            #Detecta que el juego empiece
+            #Evento para poder cerrar la ventana del juego y no se quede en bucle infinito
             for event in pygame.event.get():
                 if event.type == QUIT:
                     running = False
                     pygame.quit()
                     exit()
-                if event.type == VIDEORESIZE:
-                     PANTALLA = pygame.display.set_mode((event.w, event.h), pygame.RESIZABLE)
+                #Detecta que el juego empiece al clickear
                 if event.type == pygame.MOUSEBUTTONDOWN and swimming == False and game_over == False:
                     swimming = True
+                #Evento para detectar una pulsacion de tecla
                 if event.type == pygame.KEYDOWN:
+                    #Si la tecla presionada es Escape y el juego ya empezo
                     if event.key == pygame.K_ESCAPE and game_over == False and swimming == True:
                         if langueje == "es":
                             PANTALLA.blit(esc_key, (495, 345))
                         if langueje == "en":
                             PANTALLA.blit(esc_key, (530, 345))
                         keys_on_screen()
+                        #Se va la funcion pause que es un bucle while
                         pause()
                     if event.key == pygame.K_r:
                         Level1()
                     if event.key == pygame.K_q:
                         pygame.mixer.music.stop()
+                        #Carga el menu
                         from Menu import MenuTotal
                         MenuTotal()
                         
-                        
+            #Carga el control de audio cuando carga el nivel            
             AudioControl()
+            #Funcion para actualizar la pantalla constantemente
             pygame.display.update()
 
 Level1()
