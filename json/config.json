@@ -1,0 +1,98 @@
+{
+    "es":{
+
+        "skipintro": "Presiona    Para Iniciar",
+        
+        "play": "Jugar",
+        "option": "Opciones",
+        "exit": "Salir",
+        
+        "select": "Selecciona la dificultad",
+        "easy": "Facil",
+        "hard": "Dificil",
+        "back":"VOLVER",
+
+        "language":"Idioma:",
+        "changelanguage": "Ingles",
+        "changelanguage2": "Español",
+        "musictext":"Musica:",
+        "unmuted":"Activado",
+        "muted": "Apagado",
+        "fullscreen": "Pantalla Completa",
+
+
+        "paused": "PAUSADO",
+        "continue": "Pulsa      Para Continuar",
+        "buttonNext": "Siguiente Nivel",
+        "buttonExit": "Salir al Menu",
+        "buttonReset": "Reiniciar",
+        "keysControl": "Controles",
+        "keysPaused": "Pausa",
+        "keysReset": "Reiniciar",
+        "keysExit": "Salir",
+        "keysUpMusic": "Subir Musica",
+        "keysDownMusic": "Bajar Musica",
+        "numlevel1": "Nivel 1",
+        "object": "Objetivo:",
+        "recolet": "Recolecta 5",
+        "evade": "Evadir",
+        "fuel": "Combustible",
+        "swimming": "Presiona    Para Nadar",
+        "overReset": "Pulsa     Para Reiniciar",
+        "overExit": "Pulsa      Para Salir",
+        "teaching": "No contamines"
+
+
+
+    },
+
+    "en":{
+
+        "skipintro": "Press    To Start",
+
+        "play": "Play",
+        "option": "Options",
+        "exit": "Exit",
+
+        "select": "Select difficulty",
+        "easy": "Easy",
+        "hard": "Hard",
+        "back":"Return",
+
+        "language":"Language:",
+        "changelanguage": "English",
+        "changelanguage2": "Spanish",
+
+        "musictext":"Music:",
+        "unmuted":"ON",
+        "muted": "OFF",
+        "fullscreen": "Full Screen",
+
+
+
+        "paused": "PAUSED",
+        "continue": "Press      To Continue",
+        "buttonNext": "Next Level",
+        "buttonExit": "Exit to Menu",
+        "buttonReset": "Restart",
+        "keysControl": "Options",
+        "keysPaused": "Pause",
+        "keysReset": "Restart",
+        "keysExit": "Exit",
+        "keysUpMusic": "Music Up",
+        "keysDownMusic": "Music Down",
+        "numlevel1": "Level 1",
+        "object": "Objective:",
+        "recolet": "Collect 5",
+        "evade": "Evade",
+        "fuel": "Fuel",
+        "swimming": "     PRESS    TO SWIM",
+        "overReset": "PRESS     TO RESTART",
+        "overExit": "PRESS     TO EXIT",
+        "teaching": "Not Pollute"
+        
+    }
+
+
+
+}
