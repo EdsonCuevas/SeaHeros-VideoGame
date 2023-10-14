@@ -21,7 +21,7 @@ def start_menu():
     #Pantalla Resolucion
     W,H = 1280,720
     #Carga icono de la ventana
-    icon = pygame.image.load("img/Fish animation/fish1.png")
+    icon = pygame.image.load("img/Sprites/FishAnimation/fish1.png")
     #Setea el display
     PANTALLA = pygame.display.set_mode((W,H))
     #Nombre de la ventana del juego
@@ -30,8 +30,8 @@ def start_menu():
     pygame.display.set_icon(icon)
 
     #Carga el las imagenes en una variable
-    bolsa_ico = pygame.image.load("img/coliders/bolsa.png")
-    rock_ico = pygame.image.load("img/coliders/rock.png")
+    bolsa_ico = pygame.image.load("img/Sprites/Coliders/bolsa.png")
+    rock_ico = pygame.image.load("img/Sprites/Coliders/rock.png")
 
     #Fuentes
     font1 = pygame.font.Font('assets/upheavtt.ttf', 60)
@@ -98,7 +98,7 @@ def Level1():
 
         #Pantalla
         W,H = 1280,720
-        icon = pygame.image.load("img/Fish animation/fish1.png")
+        icon = pygame.image.load("img/Sprites/FishAnimation/fish1.png")
         PANTALLA = pygame.display.set_mode((W,H))
         pygame.display.set_caption("Sea Heroes")
         pygame.display.set_icon(icon)
@@ -133,7 +133,7 @@ def Level1():
         sonido_max = pygame.image.load("sound/img/volume_max.png")
 
         #Fondo en movimiento
-        fondo = pygame.image.load("img/bg.jpg").convert()
+        fondo = pygame.image.load("img/Backgrounds/Background_level1.jpg").convert()
         VelFondo = 0
 
         #Colores
@@ -151,14 +151,14 @@ def Level1():
         sound = True
         
         #Carga de imagenes de botones y el icon de objetivo
-        bag_ico = pygame.image.load("img/icons/bolsa.png")
-        gas_ico = pygame.image.load("img/icons/gas.png")
-        flecha_up = pygame.image.load("img/keys/arrowup_alternative_paper.png")
-        flecha_down = pygame.image.load("img/keys/arrowdown_alternative_paper.png")
-        esc_key = pygame.image.load("img/keys/esc_alternative_paper.png")
-        r_key = pygame.image.load("img/keys/r_alternative_paper.png")
-        q_key = pygame.image.load("img/keys/q_alternative_paper.png")
-        click1 = pygame.image.load("img/keys/mouse_L_pressed_paper.png")
+        bag_ico = pygame.image.load("img/Sprites/Icons/bolsa.png")
+        gas_ico = pygame.image.load("img/Sprites/Icons/gas.png")
+        flecha_up = pygame.image.load("img/Sprites/Keys/arrowup_alternative_paper.png")
+        flecha_down = pygame.image.load("img/Sprites/Keys/arrowdown_alternative_paper.png")
+        esc_key = pygame.image.load("img/Sprites/Keys/esc_alternative_paper.png")
+        r_key = pygame.image.load("img/Sprites/Keys/r_alternative_paper.png")
+        q_key = pygame.image.load("img/Sprites/Keys/q_alternative_paper.png")
+        click1 = pygame.image.load("img/Sprites/Keys/mouse_L_pressed_paper.png")
 
         #Musica de fondo
         pygame.mixer.music.load("sound/level1.mp3")
@@ -216,7 +216,7 @@ def Level1():
                 self.index = 0
                 self.counter = 0
                 for num in range (1, 4):
-                    img = pygame.image.load(f"img/submarine/submarine{num}.png")
+                    img = pygame.image.load(f"img/Sprites/Submarine/submarine{num}.png")
                     self.images.append(img)
                 self.image = self.images[self.index]
                 self.rect = self.image.get_rect()
@@ -279,7 +279,7 @@ def Level1():
         class Rock(pygame.sprite.Sprite):
             def __init__(self, x, y):
                 pygame.sprite.Sprite.__init__(self)
-                self.image = pygame.image.load("img/coliders/rock.png")
+                self.image = pygame.image.load("img/Sprites/Coliders/rock.png")
                 self.rect = self.image.get_rect()
                 self.rect.topleft = [x,y]
                 self.image = pygame.transform.rotate(self.image, -45)
@@ -293,7 +293,7 @@ def Level1():
         class Bag(pygame.sprite.Sprite):
             def __init__(self, x, y):
                 pygame.sprite.Sprite.__init__(self)
-                self.image = pygame.image.load("img/coliders/bolsa.png")
+                self.image = pygame.image.load("img/Sprites/Coliders/bolsa.png")
                 self.rect = self.image.get_rect()
                 self.rect.topleft = [x,y]
 
@@ -353,7 +353,7 @@ def Level1():
         #Carga de imagenes de victoria
         images = []
         for i in range(1,5):
-            name = "img/victory_screen/victory"+str(i)+".png"
+            name = "img/Sprites/VictoryAnimation/victory"+str(i)+".png"
             images.append(pygame.image.load(name))
 
         #Bucle principal del juego
