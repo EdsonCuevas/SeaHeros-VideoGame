@@ -1,4 +1,4 @@
-import pygame, sys,json
+import pygame, sys
 from pyvidplayer import Video
 from button import Button
 from pygame.locals import *
@@ -28,7 +28,7 @@ Music = pygame.mixer_music.get_volume()
 idioma_actual = "es"
 
 #Meto la imagenes del click en una variable para usarlo en el intro
-click1 = pygame.image.load("img/keys/mouse_L_pressed_paper.png")
+click1 = pygame.image.load("img/Sprites/Keys/mouse_L_pressed_paper.png")
 
 #Carga las imagenes de control de volumen
 sonido_arriba = pygame.image.load("sound/img/volume_up.png")
@@ -50,7 +50,7 @@ red = (255, 0, 0)
 reloj = pygame.time.get_ticks()
 
 #Cargo el video de intro
-vid = Video("intro.mp4")
+vid = Video("assets/intro.mp4")
 #Setea la resolucion del video en HD
 vid.set_size((1280, 720))
 
@@ -116,7 +116,7 @@ def MenuTotal():
     pygame.display.set_caption("Sea Heroes")
 
     #Carga el fondo del menu principal en una variable
-    BG = pygame.image.load("assets/Background.png")
+    BG = pygame.image.load("img/Backgrounds/Background_menu.png")
 
     #Carga la musica
     pygame.mixer.music.load("sound/menu.mp3")

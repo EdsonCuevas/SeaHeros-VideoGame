@@ -21,7 +21,7 @@ def start_menu():
     #Pantalla Resolucion
     W,H = 1280,720
     #Carga icono de la ventana
-    icon = pygame.image.load("img/Fish animation/fish1.png")
+    icon = pygame.image.load("img/Sprites/FishAnimation/fish1.png")
     #Setea el display
     PANTALLA = pygame.display.set_mode((W,H))
     #Nombre de la ventana del juego
@@ -30,8 +30,8 @@ def start_menu():
     pygame.display.set_icon(icon)
 
     #Carga el las imagenes en una variable
-    bolsa_ico = pygame.image.load("img/coliders/bolsa.png")
-    rock_ico = pygame.image.load("img/coliders/rock.png")
+    bolsa_ico = pygame.image.load("img/Sprites/Coliders/bolsa.png")
+    rock_ico = pygame.image.load("img/Sprites/Coliders/rock.png")
 
     #Fuentes
     font1 = pygame.font.Font('assets/upheavtt.ttf', 60)
@@ -98,7 +98,7 @@ def Level1():
 
         #Pantalla
         W,H = 1280,720
-        icon = pygame.image.load("img/Fish animation/fish1.png")
+        icon = pygame.image.load("img/Sprites/FishAnimation/fish1.png")
         PANTALLA = pygame.display.set_mode((W,H))
         pygame.display.set_caption("Sea Heroes")
         pygame.display.set_icon(icon)
@@ -133,7 +133,7 @@ def Level1():
         sonido_max = pygame.image.load("sound/img/volume_max.png")
 
         #Fondo en movimiento
-        fondo = pygame.image.load("img/bg.jpg").convert()
+        fondo = pygame.image.load("img/Backgrounds/Background_level1.jpg").convert()
         VelFondo = 0
 
         #Colores
