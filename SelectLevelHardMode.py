@@ -1,4 +1,5 @@
 import pygame, sys
+from button import Button
 from JSON import Load
 import Menu as cfg
 
@@ -40,11 +41,14 @@ def SelectorHard():
     BacknewLevel2 = newLevel2.get_rect(topleft=(500, 250))  
     BacknewLevel3 = newLevel3.get_rect(topleft=(800, 250)) 
 
+    def get_font(size):
+            return pygame.font.Font("assets/font.ttf", size)
+
     while True:    
-    #Ventana
+        #Ventana
         PANTALLA.blit(bg,(0,0))
 
-    #Mostrar fondos
+        #Mostrar fondos
         PANTALLA.blit(newLevel1, BacknewLevel1.topleft)
         PANTALLA.blit(newLevel2, BacknewLevel2.topleft)
         PANTALLA.blit(newLevel3, BacknewLevel3.topleft)
@@ -52,7 +56,7 @@ def SelectorHard():
         PANTALLA.blit(newFish,(550,325))
         PANTALLA.blit(newFish,(850,325))
 
-    #Mostrar texto en pantalla
+        #Mostrar texto en pantalla
         if langueje == "es":
             draw_text(Configuracion.get(langueje, {}).get("selectLevel"), font2, "white", 400,50)
         if langueje == "en":
@@ -61,28 +65,38 @@ def SelectorHard():
         draw_text(Configuracion.get(langueje, {}).get("selectLevel2"), font3, "white", 550,510)
         draw_text(Configuracion.get(langueje, {}).get("selectLevel3"), font3, "white", 850,510)
 
-    #Obtener posicion del mouse
-        mouse_x, mouse_y = pygame.mouse.get_pos()
+        #Obtener posicion del mouse
+        PLAY_MOUSE_POS = pygame.mouse.get_pos()
 
-    #(PENDIENTE)Animacion del pez
-        if BacknewLevel1.collidepoint(mouse_x, mouse_y):
+        #(PENDIENTE)Animacion del pez
+        if BacknewLevel1.collidepoint(PLAY_MOUSE_POS):
                 draw_text("puta", font2,"white",100,100)
                 
-        if BacknewLevel2.collidepoint(mouse_x, mouse_y):
+        if BacknewLevel2.collidepoint(PLAY_MOUSE_POS):
                 draw_text("puta", font2,"white",100,100)
 
-        if BacknewLevel3.collidepoint(mouse_x, mouse_y):
+        if BacknewLevel3.collidepoint(PLAY_MOUSE_POS):
                 draw_text("puta", font2,"white",100,100)
 
-    #Salir
+        #Salir
+        BACK = Button(image=None, pos=(640, 600), 
+                                    text_input=Configuracion.get(langueje, {}).get("back"), font=get_font(75), base_color="White", hovering_color="Red")
+        
+        BACK.changeColor(PLAY_MOUSE_POS)
+        BACK.update(PANTALLA)
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
-
-    #(PENDIENTE)Entrar al nivel
+            
             if event.type == pygame.MOUSEBUTTONDOWN:
-                    if BacknewLevel1.collidepoint(mouse_x, mouse_y):
+                if BACK.checkForInput(PLAY_MOUSE_POS):
+                    return
+
+            #(PENDIENTE)Entrar al nivel
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                    if BacknewLevel1.collidepoint(PLAY_MOUSE_POS):
                         pygame.mixer_music.stop()
                         from GameHard import start_menu
                         from GameHard import Level1
