@@ -1,7 +1,7 @@
 import pygame, sys
 from JSON import Load
 
-def Selector():
+def SelectorHard():
     pygame.init()
 
     #Carga de idioma
@@ -61,13 +61,13 @@ def Selector():
 
     #(PENDIENTE)Animacion del pez
         if BacknewLevel1.collidepoint(mouse_x, mouse_y):
-                draw_text("hola", font2,"white",100,100)
+                draw_text("puta", font2,"white",100,100)
                 
         if BacknewLevel2.collidepoint(mouse_x, mouse_y):
-                draw_text("hola", font2,"white",100,100)
+                draw_text("puta", font2,"white",100,100)
 
         if BacknewLevel3.collidepoint(mouse_x, mouse_y):
-                draw_text("hola", font2,"white",100,100)
+                draw_text("puta", font2,"white",100,100)
 
     #Salir
         for event in pygame.event.get():
@@ -79,8 +79,8 @@ def Selector():
             if event.type == pygame.MOUSEBUTTONDOWN:
                     if BacknewLevel1.collidepoint(mouse_x, mouse_y):
                         pygame.mixer_music.stop()
-                        from GameEasy import start_menu
-                        from GameEasy import Level1
+                        from GameHard import start_menu
+                        from GameHard import Level1
                         start_menu()
                         Level1()
 
