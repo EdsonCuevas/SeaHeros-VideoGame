@@ -53,7 +53,10 @@ def SelectorEasy():
         PANTALLA.blit(newFish,(850,325))
 
     #Mostrar texto en pantalla
-        draw_text(Configuracion.get(langueje, {}).get("selectLevel"), font2, "white", 400,50)
+        if langueje == "es":
+            draw_text(Configuracion.get(langueje, {}).get("selectLevel"), font2, "white", 400,50)
+        if langueje == "en":
+            draw_text(Configuracion.get(langueje, {}).get("selectLevel"), font2, "white", 470,50)
         draw_text(Configuracion.get(langueje, {}).get("selectLevel1"), font3, "white", 250,510)
         draw_text(Configuracion.get(langueje, {}).get("selectLevel2"), font3, "white", 550,510)
         draw_text(Configuracion.get(langueje, {}).get("selectLevel3"), font3, "white", 850,510)
