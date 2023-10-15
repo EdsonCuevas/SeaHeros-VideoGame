@@ -1,11 +1,13 @@
 import pygame, sys
 from JSON import Load
+import Menu as cfg
 
 def SelectorHard():
     pygame.init()
 
     #Carga de idioma
     Configuracion,langueje = Load()
+    langueje = cfg.idioma_actual
 
     #Funcion de texto
     def draw_text(text, font, text_col, x,y):
