@@ -40,10 +40,12 @@
         "swimming": "Presiona    Para Nadar",
         "overReset": "Pulsa     Para Reiniciar",
         "overExit": "Pulsa      Para Salir",
-        "teaching": "No contamines"
+        "teaching": "No contamines",
 
-
-
+        "selectLevel": "Selecciona El NIvel",
+        "selectLevel1": "Nivel 1",
+        "selectLevel2": "Nivel 2",
+        "selectLevel3": "Nivel 3"
     },
 
     "en":{
@@ -89,7 +91,12 @@
         "swimming": "     PRESS    TO SWIM",
         "overReset": "PRESS     TO RESTART",
         "overExit": "PRESS     TO EXIT",
-        "teaching": "Not Pollute"
+        "teaching": "Not Pollute",
+
+        "selectLevel": "Select Level",
+        "selectLevel1": "Level 1",
+        "selectLevel2": "Level 2",
+        "selectLevel3": "Level 3"
         
     }
 
