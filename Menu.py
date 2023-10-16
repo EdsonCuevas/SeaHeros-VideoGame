@@ -239,32 +239,29 @@ def MenuTotal():
                     img = font.render(text, True, text_col)
                     PANTALLA.blit(img, (x,y))
 
-        #Parametros de la ventana
-        w, h = 1280, 720
-        PANTALLA = pygame.display.set_mode((w,h))
-
         #Fuentes
         font2 = pygame.font.Font('assets/upheavtt.ttf', 50)
         font3 = pygame.font.Font('assets/upheavtt.ttf', 40)
 
         #Carga de imagenes
-        bg = pygame.image.load("img/Backgrounds/background_select.png")
-        level1 = pygame.image.load("img/Backgrounds/Background_control.png")
+        bg = pygame.image.load("img/Backgrounds/Background_menu.png")
+        level1 = pygame.image.load("img/Backgrounds/Background_level1.jpg")
         level2 = pygame.image.load("img/Backgrounds/Background_level2.png")
-        level3= pygame.image.load("img/Backgrounds/Background_level3.jpg")
-        fish = pygame.image.load("img/Sprites/FishAnimation/fish1.png")
+        level3= pygame.image.load("img/Backgrounds/Background_level2.png")
+        submarine = pygame.image.load("img/Sprites/Submarine/submarine1.png")
 
-        #Rendimencionamiento de imagenes
+        #Redimencionamiento de imagenes
         newLevel1 = pygame.transform.scale(level1,(250,250))
         newLevel2 = pygame.transform.scale(level2,(250,250))
         newLevel3 = pygame.transform.scale(level3,(250,250))
-        newFish = pygame.transform.scale(fish,(150,100))
+        newSubmarine = pygame.transform.scale(submarine,(150,100))
 
         #Convertir el fondo a objecto
-        BacknewLevel1 = newLevel1.get_rect(topleft=(200, 250))  
-        BacknewLevel2 = newLevel2.get_rect(topleft=(500, 250))  
-        BacknewLevel3 = newLevel3.get_rect(topleft=(800, 250))
+        BacknewLevel1 = newLevel1.get_rect(topleft=(200, 200))  
+        BacknewLevel2 = newLevel2.get_rect(topleft=(500, 200))  
+        BacknewLevel3 = newLevel3.get_rect(topleft=(800, 200))
 
+        #Funcion para la fuente del boton
         def get_font(size):
                 return pygame.font.Font("assets/font.ttf", size)
 
@@ -272,22 +269,23 @@ def MenuTotal():
             #Ventana
             PANTALLA.blit(bg,(0,0))
 
-            #Mostrar fondos
+            #Mostrar fondos de cada nivel
             PANTALLA.blit(newLevel1, BacknewLevel1.topleft)
             PANTALLA.blit(newLevel2, BacknewLevel2.topleft)
             PANTALLA.blit(newLevel3, BacknewLevel3.topleft)
-            PANTALLA.blit(newFish,(250,325))
-            PANTALLA.blit(newFish,(550,325))
-            PANTALLA.blit(newFish,(850,325))
+            #Mostrar personajes de cada nivel
+            PANTALLA.blit(newSubmarine,(250,275))
+            PANTALLA.blit(newSubmarine,(550,275))
+            PANTALLA.blit(newSubmarine,(850,275))
 
             #Mostrar texto en pantalla
             if langueje == "es":
                 draw_text(Configuracion.get(langueje, {}).get("selectLevel"), font2, "white", 400,50)
             if langueje == "en":
                 draw_text(Configuracion.get(langueje, {}).get("selectLevel"), font2, "white", 470,50)
-            draw_text(Configuracion.get(langueje, {}).get("selectLevel1"), font3, "white", 250,510)
-            draw_text(Configuracion.get(langueje, {}).get("selectLevel2"), font3, "white", 550,510)
-            draw_text(Configuracion.get(langueje, {}).get("selectLevel3"), font3, "white", 850,510)
+            draw_text(Configuracion.get(langueje, {}).get("selectLevel1"), font3, "white", 250,470)
+            draw_text(Configuracion.get(langueje, {}).get("selectLevel2"), font3, "white", 550,470)
+            draw_text(Configuracion.get(langueje, {}).get("selectLevel3"), font3, "white", 850,470)
 
             #Obtener posicion del mouse
             PLAY_MOUSE_POS = pygame.mouse.get_pos()
