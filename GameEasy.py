@@ -229,8 +229,8 @@ def Level1():
                 #Gravedad del submarino
                 if swimming == True:
                     self.vel += 0.5
-                    if self.vel > 8:
-                        self.vel = 8
+                    if self.vel > 6:
+                        self.vel = 6
                     if self.rect.bottom < 720:
                         self.rect.y += int(self.vel)
 
@@ -319,7 +319,6 @@ def Level1():
                 #Evento para detectar el mouse sobre el boton y funcion de este
                 if event.type == pygame.MOUSEBUTTONDOWN:
                         if NEXT.checkForInput(PLAY_MOUSE_POS):
-                            from GameEasy import Level1
                             Level1()
 
         #Funcion para imprimir las teclas en pantalla
