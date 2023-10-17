@@ -576,44 +576,43 @@ def MenuTotal():
                 #Guardamos en una variable los rectangulos del texto de los botones
                 MENU_RECT = MENU_TEXT.get_rect(center=(640, 100))
 
-                #Guardamos en una variable la clase del boton y para el boton de play
-                PLAY_BUTTON = Button(image=pygame.image.load("assets/Play Rect.png"), pos=(640, 250), 
-                                    text_input=Configuracion.get(langueje, {}).get("play"), font=get_font(75), base_color="Green", hovering_color="White")
-                #Guardamos en una variable la clase del boton y para el boton de opciones
-                OPTIONS_BUTTON = Button(image=pygame.image.load("assets/Options Rect.png"), pos=(640, 400),
-                                    text_input=Configuracion.get(langueje, {}).get("option"), font=get_font(75), base_color="Blue", hovering_color="White")
-                #Guardamos en una variable la clase del boton y para el boton de salir del juego
-                QUIT_BUTTON = Button(image=pygame.image.load("assets/Play Rect.png"), pos=(640, 550),
-                                    text_input=Configuracion.get(langueje, {}).get("exit"), font=get_font(75), base_color="Red", hovering_color="White")
+
+                play = pygame.image.load("img/Sprites/Blue-Buttons/340px/Play.png")
+                play1 = pygame.transform.scale(play,(120,120))
+
+                option = pygame.image.load("img/Sprites/Blue-Buttons/340px/Option.png")
+                option1 = pygame.transform.scale(option,(120,120))
+
+                no = pygame.image.load("img/Sprites/Blue-Buttons/340px/No.png")
+                no1 = pygame.transform.scale(no,(120,120))
+
+                PANTALLA.blit(play1, (550,150))
+                PANTALLA.blit(option1, (550,300))
+                PANTALLA.blit(no1, (550,450))
 
                 #Muestra en pantalla el texto y el rectangulo negro
                 PANTALLA.blit(MENU_TEXT, MENU_RECT)
-
-
-                #Un for para la actualizacion de todos los botones en una sola variable
-                for button in [PLAY_BUTTON, OPTIONS_BUTTON, QUIT_BUTTON]:
-                    #Detecta el cambio de color de todos los botones
-                    button.changeColor(MENU_MOUSE_POS)
-                    #Actualiza los botones en la pantalla
-                    button.update(PANTALLA)
                 
                 #Evento principal para poder cerrar la ventana
                 for event in pygame.event.get():
                     if event.type == pygame.QUIT:
                         pygame.quit()
                         sys.exit()
+
                     #Evento que detecta el mouse haga algun click
                     if event.type == pygame.MOUSEBUTTONDOWN:
                         #Si el boton de play es presionado
-                        if PLAY_BUTTON.checkForInput(MENU_MOUSE_POS):
+                        if play1.checkForInput(MENU_MOUSE_POS):
                             #Entra la funcion
                             play()
+
                         #Si el boton de opciones es presionado
-                        if OPTIONS_BUTTON.checkForInput(MENU_MOUSE_POS):
+                        if option1.checkForInput(MENU_MOUSE_POS):
                             #Entra a la funcion
                             options()
+
                         #Si el boton de salir es presionado
-                        if QUIT_BUTTON.checkForInput(MENU_MOUSE_POS):
+                        if no1.checkForInput(MENU_MOUSE_POS):
                             #Cierra todo el pygame
                             pygame.quit()
                             sys.exit()
