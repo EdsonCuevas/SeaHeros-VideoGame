@@ -83,9 +83,7 @@ def start_menu():
                 break
             time.sleep(1)
         
-        run = False    
-
-start_menu()
+        run = False
 
 def Level1():
         
@@ -545,4 +543,79 @@ def Level1():
             #Funcion para actualizar la pantalla constantemente
             pygame.display.update()
 
-Level1()
+def start_menu_2():
+
+    #Carga el JSON
+    Configuracion,langueje = Load()
+    #Guarda el idioma anterior como temporal(cfg) y lo guarda en languaje del json
+    langueje = cfg.idioma_actual
+
+    #Inicia el pygame
+    pygame.init()
+
+    #Pantalla Resolucion
+    W,H = 1280,720
+    #Carga icono de la ventana
+    icon = pygame.image.load("img/Sprites/FishAnimation/fish1.png")
+    #Setea el display
+    PANTALLA = pygame.display.set_mode((W,H))
+    #Nombre de la ventana del juego
+    pygame.display.set_caption("Sea Heroes")
+    #Carga el icon
+    pygame.display.set_icon(icon)
+
+    #Carga el las imagenes en una variable
+    bolsa_ico = pygame.image.load("img/Sprites/Coliders/bolsa.png")
+    rock_ico = pygame.image.load("img/Sprites/Coliders/rock.png")
+
+    #Fuentes
+    font1 = pygame.font.Font('assets/upheavtt.ttf', 60)
+
+    #Colores
+    white = (255, 255, 255)
+    green = (0, 208, 0)
+    red = (255, 0, 0)
+
+    #Funcion para dibujar texto en la pantalla
+    def draw_text(text, font, text_col, x,y):
+        img = font.render(text, True, text_col)
+        PANTALLA.blit(img, (x,y))
+
+    #Bucle para cargar el juego
+    run = True
+    while run:
+
+        #Filea la pantalla en negro
+        PANTALLA.fill("black")
+
+        #Muestra el objetivo del juego
+        if langueje == "es":
+            draw_text(Configuracion.get(langueje, {}).get("numlevel1"), font1, white, 540, 10)
+            draw_text(Configuracion.get(langueje, {}).get("object"), font1, white, 490, 200)
+            draw_text(Configuracion.get(langueje, {}).get("recolet"), font1, green, 420, 310)
+            PANTALLA.blit(bolsa_ico, (820, 300))
+            draw_text(Configuracion.get(langueje, {}).get("evade"), font1, red, 500, 380)
+            PANTALLA.blit(rock_ico, (735, 380))
+
+        if langueje == "en":
+            draw_text(Configuracion.get(langueje, {}).get("numlevel1"), font1, white, 530, 10)
+            draw_text(Configuracion.get(langueje, {}).get("object"), font1, white, 470, 200)
+            draw_text(Configuracion.get(langueje, {}).get("recolet"), font1, green, 450, 290)
+            PANTALLA.blit(bolsa_ico, (785, 280))
+            draw_text(Configuracion.get(langueje, {}).get("evade"), font1, red, 525, 360)
+            PANTALLA.blit(rock_ico, (725, 360))
+
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+                
+        pygame.display.update()
+
+        for segundo in range(3):
+            if segundo == 3:
+                break
+            time.sleep(1)
+        
+        run = False
