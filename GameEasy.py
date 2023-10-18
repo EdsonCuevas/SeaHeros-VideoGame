@@ -565,7 +565,7 @@ def load_level2():
     pygame.display.set_icon(icon)
 
     #Carga el las imagenes en una variable
-    bolsa_ico = pygame.image.load("img/Sprites/Coliders/bolsa.png")
+    bottle_ico = pygame.image.load("img/Sprites/Icons/botella.png")
     rock_ico = pygame.image.load("img/Sprites/Coliders/rock.png")
     fish_ico = pygame.image.load("img/Sprites/FishAnimation/fish1.png")
 
@@ -595,16 +595,18 @@ def load_level2():
             draw_text(Configuracion.get(langueje, {}).get("object"), font1, white, 490, 200)
             draw_text(Configuracion.get(langueje, {}).get("save"), font1, green, 450, 310)
             PANTALLA.blit(fish_ico, (750, 305))
-            draw_text(Configuracion.get(langueje, {}).get("evade"), font1, red, 500, 380)
+            draw_text(Configuracion.get(langueje, {}).get("evade"), font1, red, 450, 380)
             PANTALLA.blit(rock_ico, (735, 380))
+            PANTALLA.blit(bottle_ico, (680, 380))
 
         if langueje == "en":
             draw_text(Configuracion.get(langueje, {}).get("numlevel2"), font1, white, 530, 10)
             draw_text(Configuracion.get(langueje, {}).get("object"), font1, white, 470, 200)
-            draw_text(Configuracion.get(langueje, {}).get("save"), font1, green, 500, 290)
-            PANTALLA.blit(fish_ico, (730, 290))
-            draw_text(Configuracion.get(langueje, {}).get("evade"), font1, red, 525, 360)
-            PANTALLA.blit(rock_ico, (725, 360))
+            draw_text(Configuracion.get(langueje, {}).get("save"), font1, green, 480, 290)
+            PANTALLA.blit(fish_ico, (710, 290))
+            draw_text(Configuracion.get(langueje, {}).get("evade"), font1, red, 480, 360)
+            PANTALLA.blit(rock_ico, (750, 355))
+            PANTALLA.blit(bottle_ico, (680, 350))
 
 
         for event in pygame.event.get():
