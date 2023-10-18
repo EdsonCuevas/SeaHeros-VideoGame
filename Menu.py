@@ -316,14 +316,21 @@ def MenuTotal():
                     if BACK.checkForInput(PLAY_MOUSE_POS):
                         return
 
-                #(PENDIENTE)Entrar al nivel
+                #Entrar al nivel 1
                 if event.type == pygame.MOUSEBUTTONDOWN:
                         if BacknewLevel1.collidepoint(PLAY_MOUSE_POS):
                             pygame.mixer_music.stop()
-                            from GameEasy import start_menu
+                            from GameEasy import load_level1
                             from GameEasy import Level1
-                            start_menu()
+                            load_level1()
                             Level1()
+                
+                #Entra al nivel 2
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                        if BacknewLevel2.collidepoint(PLAY_MOUSE_POS):
+                            pygame.mixer_music.stop()
+                            from GameEasy import load_level2
+                            load_level2()
 
 
 

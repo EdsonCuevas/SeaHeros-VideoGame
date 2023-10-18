@@ -8,7 +8,7 @@ import Menu as cfg
 SoundActual = cfg.Music
 
 #Menu de carga de objetivos despues de dar play
-def start_menu():
+def load_level1():
 
     #Carga el JSON
     Configuracion,langueje = Load()
@@ -543,7 +543,7 @@ def Level1():
             #Funcion para actualizar la pantalla constantemente
             pygame.display.update()
 
-def start_menu_2():
+def load_level2():
 
     #Carga el JSON
     Configuracion,langueje = Load()
@@ -567,6 +567,7 @@ def start_menu_2():
     #Carga el las imagenes en una variable
     bolsa_ico = pygame.image.load("img/Sprites/Coliders/bolsa.png")
     rock_ico = pygame.image.load("img/Sprites/Coliders/rock.png")
+    fish_ico = pygame.image.load("img/Sprites/FishAnimation/fish1.png")
 
     #Fuentes
     font1 = pygame.font.Font('assets/upheavtt.ttf', 60)
@@ -590,18 +591,18 @@ def start_menu_2():
 
         #Muestra el objetivo del juego
         if langueje == "es":
-            draw_text(Configuracion.get(langueje, {}).get("numlevel1"), font1, white, 540, 10)
+            draw_text(Configuracion.get(langueje, {}).get("numlevel2"), font1, white, 540, 10)
             draw_text(Configuracion.get(langueje, {}).get("object"), font1, white, 490, 200)
-            draw_text(Configuracion.get(langueje, {}).get("recolet"), font1, green, 420, 310)
-            PANTALLA.blit(bolsa_ico, (820, 300))
+            draw_text(Configuracion.get(langueje, {}).get("save"), font1, green, 450, 310)
+            PANTALLA.blit(fish_ico, (750, 305))
             draw_text(Configuracion.get(langueje, {}).get("evade"), font1, red, 500, 380)
             PANTALLA.blit(rock_ico, (735, 380))
 
         if langueje == "en":
-            draw_text(Configuracion.get(langueje, {}).get("numlevel1"), font1, white, 530, 10)
+            draw_text(Configuracion.get(langueje, {}).get("numlevel2"), font1, white, 530, 10)
             draw_text(Configuracion.get(langueje, {}).get("object"), font1, white, 470, 200)
-            draw_text(Configuracion.get(langueje, {}).get("recolet"), font1, green, 450, 290)
-            PANTALLA.blit(bolsa_ico, (785, 280))
+            draw_text(Configuracion.get(langueje, {}).get("save"), font1, green, 500, 290)
+            PANTALLA.blit(fish_ico, (730, 290))
             draw_text(Configuracion.get(langueje, {}).get("evade"), font1, red, 525, 360)
             PANTALLA.blit(rock_ico, (725, 360))
 
