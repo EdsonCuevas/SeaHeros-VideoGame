@@ -669,7 +669,7 @@ def Level2():
         sonido_max = pygame.image.load("sound/img/volume_max.png")
 
         #Fondo en movimiento
-        fondo = pygame.image.load("img/Backgrounds/Background_level1.jpg").convert()
+        fondo = pygame.image.load("img/Backgrounds/Background_level2.png").convert()
         VelFondo = 0
 
         #Colores
@@ -711,8 +711,8 @@ def Level2():
         frecuencia_bottle = 2700
         last_bottle = pygame.time.get_ticks() - frecuencia_bottle
 
-        #Frecuencia de aparicion de bolsa
-        frecuencia_pez = 3000 #milisegundos
+        #Frecuencia de aparicion de pescado atrapado
+        frecuencia_pez = 5000 #milisegundos
         ultimo_pez = pygame.time.get_ticks() - frecuencia_pez
         
         #Defino la funcion de pausa
@@ -873,7 +873,7 @@ def Level2():
                 #Evento para detectar el mouse sobre el boton y funcion de este
                 if event.type == pygame.MOUSEBUTTONDOWN:
                         if NEXT.checkForInput(PLAY_MOUSE_POS):
-                            pass
+                            Level2()
 
         #Funcion para imprimir las teclas en pantalla
         def keys_on_screen():
@@ -960,8 +960,8 @@ def Level2():
                 keys_on_screen()
             
             #Revisa que el submarino no se salga del agua
-            if flappy.rect.top < 200:
-                flappy.rect.top = 200
+            if flappy.rect.top < 0:
+                flappy.rect.top = 0
             
             #Revisa la colision del submarino con la roca
             if pygame.sprite.groupcollide(submarine_group, rock_group, False, False):
@@ -1024,8 +1024,8 @@ def Level2():
                 #Generador de roca
                 time_now = pygame.time.get_ticks()
                 if time_now - last_rock > frecuencia_rock:
-                    rock_spawn = random.randint(-100, 200)
-                    rock = Rock(W, int(H / 2) + rock_spawn)
+                    rock_spawn = random.randint(100, 600)
+                    rock = Rock(W, + rock_spawn)
                     rock_group.add(rock)
                     last_rock = time_now
             
@@ -1044,8 +1044,8 @@ def Level2():
                 #Generador de pescado
                 time_now = pygame.time.get_ticks()
                 if time_now - ultimo_pez > frecuencia_pez:
-                    pez_spawn = random.randint(-100, 200)
-                    pez = FishTraped(W, int(H / 2) + pez_spawn)
+                    pez_spawn = random.randint(200, 600)
+                    pez = FishTraped(W, + pez_spawn)
                     pez_group.add(pez)
                     ultimo_pez = time_now
 
