@@ -8,7 +8,7 @@ import Menu as cfg
 SoundActual = cfg.Music
 
 #Menu de carga de objetivos despues de dar play
-def start_menu():
+def load_level1():
 
     #Carga el JSON
     Configuracion,langueje = Load()
