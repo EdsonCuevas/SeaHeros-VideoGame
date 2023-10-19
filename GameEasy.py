@@ -455,8 +455,6 @@ def Level1():
                 game_over = True
                 swimming = False
                 
-                
-
             #Checa que el juego no llegue a Game Over
             if game_over == False and swimming == True:
                 #Generador de roca
@@ -769,19 +767,16 @@ def Level2():
                 #Gravedad del submarino
                 if swimming == True:
                     self.vel += 0.5
-                    if self.vel > 6:
-                        self.vel = 6
-                    if self.rect.bottom < 720:
+                    if self.vel > 4:
+                        self.vel = 4
+                    if self.rect.bottom < 900:
                         self.rect.y += int(self.vel)
 
                 if game_over == False:
-                #Salto del submarino
+                    #Salto del submarino
                     if pygame.mouse.get_pressed()[0] == 1 and self.clicked == False:
-                        self.clicked = True
-                        self.vel = -10
-    
-                    if pygame.mouse.get_pressed()[0] == 0:
-                        self.clicked = False
+                        self.vel = -5
+
                     
                     #Animaciones del submarino
                     self.counter += 1
@@ -895,7 +890,7 @@ def Level2():
         pez_group = pygame.sprite.Group()
         bottle_group = pygame.sprite.Group()
 
-        #En la variable flappy almacenamos la ubicacion donde aparecera el submarino
+        #En la variable flappy almacenamos la ubicacion donde aparecera el buzo
         flappy = Submarine(100, int(H / 2))
         #Al grupo le agregamos la variable flappy
         submarine_group.add(flappy)
@@ -1013,7 +1008,7 @@ def Level2():
                 WinScreen()
 
             #Revisa que el submarino toque el suelo
-            if flappy.rect.bottom >= 720:
+            if flappy.rect.bottom >= 800:
                 game_over = True
                 swimming = False
                 
