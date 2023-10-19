@@ -1085,6 +1085,9 @@ def Level2():
                 #Detecta que el juego empiece al clickear
                 if event.type == pygame.MOUSEBUTTONDOWN and swimming == False and game_over == False:
                     swimming = True
+                if event.type == pygame.KEYDOWN and swimming == False and game_over == False:
+                    if K_SPACE:
+                        swimming = True
                 #Evento para detectar una pulsacion de tecla
                 if event.type == pygame.KEYDOWN:
                     #Si la tecla presionada es Escape y el juego ya empezo
