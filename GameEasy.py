@@ -1085,6 +1085,7 @@ def Level2():
                 #Detecta que el juego empiece al clickear
                 if event.type == pygame.MOUSEBUTTONDOWN and swimming == False and game_over == False:
                     swimming = True
+                #Detecta que el juego empiece al presionar space
                 if event.type == pygame.KEYDOWN and swimming == False and game_over == False:
                     if event.key == pygame.K_SPACE:
                         swimming = True
