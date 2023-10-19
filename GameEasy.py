@@ -707,9 +707,13 @@ def Level2():
         frecuencia_rock = 2300 #milisegundos
         last_rock = pygame.time.get_ticks() - frecuencia_rock
 
+        #Frecuencia de aparicion de botella
+        frecuencia_bottle = 2700
+        last_bottle = pygame.time.get_ticks() - frecuencia_bottle
+
         #Frecuencia de aparicion de bolsa
-        frecuencia_bag = 3000 #milisegundos
-        ultima_bag = pygame.time.get_ticks() - frecuencia_bag
+        frecuencia_pez = 3000 #milisegundos
+        ultimo_pez = pygame.time.get_ticks() - frecuencia_pez
         
         #Defino la funcion de pausa
         def pause():
@@ -825,11 +829,25 @@ def Level2():
                 if game_over == False:
                     self.rect.x -= 2
 
-        #La clase de la bolsa con sus atributos y funciones
-        class Bag(pygame.sprite.Sprite):
+        #La clase de la rock con sus atributos y funciones
+        class Bottle(pygame.sprite.Sprite):
             def __init__(self, x, y):
                 pygame.sprite.Sprite.__init__(self)
-                self.image = pygame.image.load("img/Sprites/Coliders/bolsa.png")
+                self.image = pygame.image.load("img/Sprites/Coliders/botella.png")
+                self.rect = self.image.get_rect()
+                self.rect.topleft = [x,y]
+                self.image = pygame.transform.rotate(self.image, -45)
+
+            def update(self):
+                #Se quedan en su lugar al morir
+                if game_over == False:
+                    self.rect.x -= 2
+
+        #La clase de la bolsa con sus atributos y funciones
+        class FishTraped(pygame.sprite.Sprite):
+            def __init__(self, x, y):
+                pygame.sprite.Sprite.__init__(self)
+                self.image = pygame.image.load("img/Sprites/FishAnimation/fish1.png")
                 self.rect = self.image.get_rect()
                 self.rect.topleft = [x,y]
 
@@ -855,7 +873,7 @@ def Level2():
                 #Evento para detectar el mouse sobre el boton y funcion de este
                 if event.type == pygame.MOUSEBUTTONDOWN:
                         if NEXT.checkForInput(PLAY_MOUSE_POS):
-                            Level1()
+                            pass
 
         #Funcion para imprimir las teclas en pantalla
         def keys_on_screen():
@@ -874,7 +892,8 @@ def Level2():
         #Se declaran los objetos como grupos
         submarine_group = pygame.sprite.Group()
         rock_group = pygame.sprite.Group()
-        bag_group = pygame.sprite.Group()
+        pez_group = pygame.sprite.Group()
+        bottle_group = pygame.sprite.Group()
 
         #En la variable flappy almacenamos la ubicacion donde aparecera el submarino
         flappy = Submarine(100, int(H / 2))
@@ -913,8 +932,10 @@ def Level2():
             submarine_group.update()
             rock_group.draw(PANTALLA)
             rock_group.update()
-            bag_group.draw(PANTALLA)
-            bag_group.update()
+            pez_group.draw(PANTALLA)
+            pez_group.update()
+            bottle_group.draw(PANTALLA)
+            bottle_group.update()
             
             #Si la victoria todavia no esta hecha muestra el score, texto y controles
             if victory == False:
@@ -945,9 +966,11 @@ def Level2():
             #Revisa la colision del submarino con la roca
             if pygame.sprite.groupcollide(submarine_group, rock_group, False, False):
                 game_over = True
+            if pygame.sprite.groupcollide(submarine_group, bottle_group, False, False):
+                game_over = True
     
-            #Revisa la colision del submarino con la bolsa
-            hits = pygame.sprite.groupcollide(submarine_group, bag_group, False, True)
+            #Revisa la colision del submarino con el pez
+            hits = pygame.sprite.groupcollide(submarine_group, pez_group, False, True)
 
             #bucle donde se van sumando los puntos por colisiones
             for hit in hits:
@@ -975,8 +998,9 @@ def Level2():
                 def WinScreen():
                     #Se limpia todos los objetos
                     rock_group.empty()
-                    bag_group.empty()
+                    pez_group.empty()
                     submarine_group.empty()
+                    bottle_group.empty()
                     #Muestra la imagen de victoria animada
                     frame = int(time.time()*10) % 4
                     PANTALLA.blit(images[frame], (0, 0))
@@ -1004,16 +1028,26 @@ def Level2():
                     rock = Rock(W, int(H / 2) + rock_spawn)
                     rock_group.add(rock)
                     last_rock = time_now
+            
+            #Checa que el juego no llegue a Game Over
+            if game_over == False and swimming == True:
+                #Generador de botella
+                time_now = pygame.time.get_ticks()
+                if time_now - last_bottle > frecuencia_bottle:
+                    bottle_spawn = random.randint(-100, 200)
+                    bottle = Bottle(W, int(H / 2) + bottle_spawn)
+                    bottle_group.add(bottle)
+                    last_bottle = time_now
 
             #Checa que el juego no llegue a Game Over
             if game_over == False and swimming == True:
-                #Generador de bolsa
+                #Generador de pescado
                 time_now = pygame.time.get_ticks()
-                if time_now - ultima_bag > frecuencia_bag:
-                    bag_spawn = random.randint(-100, 200)
-                    bag = Bag(W, int(H / 2) + bag_spawn)
-                    bag_group.add(bag)
-                    ultima_bag = time_now
+                if time_now - ultimo_pez > frecuencia_pez:
+                    pez_spawn = random.randint(-100, 200)
+                    pez = FishTraped(W, int(H / 2) + pez_spawn)
+                    pez_group.add(pez)
+                    ultimo_pez = time_now
 
             #Checa que el juego llegue a GameOver y dibuja los botones
             if game_over == True:
@@ -1069,7 +1103,7 @@ def Level2():
                         #Se va la funcion pause que es un bucle while
                         pause()
                     if event.key == pygame.K_r:
-                        Level1()
+                        Level2()
                     if event.key == pygame.K_q:
                         pygame.mixer.music.stop()
                         #Carga el menu
