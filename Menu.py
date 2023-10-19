@@ -577,18 +577,22 @@ def MenuTotal():
                 MENU_RECT = MENU_TEXT.get_rect(center=(640, 100))
 
 
-                play = pygame.image.load("img/Sprites/Blue-Buttons/340px/Play.png")
-                play1 = pygame.transform.scale(play,(120,120))
+                playMenu = pygame.image.load("img/Sprites/Blue-Buttons/340px/Play.png")
+                playMenu1 = pygame.transform.scale(playMenu,(200,200))
 
-                option = pygame.image.load("img/Sprites/Blue-Buttons/340px/Option.png")
-                option1 = pygame.transform.scale(option,(120,120))
+                optionMenu = pygame.image.load("img/Sprites/Blue-Buttons/340px/Option.png")
+                optionMenu1 = pygame.transform.scale(optionMenu,(200,200))
 
-                no = pygame.image.load("img/Sprites/Blue-Buttons/340px/No.png")
-                no1 = pygame.transform.scale(no,(120,120))
+                noMenu = pygame.image.load("img/Sprites/Blue-Buttons/340px/No.png")
+                noMenu1 = pygame.transform.scale(noMenu,(200,200))
 
-                PANTALLA.blit(play1, (550,150))
-                PANTALLA.blit(option1, (550,300))
-                PANTALLA.blit(no1, (550,450))
+                newPlayMenu1 = playMenu.get_rect(topleft=(300, 250))  
+                newOptionMenu1 = optionMenu1.get_rect(topleft=(500, 250))  
+                newNoMenu1 = noMenu1.get_rect(topleft=(700, 250)) 
+
+                PANTALLA.blit(playMenu1, newPlayMenu1.topleft)
+                PANTALLA.blit(optionMenu1, newOptionMenu1.topleft)
+                PANTALLA.blit(noMenu1, newNoMenu1.topleft)
 
                 #Muestra en pantalla el texto y el rectangulo negro
                 PANTALLA.blit(MENU_TEXT, MENU_RECT)
@@ -602,17 +606,17 @@ def MenuTotal():
                     #Evento que detecta el mouse haga algun click
                     if event.type == pygame.MOUSEBUTTONDOWN:
                         #Si el boton de play es presionado
-                        if play1.checkForInput(MENU_MOUSE_POS):
+                        if newPlayMenu1.collidepoint(MENU_MOUSE_POS):
                             #Entra la funcion
                             play()
 
                         #Si el boton de opciones es presionado
-                        if option1.checkForInput(MENU_MOUSE_POS):
+                        if newOptionMenu1.collidepoint(MENU_MOUSE_POS):
                             #Entra a la funcion
                             options()
 
                         #Si el boton de salir es presionado
-                        if no1.checkForInput(MENU_MOUSE_POS):
+                        if newNoMenu1.collidepoint(MENU_MOUSE_POS):
                             #Cierra todo el pygame
                             pygame.quit()
                             sys.exit()
