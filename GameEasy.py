@@ -761,7 +761,6 @@ def Level2():
                 self.rect = self.image.get_rect()
                 self.rect.center = [x, y]
                 self.vel = 0
-                self.clicked = False
 
             #Aqui definimos todas las actualizacion que afectan al submarino
             def update(self):
@@ -775,7 +774,7 @@ def Level2():
 
                 if game_over == False:
                     #Salto del submarino
-                    if pygame.mouse.get_pressed()[0] == 1 and self.clicked == False:
+                    if pygame.mouse.get_pressed()[0] == 1 or keys[pygame.K_SPACE]:
                         self.vel = -5
 
                     
@@ -832,7 +831,6 @@ def Level2():
                 self.image = pygame.image.load("img/Sprites/Coliders/botella.png")
                 self.rect = self.image.get_rect()
                 self.rect.topleft = [x,y]
-                self.image = pygame.transform.rotate(self.image, -45)
 
             def update(self):
                 #Se quedan en su lugar al morir
