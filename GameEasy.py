@@ -227,19 +227,15 @@ def Level1():
                 #Gravedad del submarino
                 if swimming == True:
                     self.vel += 0.5
-                    if self.vel > 6:
-                        self.vel = 6
+                    if self.vel > 4:
+                        self.vel = 4
                     if self.rect.bottom < 720:
                         self.rect.y += int(self.vel)
 
                 if game_over == False:
-                #Salto del submarino
-                    if pygame.mouse.get_pressed()[0] == 1 and self.clicked == False:
-                        self.clicked = True
-                        self.vel = -10
-    
-                    if pygame.mouse.get_pressed()[0] == 0:
-                        self.clicked = False
+                    #Salto del submarino
+                    if pygame.mouse.get_pressed()[0] == 1 or keys[pygame.K_SPACE]:
+                        self.vel = -5
                     
                     #Animaciones del submarino
                     self.counter += 1
@@ -518,6 +514,10 @@ def Level1():
                 #Detecta que el juego empiece al clickear
                 if event.type == pygame.MOUSEBUTTONDOWN and swimming == False and game_over == False:
                     swimming = True
+                #Detecta que el juego empiece al presionar space
+                if event.type == pygame.KEYDOWN and swimming == False and game_over == False:
+                    if event.key == pygame.K_SPACE:
+                        swimming = True
                 #Evento para detectar una pulsacion de tecla
                 if event.type == pygame.KEYDOWN:
                     #Si la tecla presionada es Escape y el juego ya empezo
