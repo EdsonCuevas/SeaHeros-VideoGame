@@ -586,13 +586,13 @@ def MenuTotal():
                 noMenu = pygame.image.load("img/Sprites/Blue-Buttons/340px/No.png")
                 noMenu1 = pygame.transform.scale(noMenu,(200,200))
 
-                newPlayMenu1 = playMenu.get_rect(topleft=(300, 250))  
+                newPlayMenu1 = playMenu1.get_rect(topleft=(300, 250))  
                 newOptionMenu1 = optionMenu1.get_rect(topleft=(500, 250))  
                 newNoMenu1 = noMenu1.get_rect(topleft=(700, 250)) 
 
-                PANTALLA.blit(playMenu1, newPlayMenu1.topleft)
-                PANTALLA.blit(optionMenu1, newOptionMenu1.topleft)
-                PANTALLA.blit(noMenu1, newNoMenu1.topleft)
+                PANTALLA.blit(playMenu1, newPlayMenu1)
+                PANTALLA.blit(optionMenu1, newOptionMenu1)
+                PANTALLA.blit(noMenu1, newNoMenu1)
 
                 #Muestra en pantalla el texto y el rectangulo negro
                 PANTALLA.blit(MENU_TEXT, MENU_RECT)
