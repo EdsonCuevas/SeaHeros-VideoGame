@@ -590,6 +590,7 @@ def MenuTotal():
                 newOptionMenu1 = optionMenu1.get_rect(topleft=(500, 250))  
                 newNoMenu1 = noMenu1.get_rect(topleft=(700, 250)) 
 
+                PANTALLA.fill(newOptionMenu1,"black")
                 PANTALLA.blit(playMenu1, newPlayMenu1.topleft)
                 PANTALLA.blit(optionMenu1, newOptionMenu1.topleft)
                 PANTALLA.blit(noMenu1, newNoMenu1.topleft)
