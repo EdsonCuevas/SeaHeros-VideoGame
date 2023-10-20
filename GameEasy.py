@@ -345,7 +345,7 @@ def Level1():
         submarine_group.add(flappy)
 
         #Asigna los valores a la clase vida
-        fuel_bar = FuelBar(500, 150, 300, 40, 3000)
+        fuel_bar = FuelBar(500, 35, 300, 40, 3000)
         fuel_bar.hp = 3000
 
         #Carga de imagenes de victoria
@@ -382,15 +382,15 @@ def Level1():
             #Si la victoria todavia no esta hecha muestra el score, texto y controles
             if victory == False:
                 #Muestra el score
-                PANTALLA.blit(gas_ico, (420,140))
-                draw_text(str(score), font, white, 600, 20)
-                draw_text(("/5"), font, white, 635, 20)
-                PANTALLA.blit(bag_ico, (700,20))
+                PANTALLA.blit(gas_ico, (420,25))
+                draw_text(str(score), font, white, 10, 20)
+                draw_text(("/5"), font, white, 45, 20) 
+                PANTALLA.blit(bag_ico, (100,20))
                 fuel_bar.draw(PANTALLA)
                 if langueje == "en":
-                    draw_text(Configuracion.get(langueje, {}).get("fuel"), font2, black, 610, 110)
+                    draw_text(Configuracion.get(langueje, {}).get("fuel"), font2, black, 610, 0)
                 elif langueje == "es":
-                    draw_text(Configuracion.get(langueje, {}).get("fuel"), font2, black, 520, 110)
+                    draw_text(Configuracion.get(langueje, {}).get("fuel"), font2, black, 520, 0)
                 
 
             
