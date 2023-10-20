@@ -686,7 +686,7 @@ def Level2():
         sound = True
         
         #Carga de imagenes de botones y el icon de objetivo
-        bag_ico = pygame.image.load("img/Sprites/Icons/bolsa.png")
+        fish_ico = pygame.image.load("img/Sprites/Icons/fish.png")
         gas_ico = pygame.image.load("img/Sprites/Icons/gas.png")
         flecha_up = pygame.image.load("img/Sprites/Keys/arrowup_alternative_paper.png")
         flecha_down = pygame.image.load("img/Sprites/Keys/arrowdown_alternative_paper.png")
@@ -895,7 +895,7 @@ def Level2():
         submarine_group.add(flappy)
 
         #Asigna los valores a la clase vida
-        fuel_bar = FuelBar(500, 150, 300, 40, 3000)
+        fuel_bar = FuelBar(500, 35, 300, 40, 3000)
         fuel_bar.hp = 3000
 
         #Carga de imagenes de victoria
@@ -934,15 +934,15 @@ def Level2():
             #Si la victoria todavia no esta hecha muestra el score, texto y controles
             if victory == False:
                 #Muestra el score
-                PANTALLA.blit(gas_ico, (420,140))
-                draw_text(str(score), font, white, 600, 20)
-                draw_text(("/5"), font, white, 635, 20)
-                PANTALLA.blit(bag_ico, (700,20))
+                PANTALLA.blit(gas_ico, (420,25))
+                draw_text(str(score), font, white, 1110, 20)
+                draw_text(("/5"), font, white, 1150, 20) 
+                PANTALLA.blit(fish_ico, (1210,30))
                 fuel_bar.draw(PANTALLA)
                 if langueje == "en":
-                    draw_text(Configuracion.get(langueje, {}).get("fuel"), font2, black, 610, 110)
+                    draw_text(Configuracion.get(langueje, {}).get("fuel"), font2, black, 610, 0)
                 elif langueje == "es":
-                    draw_text(Configuracion.get(langueje, {}).get("fuel"), font2, black, 520, 110)
+                    draw_text(Configuracion.get(langueje, {}).get("fuel"), font2, black, 520, 0)
                 
 
             
