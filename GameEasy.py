@@ -383,9 +383,9 @@ def Level1():
             if victory == False:
                 #Muestra el score
                 PANTALLA.blit(gas_ico, (420,25))
-                draw_text(str(score), font, white, 10, 20)
-                draw_text(("/5"), font, white, 45, 20) 
-                PANTALLA.blit(bag_ico, (100,20))
+                draw_text(str(score), font, white, 1110, 20)
+                draw_text(("/5"), font, white, 1150, 20) 
+                PANTALLA.blit(bag_ico, (1220,20))
                 fuel_bar.draw(PANTALLA)
                 if langueje == "en":
                     draw_text(Configuracion.get(langueje, {}).get("fuel"), font2, black, 610, 0)
