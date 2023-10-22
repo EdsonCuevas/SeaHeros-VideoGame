@@ -293,12 +293,12 @@ def MenuTotal():
                 images = []
                 #Forma para cambiar el numero al nombre de las imagenes
                 for i in range(1,5):
-                    name = "img/Sprites/Submarine/submarine"+str(i)+".png"
+                    name = "img/Sprites/Submarine/SubmarineRescale/submarine"+str(i)+".png"
                     images.append(pygame.image.load(name))
                 #En una variable guarda la velocidad a la que cambia cada imagenes
                 frame = int(time.time()*10) % 4
                 #Muestra en pantalla cada imagen por frames
-                PANTALLA.blit(images[frame], (0, 0))
+                PANTALLA.blit(images[frame], (275, 275))
                     
             if BacknewLevel2.collidepoint(PLAY_MOUSE_POS):
                     draw_text("hola", font2,"white",100,100)
