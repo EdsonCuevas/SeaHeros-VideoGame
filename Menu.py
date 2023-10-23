@@ -248,13 +248,11 @@ def MenuTotal():
         level1 = pygame.image.load("img/Backgrounds/Background_level1.jpg")
         level2 = pygame.image.load("img/Backgrounds/Background_level2.png")
         level3= pygame.image.load("img/Backgrounds/Background_level2.png")
-        submarine = pygame.image.load("img/Sprites/Submarine/submarine1.png")
 
         #Redimencionamiento de imagenes
         newLevel1 = pygame.transform.scale(level1,(250,250))
         newLevel2 = pygame.transform.scale(level2,(250,250))
         newLevel3 = pygame.transform.scale(level3,(250,250))
-        newSubmarine = pygame.transform.scale(submarine,(150,100))
 
         #Convertir el fondo a objecto
         BacknewLevel1 = newLevel1.get_rect(topleft=(200, 200))  
@@ -301,7 +299,16 @@ def MenuTotal():
                 PANTALLA.blit(images[frame], (275, 275))
                     
             if BacknewLevel2.collidepoint(PLAY_MOUSE_POS):
-                    draw_text("hola", font2,"white",100,100)
+                #Crea una lista
+                images = []
+                #Forma para cambiar el numero al nombre de las imagenes
+                for i in range(1,5):
+                    name = "img/Sprites/Buzo/BuzoRescale/buzo"+str(i)+".png"
+                    images.append(pygame.image.load(name))
+                #En una variable guarda la velocidad a la que cambia cada imagenes
+                frame = int(time.time()*10) % 4
+                #Muestra en pantalla cada imagen por frames
+                PANTALLA.blit(images[frame], (545, 285))
 
             if BacknewLevel3.collidepoint(PLAY_MOUSE_POS):
                     draw_text("hola", font2,"white",100,100)
