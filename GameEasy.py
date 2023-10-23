@@ -687,7 +687,7 @@ def Level2():
         
         #Carga de imagenes de botones y el icon de objetivo
         fish_ico = pygame.image.load("img/Sprites/Icons/fish.png")
-        gas_ico = pygame.image.load("img/Sprites/Icons/gas.png")
+        oxygen_ico = pygame.image.load("img/Sprites/Icons/oxygen.png")
         flecha_up = pygame.image.load("img/Sprites/Keys/arrowup_alternative_paper.png")
         flecha_down = pygame.image.load("img/Sprites/Keys/arrowdown_alternative_paper.png")
         esc_key = pygame.image.load("img/Sprites/Keys/esc_alternative_paper.png")
@@ -807,8 +807,8 @@ def Level2():
             def draw(self, surface):
                 #calculate fuel ratio
                 ratio = self.hp / self.max_hp
-                pygame.draw.rect(surface, "#701212", (self.x, self.y, self.w, self.h))
-                pygame.draw.rect(surface, "#B27313", (self.x, self.y, self.w * ratio, self.h))
+                pygame.draw.rect(surface, "#FF0000", (self.x, self.y, self.w, self.h))
+                pygame.draw.rect(surface, "#00FFFF", (self.x, self.y, self.w * ratio, self.h))
 
         #La clase de la rock con sus atributos y funciones
         class Rock(pygame.sprite.Sprite):
@@ -895,8 +895,8 @@ def Level2():
         submarine_group.add(flappy)
 
         #Asigna los valores a la clase vida
-        fuel_bar = FuelBar(500, 35, 300, 40, 3000)
-        fuel_bar.hp = 3000
+        fuel_bar = FuelBar(500, 35, 300, 40, 4200)
+        fuel_bar.hp = 4200
 
         #Carga de imagenes de victoria
         images = []
@@ -934,15 +934,15 @@ def Level2():
             #Si la victoria todavia no esta hecha muestra el score, texto y controles
             if victory == False:
                 #Muestra el score
-                PANTALLA.blit(gas_ico, (420,25))
+                PANTALLA.blit(oxygen_ico, (450,15))
                 draw_text(str(score), font, white, 1110, 20)
                 draw_text(("/5"), font, white, 1150, 20) 
                 PANTALLA.blit(fish_ico, (1210,30))
                 fuel_bar.draw(PANTALLA)
                 if langueje == "en":
-                    draw_text(Configuracion.get(langueje, {}).get("fuel"), font2, black, 610, 0)
+                    draw_text(Configuracion.get(langueje, {}).get("oxigen"), font2, black, 575, 0)
                 elif langueje == "es":
-                    draw_text(Configuracion.get(langueje, {}).get("fuel"), font2, black, 520, 0)
+                    draw_text(Configuracion.get(langueje, {}).get("oxigen"), font2, black, 570, 0)
                 
 
             
