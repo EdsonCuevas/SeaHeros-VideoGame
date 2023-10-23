@@ -748,7 +748,7 @@ def Level2():
                 pygame.display.update()
 
         #La clase del submarino con sus atributos y funciones
-        class Submarine(pygame.sprite.Sprite):
+        class Buzo(pygame.sprite.Sprite):
             def __init__(self, x, y):
                 pygame.sprite.Sprite.__init__(self)
                 self.images = []
@@ -792,7 +792,7 @@ def Level2():
                     #Rotacion del submarino
                     self.image = pygame.transform.rotate(self.images[self.index], self.vel * -1)
                 else:
-                    self.image = pygame.transform.rotate(self.images[self.index], -180)
+                    self.image = pygame.transform.rotate(self.images[self.index], -90)
 
         #La clase de la barra de combustible con sus atributos y funciones
         class FuelBar():
@@ -890,7 +890,7 @@ def Level2():
         bottle_group = pygame.sprite.Group()
 
         #En la variable flappy almacenamos la ubicacion donde aparecera el buzo
-        flappy = Submarine(100, int(H / 2))
+        flappy = Buzo(100, int(H / 2))
         #Al grupo le agregamos la variable flappy
         submarine_group.add(flappy)
 
