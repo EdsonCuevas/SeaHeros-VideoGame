@@ -1,4 +1,4 @@
-import pygame, sys
+import pygame, sys, time
 from pyvidplayer import Video
 from button import Button
 from pygame.locals import *
@@ -273,10 +273,7 @@ def MenuTotal():
             PANTALLA.blit(newLevel1, BacknewLevel1.topleft)
             PANTALLA.blit(newLevel2, BacknewLevel2.topleft)
             PANTALLA.blit(newLevel3, BacknewLevel3.topleft)
-            #Mostrar personajes de cada nivel
-            PANTALLA.blit(newSubmarine,(250,275))
-            PANTALLA.blit(newSubmarine,(550,275))
-            PANTALLA.blit(newSubmarine,(850,275))
+            
 
             #Mostrar texto en pantalla
             if langueje == "es":
@@ -290,9 +287,18 @@ def MenuTotal():
             #Obtener posicion del mouse
             PLAY_MOUSE_POS = pygame.mouse.get_pos()
 
-            #(PENDIENTE)Animacion del pez
+            #(PENDIENTE)Animacion del personaje 
             if BacknewLevel1.collidepoint(PLAY_MOUSE_POS):
-                    draw_text("hola", font2,"white",100,100)
+                #Crea una lista
+                images = []
+                #Forma para cambiar el numero al nombre de las imagenes
+                for i in range(1,3):
+                    name = "img/Sprites/Submarine/SubmarineRescale/submarine"+str(i)+".png"
+                    images.append(pygame.image.load(name))
+                #En una variable guarda la velocidad a la que cambia cada imagenes
+                frame = int(time.time()*10) % 2
+                #Muestra en pantalla cada imagen por frames
+                PANTALLA.blit(images[frame], (275, 275))
                     
             if BacknewLevel2.collidepoint(PLAY_MOUSE_POS):
                     draw_text("hola", font2,"white",100,100)
