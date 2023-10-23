@@ -754,8 +754,8 @@ def Level2():
                 self.images = []
                 self.index = 0
                 self.counter = 0
-                for num in range (1, 4):
-                    img = pygame.image.load(f"img/Sprites/Submarine/submarine{num}.png")
+                for num in range (1, 5):
+                    img = pygame.image.load(f"img/Sprites/Buzo/buzo{num}.png")
                     self.images.append(img)
                 self.image = self.images[self.index]
                 self.rect = self.image.get_rect()
