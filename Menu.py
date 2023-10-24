@@ -598,47 +598,44 @@ def MenuTotal():
                 #Guardamos en una variable los rectangulos del texto de los botones
                 MENU_RECT = MENU_TEXT.get_rect(center=(640, 100))
 
-
-                playMenu = pygame.image.load("img/Sprites/Blue-Buttons/340px/Play.png")
-                playMenu1 = pygame.transform.scale(playMenu,(200,200))
-
-                optionMenu = pygame.image.load("img/Sprites/Blue-Buttons/340px/Option.png")
-                optionMenu1 = pygame.transform.scale(optionMenu,(200,200))
-
-                noMenu = pygame.image.load("img/Sprites/Blue-Buttons/340px/No.png")
-                noMenu1 = pygame.transform.scale(noMenu,(200,200))
-
-                newPlayMenu1 = playMenu1.get_rect(topleft=(300, 250))  
-                newOptionMenu1 = optionMenu1.get_rect(topleft=(500, 250))  
-                newNoMenu1 = noMenu1.get_rect(topleft=(700, 250)) 
-
-                PANTALLA.blit(playMenu1, newPlayMenu1)
-                PANTALLA.blit(optionMenu1, newOptionMenu1)
-                PANTALLA.blit(noMenu1, newNoMenu1)
+                #Guardamos en una variable la clase del boton y para el boton de play
+                PLAY_BUTTON = Button(image=pygame.image.load("assets/Play Rect.png"), pos=(640, 250), 
+                                    text_input=Configuracion.get(langueje, {}).get("play"), font=get_font(75), base_color="Green", hovering_color="White")
+                #Guardamos en una variable la clase del boton y para el boton de opciones
+                OPTIONS_BUTTON = Button(image=pygame.image.load("assets/Options Rect.png"), pos=(640, 400),
+                                    text_input=Configuracion.get(langueje, {}).get("option"), font=get_font(75), base_color="Blue", hovering_color="White")
+                #Guardamos en una variable la clase del boton y para el boton de salir del juego
+                QUIT_BUTTON = Button(image=pygame.image.load("assets/Play Rect.png"), pos=(640, 550),
+                                    text_input=Configuracion.get(langueje, {}).get("exit"), font=get_font(75), base_color="Red", hovering_color="White")
 
                 #Muestra en pantalla el texto y el rectangulo negro
                 PANTALLA.blit(MENU_TEXT, MENU_RECT)
+
+
+                #Un for para la actualizacion de todos los botones en una sola variable
+                for button in [PLAY_BUTTON, OPTIONS_BUTTON, QUIT_BUTTON]:
+                    #Detecta el cambio de color de todos los botones
+                    button.changeColor(MENU_MOUSE_POS)
+                    #Actualiza los botones en la pantalla
+                    button.update(PANTALLA)
                 
                 #Evento principal para poder cerrar la ventana
                 for event in pygame.event.get():
                     if event.type == pygame.QUIT:
                         pygame.quit()
                         sys.exit()
-
                     #Evento que detecta el mouse haga algun click
                     if event.type == pygame.MOUSEBUTTONDOWN:
                         #Si el boton de play es presionado
-                        if newPlayMenu1.collidepoint(MENU_MOUSE_POS):
+                        if PLAY_BUTTON.checkForInput(MENU_MOUSE_POS):
                             #Entra la funcion
                             play()
-
                         #Si el boton de opciones es presionado
-                        if newOptionMenu1.collidepoint(MENU_MOUSE_POS):
+                        if OPTIONS_BUTTON.checkForInput(MENU_MOUSE_POS):
                             #Entra a la funcion
                             options()
-
                         #Si el boton de salir es presionado
-                        if newNoMenu1.collidepoint(MENU_MOUSE_POS):
+                        if QUIT_BUTTON.checkForInput(MENU_MOUSE_POS):
                             #Cierra todo el pygame
                             pygame.quit()
                             sys.exit()
@@ -654,4 +651,3 @@ def MenuTotal():
 
 #Carga primero antes que todo la funcion de intro
 intro()
-
