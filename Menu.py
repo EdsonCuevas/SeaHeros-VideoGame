@@ -348,7 +348,7 @@ def MenuTotal():
                             Level2()
 
 
-
+            ControlMusic()
             pygame.display.update()
 
     def SelectorHard():
