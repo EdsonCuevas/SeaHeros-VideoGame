@@ -49,6 +49,105 @@ red = (255, 0, 0)
 #En una variable guardo el tiempo en milisegundos que transcurren desde que se inicia el pygame.init
 reloj = pygame.time.get_ticks()
 
+class BG(pygame.sprite.Sprite):
+    def __init__(self, pos_x, pos_y):
+        super().__init__()
+        self.sprites = []
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-1.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-2.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-3.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-4.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-5.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-6.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-7.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-8.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-9.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-10.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-11.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-12.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-13.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-14.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-15.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-16.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-17.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-18.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-19.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-20.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-21.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-22.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-23.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-24.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-25.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-26.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-27.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-28.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-29.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-30.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-31.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-32.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-33.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-34.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-35.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-36.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-37.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-38.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-39.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-40.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-41.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-42.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-43.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-44.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-45.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-46.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-47.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-48.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-49.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-50.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-51.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-52.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-53.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-54.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-55.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-56.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-57.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-58.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-59.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-60.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-61.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-62.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-63.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-64.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-65.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-66.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-67.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-68.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-69.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-70.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-71.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-72.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-73.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-74.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-75.png"))
+        self.sprites.append(pygame.image.load("img/Backgrounds/MainMenu/fondo_animado-76.png"))
+
+        self.current_sprite = 0
+        self.image = self.sprites[self.current_sprite]
+
+        self.rect = self.image.get_rect()
+        self.rect.topleft = [pos_x,pos_y]
+    
+    def update(self):
+        self.current_sprite += 0.2
+
+        if self.current_sprite >= len(self.sprites):
+            self.current_sprite = 0
+
+        self.image = self.sprites[int(self.current_sprite)]
+        
+moving_sprites = pygame.sprite.Group()
+bg = BG(0,0)
+moving_sprites.add(bg)
+
 #Cargo el video de intro
 vid = Video("assets/intro.mp4")
 #Setea la resolucion del video en HD
@@ -115,9 +214,6 @@ def MenuTotal():
     #Nombre de la ventana
     pygame.display.set_caption("Sea Heroes")
 
-    #Carga el fondo del menu principal en una variable
-    BG = pygame.image.load("img/Backgrounds/Background_menu.png")
-
     #Carga la musica
     pygame.mixer.music.load("sound/menu.mp3")
 
@@ -166,9 +262,8 @@ def MenuTotal():
                 #Carga la posicion del mouse
                 PLAY_MOUSE_POS = pygame.mouse.get_pos()
 
-                #Carga de fondo para nuevas ventanas
-                PANTALLA.fill("black")
-                PANTALLA.blit(BG, (0, 0))
+                moving_sprites.draw(PANTALLA)
+                moving_sprites.update()
 
                 #Carga un titulo con sus fuentes y tamaños
                 PLAY_TEXT = get_font(45).render(Configuracion.get(langueje, {}).get("select"), True, "White")
@@ -233,7 +328,6 @@ def MenuTotal():
         #Carga de idioma
         global langueje
         
-
         #Funcion de texto
         def draw_text(text, font, text_col, x,y):
                     img = font.render(text, True, text_col)
@@ -244,7 +338,6 @@ def MenuTotal():
         font3 = pygame.font.Font('assets/upheavtt.ttf', 40)
 
         #Carga de imagenes
-        bg = pygame.image.load("img/Backgrounds/Background_menu.png")
         level1 = pygame.image.load("img/Backgrounds/Background_level1.jpg")
         level2 = pygame.image.load("img/Backgrounds/Background_level2.png")
         level3= pygame.image.load("img/Backgrounds/Background_level2.png")
@@ -265,7 +358,7 @@ def MenuTotal():
 
         while True:    
             #Ventana
-            PANTALLA.blit(bg,(0,0))
+            moving_sprites.draw(PANTALLA)
 
             #Mostrar fondos de cada nivel
             PANTALLA.blit(newLevel1, BacknewLevel1.topleft)
@@ -369,7 +462,6 @@ def MenuTotal():
         font3 = pygame.font.Font('assets/upheavtt.ttf', 40)
 
         #Carga de imagenes
-        bg = pygame.image.load("img/Backgrounds/background_select.png")
         level1 = pygame.image.load("img/Backgrounds/Background_control.png")
         level2 = pygame.image.load("img/Backgrounds/Background_level2.png")
         level3= pygame.image.load("img/Backgrounds/Background_level3.jpg")
@@ -391,7 +483,8 @@ def MenuTotal():
 
         while True:    
             #Ventana
-            PANTALLA.blit(bg,(0,0))
+            moving_sprites.draw(PANTALLA)
+            moving_sprites.update()
 
             #Mostrar fondos
             PANTALLA.blit(newLevel1, BacknewLevel1.topleft)
@@ -465,8 +558,10 @@ def MenuTotal():
                 #Detecta la poicion del mouse y lo guarda en una varibale
                 OPTIONS_MOUSE_POS = pygame.mouse.get_pos()
 
+                moving_sprites.draw(PANTALLA)
+                moving_sprites.update()
+
                 #Muestra en la pantalla el mismo background
-                PANTALLA.blit(BG, (0, 0))
 
                 #Detector de mute
                 if pygame.mixer_music.get_volume() == 0.0:
@@ -587,9 +682,6 @@ def MenuTotal():
                 #La declaro la variable languaje como global para que se pueda ver el cambio de idioma en esta parte del Menu
                 global langueje
 
-                #Ejectua el fondo previamente cargado en la variable BG
-                PANTALLA.blit(BG, (0, 0))
-                
                 #Detecta la posicion del mouse para poder interactuar con los botones
                 MENU_MOUSE_POS = pygame.mouse.get_pos()
 
@@ -644,6 +736,8 @@ def MenuTotal():
                 ControlMusic()
                 #Funcion para actualizar toda la pantalla constantemente
                 pygame.display.update()
+                moving_sprites.draw(PANTALLA)
+                moving_sprites.update()
     
 
     #Llama al menu principal
