@@ -10,7 +10,7 @@
         "select": "Selecciona la dificultad",
         "easy": "Facil",
         "hard": "Dificil",
-        "back":"VOLVER",
+        "back":"Volver",
 
         "language":"Idioma:",
         "changelanguage": "Ingles",
@@ -62,7 +62,7 @@
         "select": "Select difficulty",
         "easy": "Easy",
         "hard": "Hard",
-        "back":"Return",
+        "back":"Back",
 
         "language":"Language:",
         "changelanguage": "English",

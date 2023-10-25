@@ -614,8 +614,13 @@ def MenuTotal():
                     
                 
                 #Boton de Salir
-                OPTIONS_BACK = Button(image=None, pos=(640, 650), 
-                                    text_input="VOLVER", font=get_font(75), base_color="White", hovering_color="Red")
+                if(langueje == "es"):
+                    OPTIONS_BACK = Button(image=None, pos=(640, 600), 
+                                        text_input="Volver", font=get_font(75), base_color="White", hovering_color="Red")
+                
+                if(langueje == "en"):
+                    OPTIONS_BACK = Button(image=None, pos=(640, 600), 
+                                        text_input="Back", font=get_font(75), base_color="White", hovering_color="Red")
                 
                 #Bucle para indicar cuando se cierra la ventana
                 for event in pygame.event.get():
@@ -695,7 +700,7 @@ def MenuTotal():
                                     text_input=Configuracion.get(langueje, {}).get("play"), font=get_font(75), base_color="Green", hovering_color="White")
                 #Guardamos en una variable la clase del boton y para el boton de opciones
                 OPTIONS_BUTTON = Button(image=pygame.image.load("assets/Options Rect.png"), pos=(640, 400),
-                                    text_input=Configuracion.get(langueje, {}).get("option"), font=get_font(75), base_color="Blue", hovering_color="White")
+                                    text_input=Configuracion.get(langueje, {}).get("option"), font=get_font(75), base_color="#00C8F0", hovering_color="White")
                 #Guardamos en una variable la clase del boton y para el boton de salir del juego
                 QUIT_BUTTON = Button(image=pygame.image.load("assets/Play Rect.png"), pos=(640, 550),
                                     text_input=Configuracion.get(langueje, {}).get("exit"), font=get_font(75), base_color="Red", hovering_color="White")
