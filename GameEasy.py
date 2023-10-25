@@ -841,7 +841,7 @@ def Level2():
         class FishTraped(pygame.sprite.Sprite):
             def __init__(self, x, y):
                 pygame.sprite.Sprite.__init__(self)
-                self.image = pygame.image.load("img/Sprites/FishAnimation/fish1.png")
+                self.image = pygame.image.load("img/Sprites/FishAnimation/pez_atrapado.png")
                 self.rect = self.image.get_rect()
                 self.rect.topleft = [x,y]
 
@@ -935,9 +935,9 @@ def Level2():
             if victory == False:
                 #Muestra el score
                 PANTALLA.blit(oxygen_ico, (450,15))
-                draw_text(str(score), font, white, 1110, 20)
-                draw_text(("/5"), font, white, 1150, 20) 
-                PANTALLA.blit(fish_ico, (1210,30))
+                draw_text(str(score), font, white, 1100, 20)
+                draw_text(("/5"), font, white, 1130, 20) 
+                PANTALLA.blit(fish_ico, (1190,25))
                 fuel_bar.draw(PANTALLA)
                 if langueje == "en":
                     draw_text(Configuracion.get(langueje, {}).get("oxigen"), font2, black, 575, 0)

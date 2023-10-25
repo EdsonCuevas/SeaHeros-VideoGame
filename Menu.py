@@ -328,7 +328,6 @@ def MenuTotal():
         #Carga de idioma
         global langueje
         
-
         #Funcion de texto
         def draw_text(text, font, text_col, x,y):
                     img = font.render(text, True, text_col)
@@ -360,7 +359,6 @@ def MenuTotal():
         while True:    
             #Ventana
             moving_sprites.draw(PANTALLA)
-            moving_sprites.update()
 
             #Mostrar fondos de cada nivel
             PANTALLA.blit(newLevel1, BacknewLevel1.topleft)
