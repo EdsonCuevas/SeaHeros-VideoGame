@@ -1038,7 +1038,7 @@ def Level2():
                 #Generador de pescado
                 time_now = pygame.time.get_ticks()
                 if time_now - ultimo_pez > frecuencia_pez:
-                    pez_spawn = random.randint(200, 600)
+                    pez_spawn = random.randint(100, 600)
                     pez = FishTraped(W, + pez_spawn)
                     pez_group.add(pez)
                     ultimo_pez = time_now
