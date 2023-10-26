@@ -457,8 +457,8 @@ def Level1():
                 #Generador de roca
                 time_now = pygame.time.get_ticks()
                 if time_now - last_rock > frecuencia_rock:
-                    rock_spawn = random.randint(-100, 200)
-                    rock = Rock(W, int(H / 2) + rock_spawn)
+                    rock_spawn = random.randint(200, 600)
+                    rock = Rock(W, + rock_spawn)
                     rock_group.add(rock)
                     last_rock = time_now
 
@@ -467,8 +467,8 @@ def Level1():
                 #Generador de bolsa
                 time_now = pygame.time.get_ticks()
                 if time_now - ultima_bag > frecuencia_bag:
-                    bag_spawn = random.randint(-100, 200)
-                    bag = Bag(W, int(H / 2) + bag_spawn)
+                    bag_spawn = random.randint(200, 600)
+                    bag = Bag(W, + bag_spawn)
                     bag_group.add(bag)
                     ultima_bag = time_now
 
@@ -895,8 +895,8 @@ def Level2():
         submarine_group.add(flappy)
 
         #Asigna los valores a la clase vida
-        fuel_bar = FuelBar(500, 35, 300, 40, 5000)
-        fuel_bar.hp = 5000
+        fuel_bar = FuelBar(500, 35, 300, 40, 4200)
+        fuel_bar.hp = 4200
 
         #Carga de imagenes de victoria
         images = []
@@ -936,7 +936,7 @@ def Level2():
                 #Muestra el score
                 PANTALLA.blit(oxygen_ico, (450,15))
                 draw_text(str(score), font, white, 1100, 20)
-                draw_text(("/7"), font, white, 1130, 20) 
+                draw_text(("/5"), font, white, 1130, 20) 
                 PANTALLA.blit(fish_ico, (1190,25))
                 fuel_bar.draw(PANTALLA)
                 if langueje == "en":
@@ -987,7 +987,7 @@ def Level2():
                     PANTALLA.blit(sonido_max, (1150,25))
 
             #Detecta si el jugador gana
-            if score == 7 and game_over == False:
+            if score == 5 and game_over == False:
                 victory = True
                 def WinScreen():
                     #Se limpia todos los objetos
