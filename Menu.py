@@ -440,6 +440,15 @@ def MenuTotal():
                             load_level2()
                             Level2()
 
+                #Entra al nivel 3
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                        if BacknewLevel3.collidepoint(PLAY_MOUSE_POS):
+                            pygame.mixer_music.stop()
+                            from GameEasy import load_level3
+                            from GameEasy import Level3
+                            load_level3()
+                            Level3()
+
 
             ControlMusic()
             pygame.display.update()
