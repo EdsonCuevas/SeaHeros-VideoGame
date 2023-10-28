@@ -295,6 +295,7 @@ def MenuTotal():
         while True:    
             #Ventana
             moving_sprites.draw(PANTALLA)
+            moving_sprites.update()
 
             #Mostrar fondos de cada nivel
             PANTALLA.blit(newLevel1, BacknewLevel1.topleft)
