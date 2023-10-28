@@ -1332,7 +1332,7 @@ def Level3():
                 self.index = 0
                 self.counter = 0
                 for num in range (1, 5):
-                    img = pygame.image.load(f"img/Sprites/Buzo/buzo{num}.png")
+                    img = pygame.image.load(f"img/Sprites/DelfinBuzo/delbuzo{num}.png")
                     self.images.append(img)
                 self.image = self.images[self.index]
                 self.rect = self.image.get_rect()
