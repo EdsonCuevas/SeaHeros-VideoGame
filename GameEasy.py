@@ -1566,12 +1566,14 @@ def Level3():
 
             #bucle donde se van sumando los puntos por colisiones con el pescado
             for hit in hitsfish:
-                score += 1
+                if score < 7:
+                    score += 1
                 recolection.play()
             
             #bucle donde se van sumando los puntos por colisiones con la bolsa
             for hit in hitsbag:
-                score2 += 1
+                if score2 < 10:
+                    score2 += 1
                 recolection.play()
 
             #Defino la funcion de los controles de volumen
@@ -1590,7 +1592,7 @@ def Level3():
                     PANTALLA.blit(sonido_max, (1150,25))
 
             #Detecta si el jugador gana
-            if score == 7 and game_over == False:
+            if score == 7 and score2 == 10 and game_over == False:
                 victory = True
                 def WinScreen():
                     #Se limpia todos los objetos
