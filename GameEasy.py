@@ -1253,10 +1253,12 @@ def Level3():
         swimming = False
         game_over = False
         score = 0
+        score2 = 0
         victory = False
         sound = True
         
         #Carga de imagenes de botones y el icon de objetivo
+        bag_ico = pygame.image.load("img/Sprites/Icons/bolsa.png")
         fish_ico = pygame.image.load("img/Sprites/Icons/fish.png")
         oxygen_ico = pygame.image.load("img/Sprites/Icons/oxygen.png")
         flecha_up = pygame.image.load("img/Sprites/Keys/arrowup_alternative_paper.png")
@@ -1284,6 +1286,10 @@ def Level3():
         #Frecuencia de aparicion de pescado atrapado
         frecuencia_pez = 5000 #milisegundos
         ultimo_pez = pygame.time.get_ticks() - frecuencia_pez
+
+        #Frecuencia de aparicion de bolsa
+        frecuencia_bag = 3200 #milisegundos
+        ultima_bag = pygame.time.get_ticks() - frecuencia_bag
         
         #Defino la funcion de pausa
         def pause():
@@ -1319,7 +1325,7 @@ def Level3():
                 pygame.display.update()
 
         #La clase del submarino con sus atributos y funciones
-        class Buzo(pygame.sprite.Sprite):
+        class DelfinBuzo(pygame.sprite.Sprite):
             def __init__(self, x, y):
                 pygame.sprite.Sprite.__init__(self)
                 self.images = []
@@ -1420,6 +1426,18 @@ def Level3():
                 if game_over == False:
                     self.rect.x -= 2
 
+        #La clase de la bolsa con sus atributos y funciones
+        class Bag(pygame.sprite.Sprite):
+            def __init__(self, x, y):
+                pygame.sprite.Sprite.__init__(self)
+                self.image = pygame.image.load("img/Sprites/Coliders/bolsa.png")
+                self.rect = self.image.get_rect()
+                self.rect.topleft = [x,y]
+
+            def update(self):
+                if game_over == False:
+                    self.rect.x -= 2
+
         #Definimos el boton para pasar al siguiente nivel
         def ButtonNextLevel():
             PLAY_MOUSE_POS = pygame.mouse.get_pos()
@@ -1458,10 +1476,11 @@ def Level3():
         submarine_group = pygame.sprite.Group()
         rock_group = pygame.sprite.Group()
         pez_group = pygame.sprite.Group()
+        bag_group = pygame.sprite.Group()
         bottle_group = pygame.sprite.Group()
 
         #En la variable flappy almacenamos la ubicacion donde aparecera el buzo
-        flappy = Buzo(100, int(H / 2))
+        flappy = DelfinBuzo(100, int(H / 2))
         #Al grupo le agregamos la variable flappy
         submarine_group.add(flappy)
 
@@ -1499,6 +1518,8 @@ def Level3():
             rock_group.update()
             pez_group.draw(PANTALLA)
             pez_group.update()
+            bag_group.draw(PANTALLA)
+            bag_group.update()
             bottle_group.draw(PANTALLA)
             bottle_group.update()
             
@@ -1535,11 +1556,18 @@ def Level3():
                 game_over = True
     
             #Revisa la colision del submarino con el pez
-            hits = pygame.sprite.groupcollide(submarine_group, pez_group, False, True)
+            hitsfish = pygame.sprite.groupcollide(submarine_group, pez_group, False, True)
 
-            #bucle donde se van sumando los puntos por colisiones
-            for hit in hits:
+            hitsbag = pygame.sprite.groupcollide(submarine_group, bag_group, False, True)
+
+            #bucle donde se van sumando los puntos por colisiones con el pescado
+            for hit in hitsfish:
                 score += 1
+                recolection.play()
+            
+            #bucle donde se van sumando los puntos por colisiones con la bolsa
+            for hit in hitsbag:
+                score2 += 1
                 recolection.play()
 
             #Defino la funcion de los controles de volumen
@@ -1564,6 +1592,7 @@ def Level3():
                     #Se limpia todos los objetos
                     rock_group.empty()
                     pez_group.empty()
+                    bag_group.empty()
                     submarine_group.empty()
                     bottle_group.empty()
                     #Muestra la imagen de victoria animada
@@ -1573,7 +1602,7 @@ def Level3():
                     ButtonNextLevel()
                     #Se detiene la musica
                     pygame.mixer.music.stop()
-                    for sound in hits:
+                    for sound in hitsfish:
                         victory_sound.play()
                 WinScreen()
 
@@ -1613,6 +1642,16 @@ def Level3():
                     pez = FishTraped(W, + pez_spawn)
                     pez_group.add(pez)
                     ultimo_pez = time_now
+
+            #Checa que el juego no llegue a Game Over
+            if game_over == False and swimming == True:
+                #Generador de bolsa
+                time_now = pygame.time.get_ticks()
+                if time_now - ultima_bag > frecuencia_bag:
+                    bag_spawn = random.randint(200, 600)
+                    bag = Bag(W, + bag_spawn)
+                    bag_group.add(bag)
+                    ultima_bag = time_now
 
             #Checa que el juego llegue a GameOver y dibuja los botones
             if game_over == True:
