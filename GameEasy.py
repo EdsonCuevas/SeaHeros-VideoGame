@@ -696,7 +696,7 @@ def Level2():
         click1 = pygame.image.load("img/Sprites/Keys/mouse_L_pressed_paper.png")
 
         #Musica de fondo
-        pygame.mixer.music.load("sound/level1.mp3")
+        pygame.mixer.music.load("sound/level2.mp3")
         #Establece la musica en un bucle infinito
         pygame.mixer.music.play(-1)
         #Setea el volumen inicial de la musica
