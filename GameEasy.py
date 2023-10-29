@@ -1138,6 +1138,7 @@ def load_level3():
     bottle_ico = pygame.image.load("img/Sprites/Icons/botella.png")
     rock_ico = pygame.image.load("img/Sprites/Coliders/rock.png")
     fish_ico = pygame.image.load("img/Sprites/FishAnimation/fish1.png")
+    bolsa_ico = pygame.image.load("img/Sprites/Coliders/bolsa.png")
 
     #Fuentes
     font1 = pygame.font.Font('assets/upheavtt.ttf', 60)
@@ -1166,6 +1167,7 @@ def load_level3():
             draw_text(Configuracion.get(langueje, {}).get("save"), font1, green, 450, 310)
             PANTALLA.blit(fish_ico, (750, 305))
             draw_text(Configuracion.get(langueje, {}).get("recolet"), font1, green, 450, 370)
+            PANTALLA.blit(bolsa_ico, (850, 360))
             draw_text(Configuracion.get(langueje, {}).get("evade"), font1, red, 450, 430)
             PANTALLA.blit(rock_ico, (735, 430))
             PANTALLA.blit(bottle_ico, (680, 430))
