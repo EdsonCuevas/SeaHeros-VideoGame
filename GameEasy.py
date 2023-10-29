@@ -1165,9 +1165,10 @@ def load_level3():
             draw_text(Configuracion.get(langueje, {}).get("object"), font1, white, 490, 200)
             draw_text(Configuracion.get(langueje, {}).get("save"), font1, green, 450, 310)
             PANTALLA.blit(fish_ico, (750, 305))
-            draw_text(Configuracion.get(langueje, {}).get("evade"), font1, red, 450, 380)
-            PANTALLA.blit(rock_ico, (735, 380))
-            PANTALLA.blit(bottle_ico, (680, 380))
+            draw_text(Configuracion.get(langueje, {}).get("recolet"), font1, green, 450, 370)
+            draw_text(Configuracion.get(langueje, {}).get("evade"), font1, red, 450, 430)
+            PANTALLA.blit(rock_ico, (735, 430))
+            PANTALLA.blit(bottle_ico, (680, 430))
 
         if langueje == "en":
             draw_text(Configuracion.get(langueje, {}).get("numlevel3"), font1, white, 530, 10)
@@ -1277,15 +1278,15 @@ def Level3():
 
         #Frecuencia de aparicion de rock
         frecuencia_rock = 2300 #milisegundos
-        last_rock = pygame.time.get_ticks() - frecuencia_rock
+        last_rock = pygame.time.get_ticks() - frecuencia_rock + 1000
 
         #Frecuencia de aparicion de botella
         frecuencia_bottle = 2700
-        last_bottle = pygame.time.get_ticks() - frecuencia_bottle
+        last_bottle = pygame.time.get_ticks() - frecuencia_bottle + 1500
 
         #Frecuencia de aparicion de pescado atrapado
         frecuencia_pez = 5000 #milisegundos
-        ultimo_pez = pygame.time.get_ticks() - frecuencia_pez
+        ultimo_pez = pygame.time.get_ticks() - frecuencia_pez + 500
 
         #Frecuencia de aparicion de bolsa
         frecuencia_bag = 3200 #milisegundos
@@ -1532,7 +1533,7 @@ def Level3():
                 PANTALLA.blit(fish_ico, (1190,25))
 
                 draw_text(str(score2), font, white, 1100, 80)
-                draw_text(("/10"), font, white, 1130, 80)
+                draw_text(("/5"), font, white, 1130, 80)
                 PANTALLA.blit(bag_ico, (1225,80)) 
                 fuel_bar.draw(PANTALLA)
                 if langueje == "en":
@@ -1572,7 +1573,7 @@ def Level3():
             
             #bucle donde se van sumando los puntos por colisiones con la bolsa
             for hit in hitsbag:
-                if score2 < 10:
+                if score2 < 5:
                     score2 += 1
                 recolection.play()
 
@@ -1592,7 +1593,7 @@ def Level3():
                     PANTALLA.blit(sonido_max, (1150,25))
 
             #Detecta si el jugador gana
-            if score == 7 and score2 == 10 and game_over == False:
+            if score == 7 and score2 == 5 and game_over == False:
                 victory = True
                 def WinScreen():
                     #Se limpia todos los objetos
