@@ -1173,13 +1173,15 @@ def load_level3():
             PANTALLA.blit(bottle_ico, (680, 430))
 
         if langueje == "en":
-            draw_text(Configuracion.get(langueje, {}).get("numlevel3"), font1, white, 530, 10)
-            draw_text(Configuracion.get(langueje, {}).get("object"), font1, white, 470, 200)
-            draw_text(Configuracion.get(langueje, {}).get("save"), font1, green, 480, 290)
-            PANTALLA.blit(fish_ico, (710, 290))
-            draw_text(Configuracion.get(langueje, {}).get("evade"), font1, red, 480, 360)
-            PANTALLA.blit(rock_ico, (750, 355))
-            PANTALLA.blit(bottle_ico, (680, 350))
+            draw_text(Configuracion.get(langueje, {}).get("numlevel3"), font1, white, 540, 10)
+            draw_text(Configuracion.get(langueje, {}).get("object"), font1, white, 490, 200)
+            draw_text(Configuracion.get(langueje, {}).get("save"), font1, green, 500, 310)
+            PANTALLA.blit(fish_ico, (710, 310))
+            draw_text(Configuracion.get(langueje, {}).get("recolet"), font1, green, 450, 370)
+            PANTALLA.blit(bolsa_ico, (780, 360))
+            draw_text(Configuracion.get(langueje, {}).get("evade"), font1, red, 480, 430)
+            PANTALLA.blit(rock_ico, (735, 430))
+            PANTALLA.blit(bottle_ico, (680, 430))
 
 
         for event in pygame.event.get():
