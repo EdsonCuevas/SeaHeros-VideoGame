@@ -308,9 +308,9 @@ def MenuTotal():
                 draw_text(Configuracion.get(langueje, {}).get("selectLevel"), font2, "white", 400,40)
             if langueje == "en":
                 draw_text(Configuracion.get(langueje, {}).get("selectLevel"), font2, "white", 470,40)
-            draw_text(Configuracion.get(langueje, {}).get("selectLevel1"), font3, "white", 250,470)
-            draw_text(Configuracion.get(langueje, {}).get("selectLevel2"), font3, "white", 550,470)
-            draw_text(Configuracion.get(langueje, {}).get("selectLevel3"), font3, "white", 850,470)
+            draw_text(Configuracion.get(langueje, {}).get("selectLevel1"), font3, "white", 250,410)
+            draw_text(Configuracion.get(langueje, {}).get("selectLevel2"), font3, "white", 550,410)
+            draw_text(Configuracion.get(langueje, {}).get("selectLevel3"), font3, "white", 850,410)
 
             #Obtener posicion del mouse
             PLAY_MOUSE_POS = pygame.mouse.get_pos()
