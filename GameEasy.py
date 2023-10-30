@@ -712,7 +712,7 @@ def Level2():
 
         #Frecuencia de aparicion de pescado atrapado
         frecuencia_pez = 5000 #milisegundos
-        ultimo_pez = pygame.time.get_ticks() - frecuencia_pez
+        ultimo_pez = pygame.time.get_ticks() - frecuencia_pez + 1000
         
         #Defino la funcion de pausa
         def pause():
@@ -867,7 +867,7 @@ def Level2():
                 #Evento para detectar el mouse sobre el boton y funcion de este
                 if event.type == pygame.MOUSEBUTTONDOWN:
                         if NEXT.checkForInput(PLAY_MOUSE_POS):
-                            Level2()
+                            Level3()
 
         #Funcion para imprimir las teclas en pantalla
         def keys_on_screen():
