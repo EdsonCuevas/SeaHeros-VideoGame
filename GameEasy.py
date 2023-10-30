@@ -1537,8 +1537,8 @@ def Level3():
                 PANTALLA.blit(fish_ico, (1190,25))
 
                 draw_text(str(score2), font, white, 1100, 80)
-                draw_text(("/5"), font, white, 1130, 80)
-                PANTALLA.blit(bag_ico, (1225,80)) 
+                draw_text(("/7"), font, white, 1130, 80)
+                PANTALLA.blit(bag_ico, (1200,80)) 
                 fuel_bar.draw(PANTALLA)
                 if langueje == "en":
                     draw_text(Configuracion.get(langueje, {}).get("oxigen"), font2, black, 575, 0)
