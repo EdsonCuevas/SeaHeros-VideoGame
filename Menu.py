@@ -209,22 +209,22 @@ def MenuTotal():
                 #Carga el boton de inicio de nivel facil
                 if langueje == "en": 
                     EASY_GAME = Button(image=pygame.image.load("assets/Play Rect.png"), pos=(640, 260),
-                                        text_input=Configuracion.get(langueje, {}).get("easy"), font=get_font(75), base_color="White", hovering_color="Green")
+                                        text_input=Configuracion.get(langueje, {}).get("easy"), font=get_font(75), base_color="Green", hovering_color="White")
                 if langueje == "es": 
                     EASY_GAME = Button(image=pygame.image.load("assets/Play Rect1.png"), pos=(640, 260),
-                                        text_input=Configuracion.get(langueje, {}).get("easy"), font=get_font(75), base_color="White", hovering_color="Green")
+                                        text_input=Configuracion.get(langueje, {}).get("easy"), font=get_font(75), base_color="Green", hovering_color="White")
                 
                 #Carga el boton de inicio de nivel dificil
                 if langueje == "en":
                     HARD_GAME = Button(image=pygame.image.load("assets/Play Rect.png"), pos=(640, 400),
-                                        text_input=Configuracion.get(langueje, {}).get("hard"), font=get_font(75), base_color="White", hovering_color="Green")
+                                        text_input=Configuracion.get(langueje, {}).get("hard"), font=get_font(75), base_color="Green", hovering_color="White")
                 if langueje == "es":
                     HARD_GAME = Button(image=pygame.image.load("assets/Options Rect.png"), pos=(640, 400),
-                                        text_input=Configuracion.get(langueje, {}).get("hard"), font=get_font(75), base_color="White", hovering_color="Green")
+                                        text_input=Configuracion.get(langueje, {}).get("hard"), font=get_font(75), base_color="Green", hovering_color="White")
 
                 #Carga un boton de volver al menu
-                PLAY_BACK = Button(image=None, pos=(640, 600), 
-                                    text_input=Configuracion.get(langueje, {}).get("back"), font=get_font(75), base_color="White", hovering_color="Red")
+                PLAY_BACK = Button(image=None, pos=(640, 600),
+                                    text_input=Configuracion.get(langueje, {}).get("back"), font=get_font(75), base_color="Red", hovering_color="White")
 
                 #Muestra los botones y PANTALLA actualizados
                 PLAY_BACK.changeColor(PLAY_MOUSE_POS)
@@ -305,12 +305,12 @@ def MenuTotal():
 
             #Mostrar texto en pantalla
             if langueje == "es":
-                draw_text(Configuracion.get(langueje, {}).get("selectLevel"), font2, "white", 400,50)
+                draw_text(Configuracion.get(langueje, {}).get("selectLevel"), font2, "white", 400,40)
             if langueje == "en":
-                draw_text(Configuracion.get(langueje, {}).get("selectLevel"), font2, "white", 470,50)
-            draw_text(Configuracion.get(langueje, {}).get("selectLevel1"), font3, "white", 250,470)
-            draw_text(Configuracion.get(langueje, {}).get("selectLevel2"), font3, "white", 550,470)
-            draw_text(Configuracion.get(langueje, {}).get("selectLevel3"), font3, "white", 850,470)
+                draw_text(Configuracion.get(langueje, {}).get("selectLevel"), font2, "white", 470,40)
+            draw_text(Configuracion.get(langueje, {}).get("selectLevel1"), font3, "white", 250,410)
+            draw_text(Configuracion.get(langueje, {}).get("selectLevel2"), font3, "white", 550,410)
+            draw_text(Configuracion.get(langueje, {}).get("selectLevel3"), font3, "white", 850,410)
 
             #Obtener posicion del mouse
             PLAY_MOUSE_POS = pygame.mouse.get_pos()
@@ -354,7 +354,7 @@ def MenuTotal():
 
             #Salir
             BACK = Button(image=None, pos=(640, 600), 
-                                        text_input=Configuracion.get(langueje, {}).get("back"), font=get_font(75), base_color="White", hovering_color="Red")
+                                        text_input=Configuracion.get(langueje, {}).get("back"), font=get_font(75), base_color="Red", hovering_color="White")
             
             BACK.changeColor(PLAY_MOUSE_POS)
             BACK.update(PANTALLA)
