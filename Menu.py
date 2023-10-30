@@ -305,9 +305,9 @@ def MenuTotal():
 
             #Mostrar texto en pantalla
             if langueje == "es":
-                draw_text(Configuracion.get(langueje, {}).get("selectLevel"), font2, "white", 400,50)
+                draw_text(Configuracion.get(langueje, {}).get("selectLevel"), font2, "white", 400,40)
             if langueje == "en":
-                draw_text(Configuracion.get(langueje, {}).get("selectLevel"), font2, "white", 470,50)
+                draw_text(Configuracion.get(langueje, {}).get("selectLevel"), font2, "white", 470,40)
             draw_text(Configuracion.get(langueje, {}).get("selectLevel1"), font3, "white", 250,470)
             draw_text(Configuracion.get(langueje, {}).get("selectLevel2"), font3, "white", 550,470)
             draw_text(Configuracion.get(langueje, {}).get("selectLevel3"), font3, "white", 850,470)
@@ -354,7 +354,7 @@ def MenuTotal():
 
             #Salir
             BACK = Button(image=None, pos=(640, 600), 
-                                        text_input=Configuracion.get(langueje, {}).get("back"), font=get_font(75), base_color="White", hovering_color="Red")
+                                        text_input=Configuracion.get(langueje, {}).get("back"), font=get_font(75), base_color="Red", hovering_color="White")
             
             BACK.changeColor(PLAY_MOUSE_POS)
             BACK.update(PANTALLA)
