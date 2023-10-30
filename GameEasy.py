@@ -1537,7 +1537,7 @@ def Level3():
                 PANTALLA.blit(fish_ico, (1190,25))
 
                 draw_text(str(score2), font, white, 1100, 80)
-                draw_text(("/7"), font, white, 1130, 80)
+                draw_text(("/5"), font, white, 1130, 80)
                 PANTALLA.blit(bag_ico, (1200,80)) 
                 fuel_bar.draw(PANTALLA)
                 if langueje == "en":
@@ -1577,7 +1577,7 @@ def Level3():
             
             #bucle donde se van sumando los puntos por colisiones con la bolsa
             for hit in hitsbag:
-                if score2 < 7:
+                if score2 < 5:
                     score2 += 1
                 recolection.play()
 
@@ -1597,7 +1597,7 @@ def Level3():
                     PANTALLA.blit(sonido_max, (1150,25))
 
             #Detecta si el jugador gana
-            if score == 7 and score2 == 7 and game_over == False:
+            if score == 7 and score2 == 5 and game_over == False:
                 victory = True
                 def WinScreen():
                     #Se limpia todos los objetos
