@@ -1577,7 +1577,7 @@ def Level3():
             
             #bucle donde se van sumando los puntos por colisiones con la bolsa
             for hit in hitsbag:
-                if score2 < 5:
+                if score2 < 7:
                     score2 += 1
                 recolection.play()
 
@@ -1597,7 +1597,7 @@ def Level3():
                     PANTALLA.blit(sonido_max, (1150,25))
 
             #Detecta si el jugador gana
-            if score == 7 and score2 == 5 and game_over == False:
+            if score == 7 and score2 == 7 and game_over == False:
                 victory = True
                 def WinScreen():
                     #Se limpia todos los objetos
