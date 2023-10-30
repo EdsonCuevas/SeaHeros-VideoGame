@@ -712,7 +712,7 @@ def Level2():
 
         #Frecuencia de aparicion de pescado atrapado
         frecuencia_pez = 5000 #milisegundos
-        ultimo_pez = pygame.time.get_ticks() - frecuencia_pez
+        ultimo_pez = pygame.time.get_ticks() - frecuencia_pez + 1000
         
         #Defino la funcion de pausa
         def pause():
