@@ -655,7 +655,7 @@ def MenuTotal():
                                     text_input=Configuracion.get(langueje, {}).get("play"), font=get_font(75), base_color="Green", hovering_color="White")
                 #Guardamos en una variable la clase del boton y para el boton de opciones
                 OPTIONS_BUTTON = Button(image=pygame.image.load("assets/Options Rect.png"), pos=(640, 400),
-                                    text_input=Configuracion.get(langueje, {}).get("option"), font=get_font(75), base_color="#00C8F0", hovering_color="White")
+                                    text_input=Configuracion.get(langueje, {}).get("option"), font=get_font(75), base_color="Blue", hovering_color="White")
                 #Guardamos en una variable la clase del boton y para el boton de salir del juego
                 QUIT_BUTTON = Button(image=pygame.image.load("assets/Play Rect.png"), pos=(640, 550),
                                     text_input=Configuracion.get(langueje, {}).get("exit"), font=get_font(75), base_color="Red", hovering_color="White")
