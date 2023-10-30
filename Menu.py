@@ -516,7 +516,6 @@ def MenuTotal():
                 moving_sprites.draw(PANTALLA)
                 moving_sprites.update()
 
-                #Muestra en la pantalla el mismo background
 
                 #Detector de mute
                 if pygame.mixer_music.get_volume() == 0.0:
@@ -528,16 +527,16 @@ def MenuTotal():
 
                 #Muestra Texto Titulo Opciones
                 OPTIONS_TEXT = get_font(45).render(Configuracion.get(langueje, {}).get("option"), True, "White")
-                OPTIONS_RECT = OPTIONS_TEXT.get_rect(center=(640, 90))
+                OPTIONS_RECT = OPTIONS_TEXT.get_rect(center=(640, 50))
                 PANTALLA.blit(OPTIONS_TEXT, OPTIONS_RECT)
 
                 #Muestra Texto de Idioma
-                IDIOMA_TEXT = get_font(45).render(Configuracion.get(langueje, {}).get("language"), True, "White")
+                IDIOMA_TEXT = get_font(45).render(Configuracion.get(langueje, {}).get("language"), True, "Blue")
                 IDIOMA_RECT = IDIOMA_TEXT.get_rect(center=(500, 250))
                 PANTALLA.blit(IDIOMA_TEXT, IDIOMA_RECT)
 
                 #Muestra Texto de Volumen
-                MUSICVOL_TEXT = get_font(45).render(Configuracion.get(langueje, {}).get("musictext"), True, "White")
+                MUSICVOL_TEXT = get_font(45).render(Configuracion.get(langueje, {}).get("musictext"), True, "Blue")
                 MUSICVOL_RECT = IDIOMA_TEXT.get_rect(center=(500, 430))
                 PANTALLA.blit(MUSICVOL_TEXT, MUSICVOL_RECT)
 
@@ -655,7 +654,7 @@ def MenuTotal():
                                     text_input=Configuracion.get(langueje, {}).get("play"), font=get_font(75), base_color="Green", hovering_color="White")
                 #Guardamos en una variable la clase del boton y para el boton de opciones
                 OPTIONS_BUTTON = Button(image=pygame.image.load("assets/Options Rect.png"), pos=(640, 400),
-                                    text_input=Configuracion.get(langueje, {}).get("option"), font=get_font(75), base_color="#00C8F0", hovering_color="White")
+                                    text_input=Configuracion.get(langueje, {}).get("option"), font=get_font(75), base_color="Blue", hovering_color="White")
                 #Guardamos en una variable la clase del boton y para el boton de salir del juego
                 QUIT_BUTTON = Button(image=pygame.image.load("assets/Play Rect.png"), pos=(640, 550),
                                     text_input=Configuracion.get(langueje, {}).get("exit"), font=get_font(75), base_color="Red", hovering_color="White")
