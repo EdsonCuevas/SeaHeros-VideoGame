@@ -122,7 +122,7 @@ def intro():
                 pygame.quit()
                 sys.exit()
             #Detecta si el mouse se presiona
-            if event.type == pygame.MOUSEBUTTONDOWN:
+            if event.type == pygame.MOUSEBUTTONDOWN or event.type == pygame.KEYDOWN:
                 #Cierra el video
                 vid.close()
                 #Termina el bucle
