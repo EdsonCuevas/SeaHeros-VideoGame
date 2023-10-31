@@ -1389,8 +1389,8 @@ def Level3():
             def draw(self, surface):
                 #calculate fuel ratio
                 ratio = self.hp / self.max_hp
-                pygame.draw.rect(surface, "#FF0000", (self.x, self.y, self.w, self.h))
-                pygame.draw.rect(surface, "#00FFFF", (self.x, self.y, self.w * ratio, self.h))
+                pygame.draw.rect(surface, "Red", (self.x, self.y, self.w, self.h))
+                pygame.draw.rect(surface, "Yellow", (self.x, self.y, self.w * ratio, self.h))
 
         #La clase de la rock con sus atributos y funciones
         class Rock(pygame.sprite.Sprite):
