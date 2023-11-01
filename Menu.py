@@ -274,9 +274,9 @@ def MenuTotal():
         font3 = pygame.font.Font('assets/upheavtt.ttf', 40)
 
         #Carga de imagenes
-        level1 = pygame.image.load("img/Backgrounds/Background_level1.jpg")
-        level2 = pygame.image.load("img/Backgrounds/Background_level2.png")
-        level3= pygame.image.load("img/Backgrounds/Background_level3.png")
+        level1 = pygame.image.load("img/Backgrounds/Select_Background_level1.png")
+        level2 = pygame.image.load("img/Backgrounds/Select_Background_level2.png")
+        level3= pygame.image.load("img/Backgrounds/Select_Background_level3.png")
 
         #Redimencionamiento de imagenes
         newLevel1 = pygame.transform.scale(level1,(250,250))
