@@ -274,9 +274,9 @@ def MenuTotal():
         font3 = pygame.font.Font('assets/upheavtt.ttf', 40)
 
         #Carga de imagenes
-        level1 = pygame.image.load("img/Backgrounds/Background_level1.jpg")
-        level2 = pygame.image.load("img/Backgrounds/Background_level2.png")
-        level3= pygame.image.load("img/Backgrounds/Background_level3.png")
+        level1 = pygame.image.load("img/Backgrounds/Select_Background_level1.png")
+        level2 = pygame.image.load("img/Backgrounds/Select_Background_level2.png")
+        level3= pygame.image.load("img/Backgrounds/Select_Background_level3.png")
 
         #Redimencionamiento de imagenes
         newLevel1 = pygame.transform.scale(level1,(250,250))
@@ -308,9 +308,10 @@ def MenuTotal():
                 draw_text(Configuracion.get(langueje, {}).get("selectLevel"), font2, "white", 400,40)
             if langueje == "en":
                 draw_text(Configuracion.get(langueje, {}).get("selectLevel"), font2, "white", 470,40)
-            draw_text(Configuracion.get(langueje, {}).get("selectLevel1"), font3, "white", 250,410)
-            draw_text(Configuracion.get(langueje, {}).get("selectLevel2"), font3, "white", 550,410)
-            draw_text(Configuracion.get(langueje, {}).get("selectLevel3"), font3, "white", 850,410)
+                
+            draw_text(Configuracion.get(langueje, {}).get("selectLevel1"), font3, "white", 250,404)
+            draw_text(Configuracion.get(langueje, {}).get("selectLevel2"), font3, "white", 550,400)
+            draw_text(Configuracion.get(langueje, {}).get("selectLevel3"), font3, "white", 850,403)
 
             #Obtener posicion del mouse
             PLAY_MOUSE_POS = pygame.mouse.get_pos()
