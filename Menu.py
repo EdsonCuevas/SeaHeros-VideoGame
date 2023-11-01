@@ -276,7 +276,7 @@ def MenuTotal():
         #Carga de imagenes
         level1 = pygame.image.load("img/Backgrounds/Background_level1.jpg")
         level2 = pygame.image.load("img/Backgrounds/Background_level2.png")
-        level3= pygame.image.load("img/Backgrounds/Background_level2.png")
+        level3= pygame.image.load("img/Backgrounds/Background_level3.png")
 
         #Redimencionamiento de imagenes
         newLevel1 = pygame.transform.scale(level1,(250,250))

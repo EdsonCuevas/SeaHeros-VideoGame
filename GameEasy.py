@@ -668,7 +668,7 @@ def Level2():
         sonido_max = pygame.image.load("sound/img/volume_max.png")
 
         #Fondo en movimiento
-        fondo = pygame.image.load("img/Backgrounds/bglevel2.png").convert()
+        fondo = pygame.image.load("img/Backgrounds/Background_level2.png").convert()
         VelFondo = 0
 
         #Colores
@@ -1244,7 +1244,7 @@ def Level3():
         sonido_max = pygame.image.load("sound/img/volume_max.png")
 
         #Fondo en movimiento
-        fondo = pygame.image.load("img/Backgrounds/Background_level2.png").convert()
+        fondo = pygame.image.load("img/Backgrounds/Background_level3.png").convert()
         VelFondo = 0
 
         #Colores
