@@ -1285,7 +1285,7 @@ def Level3():
         last_rock = pygame.time.get_ticks() - frecuencia_rock + 1000
 
         #Frecuencia de aparicion de botella
-        frecuencia_bottle = 2700
+        frecuencia_bottle = 3700
         last_bottle = pygame.time.get_ticks() - frecuencia_bottle + 1500
 
         #Frecuencia de aparicion de pescado atrapado
