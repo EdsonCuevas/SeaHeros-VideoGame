@@ -300,7 +300,7 @@ def Level1():
             PLAY_MOUSE_POS = pygame.mouse.get_pos()
 
             NEXT = Button(image=(None), pos=(640, 400),
-                                    text_input=Configuracion.get(langueje, {}).get("buttonNext"), font=get_font(50), base_color="White", hovering_color="Green")
+                                    text_input=Configuracion.get(langueje, {}).get("buttonNext"), font=get_font(40), base_color="White", hovering_color="Green")
             NEXT.changeColor(PLAY_MOUSE_POS)
             NEXT.update(PANTALLA)
 
@@ -854,7 +854,7 @@ def Level2():
             PLAY_MOUSE_POS = pygame.mouse.get_pos()
 
             NEXT = Button(image=(None), pos=(640, 400),
-                                    text_input=Configuracion.get(langueje, {}).get("buttonNext"), font=get_font(50), base_color="White", hovering_color="Green")
+                                    text_input=Configuracion.get(langueje, {}).get("buttonNext"), font=get_font(40), base_color="White", hovering_color="Green")
             NEXT.changeColor(PLAY_MOUSE_POS)
             NEXT.update(PANTALLA)
 
@@ -895,8 +895,8 @@ def Level2():
         submarine_group.add(flappy)
 
         #Asigna los valores a la clase vida
-        fuel_bar = FuelBar(500, 35, 300, 40, 5000)
-        fuel_bar.hp = 5000
+        fuel_bar = FuelBar(500, 35, 300, 40, 5250)
+        fuel_bar.hp = 5250
 
         #Carga de imagenes de victoria
         images = []
@@ -1448,7 +1448,7 @@ def Level3():
             PLAY_MOUSE_POS = pygame.mouse.get_pos()
 
             NEXT = Button(image=(None), pos=(640, 400),
-                                    text_input=Configuracion.get(langueje, {}).get("buttonNext"), font=get_font(50), base_color="White", hovering_color="Green")
+                                    text_input=Configuracion.get(langueje, {}).get("buttonNext"), font=get_font(40), base_color="White", hovering_color="Green")
             NEXT.changeColor(PLAY_MOUSE_POS)
             NEXT.update(PANTALLA)
 
