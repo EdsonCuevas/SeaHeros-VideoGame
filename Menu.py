@@ -328,6 +328,8 @@ def MenuTotal():
                 frame = int(time.time()*10) % 2
                 #Muestra en pantalla cada imagen por frames
                 PANTALLA.blit(images[frame], (290, 285))
+                #Colorea el texto del nivel en verde
+                draw_text(Configuracion.get(langueje, {}).get("selectLevel1"), font3, "green", 250,404)
                     
             if BacknewLevel2.collidepoint(PLAY_MOUSE_POS):
                 #Crea una lista
@@ -340,6 +342,8 @@ def MenuTotal():
                 frame = int(time.time()*10) % 4
                 #Muestra en pantalla cada imagen por frames
                 PANTALLA.blit(images[frame], (565, 295))
+                #Colorea el texto del nivel en verde
+                draw_text(Configuracion.get(langueje, {}).get("selectLevel2"), font3, "green", 550,400)
 
             if BacknewLevel3.collidepoint(PLAY_MOUSE_POS):
                 #Crea una lista
@@ -352,6 +356,9 @@ def MenuTotal():
                 frame = int(time.time()*10) % 4
                 #Muestra en pantalla cada imagen por frames
                 PANTALLA.blit(images[frame], (860, 295))
+                #Colorea el texto del nivel en verde
+                draw_text(Configuracion.get(langueje, {}).get("selectLevel3"), font3, "green", 850,403)
+                
 
             #Salir
             BACK = Button(image=None, pos=(640, 600), 
