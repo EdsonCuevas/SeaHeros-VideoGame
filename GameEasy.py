@@ -171,7 +171,7 @@ def Level1():
 
         #Frecuencia de aparicion de bolsa
         frecuencia_bag = 3000 #milisegundos
-        ultima_bag = pygame.time.get_ticks() - frecuencia_bag
+        ultima_bag = pygame.time.get_ticks() - frecuencia_bag + 1000
         
         #Defino la funcion de pausa
         def pause():
@@ -281,7 +281,7 @@ def Level1():
             def update(self):
                 #Se quedan en su lugar al morir
                 if game_over == False:
-                    self.rect.x -= 2
+                    self.rect.x -= 3
 
         #La clase de la bolsa con sus atributos y funciones
         class Bag(pygame.sprite.Sprite):
@@ -293,14 +293,14 @@ def Level1():
 
             def update(self):
                 if game_over == False:
-                    self.rect.x -= 2
+                    self.rect.x -= 3
 
         #Definimos el boton para pasar al siguiente nivel
         def ButtonNextLevel():
             PLAY_MOUSE_POS = pygame.mouse.get_pos()
 
             NEXT = Button(image=(None), pos=(640, 400),
-                                    text_input=Configuracion.get(langueje, {}).get("buttonNext"), font=get_font(50), base_color="White", hovering_color="Green")
+                                    text_input=Configuracion.get(langueje, {}).get("buttonNext"), font=get_font(40), base_color="White", hovering_color="Green")
             NEXT.changeColor(PLAY_MOUSE_POS)
             NEXT.update(PANTALLA)
 
@@ -363,7 +363,7 @@ def Level1():
             if x_relativa < W:
                 PANTALLA.blit(fondo,(x_relativa,0))
             #Velocidad del fondo
-            VelFondo -= 2
+            VelFondo -= 3
             #Velocidad del juego total
             clock.tick(fps)
 
@@ -822,7 +822,7 @@ def Level2():
             def update(self):
                 #Se quedan en su lugar al morir
                 if game_over == False:
-                    self.rect.x -= 2
+                    self.rect.x -= 3
 
         #La clase de la rock con sus atributos y funciones
         class Bottle(pygame.sprite.Sprite):
@@ -835,7 +835,7 @@ def Level2():
             def update(self):
                 #Se quedan en su lugar al morir
                 if game_over == False:
-                    self.rect.x -= 2
+                    self.rect.x -= 3
 
         #La clase de la bolsa con sus atributos y funciones
         class FishTraped(pygame.sprite.Sprite):
@@ -847,14 +847,14 @@ def Level2():
 
             def update(self):
                 if game_over == False:
-                    self.rect.x -= 2
+                    self.rect.x -= 3
 
         #Definimos el boton para pasar al siguiente nivel
         def ButtonNextLevel():
             PLAY_MOUSE_POS = pygame.mouse.get_pos()
 
             NEXT = Button(image=(None), pos=(640, 400),
-                                    text_input=Configuracion.get(langueje, {}).get("buttonNext"), font=get_font(50), base_color="White", hovering_color="Green")
+                                    text_input=Configuracion.get(langueje, {}).get("buttonNext"), font=get_font(40), base_color="White", hovering_color="Green")
             NEXT.changeColor(PLAY_MOUSE_POS)
             NEXT.update(PANTALLA)
 
@@ -895,8 +895,8 @@ def Level2():
         submarine_group.add(flappy)
 
         #Asigna los valores a la clase vida
-        fuel_bar = FuelBar(500, 35, 300, 40, 5000)
-        fuel_bar.hp = 5000
+        fuel_bar = FuelBar(500, 35, 300, 40, 5250)
+        fuel_bar.hp = 5250
 
         #Carga de imagenes de victoria
         images = []
@@ -917,7 +917,7 @@ def Level2():
             if x_relativa < W:
                 PANTALLA.blit(fondo,(x_relativa,0))
             #Velocidad del fondo
-            VelFondo -= 2
+            VelFondo -= 3
             #Velocidad del juego total
             clock.tick(fps)
 
@@ -1404,7 +1404,7 @@ def Level3():
             def update(self):
                 #Se quedan en su lugar al morir
                 if game_over == False:
-                    self.rect.x -= 2
+                    self.rect.x -= 3
 
         #La clase de la rock con sus atributos y funciones
         class Bottle(pygame.sprite.Sprite):
@@ -1417,7 +1417,7 @@ def Level3():
             def update(self):
                 #Se quedan en su lugar al morir
                 if game_over == False:
-                    self.rect.x -= 2
+                    self.rect.x -= 3
 
         #La clase de la bolsa con sus atributos y funciones
         class FishTraped(pygame.sprite.Sprite):
@@ -1429,7 +1429,7 @@ def Level3():
 
             def update(self):
                 if game_over == False:
-                    self.rect.x -= 2
+                    self.rect.x -= 3
 
         #La clase de la bolsa con sus atributos y funciones
         class Bag(pygame.sprite.Sprite):
@@ -1441,14 +1441,14 @@ def Level3():
 
             def update(self):
                 if game_over == False:
-                    self.rect.x -= 2
+                    self.rect.x -= 3
 
         #Definimos el boton para pasar al siguiente nivel
         def ButtonNextLevel():
             PLAY_MOUSE_POS = pygame.mouse.get_pos()
 
             NEXT = Button(image=(None), pos=(640, 400),
-                                    text_input=Configuracion.get(langueje, {}).get("buttonNext"), font=get_font(50), base_color="White", hovering_color="Green")
+                                    text_input=Configuracion.get(langueje, {}).get("buttonNext"), font=get_font(40), base_color="White", hovering_color="Green")
             NEXT.changeColor(PLAY_MOUSE_POS)
             NEXT.update(PANTALLA)
 
@@ -1490,8 +1490,8 @@ def Level3():
         submarine_group.add(flappy)
 
         #Asigna los valores a la clase vida
-        fuel_bar = FuelBar(500, 35, 300, 40, 5000)
-        fuel_bar.hp = 5000
+        fuel_bar = FuelBar(500, 35, 300, 40, 5500)
+        fuel_bar.hp = 5500
 
         #Carga de imagenes de victoria
         images = []
@@ -1512,7 +1512,7 @@ def Level3():
             if x_relativa < W:
                 PANTALLA.blit(fondo,(x_relativa,0))
             #Velocidad del fondo
-            VelFondo -= 2
+            VelFondo -= 3
             #Velocidad del juego total
             clock.tick(fps)
 
