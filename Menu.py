@@ -322,36 +322,36 @@ def MenuTotal():
                 images = []
                 #Forma para cambiar el numero al nombre de las imagenes
                 for i in range(1,3):
-                    name = "img/Sprites/Submarine/SubmarineRescale/submarine"+str(i)+".png"
+                    name = "img/Sprites/Submarine/submarine"+str(i)+".png"
                     images.append(pygame.image.load(name))
                 #En una variable guarda la velocidad a la que cambia cada imagenes
                 frame = int(time.time()*10) % 2
                 #Muestra en pantalla cada imagen por frames
-                PANTALLA.blit(images[frame], (275, 275))
+                PANTALLA.blit(images[frame], (290, 285))
                     
             if BacknewLevel2.collidepoint(PLAY_MOUSE_POS):
                 #Crea una lista
                 images = []
                 #Forma para cambiar el numero al nombre de las imagenes
                 for i in range(1,5):
-                    name = "img/Sprites/Buzo/BuzoRescale/buzo"+str(i)+".png"
+                    name = "img/Sprites/Buzo/buzo"+str(i)+".png"
                     images.append(pygame.image.load(name))
                 #En una variable guarda la velocidad a la que cambia cada imagenes
                 frame = int(time.time()*10) % 4
                 #Muestra en pantalla cada imagen por frames
-                PANTALLA.blit(images[frame], (545, 285))
+                PANTALLA.blit(images[frame], (565, 295))
 
             if BacknewLevel3.collidepoint(PLAY_MOUSE_POS):
                 #Crea una lista
                 images = []
                 #Forma para cambiar el numero al nombre de las imagenes
                 for i in range(1,5):
-                    name = "img/Sprites/DelfinBuzo/Rescale/delbuzo"+str(i)+".png"
+                    name = "img/Sprites/DelfinBuzo/delbuzo"+str(i)+".png"
                     images.append(pygame.image.load(name))
                 #En una variable guarda la velocidad a la que cambia cada imagenes
                 frame = int(time.time()*10) % 4
                 #Muestra en pantalla cada imagen por frames
-                PANTALLA.blit(images[frame], (825, 285))
+                PANTALLA.blit(images[frame], (860, 295))
 
             #Salir
             BACK = Button(image=None, pos=(640, 600), 
