@@ -346,7 +346,7 @@ def MenuTotal():
                 images = []
                 #Forma para cambiar el numero al nombre de las imagenes
                 for i in range(1,5):
-                    name = "img/Sprites/DelfinBuzo/Rescale/delbuzo"+str(i)+".png"
+                    name = "img/Sprites/DelfinBuzo/delbuzo"+str(i)+".png"
                     images.append(pygame.image.load(name))
                 #En una variable guarda la velocidad a la que cambia cada imagenes
                 frame = int(time.time()*10) % 4
