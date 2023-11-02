@@ -351,7 +351,7 @@ def MenuTotal():
                 #En una variable guarda la velocidad a la que cambia cada imagenes
                 frame = int(time.time()*10) % 4
                 #Muestra en pantalla cada imagen por frames
-                PANTALLA.blit(images[frame], (825, 285))
+                PANTALLA.blit(images[frame], (860, 285))
 
             #Salir
             BACK = Button(image=None, pos=(640, 600), 
