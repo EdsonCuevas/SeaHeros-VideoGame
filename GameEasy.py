@@ -1233,9 +1233,9 @@ def Level3():
         death_sound = pygame.mixer.Sound("sound/deathsound.mp3")
         recolection = pygame.mixer.Sound("sound/recolection.mp3")
         #Setea los sonidos a un volumen establecido
-        victory_sound.set_volume(0.3)
-        death_sound.set_volume(0.25)
-        recolection.set_volume(0.5)
+        victory_sound.set_volume(0.2)
+        death_sound.set_volume(0.2)
+        recolection.set_volume(0.2)
 
         #Carga las imagenes de control de volumen
         sonido_arriba = pygame.image.load("sound/img/volume_up.png")
