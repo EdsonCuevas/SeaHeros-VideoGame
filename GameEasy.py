@@ -724,11 +724,11 @@ def Level2():
             while paused:
                 pygame.mixer.music.pause()
                 if langueje == "es":
-                    draw_text(Configuracion.get(langueje, {}).get("paused"), font2, black, W / 2.3, 320)
-                    draw_text(Configuracion.get(langueje, {}).get("continue"), font2, black, W / 3.5, 370)
+                    draw_text(Configuracion.get(langueje, {}).get("paused"), font2, white, W / 2.3, 320)
+                    draw_text(Configuracion.get(langueje, {}).get("continue"), font2, white, W / 3.5, 370)
                 if langueje == "en":
-                    draw_text(Configuracion.get(langueje, {}).get("paused"), font2, black, 560, 320)
-                    draw_text(Configuracion.get(langueje, {}).get("continue"), font2, black, 400, 370)
+                    draw_text(Configuracion.get(langueje, {}).get("paused"), font2, white, 560, 320)
+                    draw_text(Configuracion.get(langueje, {}).get("continue"), font2, white, 400, 370)
                 
 
                 #evento para poder cerrar el bucle
@@ -875,17 +875,17 @@ def Level2():
 
         #Funcion para imprimir las teclas en pantalla
         def keys_on_screen():
-            draw_text(Configuracion.get(langueje, {}).get("keysControl"), font2, black, 1040, 380)
+            draw_text(Configuracion.get(langueje, {}).get("keysControl"), font2, white, 1040, 380)
             PANTALLA.blit(esc_key, (1030, 410))
-            draw_text(Configuracion.get(langueje, {}).get("keysPaused"), font3, black, 1100, 446)
+            draw_text(Configuracion.get(langueje, {}).get("keysPaused"), font3, white, 1100, 446)
             PANTALLA.blit(r_key, (1030, 460))
-            draw_text(Configuracion.get(langueje, {}).get("keysReset"), font3, black, 1100, 490)
+            draw_text(Configuracion.get(langueje, {}).get("keysReset"), font3, white, 1100, 490)
             PANTALLA.blit(q_key, (1030, 505))
-            draw_text(Configuracion.get(langueje, {}).get("keysExit"), font3, black, 1100, 535)
+            draw_text(Configuracion.get(langueje, {}).get("keysExit"), font3, white, 1100, 535)
             PANTALLA.blit(flecha_up, (1020, 545))
-            draw_text(Configuracion.get(langueje, {}).get("keysUpMusic"), font3, black, 1100, 577)
+            draw_text(Configuracion.get(langueje, {}).get("keysUpMusic"), font3, white, 1100, 577)
             PANTALLA.blit(flecha_down, (1010, 580))
-            draw_text(Configuracion.get(langueje, {}).get("keysDownMusic"), font3, black, 1100, 620)
+            draw_text(Configuracion.get(langueje, {}).get("keysDownMusic"), font3, white, 1100, 620)
 
         #Se declaran los objetos como grupos
         submarine_group = pygame.sprite.Group()
@@ -952,7 +952,7 @@ def Level2():
             
             #Cuando empizas el juego empieza muestra instrucciones
             if swimming == False and game_over == False:
-                draw_text(Configuracion.get(langueje, {}).get("swimming"), font2, black, 400, 340)
+                draw_text(Configuracion.get(langueje, {}).get("swimming"), font2, white, 400, 340)
                 PANTALLA.blit(click1, (588, 315))
                 #Funcion que muestre las teclas
                 keys_on_screen()
@@ -1053,14 +1053,14 @@ def Level2():
                 score = 0
                 VelFondo = 0
                 if langueje == "es":
-                    draw_text(Configuracion.get(langueje, {}).get("overReset"), font2, black, W / 3.5, 330)
-                    draw_text(Configuracion.get(langueje, {}).get("overExit"), font2, black, W / 3.1, 380)
+                    draw_text(Configuracion.get(langueje, {}).get("overReset"), font2, white, W / 3.5, 330)
+                    draw_text(Configuracion.get(langueje, {}).get("overExit"), font2, white, W / 3.1, 380)
                     draw_text(Configuracion.get(langueje, {}).get("teaching"), font2, red, 500, 250)
                     PANTALLA.blit(r_key, (490, 310))
                     PANTALLA.blit(q_key, (535, 360))
                 if langueje == "en":
-                    draw_text(Configuracion.get(langueje, {}).get("overReset"), font2, black, 450, 330)
-                    draw_text(Configuracion.get(langueje, {}).get("overExit"), font2, black, 500, 380)
+                    draw_text(Configuracion.get(langueje, {}).get("overReset"), font2, white, 450, 330)
+                    draw_text(Configuracion.get(langueje, {}).get("overExit"), font2, white, 500, 380)
                     draw_text(Configuracion.get(langueje, {}).get("teaching"), font2, red, 550, 250)
                     PANTALLA.blit(r_key, (575, 310))
                     PANTALLA.blit(q_key, (625, 360))
