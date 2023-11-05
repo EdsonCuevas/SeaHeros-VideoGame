@@ -578,11 +578,11 @@ def MenuTotal():
                 #Boton de Salir
                 if(langueje == "es"):
                     OPTIONS_BACK = Button(image=None, pos=(640, 600), 
-                                        text_input="Volver", font=get_font(75), base_color="White", hovering_color="Red")
+                                        text_input="Volver", font=get_font(75), base_color="Red", hovering_color="White")
                 
                 if(langueje == "en"):
                     OPTIONS_BACK = Button(image=None, pos=(640, 600), 
-                                        text_input="Back", font=get_font(75), base_color="White", hovering_color="Red")
+                                        text_input="Back", font=get_font(75), base_color="Red", hovering_color="White")
                 
                 #Bucle para indicar cuando se cierra la ventana
                 for event in pygame.event.get():
