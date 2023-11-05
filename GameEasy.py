@@ -1167,6 +1167,7 @@ def load_level3():
         #Muestra el objetivo del juego
         if langueje == "es":
             draw_text(Configuracion.get(langueje, {}).get("numlevel3"), font1, white, 540, 10)
+            draw_text(Configuracion.get(langueje, {}).get("easy"), font1, white, 565, 60)
             draw_text(Configuracion.get(langueje, {}).get("object"), font1, white, 490, 200)
             draw_text(Configuracion.get(langueje, {}).get("save"), font1, green, 450, 310)
             PANTALLA.blit(fish_ico, (750, 305))
@@ -1178,6 +1179,7 @@ def load_level3():
 
         if langueje == "en":
             draw_text(Configuracion.get(langueje, {}).get("numlevel3"), font1, white, 540, 10)
+            draw_text(Configuracion.get(langueje, {}).get("easy"), font1, white, 580, 60)
             draw_text(Configuracion.get(langueje, {}).get("object"), font1, white, 490, 200)
             draw_text(Configuracion.get(langueje, {}).get("save"), font1, green, 500, 310)
             PANTALLA.blit(fish_ico, (710, 310))
