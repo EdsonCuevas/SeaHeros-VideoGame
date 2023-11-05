@@ -104,7 +104,7 @@ def Level1():
         pygame.display.set_icon(icon)
 
         #Fuentes
-        font = pygame.font.SysFont('Bauhaus 93', 60)
+        font = pygame.font.Font('assets/BAUHS93.ttf', 60)
         font2 = pygame.font.Font('assets/upheavtt.ttf', 40)
         font3 = pygame.font.Font('assets/upheavtt.ttf', 22)
 
@@ -643,7 +643,7 @@ def Level2():
         pygame.display.set_icon(icon)
 
         #Fuentes
-        font = pygame.font.SysFont('Bauhaus 93', 60)
+        font = pygame.font.Font('assets/BAUHS93.ttf', 60)
         font2 = pygame.font.Font('assets/upheavtt.ttf', 40)
         font3 = pygame.font.Font('assets/upheavtt.ttf', 22)
 
@@ -1221,7 +1221,7 @@ def Level3():
         pygame.display.set_icon(icon)
 
         #Fuentes
-        font = pygame.font.SysFont('Bauhaus 93', 60)
+        font = pygame.font.Font('assets/BAUHS93.ttf', 60)
         font2 = pygame.font.Font('assets/upheavtt.ttf', 40)
         font3 = pygame.font.Font('assets/upheavtt.ttf', 22)
 
