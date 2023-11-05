@@ -56,6 +56,7 @@ def load_level1():
         #Muestra el objetivo del juego
         if langueje == "es":
             draw_text(Configuracion.get(langueje, {}).get("numlevel1"), font1, white, 540, 10)
+            draw_text(Configuracion.get(langueje, {}).get("easy"), font1, white, 560, 60)
             draw_text(Configuracion.get(langueje, {}).get("object"), font1, white, 490, 200)
             draw_text(Configuracion.get(langueje, {}).get("recolet"), font1, green, 420, 310)
             PANTALLA.blit(bolsa_ico, (820, 300))
@@ -64,6 +65,7 @@ def load_level1():
 
         if langueje == "en":
             draw_text(Configuracion.get(langueje, {}).get("numlevel1"), font1, white, 530, 10)
+            draw_text(Configuracion.get(langueje, {}).get("easy"), font1, white, 565, 60)
             draw_text(Configuracion.get(langueje, {}).get("object"), font1, white, 470, 200)
             draw_text(Configuracion.get(langueje, {}).get("recolet"), font1, green, 450, 290)
             PANTALLA.blit(bolsa_ico, (785, 280))
