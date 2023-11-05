@@ -209,18 +209,18 @@ def MenuTotal():
                 #Carga el boton de inicio de nivel facil
                 if langueje == "en": 
                     EASY_GAME = Button(image=pygame.image.load("assets/Play Rect.png"), pos=(640, 260),
-                                        text_input=Configuracion.get(langueje, {}).get("easy"), font=get_font(75), base_color="Green", hovering_color="White")
+                                        text_input=Configuracion.get(langueje, {}).get("easy"), font=get_font(75), base_color="White", hovering_color="Green")
                 if langueje == "es": 
                     EASY_GAME = Button(image=pygame.image.load("assets/Play Rect1.png"), pos=(640, 260),
-                                        text_input=Configuracion.get(langueje, {}).get("easy"), font=get_font(75), base_color="Green", hovering_color="White")
+                                        text_input=Configuracion.get(langueje, {}).get("easy"), font=get_font(75), base_color="White", hovering_color="Green")
                 
                 #Carga el boton de inicio de nivel dificil
                 if langueje == "en":
                     HARD_GAME = Button(image=pygame.image.load("assets/Play Rect.png"), pos=(640, 400),
-                                        text_input=Configuracion.get(langueje, {}).get("hard"), font=get_font(75), base_color="Green", hovering_color="White")
+                                        text_input=Configuracion.get(langueje, {}).get("hard"), font=get_font(75), base_color="White", hovering_color="Green")
                 if langueje == "es":
                     HARD_GAME = Button(image=pygame.image.load("assets/Options Rect.png"), pos=(640, 400),
-                                        text_input=Configuracion.get(langueje, {}).get("hard"), font=get_font(75), base_color="Green", hovering_color="White")
+                                        text_input=Configuracion.get(langueje, {}).get("hard"), font=get_font(75), base_color="White", hovering_color="Green")
 
                 #Carga un boton de volver al menu
                 PLAY_BACK = Button(image=None, pos=(640, 600),
