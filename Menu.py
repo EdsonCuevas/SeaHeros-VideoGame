@@ -209,18 +209,18 @@ def MenuTotal():
                 #Carga el boton de inicio de nivel facil
                 if langueje == "en": 
                     EASY_GAME = Button(image=pygame.image.load("assets/Play Rect.png"), pos=(640, 260),
-                                        text_input=Configuracion.get(langueje, {}).get("easy"), font=get_font(75), base_color="Green", hovering_color="White")
+                                        text_input=Configuracion.get(langueje, {}).get("easy"), font=get_font(75), base_color="White", hovering_color="Green")
                 if langueje == "es": 
                     EASY_GAME = Button(image=pygame.image.load("assets/Play Rect1.png"), pos=(640, 260),
-                                        text_input=Configuracion.get(langueje, {}).get("easy"), font=get_font(75), base_color="Green", hovering_color="White")
+                                        text_input=Configuracion.get(langueje, {}).get("easy"), font=get_font(75), base_color="White", hovering_color="Green")
                 
                 #Carga el boton de inicio de nivel dificil
                 if langueje == "en":
                     HARD_GAME = Button(image=pygame.image.load("assets/Play Rect.png"), pos=(640, 400),
-                                        text_input=Configuracion.get(langueje, {}).get("hard"), font=get_font(75), base_color="Green", hovering_color="White")
+                                        text_input=Configuracion.get(langueje, {}).get("hard"), font=get_font(75), base_color="White", hovering_color="Green")
                 if langueje == "es":
                     HARD_GAME = Button(image=pygame.image.load("assets/Options Rect.png"), pos=(640, 400),
-                                        text_input=Configuracion.get(langueje, {}).get("hard"), font=get_font(75), base_color="Green", hovering_color="White")
+                                        text_input=Configuracion.get(langueje, {}).get("hard"), font=get_font(75), base_color="White", hovering_color="Green")
 
                 #Carga un boton de volver al menu
                 PLAY_BACK = Button(image=None, pos=(640, 600),
@@ -578,11 +578,11 @@ def MenuTotal():
                 #Boton de Salir
                 if(langueje == "es"):
                     OPTIONS_BACK = Button(image=None, pos=(640, 600), 
-                                        text_input="Volver", font=get_font(75), base_color="White", hovering_color="Red")
+                                        text_input="Volver", font=get_font(75), base_color="Red", hovering_color="White")
                 
                 if(langueje == "en"):
                     OPTIONS_BACK = Button(image=None, pos=(640, 600), 
-                                        text_input="Back", font=get_font(75), base_color="White", hovering_color="Red")
+                                        text_input="Back", font=get_font(75), base_color="Red", hovering_color="White")
                 
                 #Bucle para indicar cuando se cierra la ventana
                 for event in pygame.event.get():
