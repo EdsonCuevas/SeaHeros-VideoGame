@@ -127,10 +127,6 @@ def intro():
                 run = False
         
         pygame.display.update()
-
-    #Carga la funcion del Menu
-    MenuTotal()
-
             
 def MenuTotal():
 
@@ -715,3 +711,5 @@ def MenuTotal():
 
 #Carga primero antes que todo la funcion de intro
 intro()
+#Carga la funcion del Menu
+MenuTotal()
