@@ -400,8 +400,10 @@ def MenuTotal():
                 if event.type == pygame.MOUSEBUTTONDOWN:
                         if BacknewLevel3.collidepoint(PLAY_MOUSE_POS):
                             pygame.mixer_music.stop()
+                            from GameEasy import cinematica2
                             from GameEasy import load_level3
                             from GameEasy import Level3
+                            cinematica2()
                             load_level3()
                             Level3()
 
