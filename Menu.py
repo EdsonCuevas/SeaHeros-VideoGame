@@ -84,11 +84,6 @@ moving_sprites = pygame.sprite.Group()
 bg = BG(0,0)
 moving_sprites.add(bg)
 
-#Cargo el video de intro
-vid = Video("assets/intro.mp4")
-#Setea la resolucion del video en HD
-vid.set_size((1280, 720))
-
 #Funcion con sus atributos para generar texto en la pantalla 
 def draw_text(text, font, text_col, x,y):
             img = font.render(text, True, text_col)
@@ -96,10 +91,15 @@ def draw_text(text, font, text_col, x,y):
 
 #Funcion para la intro al abrir el juego
 def intro():
+
+    #Cargo el video de intro
+    vid = Video("assets/intro.mp4")
+    #Setea la resolucion del video en HD
+    vid.set_size((1280, 720))
     
     #Bucle while para cargar el video y texto
     run = True
-    while run:
+    while vid.active and run == True:
 
         #Carga el video de la intro
         vid.draw(PANTALLA, (0,0))
@@ -115,7 +115,7 @@ def intro():
             vid.close()
             run = False
             MenuTotal()
-
+    
         #Bucle for para que la ventana del juego se pueda cerrar
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -123,15 +123,14 @@ def intro():
                 sys.exit()
             #Detecta si el mouse se presiona
             if event.type == pygame.MOUSEBUTTONDOWN or event.type == pygame.KEYDOWN:
-                #Cierra el video
-                vid.close()
                 #Termina el bucle
                 run = False
-                #Carga la funcion del Menu
-                MenuTotal()
-
-        #Funcion predefinida para la actualizacion de pantalla
+        
         pygame.display.update()
+
+    #Carga la funcion del Menu
+    MenuTotal()
+
             
 def MenuTotal():
 
