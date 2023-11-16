@@ -2,12 +2,45 @@ import pygame, sys, random, time
 from pygame.locals import *
 from button import Button
 from JSON  import Load
+from pyvidplayer import Video
 import Menu as cfg
 
 #Carga el nivel de sonido de musica del menu anterior en una variable temporal y lo guarda en languaje del json
 SoundActual = cfg.Music
 
-#Menu de carga de objetivos despues de dar play
+#cinematic2 = Video("assets/cinematics/Cinematic2.mp4")
+#cinematic2.set_size((1280, 720))
+
+def cinematica1():
+
+    cinematic1 = Video("assets/cinematics/cinematic1.mp4")
+    cinematic1.set_size((1280, 720))
+
+    #Pantalla
+    W,H = 1280,720
+    icon = pygame.image.load("img/Sprites/FishAnimation/fish1.png")
+    PANTALLA = pygame.display.set_mode((W,H))
+    pygame.display.set_caption("Sea Heroes")
+    pygame.display.set_icon(icon)
+
+    run = True
+    while cinematic1.active and run == True:
+        cinematic1.draw(PANTALLA, (0,0))
+
+        if cinematic1.draw(PANTALLA, (0, 0), force_draw=False):
+            pygame.display.update()
+            
+
+        #Bucle for para que la ventana del juego se pueda cerrar
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            #Detecta si el mouse se presiona
+            if event.type == pygame.MOUSEBUTTONDOWN or event.type == pygame.KEYDOWN:
+                #Cierra el video
+                run = False
+        
 def load_level1():
 
     #Carga el JSON
