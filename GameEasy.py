@@ -871,6 +871,7 @@ def Level2():
                 #Evento para detectar el mouse sobre el boton y funcion de este
                 if event.type == pygame.MOUSEBUTTONDOWN:
                         if NEXT.checkForInput(PLAY_MOUSE_POS):
+                            load_level3()
                             Level3()
 
         #Funcion para imprimir las teclas en pantalla
