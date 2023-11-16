@@ -348,6 +348,7 @@ def Level1():
                 #Evento para detectar el mouse sobre el boton y funcion de este
                 if event.type == pygame.MOUSEBUTTONDOWN:
                         if NEXT.checkForInput(PLAY_MOUSE_POS):
+                            cinematica1()
                             load_level2()
                             Level2()
 
