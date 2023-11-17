@@ -1520,7 +1520,7 @@ def Level3():
             PLAY_MOUSE_POS = pygame.mouse.get_pos()
 
             NEXT = Button(image=(None), pos=(640, 400),
-                                    text_input=Configuracion.get(langueje, {}).get("buttonNext"), font=get_font(40), base_color="White", hovering_color="Green")
+                                    text_input=Configuracion.get(langueje, {}).get("buttonFinal"), font=get_font(40), base_color="White", hovering_color="Green")
             NEXT.changeColor(PLAY_MOUSE_POS)
             NEXT.update(PANTALLA)
 
