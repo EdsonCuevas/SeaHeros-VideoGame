@@ -84,11 +84,6 @@ moving_sprites = pygame.sprite.Group()
 bg = BG(0,0)
 moving_sprites.add(bg)
 
-#Cargo el video de intro
-vid = Video("assets/intro.mp4")
-#Setea la resolucion del video en HD
-vid.set_size((1280, 720))
-
 #Funcion con sus atributos para generar texto en la pantalla 
 def draw_text(text, font, text_col, x,y):
             img = font.render(text, True, text_col)
@@ -96,10 +91,15 @@ def draw_text(text, font, text_col, x,y):
 
 #Funcion para la intro al abrir el juego
 def intro():
+
+    #Cargo el video de intro
+    vid = Video("assets/intro.mp4")
+    #Setea la resolucion del video en HD
+    vid.set_size((1280, 720))
     
     #Bucle while para cargar el video y texto
     run = True
-    while run:
+    while vid.active and run == True:
 
         #Carga el video de la intro
         vid.draw(PANTALLA, (0,0))
@@ -115,7 +115,7 @@ def intro():
             vid.close()
             run = False
             MenuTotal()
-
+    
         #Bucle for para que la ventana del juego se pueda cerrar
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -123,14 +123,9 @@ def intro():
                 sys.exit()
             #Detecta si el mouse se presiona
             if event.type == pygame.MOUSEBUTTONDOWN or event.type == pygame.KEYDOWN:
-                #Cierra el video
-                vid.close()
                 #Termina el bucle
                 run = False
-                #Carga la funcion del Menu
-                MenuTotal()
-
-        #Funcion predefinida para la actualizacion de pantalla
+        
         pygame.display.update()
             
 def MenuTotal():
@@ -389,8 +384,10 @@ def MenuTotal():
                 if event.type == pygame.MOUSEBUTTONDOWN:
                         if BacknewLevel2.collidepoint(PLAY_MOUSE_POS):
                             pygame.mixer_music.stop()
+                            from GameEasy import cinematica1
                             from GameEasy import load_level2
                             from GameEasy import Level2
+                            cinematica1()
                             load_level2()
                             Level2()
 
@@ -398,8 +395,10 @@ def MenuTotal():
                 if event.type == pygame.MOUSEBUTTONDOWN:
                         if BacknewLevel3.collidepoint(PLAY_MOUSE_POS):
                             pygame.mixer_music.stop()
+                            from GameEasy import cinematica2
                             from GameEasy import load_level3
                             from GameEasy import Level3
+                            cinematica2()
                             load_level3()
                             Level3()
 
@@ -712,3 +711,5 @@ def MenuTotal():
 
 #Carga primero antes que todo la funcion de intro
 intro()
+#Carga la funcion del Menu
+MenuTotal()

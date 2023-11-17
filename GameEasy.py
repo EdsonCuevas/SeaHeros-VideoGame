@@ -2,12 +2,75 @@ import pygame, sys, random, time
 from pygame.locals import *
 from button import Button
 from JSON  import Load
+from pyvidplayer import Video
 import Menu as cfg
 
 #Carga el nivel de sonido de musica del menu anterior en una variable temporal y lo guarda en languaje del json
 SoundActual = cfg.Music
 
-#Menu de carga de objetivos despues de dar play
+#cinematic2 = Video("assets/cinematics/Cinematic2.mp4")
+#cinematic2.set_size((1280, 720))
+
+def cinematica1():
+
+    cinematic1 = Video("assets/cinematics/cinematic1.mp4")
+    cinematic1.set_size((1280, 720))
+
+    #Pantalla
+    W,H = 1280,720
+    icon = pygame.image.load("img/Sprites/FishAnimation/fish1.png")
+    PANTALLA = pygame.display.set_mode((W,H))
+    pygame.display.set_caption("Sea Heroes")
+    pygame.display.set_icon(icon)
+
+    run = True
+    while cinematic1.active and run == True:
+        cinematic1.draw(PANTALLA, (0,0))
+
+        if cinematic1.draw(PANTALLA, (0, 0), force_draw=False):
+            pygame.display.update()
+            
+
+        #Bucle for para que la ventana del juego se pueda cerrar
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            #Detecta si el mouse se presiona
+            if event.type == pygame.MOUSEBUTTONDOWN or event.type == pygame.KEYDOWN:
+                #Cierra el video
+                run = False
+
+def cinematica2():
+
+    cinematic2 = Video("assets/cinematics/Cinematic2.mp4")
+    cinematic2.set_size((1280, 720))
+
+    #Pantalla
+    W,H = 1280,720
+    icon = pygame.image.load("img/Sprites/FishAnimation/fish1.png")
+    PANTALLA = pygame.display.set_mode((W,H))
+    pygame.display.set_caption("Sea Heroes")
+    pygame.display.set_icon(icon)
+
+    run = True
+    while cinematic2.active and run == True:
+        cinematic2.draw(PANTALLA, (0,0))
+
+        if cinematic2.draw(PANTALLA, (0, 0), force_draw=False):
+            pygame.display.update()
+            
+
+        #Bucle for para que la ventana del juego se pueda cerrar
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            #Detecta si el mouse se presiona
+            if event.type == pygame.MOUSEBUTTONDOWN or event.type == pygame.KEYDOWN:
+                #Cierra el video
+                run = False
+
 def load_level1():
 
     #Carga el JSON
@@ -315,6 +378,7 @@ def Level1():
                 #Evento para detectar el mouse sobre el boton y funcion de este
                 if event.type == pygame.MOUSEBUTTONDOWN:
                         if NEXT.checkForInput(PLAY_MOUSE_POS):
+                            cinematica1()
                             load_level2()
                             Level2()
 
@@ -871,6 +935,8 @@ def Level2():
                 #Evento para detectar el mouse sobre el boton y funcion de este
                 if event.type == pygame.MOUSEBUTTONDOWN:
                         if NEXT.checkForInput(PLAY_MOUSE_POS):
+                            cinematica2()
+                            load_level3()
                             Level3()
 
         #Funcion para imprimir las teclas en pantalla
@@ -899,8 +965,8 @@ def Level2():
         submarine_group.add(flappy)
 
         #Asigna los valores a la clase vida
-        fuel_bar = FuelBar(500, 35, 300, 40, 5250)
-        fuel_bar.hp = 5250
+        fuel_bar = FuelBar(500, 35, 300, 40, 5400)
+        fuel_bar.hp = 5400
 
         #Carga de imagenes de victoria
         images = []
@@ -1171,8 +1237,8 @@ def load_level3():
             draw_text(Configuracion.get(langueje, {}).get("object"), font1, white, 490, 200)
             draw_text(Configuracion.get(langueje, {}).get("save"), font1, green, 450, 310)
             PANTALLA.blit(fish_ico, (750, 305))
-            draw_text(Configuracion.get(langueje, {}).get("recolet"), font1, green, 450, 370)
-            PANTALLA.blit(bolsa_ico, (850, 360))
+            draw_text(Configuracion.get(langueje, {}).get("recolet2"), font1, green, 450, 370)
+            PANTALLA.blit(bolsa_ico, (880, 360))
             draw_text(Configuracion.get(langueje, {}).get("evade"), font1, red, 450, 430)
             PANTALLA.blit(rock_ico, (735, 430))
             PANTALLA.blit(bottle_ico, (680, 430))
@@ -1183,8 +1249,8 @@ def load_level3():
             draw_text(Configuracion.get(langueje, {}).get("object"), font1, white, 490, 200)
             draw_text(Configuracion.get(langueje, {}).get("save"), font1, green, 500, 310)
             PANTALLA.blit(fish_ico, (710, 310))
-            draw_text(Configuracion.get(langueje, {}).get("recolet"), font1, green, 450, 370)
-            PANTALLA.blit(bolsa_ico, (780, 360))
+            draw_text(Configuracion.get(langueje, {}).get("recolet2"), font1, green, 450, 370)
+            PANTALLA.blit(bolsa_ico, (780, 355))
             draw_text(Configuracion.get(langueje, {}).get("evade"), font1, red, 480, 430)
             PANTALLA.blit(rock_ico, (735, 430))
             PANTALLA.blit(bottle_ico, (680, 430))
@@ -1454,7 +1520,7 @@ def Level3():
             PLAY_MOUSE_POS = pygame.mouse.get_pos()
 
             NEXT = Button(image=(None), pos=(640, 400),
-                                    text_input=Configuracion.get(langueje, {}).get("buttonNext"), font=get_font(40), base_color="White", hovering_color="Green")
+                                    text_input=Configuracion.get(langueje, {}).get("buttonFinal"), font=get_font(40), base_color="White", hovering_color="Green")
             NEXT.changeColor(PLAY_MOUSE_POS)
             NEXT.update(PANTALLA)
 
@@ -1543,7 +1609,7 @@ def Level3():
                 PANTALLA.blit(fish_ico, (1190,25))
 
                 draw_text(str(score2), font, white, 1100, 80)
-                draw_text(("/5"), font, white, 1130, 80)
+                draw_text(("/7"), font, white, 1130, 80)
                 PANTALLA.blit(bag_ico, (1200,80)) 
                 fuel_bar.draw(PANTALLA)
                 if langueje == "en":
@@ -1583,7 +1649,7 @@ def Level3():
             
             #bucle donde se van sumando los puntos por colisiones con la bolsa
             for hit in hitsbag:
-                if score2 < 5:
+                if score2 < 7:
                     score2 += 1
                 recolection.play()
 
@@ -1603,7 +1669,7 @@ def Level3():
                     PANTALLA.blit(sonido_max, (1150,25))
 
             #Detecta si el jugador gana
-            if score == 7 and score2 == 5 and game_over == False:
+            if score == 7 and score2 == 7 and game_over == False:
                 victory = True
                 def WinScreen():
                     #Se limpia todos los objetos
@@ -1674,6 +1740,7 @@ def Level3():
             if game_over == True:
                 pygame.mixer.music.stop()
                 score = 0
+                score2 = 0
                 VelFondo = 0
                 if langueje == "es":
                     draw_text(Configuracion.get(langueje, {}).get("overReset"), font2, black, W / 3.5, 330)
