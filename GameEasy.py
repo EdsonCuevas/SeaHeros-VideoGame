@@ -13,7 +13,7 @@ SoundActual = cfg.Music
 
 def cinematica1():
 
-    cinematic1 = Video("assets/cinematics/cinematic1.mp4")
+    cinematic1 = Video("assets/cinematics/ESP_cinematic1.mp4")
     cinematic1.set_size((1280, 720))
 
     #Pantalla
