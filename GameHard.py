@@ -238,8 +238,8 @@ def load_level1():
             draw_text(Configuracion.get(langueje, {}).get("numlevel1"), font1, white, 540, 10)
             draw_text(Configuracion.get(langueje, {}).get("hard"), font1, white, 530, 60)
             draw_text(Configuracion.get(langueje, {}).get("object"), font1, white, 490, 200)
-            draw_text(Configuracion.get(langueje, {}).get("recolet"), font1, green, 420, 310)
-            PANTALLA.blit(bolsa_ico, (820, 300))
+            draw_text(Configuracion.get(langueje, {}).get("recolet2"), font1, green, 420, 310)
+            PANTALLA.blit(bolsa_ico, (840, 300))
             draw_text(Configuracion.get(langueje, {}).get("evade"), font1, red, 500, 380)
             PANTALLA.blit(rock_ico, (735, 380))
 
@@ -247,7 +247,7 @@ def load_level1():
             draw_text(Configuracion.get(langueje, {}).get("numlevel1"), font1, white, 530, 10)
             draw_text(Configuracion.get(langueje, {}).get("hard"), font1, white, 565, 60)
             draw_text(Configuracion.get(langueje, {}).get("object"), font1, white, 470, 200)
-            draw_text(Configuracion.get(langueje, {}).get("recolet"), font1, green, 450, 290)
+            draw_text(Configuracion.get(langueje, {}).get("recolet2"), font1, green, 450, 290)
             PANTALLA.blit(bolsa_ico, (785, 280))
             draw_text(Configuracion.get(langueje, {}).get("evade"), font1, red, 525, 360)
             PANTALLA.blit(rock_ico, (725, 360))
@@ -348,11 +348,11 @@ def Level1():
         pygame.mixer.music.set_volume == SoundActual
 
         #Frecuencia de aparicion de rock
-        frecuencia_rock = 2300 #milisegundos
+        frecuencia_rock = 1300 #milisegundos
         last_rock = pygame.time.get_ticks() - frecuencia_rock
 
         #Frecuencia de aparicion de bolsa
-        frecuencia_bag = 3000 #milisegundos
+        frecuencia_bag = 2000 #milisegundos
         ultima_bag = pygame.time.get_ticks() - frecuencia_bag + 1000
         
         #Defino la funcion de pausa
@@ -463,7 +463,7 @@ def Level1():
             def update(self):
                 #Se quedan en su lugar al morir
                 if game_over == False:
-                    self.rect.x -= 3
+                    self.rect.x -= 4
 
         #La clase de la bolsa con sus atributos y funciones
         class Bag(pygame.sprite.Sprite):
@@ -475,7 +475,7 @@ def Level1():
 
             def update(self):
                 if game_over == False:
-                    self.rect.x -= 3
+                    self.rect.x -= 4
 
         #Definimos el boton para pasar al siguiente nivel
         def ButtonNextLevel():
@@ -531,8 +531,8 @@ def Level1():
         submarine_group.add(flappy)
 
         #Asigna los valores a la clase vida
-        fuel_bar = FuelBar(500, 35, 300, 40, 3000)
-        fuel_bar.hp = 3000
+        fuel_bar = FuelBar(500, 35, 300, 40, 2000)
+        fuel_bar.hp = 2000
 
         #Carga de imagenes de victoria
         images = []
@@ -553,7 +553,7 @@ def Level1():
             if x_relativa < W:
                 PANTALLA.blit(fondo,(x_relativa,0))
             #Velocidad del fondo
-            VelFondo -= 3
+            VelFondo -= 4
             #Velocidad del juego total
             clock.tick(fps)
 
@@ -570,7 +570,7 @@ def Level1():
                 #Muestra el score
                 PANTALLA.blit(gas_ico, (420,25))
                 draw_text(str(score), font, white, 1110, 20)
-                draw_text(("/5"), font, white, 1150, 20) 
+                draw_text(("/7"), font, white, 1150, 20) 
                 PANTALLA.blit(bag_ico, (1220,20))
                 fuel_bar.draw(PANTALLA)
                 if langueje == "en":
@@ -619,7 +619,7 @@ def Level1():
                     PANTALLA.blit(sonido_max, (1150,25))
 
             #Detecta si el jugador gana
-            if score == 5 and game_over == False:
+            if score == 7 and game_over == False:
                 victory = True
                 def WinScreen():
                     #Se limpia todos los objetos
@@ -783,7 +783,7 @@ def load_level2():
             draw_text(Configuracion.get(langueje, {}).get("numlevel2"), font1, white, 540, 10)
             draw_text(Configuracion.get(langueje, {}).get("hard"), font1, white, 540, 60)
             draw_text(Configuracion.get(langueje, {}).get("object"), font1, white, 490, 200)
-            draw_text(Configuracion.get(langueje, {}).get("save"), font1, green, 450, 310)
+            draw_text(Configuracion.get(langueje, {}).get("save2"), font1, green, 450, 310)
             PANTALLA.blit(fish_ico, (750, 305))
             draw_text(Configuracion.get(langueje, {}).get("evade"), font1, red, 450, 380)
             PANTALLA.blit(rock_ico, (735, 380))
@@ -793,7 +793,7 @@ def load_level2():
             draw_text(Configuracion.get(langueje, {}).get("numlevel2"), font1, white, 530, 10)
             draw_text(Configuracion.get(langueje, {}).get("hard"), font1, white, 565, 60)
             draw_text(Configuracion.get(langueje, {}).get("object"), font1, white, 470, 200)
-            draw_text(Configuracion.get(langueje, {}).get("save"), font1, green, 480, 290)
+            draw_text(Configuracion.get(langueje, {}).get("save2"), font1, green, 480, 290)
             PANTALLA.blit(fish_ico, (710, 290))
             draw_text(Configuracion.get(langueje, {}).get("evade"), font1, red, 480, 360)
             PANTALLA.blit(rock_ico, (750, 355))
@@ -1014,7 +1014,7 @@ def Level2():
             def update(self):
                 #Se quedan en su lugar al morir
                 if game_over == False:
-                    self.rect.x -= 3
+                    self.rect.x -= 4
 
         #La clase de la rock con sus atributos y funciones
         class Bottle(pygame.sprite.Sprite):
@@ -1027,7 +1027,7 @@ def Level2():
             def update(self):
                 #Se quedan en su lugar al morir
                 if game_over == False:
-                    self.rect.x -= 3
+                    self.rect.x -= 4
 
         #La clase de la bolsa con sus atributos y funciones
         class FishTraped(pygame.sprite.Sprite):
@@ -1039,7 +1039,7 @@ def Level2():
 
             def update(self):
                 if game_over == False:
-                    self.rect.x -= 3
+                    self.rect.x -= 4
 
         #Definimos el boton para pasar al siguiente nivel
         def ButtonNextLevel():
@@ -1116,7 +1116,7 @@ def Level2():
             if x_relativa < W:
                 PANTALLA.blit(fondo,(x_relativa,0))
             #Velocidad del fondo
-            VelFondo -= 3
+            VelFondo -= 4
             #Velocidad del juego total
             clock.tick(fps)
 
@@ -1605,7 +1605,7 @@ def Level3():
             def update(self):
                 #Se quedan en su lugar al morir
                 if game_over == False:
-                    self.rect.x -= 3
+                    self.rect.x -= 4
 
         #La clase de la rock con sus atributos y funciones
         class Bottle(pygame.sprite.Sprite):
@@ -1618,7 +1618,7 @@ def Level3():
             def update(self):
                 #Se quedan en su lugar al morir
                 if game_over == False:
-                    self.rect.x -= 3
+                    self.rect.x -= 4
 
         #La clase de la bolsa con sus atributos y funciones
         class FishTraped(pygame.sprite.Sprite):
@@ -1630,7 +1630,7 @@ def Level3():
 
             def update(self):
                 if game_over == False:
-                    self.rect.x -= 3
+                    self.rect.x -= 4
 
         #La clase de la bolsa con sus atributos y funciones
         class Bag(pygame.sprite.Sprite):
@@ -1642,7 +1642,7 @@ def Level3():
 
             def update(self):
                 if game_over == False:
-                    self.rect.x -= 3
+                    self.rect.x -= 4
 
         #Definimos el boton para pasar al siguiente nivel
         def ButtonNextLevel():
@@ -1720,7 +1720,7 @@ def Level3():
             if x_relativa < W:
                 PANTALLA.blit(fondo,(x_relativa,0))
             #Velocidad del fondo
-            VelFondo -= 3
+            VelFondo -= 4
             #Velocidad del juego total
             clock.tick(fps)
 
