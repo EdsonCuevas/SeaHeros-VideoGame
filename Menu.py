@@ -382,12 +382,21 @@ def MenuTotal():
                 
                 #Entra al nivel 2
                 if event.type == pygame.MOUSEBUTTONDOWN:
-                        if BacknewLevel2.collidepoint(PLAY_MOUSE_POS):
+                        if BacknewLevel2.collidepoint(PLAY_MOUSE_POS) and langueje == "es":
                             pygame.mixer_music.stop()
-                            from GameEasy import cinematica1
+                            from GameEasy import ESP_Cinematica1
                             from GameEasy import load_level2
                             from GameEasy import Level2
-                            cinematica1()
+                            ESP_Cinematica1()
+                            load_level2()
+                            Level2()
+                        
+                        if BacknewLevel2.collidepoint(PLAY_MOUSE_POS) and langueje == "en":
+                            pygame.mixer_music.stop()
+                            from GameEasy import ENG_Cinematica1
+                            from GameEasy import load_level2
+                            from GameEasy import Level2
+                            ENG_Cinematica1()
                             load_level2()
                             Level2()
 
