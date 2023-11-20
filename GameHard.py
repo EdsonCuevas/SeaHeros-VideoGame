@@ -899,11 +899,11 @@ def Level2():
         last_rock = pygame.time.get_ticks() - frecuencia_rock
 
         #Frecuencia de aparicion de botella
-        frecuencia_bottle = 2700
+        frecuencia_bottle = 1700
         last_bottle = pygame.time.get_ticks() - frecuencia_bottle
 
         #Frecuencia de aparicion de pescado atrapado
-        frecuencia_pez = 5000 #milisegundos
+        frecuencia_pez = 4000 #milisegundos
         ultimo_pez = pygame.time.get_ticks() - frecuencia_pez + 1000
         
         #Defino la funcion de pausa
@@ -1094,8 +1094,8 @@ def Level2():
         submarine_group.add(flappy)
 
         #Asigna los valores a la clase vida
-        fuel_bar = FuelBar(500, 35, 300, 40, 5400)
-        fuel_bar.hp = 5400
+        fuel_bar = FuelBar(500, 35, 300, 40, 5000)
+        fuel_bar.hp = 5000
 
         #Carga de imagenes de victoria
         images = []
@@ -1134,8 +1134,8 @@ def Level2():
             if victory == False:
                 #Muestra el score
                 PANTALLA.blit(oxygen_ico, (450,15))
-                draw_text(str(score), font, white, 1100, 20)
-                draw_text(("/7"), font, white, 1130, 20) 
+                draw_text(str(score), font, white, 1050, 20)
+                draw_text(("/10"), font, white, 1090, 20) 
                 PANTALLA.blit(fish_ico, (1190,25))
                 fuel_bar.draw(PANTALLA)
                 if langueje == "en":
@@ -1186,7 +1186,7 @@ def Level2():
                     PANTALLA.blit(sonido_max, (1150,25))
 
             #Detecta si el jugador gana
-            if score == 7 and game_over == False:
+            if score == 10 and game_over == False:
                 victory = True
                 def WinScreen():
                     #Se limpia todos los objetos
