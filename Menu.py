@@ -382,23 +382,41 @@ def MenuTotal():
                 
                 #Entra al nivel 2
                 if event.type == pygame.MOUSEBUTTONDOWN:
-                        if BacknewLevel2.collidepoint(PLAY_MOUSE_POS):
+                        if BacknewLevel2.collidepoint(PLAY_MOUSE_POS) and langueje == "es":
                             pygame.mixer_music.stop()
-                            from GameEasy import cinematica1
+                            from GameEasy import ESP_Cinematica1
                             from GameEasy import load_level2
                             from GameEasy import Level2
-                            cinematica1()
+                            ESP_Cinematica1()
+                            load_level2()
+                            Level2()
+                        
+                        if BacknewLevel2.collidepoint(PLAY_MOUSE_POS) and langueje == "en":
+                            pygame.mixer_music.stop()
+                            from GameEasy import ENG_Cinematica1
+                            from GameEasy import load_level2
+                            from GameEasy import Level2
+                            ENG_Cinematica1()
                             load_level2()
                             Level2()
 
                 #Entra al nivel 3
                 if event.type == pygame.MOUSEBUTTONDOWN:
-                        if BacknewLevel3.collidepoint(PLAY_MOUSE_POS):
+                        if BacknewLevel3.collidepoint(PLAY_MOUSE_POS) and langueje == "es":
                             pygame.mixer_music.stop()
-                            from GameEasy import cinematica2
+                            from GameEasy import ESP_Cinematica2
                             from GameEasy import load_level3
                             from GameEasy import Level3
-                            cinematica2()
+                            ESP_Cinematica2()
+                            load_level3()
+                            Level3()
+                        
+                        if BacknewLevel3.collidepoint(PLAY_MOUSE_POS) and langueje == "en":
+                            pygame.mixer_music.stop()
+                            from GameEasy import ENG_Cinematica2
+                            from GameEasy import load_level3
+                            from GameEasy import Level3
+                            ENG_Cinematica2()
                             load_level3()
                             Level3()
 
