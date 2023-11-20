@@ -71,9 +71,39 @@ def ENG_Cinematica1():
                 #Cierra el video
                 run = False
 
-def cinematica2():
+def ESP_Cinematica2():
 
-    cinematic2 = Video("assets/cinematics/Cinematic2.mp4")
+    cinematic2 = Video("assets/cinematics/ESP_cinematic2.mp4")
+    cinematic2.set_size((1280, 720))
+
+    #Pantalla
+    W,H = 1280,720
+    icon = pygame.image.load("img/Sprites/FishAnimation/fish1.png")
+    PANTALLA = pygame.display.set_mode((W,H))
+    pygame.display.set_caption("Sea Heroes")
+    pygame.display.set_icon(icon)
+
+    run = True
+    while cinematic2.active and run == True:
+        cinematic2.draw(PANTALLA, (0,0))
+
+        if cinematic2.draw(PANTALLA, (0, 0), force_draw=False):
+            pygame.display.update()
+            
+
+        #Bucle for para que la ventana del juego se pueda cerrar
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            #Detecta si el mouse se presiona
+            if event.type == pygame.MOUSEBUTTONDOWN or event.type == pygame.KEYDOWN:
+                #Cierra el video
+                run = False
+
+def ENG_Cinematica2():
+
+    cinematic2 = Video("assets/cinematics/ENG_cinematic2.mp4")
     cinematic2.set_size((1280, 720))
 
     #Pantalla
@@ -971,8 +1001,13 @@ def Level2():
 
                 #Evento para detectar el mouse sobre el boton y funcion de este
                 if event.type == pygame.MOUSEBUTTONDOWN:
-                        if NEXT.checkForInput(PLAY_MOUSE_POS):
-                            cinematica2()
+                        if langueje == "es" and NEXT.checkForInput(PLAY_MOUSE_POS):
+                            ESP_Cinematica2()
+                            load_level3()
+                            Level3()
+                        
+                        if langueje == "en" and NEXT.checkForInput(PLAY_MOUSE_POS):
+                            ENG_Cinematica2()
                             load_level3()
                             Level3()
 
