@@ -131,6 +131,36 @@ def ENG_Cinematica2():
                 #Cierra el video
                 run = False
 
+def ESP_Credits():
+
+    credits = Video("assets/cinematics/ESP_credits.mp4")
+    credits.set_size((1280, 720))
+
+    #Pantalla
+    W,H = 1280,720
+    icon = pygame.image.load("img/Sprites/FishAnimation/fish1.png")
+    PANTALLA = pygame.display.set_mode((W,H))
+    pygame.display.set_caption("Sea Heroes")
+    pygame.display.set_icon(icon)
+
+    run = True
+    while credits.active and run == True:
+        credits.draw(PANTALLA, (0,0))
+
+        if credits.draw(PANTALLA, (0, 0), force_draw=False):
+            pygame.display.update()
+            
+
+        #Bucle for para que la ventana del juego se pueda cerrar
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            #Detecta si el mouse se presiona
+            if event.type == pygame.MOUSEBUTTONDOWN or event.type == pygame.KEYDOWN:
+                #Cierra el video
+                run = False
+
 def load_level1():
 
     #Carga el JSON
@@ -1605,7 +1635,9 @@ def Level3():
                 #Evento para detectar el mouse sobre el boton y funcion de este
                 if event.type == pygame.MOUSEBUTTONDOWN:
                         if NEXT.checkForInput(PLAY_MOUSE_POS):
-                            Level3()
+                            ESP_Credits()
+                            from Menu import MenuTotal
+                            MenuTotal()
 
         #Funcion para imprimir las teclas en pantalla
         def keys_on_screen():
