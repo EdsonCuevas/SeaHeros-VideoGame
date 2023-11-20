@@ -407,10 +407,17 @@ def Level1():
 
                 #Evento para detectar el mouse sobre el boton y funcion de este
                 if event.type == pygame.MOUSEBUTTONDOWN:
-                        if NEXT.checkForInput(PLAY_MOUSE_POS):
-                            cinematica1()
+                        if langueje == "es" and NEXT.checkForInput(PLAY_MOUSE_POS):
+                            ESP_Cinematica1()
                             load_level2()
                             Level2()
+
+                        if langueje == "en" and NEXT.checkForInput(PLAY_MOUSE_POS):
+                            ENG_Cinematica1()
+                            load_level2()
+                            Level2()
+                
+                
 
         #Funcion para imprimir las teclas en pantalla
         def keys_on_screen():
