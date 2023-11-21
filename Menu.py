@@ -427,37 +427,32 @@ def MenuTotal():
     def SelectorHard():
         #Carga de idioma
         global langueje
-
+        
         #Funcion de texto
         def draw_text(text, font, text_col, x,y):
                     img = font.render(text, True, text_col)
                     PANTALLA.blit(img, (x,y))
-
-        #Parametros de la ventana
-        w, h = 1280, 720
-        PANTALLA = pygame.display.set_mode((w,h))
 
         #Fuentes
         font2 = pygame.font.Font('assets/upheavtt.ttf', 50)
         font3 = pygame.font.Font('assets/upheavtt.ttf', 40)
 
         #Carga de imagenes
-        level1 = pygame.image.load("img/Backgrounds/Background_control.png")
-        level2 = pygame.image.load("img/Backgrounds/Background_level2.png")
-        level3= pygame.image.load("img/Backgrounds/Background_level3.jpg")
-        fish = pygame.image.load("img/Sprites/FishAnimation/fish1.png")
+        level1 = pygame.image.load("img/Backgrounds/Select_Background_level1.png")
+        level2 = pygame.image.load("img/Backgrounds/Select_Background_level2.png")
+        level3= pygame.image.load("img/Backgrounds/Select_Background_level3.png")
 
-        #Rendimencionamiento de imagenes
+        #Redimencionamiento de imagenes
         newLevel1 = pygame.transform.scale(level1,(250,250))
         newLevel2 = pygame.transform.scale(level2,(250,250))
         newLevel3 = pygame.transform.scale(level3,(250,250))
-        newFish = pygame.transform.scale(fish,(150,100))
 
         #Convertir el fondo a objecto
-        BacknewLevel1 = newLevel1.get_rect(topleft=(200, 250))  
-        BacknewLevel2 = newLevel2.get_rect(topleft=(500, 250))  
-        BacknewLevel3 = newLevel3.get_rect(topleft=(800, 250)) 
+        BacknewLevel1 = newLevel1.get_rect(topleft=(200, 200))  
+        BacknewLevel2 = newLevel2.get_rect(topleft=(500, 200))  
+        BacknewLevel3 = newLevel3.get_rect(topleft=(800, 200))
 
+        #Funcion para la fuente del boton
         def get_font(size):
                 return pygame.font.Font("assets/font.ttf", size)
 
@@ -466,39 +461,72 @@ def MenuTotal():
             moving_sprites.draw(PANTALLA)
             moving_sprites.update()
 
-            #Mostrar fondos
+            #Mostrar fondos de cada nivel
             PANTALLA.blit(newLevel1, BacknewLevel1.topleft)
             PANTALLA.blit(newLevel2, BacknewLevel2.topleft)
             PANTALLA.blit(newLevel3, BacknewLevel3.topleft)
-            PANTALLA.blit(newFish,(250,325))
-            PANTALLA.blit(newFish,(550,325))
-            PANTALLA.blit(newFish,(850,325))
+            
 
             #Mostrar texto en pantalla
             if langueje == "es":
-                draw_text(Configuracion.get(langueje, {}).get("selectLevel"), font2, "white", 400,50)
+                draw_text(Configuracion.get(langueje, {}).get("selectLevel"), font2, "white", 400,40)
             if langueje == "en":
-                draw_text(Configuracion.get(langueje, {}).get("selectLevel"), font2, "white", 470,50)
-            draw_text(Configuracion.get(langueje, {}).get("selectLevel1"), font3, "white", 250,510)
-            draw_text(Configuracion.get(langueje, {}).get("selectLevel2"), font3, "white", 550,510)
-            draw_text(Configuracion.get(langueje, {}).get("selectLevel3"), font3, "white", 850,510)
+                draw_text(Configuracion.get(langueje, {}).get("selectLevel"), font2, "white", 470,40)
+                
+            draw_text(Configuracion.get(langueje, {}).get("selectLevel1"), font3, "white", 250,404)
+            draw_text(Configuracion.get(langueje, {}).get("selectLevel2"), font3, "white", 550,400)
+            draw_text(Configuracion.get(langueje, {}).get("selectLevel3"), font3, "white", 850,403)
 
             #Obtener posicion del mouse
             PLAY_MOUSE_POS = pygame.mouse.get_pos()
 
-            #(PENDIENTE)Animacion del pez
+            #(PENDIENTE)Animacion del personaje 
             if BacknewLevel1.collidepoint(PLAY_MOUSE_POS):
-                    draw_text("puta", font2,"white",100,100)
+                #Crea una lista
+                images = []
+                #Forma para cambiar el numero al nombre de las imagenes
+                for i in range(1,3):
+                    name = "img/Sprites/Submarine/submarine"+str(i)+".png"
+                    images.append(pygame.image.load(name))
+                #En una variable guarda la velocidad a la que cambia cada imagenes
+                frame = int(time.time()*10) % 2
+                #Muestra en pantalla cada imagen por frames
+                PANTALLA.blit(images[frame], (290, 285))
+                #Colorea el texto del nivel en verde
+                draw_text(Configuracion.get(langueje, {}).get("selectLevel1"), font3, "green", 250,404)
                     
             if BacknewLevel2.collidepoint(PLAY_MOUSE_POS):
-                    draw_text("puta", font2,"white",100,100)
+                #Crea una lista
+                images = []
+                #Forma para cambiar el numero al nombre de las imagenes
+                for i in range(1,5):
+                    name = "img/Sprites/Buzo/buzo"+str(i)+".png"
+                    images.append(pygame.image.load(name))
+                #En una variable guarda la velocidad a la que cambia cada imagenes
+                frame = int(time.time()*10) % 4
+                #Muestra en pantalla cada imagen por frames
+                PANTALLA.blit(images[frame], (565, 295))
+                #Colorea el texto del nivel en verde
+                draw_text(Configuracion.get(langueje, {}).get("selectLevel2"), font3, "green", 550,400)
 
             if BacknewLevel3.collidepoint(PLAY_MOUSE_POS):
-                    draw_text("puta", font2,"white",100,100)
+                #Crea una lista
+                images = []
+                #Forma para cambiar el numero al nombre de las imagenes
+                for i in range(1,5):
+                    name = "img/Sprites/DelfinBuzo/delbuzo"+str(i)+".png"
+                    images.append(pygame.image.load(name))
+                #En una variable guarda la velocidad a la que cambia cada imagenes
+                frame = int(time.time()*10) % 4
+                #Muestra en pantalla cada imagen por frames
+                PANTALLA.blit(images[frame], (860, 295))
+                #Colorea el texto del nivel en verde
+                draw_text(Configuracion.get(langueje, {}).get("selectLevel3"), font3, "green", 850,403)
+                
 
             #Salir
             BACK = Button(image=None, pos=(640, 600), 
-                                        text_input=Configuracion.get(langueje, {}).get("back"), font=get_font(75), base_color="White", hovering_color="Red")
+                                        text_input=Configuracion.get(langueje, {}).get("back"), font=get_font(75), base_color="Red", hovering_color="White")
             
             BACK.changeColor(PLAY_MOUSE_POS)
             BACK.update(PANTALLA)
@@ -512,17 +540,57 @@ def MenuTotal():
                     if BACK.checkForInput(PLAY_MOUSE_POS):
                         return
 
-                #(PENDIENTE)Entrar al nivel
+                #Entrar al nivel 1
                 if event.type == pygame.MOUSEBUTTONDOWN:
                         if BacknewLevel1.collidepoint(PLAY_MOUSE_POS):
                             pygame.mixer_music.stop()
-                            from GameHard import start_menu
+                            from GameHard import load_level1
                             from GameHard import Level1
-                            start_menu()
+                            load_level1()
                             Level1()
+                
+                #Entra al nivel 2
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                        if BacknewLevel2.collidepoint(PLAY_MOUSE_POS) and langueje == "es":
+                            pygame.mixer_music.stop()
+                            from GameHard import ESP_Cinematica1
+                            from GameHard import load_level2
+                            from GameHard import Level2
+                            ESP_Cinematica1()
+                            load_level2()
+                            Level2()
+                        
+                        if BacknewLevel2.collidepoint(PLAY_MOUSE_POS) and langueje == "en":
+                            pygame.mixer_music.stop()
+                            from GameHard import ENG_Cinematica1
+                            from GameHard import load_level2
+                            from GameHard import Level2
+                            ENG_Cinematica1()
+                            load_level2()
+                            Level2()
+
+                #Entra al nivel 3
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                        if BacknewLevel3.collidepoint(PLAY_MOUSE_POS) and langueje == "es":
+                            pygame.mixer_music.stop()
+                            from GameHard import ESP_Cinematica2
+                            from GameHard import load_level3
+                            from GameHard import Level3
+                            ESP_Cinematica2()
+                            load_level3()
+                            Level3()
+                        
+                        if BacknewLevel3.collidepoint(PLAY_MOUSE_POS) and langueje == "en":
+                            pygame.mixer_music.stop()
+                            from GameHard import ENG_Cinematica2
+                            from GameHard import load_level3
+                            from GameHard import Level3
+                            ENG_Cinematica2()
+                            load_level3()
+                            Level3()
 
 
-
+            ControlMusic()
             pygame.display.update()
 
     #El menu de opciones            

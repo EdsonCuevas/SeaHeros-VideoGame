@@ -8,9 +8,6 @@ import Menu as cfg
 #Carga el nivel de sonido de musica del menu anterior en una variable temporal y lo guarda en languaje del json
 SoundActual = cfg.Music
 
-#cinematic2 = Video("assets/cinematics/Cinematic2.mp4")
-#cinematic2.set_size((1280, 720))
-
 def ESP_Cinematica1():
 
     cinematic1 = Video("assets/cinematics/ESP_cinematic1.mp4")
