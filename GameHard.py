@@ -1698,8 +1698,8 @@ def Level3():
         submarine_group.add(flappy)
 
         #Asigna los valores a la clase vida
-        fuel_bar = FuelBar(500, 35, 300, 40, 5500)
-        fuel_bar.hp = 5500
+        fuel_bar = FuelBar(500, 35, 300, 40, 5000)
+        fuel_bar.hp = 5000
 
         #Carga de imagenes de victoria
         images = []
