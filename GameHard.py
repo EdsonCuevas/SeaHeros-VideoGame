@@ -1364,10 +1364,10 @@ def load_level3():
             draw_text(Configuracion.get(langueje, {}).get("numlevel3"), font1, white, 540, 10)
             draw_text(Configuracion.get(langueje, {}).get("hard"), font1, white, 540, 60)
             draw_text(Configuracion.get(langueje, {}).get("object"), font1, white, 490, 200)
-            draw_text(Configuracion.get(langueje, {}).get("save"), font1, green, 450, 310)
+            draw_text(Configuracion.get(langueje, {}).get("save2"), font1, green, 450, 310)
             PANTALLA.blit(fish_ico, (750, 305))
-            draw_text(Configuracion.get(langueje, {}).get("recolet2"), font1, green, 450, 370)
-            PANTALLA.blit(bolsa_ico, (880, 360))
+            draw_text(Configuracion.get(langueje, {}).get("recolet3"), font1, green, 450, 370)
+            PANTALLA.blit(bolsa_ico, (890, 360))
             draw_text(Configuracion.get(langueje, {}).get("evade"), font1, red, 450, 430)
             PANTALLA.blit(rock_ico, (735, 430))
             PANTALLA.blit(bottle_ico, (680, 430))
@@ -1376,10 +1376,10 @@ def load_level3():
             draw_text(Configuracion.get(langueje, {}).get("numlevel3"), font1, white, 540, 10)
             draw_text(Configuracion.get(langueje, {}).get("hard"), font1, white, 580, 60)
             draw_text(Configuracion.get(langueje, {}).get("object"), font1, white, 490, 200)
-            draw_text(Configuracion.get(langueje, {}).get("save"), font1, green, 500, 310)
-            PANTALLA.blit(fish_ico, (710, 310))
-            draw_text(Configuracion.get(langueje, {}).get("recolet2"), font1, green, 450, 370)
-            PANTALLA.blit(bolsa_ico, (780, 355))
+            draw_text(Configuracion.get(langueje, {}).get("save2"), font1, green, 500, 310)
+            PANTALLA.blit(fish_ico, (730, 305))
+            draw_text(Configuracion.get(langueje, {}).get("recolet3"), font1, green, 450, 370)
+            PANTALLA.blit(bolsa_ico, (790, 355))
             draw_text(Configuracion.get(langueje, {}).get("evade"), font1, red, 480, 430)
             PANTALLA.blit(rock_ico, (735, 430))
             PANTALLA.blit(bottle_ico, (680, 430))
@@ -1482,19 +1482,19 @@ def Level3():
         pygame.mixer.music.set_volume == SoundActual
 
         #Frecuencia de aparicion de rock
-        frecuencia_rock = 2300 #milisegundos
+        frecuencia_rock = 1300 #milisegundos
         last_rock = pygame.time.get_ticks() - frecuencia_rock + 1000
 
         #Frecuencia de aparicion de botella
-        frecuencia_bottle = 3700
+        frecuencia_bottle = 2700
         last_bottle = pygame.time.get_ticks() - frecuencia_bottle + 1500
 
         #Frecuencia de aparicion de pescado atrapado
-        frecuencia_pez = 5000 #milisegundos
+        frecuencia_pez = 4000 #milisegundos
         ultimo_pez = pygame.time.get_ticks() - frecuencia_pez + 500
 
         #Frecuencia de aparicion de bolsa
-        frecuencia_bag = 3200 #milisegundos
+        frecuencia_bag = 2200 #milisegundos
         ultima_bag = pygame.time.get_ticks() - frecuencia_bag
         
         #Defino la funcion de pausa
@@ -1740,12 +1740,12 @@ def Level3():
             if victory == False:
                 #Muestra el score
                 PANTALLA.blit(oxygen_ico, (450,15))
-                draw_text(str(score), font, white, 1100, 20)
-                draw_text(("/7"), font, white, 1130, 20) 
+                draw_text(str(score), font, white, 1050, 20)
+                draw_text(("/10"), font, white, 1090, 20) 
                 PANTALLA.blit(fish_ico, (1190,25))
 
-                draw_text(str(score2), font, white, 1100, 80)
-                draw_text(("/7"), font, white, 1130, 80)
+                draw_text(str(score2), font, white, 1050, 80)
+                draw_text(("/10"), font, white, 1090, 80)
                 PANTALLA.blit(bag_ico, (1200,80)) 
                 fuel_bar.draw(PANTALLA)
                 if langueje == "en":
@@ -1779,13 +1779,13 @@ def Level3():
 
             #bucle donde se van sumando los puntos por colisiones con el pescado
             for hit in hitsfish:
-                if score < 7:
+                if score < 10:
                     score += 1
                 recolection.play()
             
             #bucle donde se van sumando los puntos por colisiones con la bolsa
             for hit in hitsbag:
-                if score2 < 7:
+                if score2 < 10:
                     score2 += 1
                 recolection.play()
 
@@ -1805,7 +1805,7 @@ def Level3():
                     PANTALLA.blit(sonido_max, (1150,25))
 
             #Detecta si el jugador gana
-            if score == 7 and score2 == 7 and game_over == False:
+            if score == 10 and score2 == 10 and game_over == False:
                 victory = True
                 def WinScreen():
                     #Se limpia todos los objetos
