@@ -339,6 +339,7 @@ def Level1():
         r_key = pygame.image.load("img/Sprites/Keys/r_alternative_paper.png")
         q_key = pygame.image.load("img/Sprites/Keys/q_alternative_paper.png")
         click1 = pygame.image.load("img/Sprites/Keys/mouse_L_pressed_paper.png")
+        rectpause = pygame.image.load("assets/RectPause.png")
 
         #Musica de fondo
         pygame.mixer.music.load("sound/level1.mp3")
@@ -508,17 +509,18 @@ def Level1():
 
         #Funcion para imprimir las teclas en pantalla
         def keys_on_screen():
-            draw_text(Configuracion.get(langueje, {}).get("keysControl"), font2, black, 1040, 380)
-            PANTALLA.blit(esc_key, (1030, 410))
-            draw_text(Configuracion.get(langueje, {}).get("keysPaused"), font3, black, 1100, 446)
-            PANTALLA.blit(r_key, (1030, 460))
-            draw_text(Configuracion.get(langueje, {}).get("keysReset"), font3, black, 1100, 490)
-            PANTALLA.blit(q_key, (1030, 505))
-            draw_text(Configuracion.get(langueje, {}).get("keysExit"), font3, black, 1100, 535)
-            PANTALLA.blit(flecha_up, (1020, 545))
-            draw_text(Configuracion.get(langueje, {}).get("keysUpMusic"), font3, black, 1100, 577)
-            PANTALLA.blit(flecha_down, (1010, 580))
-            draw_text(Configuracion.get(langueje, {}).get("keysDownMusic"), font3, black, 1100, 620)
+            PANTALLA.blit(rectpause, (1000,390))
+            draw_text(Configuracion.get(langueje, {}).get("keysControl"), font2, white, 1040, 410)
+            PANTALLA.blit(esc_key, (1030, 440))
+            draw_text(Configuracion.get(langueje, {}).get("keysPaused"), font3, white, 1100, 476)
+            PANTALLA.blit(r_key, (1030, 490))
+            draw_text(Configuracion.get(langueje, {}).get("keysReset"), font3, white, 1100, 520)
+            PANTALLA.blit(q_key, (1030, 535))
+            draw_text(Configuracion.get(langueje, {}).get("keysExit"), font3, white, 1100, 565)
+            PANTALLA.blit(flecha_up, (1020, 575))
+            draw_text(Configuracion.get(langueje, {}).get("keysUpMusic"), font3, white, 1100, 607)
+            PANTALLA.blit(flecha_down, (1010, 610))
+            draw_text(Configuracion.get(langueje, {}).get("keysDownMusic"), font3, white, 1100, 650)
 
         #Se declaran los objetos como grupos
         submarine_group = pygame.sprite.Group()
@@ -886,6 +888,7 @@ def Level2():
         r_key = pygame.image.load("img/Sprites/Keys/r_alternative_paper.png")
         q_key = pygame.image.load("img/Sprites/Keys/q_alternative_paper.png")
         click1 = pygame.image.load("img/Sprites/Keys/mouse_L_pressed_paper.png")
+        rectpause = pygame.image.load("assets/RectPause.png")
 
         #Musica de fondo
         pygame.mixer.music.load("sound/level2.mp3")
@@ -1070,17 +1073,18 @@ def Level2():
 
         #Funcion para imprimir las teclas en pantalla
         def keys_on_screen():
-            draw_text(Configuracion.get(langueje, {}).get("keysControl"), font2, white, 1040, 380)
-            PANTALLA.blit(esc_key, (1030, 410))
-            draw_text(Configuracion.get(langueje, {}).get("keysPaused"), font3, white, 1100, 446)
-            PANTALLA.blit(r_key, (1030, 460))
-            draw_text(Configuracion.get(langueje, {}).get("keysReset"), font3, white, 1100, 490)
-            PANTALLA.blit(q_key, (1030, 505))
-            draw_text(Configuracion.get(langueje, {}).get("keysExit"), font3, white, 1100, 535)
-            PANTALLA.blit(flecha_up, (1020, 545))
-            draw_text(Configuracion.get(langueje, {}).get("keysUpMusic"), font3, white, 1100, 577)
-            PANTALLA.blit(flecha_down, (1010, 580))
-            draw_text(Configuracion.get(langueje, {}).get("keysDownMusic"), font3, white, 1100, 620)
+            PANTALLA.blit(rectpause, (1000,390))
+            draw_text(Configuracion.get(langueje, {}).get("keysControl"), font2, white, 1040, 410)
+            PANTALLA.blit(esc_key, (1030, 440))
+            draw_text(Configuracion.get(langueje, {}).get("keysPaused"), font3, white, 1100, 476)
+            PANTALLA.blit(r_key, (1030, 490))
+            draw_text(Configuracion.get(langueje, {}).get("keysReset"), font3, white, 1100, 520)
+            PANTALLA.blit(q_key, (1030, 535))
+            draw_text(Configuracion.get(langueje, {}).get("keysExit"), font3, white, 1100, 565)
+            PANTALLA.blit(flecha_up, (1020, 575))
+            draw_text(Configuracion.get(langueje, {}).get("keysUpMusic"), font3, white, 1100, 607)
+            PANTALLA.blit(flecha_down, (1010, 610))
+            draw_text(Configuracion.get(langueje, {}).get("keysDownMusic"), font3, white, 1100, 650)
 
         #Se declaran los objetos como grupos
         submarine_group = pygame.sprite.Group()
@@ -1464,6 +1468,7 @@ def Level3():
         sound = True
         
         #Carga de imagenes de botones y el icon de objetivo
+        rectpause = pygame.image.load("assets/RectPause.png")
         bag_ico = pygame.image.load("img/Sprites/Icons/bolsa.png")
         fish_ico = pygame.image.load("img/Sprites/Icons/fish.png")
         oxygen_ico = pygame.image.load("img/Sprites/Icons/oxygen.png")
@@ -1673,17 +1678,18 @@ def Level3():
 
         #Funcion para imprimir las teclas en pantalla
         def keys_on_screen():
-            draw_text(Configuracion.get(langueje, {}).get("keysControl"), font2, black, 1040, 380)
-            PANTALLA.blit(esc_key, (1030, 410))
-            draw_text(Configuracion.get(langueje, {}).get("keysPaused"), font3, black, 1100, 446)
-            PANTALLA.blit(r_key, (1030, 460))
-            draw_text(Configuracion.get(langueje, {}).get("keysReset"), font3, black, 1100, 490)
-            PANTALLA.blit(q_key, (1030, 505))
-            draw_text(Configuracion.get(langueje, {}).get("keysExit"), font3, black, 1100, 535)
-            PANTALLA.blit(flecha_up, (1020, 545))
-            draw_text(Configuracion.get(langueje, {}).get("keysUpMusic"), font3, black, 1100, 577)
-            PANTALLA.blit(flecha_down, (1010, 580))
-            draw_text(Configuracion.get(langueje, {}).get("keysDownMusic"), font3, black, 1100, 620)
+            PANTALLA.blit(rectpause, (1000,390))
+            draw_text(Configuracion.get(langueje, {}).get("keysControl"), font2, white, 1040, 410)
+            PANTALLA.blit(esc_key, (1030, 440))
+            draw_text(Configuracion.get(langueje, {}).get("keysPaused"), font3, white, 1100, 476)
+            PANTALLA.blit(r_key, (1030, 490))
+            draw_text(Configuracion.get(langueje, {}).get("keysReset"), font3, white, 1100, 520)
+            PANTALLA.blit(q_key, (1030, 535))
+            draw_text(Configuracion.get(langueje, {}).get("keysExit"), font3, white, 1100, 565)
+            PANTALLA.blit(flecha_up, (1020, 575))
+            draw_text(Configuracion.get(langueje, {}).get("keysUpMusic"), font3, white, 1100, 607)
+            PANTALLA.blit(flecha_down, (1010, 610))
+            draw_text(Configuracion.get(langueje, {}).get("keysDownMusic"), font3, white, 1100, 650)
 
         #Se declaran los objetos como grupos
         submarine_group = pygame.sprite.Group()
