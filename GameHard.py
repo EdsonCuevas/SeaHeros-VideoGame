@@ -1740,11 +1740,17 @@ def Level3():
             if victory == False:
                 #Muestra el score
                 PANTALLA.blit(oxygen_ico, (450,15))
-                draw_text(str(score), font, white, 1050, 20)
+                if score < 10:
+                    draw_text(str(score), font, white, 1050, 20)
+                elif score > 9:
+                    draw_text(str(score), font, white, 1020, 20)
                 draw_text(("/10"), font, white, 1090, 20) 
                 PANTALLA.blit(fish_ico, (1190,25))
 
-                draw_text(str(score2), font, white, 1050, 80)
+                if score2 < 10:
+                    draw_text(str(score2), font, white, 1050, 80)
+                elif score2 > 9:
+                    draw_text(str(score2), font, white, 1020, 80)
                 draw_text(("/10"), font, white, 1090, 80)
                 PANTALLA.blit(bag_ico, (1200,80)) 
                 fuel_bar.draw(PANTALLA)
@@ -1822,6 +1828,8 @@ def Level3():
                     #Se detiene la musica
                     pygame.mixer.music.stop()
                     for sound in hitsfish:
+                        victory_sound.play()
+                    for sound in hitsbag:
                         victory_sound.play()
                 WinScreen()
 
