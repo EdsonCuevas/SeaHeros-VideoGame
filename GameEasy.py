@@ -17,7 +17,7 @@ def ESP_Cinematica1():
     W,H = 1280,720
     icon = pygame.image.load("img/Sprites/FishAnimation/fish1.png")
     PANTALLA = pygame.display.set_mode((W,H))
-    pygame.display.set_caption("Sea Heroes")
+    pygame.display.set_caption("Sea Heros")
     pygame.display.set_icon(icon)
 
     run = True
@@ -47,7 +47,7 @@ def ENG_Cinematica1():
     W,H = 1280,720
     icon = pygame.image.load("img/Sprites/FishAnimation/fish1.png")
     PANTALLA = pygame.display.set_mode((W,H))
-    pygame.display.set_caption("Sea Heroes")
+    pygame.display.set_caption("Sea Heros")
     pygame.display.set_icon(icon)
 
     run = True
@@ -77,7 +77,7 @@ def ESP_Cinematica2():
     W,H = 1280,720
     icon = pygame.image.load("img/Sprites/FishAnimation/fish1.png")
     PANTALLA = pygame.display.set_mode((W,H))
-    pygame.display.set_caption("Sea Heroes")
+    pygame.display.set_caption("Sea Heros")
     pygame.display.set_icon(icon)
 
     run = True
@@ -107,7 +107,7 @@ def ENG_Cinematica2():
     W,H = 1280,720
     icon = pygame.image.load("img/Sprites/FishAnimation/fish1.png")
     PANTALLA = pygame.display.set_mode((W,H))
-    pygame.display.set_caption("Sea Heroes")
+    pygame.display.set_caption("Sea Heros")
     pygame.display.set_icon(icon)
 
     run = True
@@ -137,7 +137,7 @@ def ESP_Credits():
     W,H = 1280,720
     icon = pygame.image.load("img/Sprites/FishAnimation/fish1.png")
     PANTALLA = pygame.display.set_mode((W,H))
-    pygame.display.set_caption("Sea Heroes")
+    pygame.display.set_caption("Sea Heros")
     pygame.display.set_icon(icon)
 
     run = True
@@ -167,7 +167,7 @@ def ENG_Credits():
     W,H = 1280,720
     icon = pygame.image.load("img/Sprites/FishAnimation/fish1.png")
     PANTALLA = pygame.display.set_mode((W,H))
-    pygame.display.set_caption("Sea Heroes")
+    pygame.display.set_caption("Sea Heros")
     pygame.display.set_icon(icon)
 
     run = True
@@ -205,7 +205,7 @@ def load_level1():
     #Setea el display
     PANTALLA = pygame.display.set_mode((W,H))
     #Nombre de la ventana del juego
-    pygame.display.set_caption("Sea Heroes")
+    pygame.display.set_caption("Sea Heros")
     #Carga el icon
     pygame.display.set_icon(icon)
 
@@ -280,7 +280,7 @@ def Level1():
         W,H = 1280,720
         icon = pygame.image.load("img/Sprites/FishAnimation/fish1.png")
         PANTALLA = pygame.display.set_mode((W,H))
-        pygame.display.set_caption("Sea Heroes")
+        pygame.display.set_caption("Sea Heros")
         pygame.display.set_icon(icon)
 
         #Fuentes
@@ -751,7 +751,7 @@ def load_level2():
     #Setea el display
     PANTALLA = pygame.display.set_mode((W,H))
     #Nombre de la ventana del juego
-    pygame.display.set_caption("Sea Heroes")
+    pygame.display.set_caption("Sea Heros")
     #Carga el icon
     pygame.display.set_icon(icon)
 
@@ -829,7 +829,7 @@ def Level2():
         W,H = 1280,720
         icon = pygame.image.load("img/Sprites/FishAnimation/fish1.png")
         PANTALLA = pygame.display.set_mode((W,H))
-        pygame.display.set_caption("Sea Heroes")
+        pygame.display.set_caption("Sea Heros")
         pygame.display.set_icon(icon)
 
         #Fuentes
@@ -1333,7 +1333,7 @@ def load_level3():
     #Setea el display
     PANTALLA = pygame.display.set_mode((W,H))
     #Nombre de la ventana del juego
-    pygame.display.set_caption("Sea Heroes")
+    pygame.display.set_caption("Sea Heros")
     #Carga el icon
     pygame.display.set_icon(icon)
 
@@ -1416,7 +1416,7 @@ def Level3():
         W,H = 1280,720
         icon = pygame.image.load("img/Sprites/FishAnimation/fish1.png")
         PANTALLA = pygame.display.set_mode((W,H))
-        pygame.display.set_caption("Sea Heroes")
+        pygame.display.set_caption("Sea Heros")
         pygame.display.set_icon(icon)
 
         #Fuentes

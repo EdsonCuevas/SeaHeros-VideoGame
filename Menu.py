@@ -16,7 +16,7 @@ W, H = 1280, 720
 #Setea el display en una variable
 PANTALLA = pygame.display.set_mode((W, H))
 #Nombre de la ventana del juego
-pygame.display.set_caption("Sea Hereos")
+pygame.display.set_caption("Sea Heros")
 
 #Crea un variable booleana
 muted = False
@@ -143,7 +143,7 @@ def MenuTotal():
     #Se declara PANTALLA que sera el display del juego
     PANTALLA = pygame.display.set_mode((W, H))
     #Nombre de la ventana
-    pygame.display.set_caption("Sea Heroes")
+    pygame.display.set_caption("Sea Heros")
 
     #Carga la musica
     pygame.mixer.music.load("sound/menu.mp3")
@@ -738,7 +738,7 @@ def MenuTotal():
                 MENU_MOUSE_POS = pygame.mouse.get_pos()
 
                 #En una variable guardamos el texto de titulo del juego
-                MENU_TEXT = get_font(100).render("SEA HEROES", True, "#b68f40")
+                MENU_TEXT = get_font(100).render("Sea Heros", True, "#b68f40")
                 #Guardamos en una variable los rectangulos del texto de los botones
                 MENU_RECT = MENU_TEXT.get_rect(center=(640, 100))
 
