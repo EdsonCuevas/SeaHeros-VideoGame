@@ -738,7 +738,7 @@ def MenuTotal():
                 MENU_MOUSE_POS = pygame.mouse.get_pos()
 
                 #En una variable guardamos el texto de titulo del juego
-                MENU_TEXT = get_font(100).render("SEA HEROS", True, "#b68f40")
+                MENU_TEXT = get_font(100).render("SEA HEROES", True, "#b68f40")
                 #Guardamos en una variable los rectangulos del texto de los botones
                 MENU_RECT = MENU_TEXT.get_rect(center=(640, 100))
 
