@@ -20,5 +20,5 @@ sudo apt-get update -y
 sudo apt-get install -y libmediainfo-dev
 ```
 ### How to play
-- If you are a windows user run the SeaHeroes.exe file
-- If you are a Linux user(Debian, Ubuntu, Fedora) you must install the dependencies mentioned above or execute /install.sh and run the GameEasy.py file from an IDE.
+- If you are a windows user run the SeaHeros.exe file
+- If you are a Linux user (Debian, Ubuntu, Mint) you must install the dependencies mentioned above or execute /install.sh and run the GameEasy.py file from an IDE.
